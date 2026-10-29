@@ -82,4 +82,4 @@ Suchmaschinen: Nur `1898.ma` wird indexiert. Alle anderen Adressen (Vorschau-URL
 - Sicherheits-Header, Caching und Weiterleitungen in `vercel.json`
 - Keine Cookies, kein localStorage, keine externen Requests → kein Cookie-Banner nötig
 
-Konzept, Gestaltung und Umsetzung: Grafitecture.
+Konzept, Gestaltung und Umsetzung: [Grafitecture](https://www.grafitecture.de/).

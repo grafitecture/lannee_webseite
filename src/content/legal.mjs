@@ -74,7 +74,7 @@ function impressumDe() {
       h: 'Bildnachweise und Gestaltung',
       p: [
         'Fotos: L’ANNÉE. Die Abbildung des Kiosque ist eine Visualisierung. Icons: generiert mit Higgsfield AI, vektorisiert und überarbeitet. Schriften: Fraunces und Instrument Sans (SIL Open Font License).',
-        `Konzept, Gestaltung und Umsetzung: ${SITE.agency.name}.`,
+        `Konzept, Gestaltung und Umsetzung: [${SITE.agency.name}](${SITE.agency.url}).`,
       ],
     }
   );
@@ -119,7 +119,7 @@ function impressumFr() {
       h: 'Crédits',
       p: [
         'Photos : L’ANNÉE. L’image du Kiosque est une visualisation. Icônes : générées avec Higgsfield AI, vectorisées et retravaillées. Polices : Fraunces et Instrument Sans (SIL Open Font License).',
-        `Concept, design et réalisation : ${SITE.agency.name}.`,
+        `Concept, design et réalisation : [${SITE.agency.name}](${SITE.agency.url}).`,
       ],
     }
   );
@@ -164,7 +164,7 @@ function impressumEn() {
       h: 'Credits',
       p: [
         'Photos: L’ANNÉE. The image of the Kiosque is a visualisation. Icons: generated with Higgsfield AI, vectorised and refined. Typefaces: Fraunces and Instrument Sans (SIL Open Font License).',
-        `Concept, design and development: ${SITE.agency.name}.`,
+        `Concept, design and development: [${SITE.agency.name}](${SITE.agency.url}).`,
       ],
     }
   );

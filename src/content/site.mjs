@@ -26,7 +26,7 @@ export const SITE = {
     /** Optional – nur bei eingetragener GbR (eGbR): { court, number } */
     register: null,
   },
-  agency: { name: 'Grafitecture', url: 'https://grafitecture.de' },
+  agency: { name: 'Grafitecture', url: 'https://www.grafitecture.de/' }, // immer verlinken, mit www
 };
 
 /**

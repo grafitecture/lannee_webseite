@@ -4,7 +4,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { html, raw, esc, rich } from './html.mjs';
+import { html, raw, esc, rich, setExternalLinkRenderer } from './html.mjs';
 import { DICT, url, pick, fill, formatTime } from './i18n.mjs';
 import { LOCATIONS, LOCATION_ORDER, SCHEDULE, CLOSURES } from '../content/site.mjs';
 import { MEDIA } from '../content/media.mjs';
@@ -370,5 +370,10 @@ export function mapLinks(query, locale) {
     ([label, href]) => html`<li>${arrowLink(href, label, { external: true, locale })}</li>`
   )}</ul>`;
 }
+
+// Externe Links aus dem Mini-Markup (Texte sind dort bereits escaped)
+setExternalLinkRenderer((href, text, locale) =>
+  arrowLink(raw(href), raw(text), { external: true, locale, cls: 'link-arrow link-arrow--quiet' })
+);
 
 export { rich };

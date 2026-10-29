@@ -55,12 +55,17 @@ export function typo(text, locale) {
   return s;
 }
 
+/** Externe Links im Mini-Markup; components.mjs setzt die Darstellung mit Pfeil-Icon. */
+let externalLink = (href, text) => `<a href="${href}" target="_blank" rel="noopener">${text}</a>`;
+export const setExternalLinkRenderer = (fn) => (externalLink = fn);
+
 /**
  * Mini-Markup → HTML.
  *   _kursiv_            → <em>
  *   **fett**            → <strong>
  *   {fr|Texte}          → <span lang="fr">Texte</span>
  *   [Text](/pfad)       → <a href="/pfad">Text</a>
+ *   [Text](https://…)   → externer Link, öffnet in neuem Fenster
  */
 export function rich(text, locale) {
   if (text == null) return raw('');
@@ -68,7 +73,9 @@ export function rich(text, locale) {
   s = s.replace(/\{(de|fr|en)\|([^}]+)\}/g, '<span lang="$1">$2</span>');
   s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
   s = s.replace(/(^|[\s(„“"])_([^_]+)_(?=[\s.,;:!?)“”"]|$)/g, '$1<em>$2</em>');
-  s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, '<a href="$2">$1</a>');
+  s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, text, href) =>
+    /^https?:\/\//.test(href) ? String(externalLink(href, text, locale)) : `<a href="${href}">${text}</a>`
+  );
   return raw(s);
 }
 
