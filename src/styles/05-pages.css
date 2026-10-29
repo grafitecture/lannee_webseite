@@ -233,7 +233,7 @@
   overflow: hidden;
 }
 .place__lockup {
-  font-size: clamp(0.95rem, 0.85rem + 0.4vw, 1.25rem);
+  font-size: clamp(1.05rem, 0.9rem + 0.55vw, 1.6rem);
 }
 .place__heading {
   margin-top: var(--space-l);
@@ -428,7 +428,7 @@
   padding: var(--space-l) var(--gutter) var(--space-xl);
 }
 .loc-hero__lockup {
-  font-size: clamp(0.9rem, 0.8rem + 0.45vw, 1.3rem);
+  font-size: clamp(1.05rem, 0.9rem + 0.6vw, 1.7rem);
 }
 .loc-hero__title {
   margin: var(--space-l) 0 0 -0.055em;
@@ -1347,7 +1347,7 @@
   gap: var(--space-l);
 }
 .sg__lockup {
-  font-size: 1.4rem;
+  font-size: clamp(1.05rem, 0.75rem + 1.3vw, 1.6rem);
 }
 .sg__logos {
   display: grid;

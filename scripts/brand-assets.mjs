@@ -75,6 +75,14 @@ const signet = (hours, colors, ring) =>
     .join('')}<circle r="9" fill="#fff" stroke="${ring}" stroke-width="7"/></svg>`;
 
 const img = (name) => `file://${ROOT}/public/images/${name}-1080.webp`;
+/** Lockup wie auf der Website: Logo so hoch wie der Zweizeiler NAME / Linie / Huîtres & Bulles (siehe 03-components.css). */
+const lockupHtml = (name, fg, size = 30) => `<div style="--cap:calc(2.625em + 1.5px);display:inline-flex;align-items:flex-start;gap:.8em;font-size:${size}px;padding-top:calc(var(--cap) * .2078 - .14em);color:${fg}">
+  <svg viewBox="${LOGO_VB}" style="display:block;flex:none;width:auto;height:calc(var(--cap) * 1.2141);margin-top:calc(.14em - var(--cap) * .2078)"><path fill="currentColor" fill-rule="evenodd" d="${LOGO_D}"/></svg>
+  <div style="display:grid;gap:.42em">
+    <div style="font-family:'Instrument Sans';font-stretch:75%;font-weight:600;font-size:1em;line-height:1;letter-spacing:.34em;text-transform:uppercase;padding-bottom:.38em;border-bottom:1.5px solid currentColor">${name}</div>
+    <div style="font-family:Fraunces;font-style:italic;font-size:1.12em;line-height:1;white-space:nowrap">Huîtres &amp; Bulles</div>
+  </div>
+</div>`;
 const OG = {
   lannee: `<div style="width:1200px;height:630px;background:#F1F7F7;display:grid;grid-template-rows:auto 1fr;padding:64px 80px 60px">
       <div style="width:820px">${logo('#4D9D6E')}</div>
@@ -86,15 +94,12 @@ const OG = {
 const LOC = {
   garage: { bg: '#7D2131', fg: '#fff', name: 'Garage', sub: 'Garage à huîtres &amp; vins', when: 'Fr &amp; Sa ab 18 Uhr, Jungbusch', hour: 18, photo: 'garage-hof' },
   kiosque: { bg: '#2E669C', fg: '#fff', name: 'Kiosque', sub: 'Kiosque à huîtres &amp; vins', when: 'Sonntag ab 10 Uhr, Lindenhof', hour: 10, photo: 'kiosque-visualisierung' },
-  marche: { bg: '#4D9D6E', fg: '#142237', name: 'Marché', sub: 'Huîtres &amp; Bulles', when: 'Samstag 8–13 Uhr, Wochenmarkt Lindenhof', hour: 8, photo: 'marche-wagen' },
+  marche: { bg: '#4D9D6E', fg: '#fff', name: 'Marché', sub: 'Huîtres &amp; Bulles auf Rädern', when: 'Samstag 8–13 Uhr, Wochenmarkt Lindenhof', hour: 8, photo: 'marche-wagen' },
 };
 for (const [key, L] of Object.entries(LOC)) {
   OG[key] = `<div style="width:1200px;height:630px;display:grid;grid-template-columns:1fr 520px;background:${L.bg};color:${L.fg}">
     <div style="padding:64px 70px;display:grid;align-content:space-between">
-      <div style="display:flex;align-items:center;gap:22px">
-        <div style="width:96px;height:96px">${signet([L.hour], [L.fg], L.fg)}</div>
-        <div style="width:210px">${logo(L.fg)}</div>
-      </div>
+      <div>${lockupHtml(L.name, L.fg)}</div>
       <div>
         <div style="font-family:Fraunces;font-weight:330;font-size:150px;line-height:.82;letter-spacing:-.035em">${L.name}</div>
         <div style="font-family:Fraunces;font-style:italic;font-size:40px;margin-top:22px">${L.sub}</div>

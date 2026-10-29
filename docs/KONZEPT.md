@@ -40,7 +40,9 @@ Sprachen: Deutsch (ohne Präfix), Französisch (`/fr/…`), Englisch (`/en/…`)
 
 ## 4. Subbrands
 
-Jede Subbrand = **Signet + L’ANNÉE + NAME + Huîtres & Bulles**. Das Signet ist ein Kreis mit dem Akzent als Zeiger auf die Öffnungsstunde:
+Lockup jeder Subbrand = **L’ANNÉE-Logo + Zweizeiler (NAME, Linie, Huîtres & Bulles)**. Die Buchstaben des Logos sind genau so hoch wie der Zweizeiler: von der Versalhöhe des Namens bis zur Grundlinie von „Huîtres & Bulles“; die Akzente ragen darüber hinaus. Auf den Farbflächen ist die Schrift bei allen drei Orten weiß.
+
+Die Signets (Kreis mit dem Akzent als Zeiger auf die Öffnungsstunde) bleiben als kleine Wegweiser in Navigation, Fahrplan, Zitaten und Fußzeile:
 
 | Subbrand | Zeiger | Farbe |
 | --- | --- | --- |
@@ -49,7 +51,7 @@ Jede Subbrand = **Signet + L’ANNÉE + NAME + Huîtres & Bulles**. Das Signet i
 | Garage | 6 Uhr (18 Uhr) | Rouge Bordeaux |
 | L’ANNÉE | alle drei | Encre + drei Farben |
 
-Der Name steht in gesperrten Versalien (Instrument Sans, schmal), wie bereits auf dem Marché-Anhänger.
+Der Name steht in gesperrten Versalien (Instrument Sans, schmal) über einer Linie, wie bereits auf dem Marché-Anhänger.
 
 ## 5. Farben
 
@@ -62,7 +64,7 @@ Der Name steht in gesperrten Versalien (Instrument Sans, schmal), wie bereits au
 | Nacre | #F1F7F7 | 97.2 % 0.006 200 | Perlmutt, ruhige Flächen |
 
 Harmonie: gleiche Sättigung (Chroma ≈ 0,11), Farbtöne rund 95° bzw. 140° auseinander, Helligkeit fällt vom Morgen zum Abend. Mit Nacre ergibt sich ein leises Bleu-Blanc-Rouge.
-Kontraste: Weiß auf Bleu 6,0 : 1, auf Bordeaux 9,8 : 1, Encre auf Vert 4,8 : 1, Encre auf Weiß 16 : 1.
+Kontraste: Weiß auf Bleu 6,0 : 1, auf Bordeaux 9,8 : 1, auf Vert 3,3 : 1 (reicht für große Schrift), Encre auf Weiß 16 : 1.
 
 ## 6. Typografie
 

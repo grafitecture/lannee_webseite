@@ -196,7 +196,7 @@ main:focus {
 }
 .theme-vin { --bg: var(--vin); --fg: var(--blanc); --loc: var(--blanc); --soft: var(--vin-soft); }
 .theme-bleu { --bg: var(--bleu); --fg: var(--blanc); --loc: var(--blanc); --soft: var(--bleu-soft); }
-.theme-vert { --bg: var(--vert); --fg: var(--encre); --loc: var(--encre); --soft: var(--vert-pale); }
+.theme-vert { --bg: var(--vert); --fg: var(--blanc); --loc: var(--blanc); --soft: var(--vert-pale); }
 .theme-encre { --bg: var(--encre); --fg: var(--nacre); --loc: var(--vert); }
 
 .theme-vin-text { --loc: var(--vin); --loc-pale: var(--vin-pale); }
