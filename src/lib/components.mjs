@@ -129,7 +129,7 @@ export function picture(name, locale, { sizes = '100vw', cls = '', eager = false
     img.width
   }" height="${img.height}" alt="${altText}" ${loading} decoding="async"></picture>`;
   const t = DICT[locale].ui;
-  const cap = caption ?? (media.visual ? t.visualisation : null);
+  const cap = caption ?? (media.caption ? pick(media.caption, locale) : media.visual ? t.visualisation : null);
   return cap ? html`<figure class="figure ${cls ? cls + '-figure' : ''}">${pic}<figcaption>${cap}</figcaption></figure>` : pic;
 }
 

@@ -78,12 +78,16 @@
 .hero__photo {
   aspect-ratio: 4 / 5;
 }
+/* Hochformat (mobil): Ausschnitt nach rechts, damit die Coupes im Bild bleiben */
 .hero__photo img {
-  object-position: 42% 60%;
+  object-position: 74% 55%;
 }
 @media (min-width: 768px) {
   .hero__photo {
     aspect-ratio: 1.618 / 1;
+  }
+  .hero__photo img {
+    object-position: 50% 60%;
   }
 }
 @media (min-width: 1024px) {

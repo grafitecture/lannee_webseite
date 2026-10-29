@@ -51,6 +51,7 @@ npm run images
 ```
 
 Neues Bild: Datei in `assets-src/` legen, in `scripts/images.mjs` (`SOURCES`) und `src/content/media.mjs` (Alt-Text) eintragen.
+Nur einzelne Bilder neu erzeugen: `npm run images -- name1 name2` (Namen wie in `SOURCES`).
 
 Favicons und Open-Graph-Bilder: `npm install --no-save sharp playwright && npm run brand-assets`.
 

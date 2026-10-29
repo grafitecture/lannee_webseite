@@ -7,6 +7,7 @@
  * /src/content/images.json.
  *
  * Aufruf:  npm install --no-save sharp && npm run images
+ *          npm run images -- name1 name2   (nur diese Bilder neu erzeugen)
  * (sharp wird nur hier gebraucht – der normale Build kommt ohne
  *  Abhängigkeiten aus.)
  */
@@ -55,6 +56,8 @@ const SOURCES = {
   'garage-eingang': { file: 'garage-eingang.jpg' },
   'schweppes': { file: 'schweppes.jpg' },
   'baguettes': { file: 'baguettes.jpg' },
+  // Stimmungsbild Startseite, generiert mit Higgsfield AI (Nano Banana), 2400×1792
+  'hero-huitres-champagne': { file: 'hero-huitres-champagne.webp' },
 };
 
 const toHex = (r, g, b) => '#' + [r, g, b].map((v) => v.toString(16).padStart(2, '0')).join('');
@@ -93,10 +96,19 @@ async function processImage(name, cfg) {
 }
 
 await fs.mkdir(OUT, { recursive: true });
-const manifest = {};
+const only = process.argv.slice(2);
+const unknown = only.filter((name) => !SOURCES[name]);
+if (unknown.length) {
+  console.error(`Unbekannt: ${unknown.join(', ')}`);
+  process.exit(1);
+}
+// Mit Namen: nur diese Bilder neu erzeugen und ins bestehende Manifest übernehmen
+const manifest = only.length ? JSON.parse(await fs.readFile(MANIFEST, 'utf8')) : {};
 for (const [name, cfg] of Object.entries(SOURCES)) {
+  if (only.length && !only.includes(name)) continue;
   manifest[name] = await processImage(name, cfg);
   console.log(`✓ ${name}  ${manifest[name].width}×${manifest[name].height}  [${manifest[name].widths.join(', ')}]`);
 }
-await fs.writeFile(MANIFEST, JSON.stringify(manifest, null, 2) + '\n');
+const ordered = Object.fromEntries(Object.keys(SOURCES).filter((k) => manifest[k]).map((k) => [k, manifest[k]]));
+await fs.writeFile(MANIFEST, JSON.stringify(ordered, null, 2) + '\n');
 console.log(`\nManifest: ${path.relative(ROOT, MANIFEST)}`);

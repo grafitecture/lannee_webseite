@@ -72,7 +72,7 @@ export function render(ctx) {
       </div>
     </div>
     <div class="hero__media">
-      ${picture('bulles', locale, { sizes: '(min-width: 1024px) 60vw, 100vw', cls: 'hero__photo', eager: true })}
+      ${picture('hero-huitres-champagne', locale, { sizes: '(min-width: 1024px) 60vw, 100vw', cls: 'hero__photo', eager: true })}
     </div>
   </div>
 </section>

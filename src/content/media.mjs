@@ -50,6 +50,15 @@ export const MEDIA = {
       en: 'Wine bottles in an ice bucket',
     },
   },
+  'hero-huitres-champagne': {
+    alt: {
+      de: 'Ein Teller Austern auf Eis mit Zitronen, daneben zwei Coupes Champagner auf einem blauen Holztisch am Fenster',
+      fr: 'Un plateau d’huîtres sur glace avec des citrons, à côté deux coupes de champagne sur une table en bois bleue près de la fenêtre',
+      en: 'A platter of oysters on ice with lemons, two coupes of champagne beside it on a blue wooden table by the window',
+    },
+    // KI-Bild: sichtbar kennzeichnen
+    caption: { de: 'Stimmungsbild, mit KI erzeugt', fr: 'Image d’ambiance, générée par IA', en: 'Mood image, AI-generated' },
+  },
   bulles: {
     alt: {
       de: 'Drei Gläser Champagner auf einem tiefblauen Tisch',
