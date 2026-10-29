@@ -79,6 +79,15 @@
 .link-arrow:hover span {
   text-decoration-thickness: 2px;
 }
+/* leise Variante im Fließtext, z. B. Agentur-Credit in der Fußzeile */
+.link-arrow--quiet {
+  gap: 0.3em;
+  font-weight: inherit;
+}
+.link-arrow--quiet .icon--arrow {
+  width: 1em;
+  height: 1em;
+}
 
 /* Signets ----------------------------------------------------------------- */
 

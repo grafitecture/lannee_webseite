@@ -139,7 +139,11 @@ function footer(ctx) {
       <li>${arrowLink(SITE.instagram.url, 'Instagram', { external: true, locale })}</li>
       <li><a href="mailto:${SITE.company.email}">${SITE.company.email}</a></li>
     </ul>
-    <p class="site-footer__legal">© ${year} ${SITE.company.name}, ${SITE.company.city}. ${t.ui.footer.design}: <a href="${SITE.agency.url}" rel="noopener">${SITE.agency.name}</a></p>
+    <p class="site-footer__legal">© ${year} ${SITE.company.name}, ${SITE.company.city}. ${t.ui.footer.design}: ${arrowLink(SITE.agency.url, SITE.agency.name, {
+      external: true,
+      locale,
+      cls: 'link-arrow link-arrow--quiet',
+    })}</p>
     ${langSwitch(ctx, 'lang--footer')}
   </div>
 </footer>`;
