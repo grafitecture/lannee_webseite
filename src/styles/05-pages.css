@@ -9,6 +9,21 @@
 }
 .hero__mark {
   color: var(--vert);
+  aspect-ratio: var(--logo-ratio, auto);
+}
+/* Übergang: Das Logo schrumpft beim Scrollen an die Stelle des kleinen Logos */
+.logo-morph .hero__logo {
+  position: fixed;
+  top: var(--morph-top);
+  left: var(--morph-left);
+  z-index: 45;
+  width: var(--morph-width);
+  transform-origin: 0 0;
+  pointer-events: none;
+}
+.logo-morph.logo-docked .hero__logo,
+.menu-open .logo-morph .hero__logo {
+  visibility: hidden;
 }
 .hero__logo {
   width: 100%;
@@ -1526,6 +1541,12 @@
 /* Druck (z. B. die Karte) -------------------------------------------------------- */
 
 @media print {
+  .logo-morph .hero__logo {
+    position: static;
+    width: 100%;
+    transform: none !important;
+    visibility: visible;
+  }
   .site-header,
   .site-footer,
   .menu-filter,

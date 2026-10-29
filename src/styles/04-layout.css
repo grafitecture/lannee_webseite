@@ -47,6 +47,14 @@
   height: clamp(1.2rem, 0.95rem + 0.6vw, 2rem);
   width: auto;
 }
+/* Startseite: Das große Logo wandert beim Scrollen hierher (siehe main.js) */
+.page--home .site-header__logo {
+  opacity: 0;
+}
+.page--home.logo-docked .site-header__logo,
+.page--home .site-header__brand:focus-visible .site-header__logo {
+  opacity: 1;
+}
 
 .nav {
   display: none;

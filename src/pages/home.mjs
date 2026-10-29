@@ -2,7 +2,9 @@ import { html, raw, rich } from '../lib/html.mjs';
 import { DICT, url, pick, fill, formatTime } from '../lib/i18n.mjs';
 import { LOCATIONS, LOCATION_ORDER, SCHEDULE, SITE } from '../content/site.mjs';
 import { MONTHS } from '../content/year.mjs';
-import { logo, signet, lockup, picture, weekClock, yearRing, arrowLink, icon, closureNotes } from '../lib/components.mjs';
+import { logo, signet, lockup, picture, weekClock, yearRing, arrowLink, icon, closureNotes, LOGO_VIEWBOX } from '../lib/components.mjs';
+
+const [, , LOGO_W, LOGO_H] = LOGO_VIEWBOX.split(/\s+/);
 import { menuExcerpt } from '../lib/menu-render.mjs';
 import { placeText } from '../lib/layout.mjs';
 
@@ -58,7 +60,7 @@ export function render(ctx) {
   return html`
 <section class="hero" aria-labelledby="hero-title">
   <h1 class="visually-hidden" id="hero-title">${rich(p.h1, locale)}</h1>
-  <div class="hero__mark">${logo({ cls: 'hero__logo', decorative: true })}</div>
+  <div class="hero__mark" data-logo-morph style="--logo-ratio: ${LOGO_W} / ${LOGO_H}">${logo({ cls: 'hero__logo', decorative: true })}</div>
   <div class="hero__grid">
     <div class="hero__text">
       <p class="hero__tagline" lang="fr">Huîtres &amp; Bulles</p>

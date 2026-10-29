@@ -379,6 +379,65 @@ function initExpiry() {
   }
 }
 
+/* ------------------------------------------------------------------ */
+/* Startseite: großes Logo wird beim Scrollen zum kleinen Logo         */
+/* ------------------------------------------------------------------ */
+
+function initLogoMorph() {
+  const mark = document.querySelector('[data-logo-morph]');
+  const target = document.querySelector('.site-header__logo');
+  const logo = mark?.querySelector('svg');
+  if (!mark || !target || !logo) return;
+  const body = document.body;
+  const dock = (docked) => body.classList.toggle('logo-docked', docked);
+
+  // Reduzierte Bewegung: kein Schrumpfen, das kleine Logo erscheint, sobald das große aus dem Blick ist
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    if (!('IntersectionObserver' in window)) return dock(true);
+    const headerHeight = document.querySelector('.site-header')?.offsetHeight ?? 0;
+    new IntersectionObserver(([entry]) => dock(!entry.isIntersecting), {
+      rootMargin: `-${headerHeight}px 0px 0px 0px`,
+    }).observe(mark);
+    return;
+  }
+
+  let geo;
+  const measure = () => {
+    const from = mark.getBoundingClientRect(); // Platzhalter im Fluss
+    const to = target.getBoundingClientRect(); // kleines Logo in der Kopfzeile (sticky)
+    const top = from.top + window.scrollY;
+    geo = {
+      dx: to.left - from.left,
+      dy: to.top - top,
+      scale: to.width / from.width,
+      distance: Math.max(from.height, 96), // so viel Scrollweg braucht der Übergang
+    };
+    mark.style.setProperty('--morph-top', `${top}px`);
+    mark.style.setProperty('--morph-left', `${from.left}px`);
+    mark.style.setProperty('--morph-width', `${from.width}px`);
+  };
+  const update = () => {
+    const p = Math.min(Math.max(window.scrollY / geo.distance, 0), 1);
+    // Erst schrumpfen, dann hochgleiten: So ist das Logo schon klein, wenn es die Navigation erreicht,
+    // und kommt ohne Ruck in der Kopfzeile an.
+    const shrink = 1 - (1 - p) ** 2;
+    const move = p * p * (3 - 2 * p);
+    logo.style.transform = `translate(${geo.dx * move}px, ${geo.dy * move}px) scale(${1 + (geo.scale - 1) * shrink})`;
+    dock(p >= 1);
+  };
+
+  let frame = 0;
+  const schedule = () => {
+    if (!frame) frame = requestAnimationFrame(() => ((frame = 0), update()));
+  };
+  measure();
+  body.classList.add('logo-morph');
+  update();
+  window.addEventListener('scroll', schedule, { passive: true });
+  window.addEventListener('resize', () => (measure(), update()));
+}
+
+initLogoMorph();
 initExpiry();
 initMenu();
 initWeekClocks();

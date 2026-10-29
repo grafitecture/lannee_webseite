@@ -63,6 +63,7 @@ ${LOCALES.filter((l) => l !== locale).map((l) => html`<meta property="og:locale:
 <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${assets.css}">
+${page.key === 'home' ? raw('<noscript><style>.page--home .site-header__logo{opacity:1}</style></noscript>') : ''}
 <script type="module" src="${assets.js}"></script>
 ${jsonLd(ctx)}
 </head>`;
