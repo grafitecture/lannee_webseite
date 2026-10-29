@@ -27,6 +27,8 @@ export const SITE = {
     register: null,
   },
   agency: { name: 'Grafitecture', url: 'https://www.grafitecture.de/' }, // immer verlinken, mit www
+  // Störer „Diese Webseite ist fiktiv“ (rosa Kreis unten rechts). Für den echten Livegang auf false setzen.
+  demoNotice: true,
 };
 
 /**

@@ -43,6 +43,7 @@ export default {
     toMenu: 'See the full menu',
     external: '(opens external site)',
     visualisation: 'Visualisation',
+    demoNotice: 'This website is purely for presentation and is fictional.',
   },
 
   pages: {

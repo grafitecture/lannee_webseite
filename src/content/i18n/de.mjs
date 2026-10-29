@@ -43,6 +43,7 @@ export default {
     toMenu: 'Zur ganzen Karte',
     external: '(öffnet externe Seite)',
     visualisation: 'Visualisierung',
+    demoNotice: 'Diese Webseite dient zur reinen Darstellung und ist fiktiv.',
   },
 
   pages: {

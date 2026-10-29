@@ -19,6 +19,7 @@ Voraussetzung: Node.js ab Version 20. Der Build hat **keine npm-Abhängigkeiten*
 | Was | Wo |
 | --- | --- |
 | Öffnungszeiten, Adressen, E-Mails | `src/content/site.mjs` → `LOCATIONS`, `SCHEDULE` |
+| Störer „Diese Webseite ist fiktiv“ an/aus | `src/content/site.mjs` → `SITE.demoNotice` |
 | Schließtage / Ausnahmen | `src/content/site.mjs` → `CLOSURES` |
 | Zusätzliche Marché-Termine | `src/content/site.mjs` → `MARCHE_DATES` |
 | Speisekarte (alle Sprachen) | `src/content/menu.mjs` |
@@ -67,6 +68,7 @@ Suchmaschinen: Nur `1898.ma` wird indexiert. Alle anderen Adressen (Vorschau-URL
 
 ## Vor dem Livegang prüfen
 
+- [ ] Störer abschalten: `SITE.demoNotice = false`
 - [ ] Impressum: Telefonnummer, ggf. USt-IdNr. und Registereintrag (eGbR) in `site.mjs` ergänzen
 - [ ] Impressum und Datenschutz rechtlich prüfen lassen (Vorlage, keine Rechtsberatung)
 - [ ] Karte: Gerichte und **Preise** sind Platzhalter

@@ -1,7 +1,7 @@
 /**
  * Seitengerüst: <head>, Kopfzeile, Fußzeile, strukturierte Daten.
  */
-import { html, raw, esc, plain } from './html.mjs';
+import { html, raw, esc, plain, typo } from './html.mjs';
 import { DICT, LOCALES, ROUTES, url, pick, fill, formatTime } from './i18n.mjs';
 import { SITE, LOCATIONS, LOCATION_ORDER, SCHEDULE } from '../content/site.mjs';
 import { logo, signet, icon, arrowLink, upcomingClosures } from './components.mjs';
@@ -240,6 +240,7 @@ export function layout(ctx, main) {
     html`<html lang="${locale}" dir="ltr">
 ${head(ctx)}
 <body class="page page--${page.key}${theme}">
+${SITE.demoNotice ? html`<div class="stoerer" role="note"><p class="stoerer__disc">${typo(DICT[locale].ui.demoNotice, locale)}</p></div>` : ''}
 ${header(ctx)}
 <main id="inhalt" tabindex="-1">
 ${main}
