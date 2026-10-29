@@ -1,0 +1,729 @@
+/* ==========================================================================
+   Komponenten
+   ========================================================================== */
+
+/* Icons ------------------------------------------------------------------- */
+
+.icon {
+  width: 1.5em;
+  height: 1.5em;
+  flex: none;
+  fill: currentColor;
+}
+.icon--arrow {
+  width: 1.15em;
+  height: 1.15em;
+  transition: transform 0.25s var(--ease-out);
+}
+
+/* Links & Buttons --------------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65em;
+  min-height: 3.125rem;
+  padding: 0 1.6em;
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  font-family: var(--font-text);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.25s, color 0.25s, border-color 0.25s;
+}
+.btn--solid {
+  background: var(--encre);
+  color: var(--blanc);
+}
+.btn--solid:hover {
+  background: var(--vert-deep);
+}
+.btn--line {
+  border-color: currentColor;
+}
+.btn--line:hover {
+  background: color-mix(in oklab, currentColor 10%, transparent);
+}
+.btn:hover .icon--arrow,
+.link-arrow:hover .icon--arrow {
+  transform: translateX(0.22em);
+}
+.btn:hover .icon--arrow[aria-hidden] use[href$='arrow-out'],
+.link-arrow:hover .icon use[href$='arrow-out'] {
+  transform: translate(0.1em, -0.1em);
+}
+
+.theme-vin .btn--solid,
+.theme-bleu .btn--solid,
+.theme-encre .btn--solid {
+  background: var(--blanc);
+  color: var(--encre);
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.link-arrow span {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+}
+.link-arrow:hover span {
+  text-decoration-thickness: 2px;
+}
+
+/* Signets ----------------------------------------------------------------- */
+
+.signet {
+  width: 1em;
+  height: 1em;
+  overflow: visible;
+  flex: none;
+}
+.signet__ring {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 13;
+}
+.signet__hand {
+  fill: currentColor;
+}
+.signet__pivot {
+  fill: var(--signet-pivot, var(--blanc));
+  stroke: currentColor;
+  stroke-width: 7;
+}
+.signet--garage { color: var(--vin); }
+.signet--kiosque { color: var(--bleu); }
+.signet--marche { color: var(--vert); }
+.signet--all { color: var(--encre); }
+.signet--all .signet__hand--garage { fill: var(--vin); }
+.signet--all .signet__hand--kiosque { fill: var(--bleu); }
+.signet--all .signet__hand--marche { fill: var(--vert); }
+
+.theme-vin .signet,
+.theme-bleu .signet {
+  color: var(--blanc);
+  --signet-pivot: var(--bg);
+}
+.theme-vert .signet {
+  color: var(--encre);
+  --signet-pivot: var(--vert);
+}
+.theme-encre .signet--garage { color: var(--vin-soft); --signet-pivot: var(--encre); }
+.theme-encre .signet--kiosque { color: var(--bleu-soft); --signet-pivot: var(--encre); }
+.theme-encre .signet--marche { color: var(--vert-soft); --signet-pivot: var(--encre); }
+
+/* Lockup: Signet + L'ANNÉE + NAME + Huîtres & Bulles ---------------------- */
+
+.lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  font-size: 1rem;
+  color: var(--encre);
+}
+.lockup__signet {
+  width: 3.1em;
+  height: 3.1em;
+}
+.lockup__words {
+  display: grid;
+  gap: 0.32em;
+  justify-items: start;
+}
+.lockup__logo {
+  height: 1.35em;
+  width: auto;
+  color: var(--vert);
+}
+.lockup__name {
+  font-family: var(--font-text);
+  font-stretch: 75%;
+  font-weight: 600;
+  font-size: 0.82em;
+  line-height: 1;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  padding-bottom: 0.32em;
+  border-bottom: 1.5px solid currentColor;
+  margin-right: -0.34em;
+}
+.lockup__tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.9em;
+  line-height: 1;
+}
+.lockup--garage .lockup__name { color: var(--vin); }
+.lockup--kiosque .lockup__name { color: var(--bleu); }
+.lockup--marche .lockup__name { color: var(--vert-deep); }
+.theme-vin .lockup,
+.theme-bleu .lockup,
+.theme-vert .lockup {
+  color: var(--fg);
+}
+.theme-vin .lockup__logo,
+.theme-bleu .lockup__logo,
+.theme-vert .lockup__logo,
+.theme-vin .lockup__name,
+.theme-bleu .lockup__name,
+.theme-vert .lockup__name {
+  color: var(--fg);
+}
+
+/* Bilder -------------------------------------------------------------------- */
+
+.pic {
+  background: var(--ph, var(--nacre-2));
+  overflow: hidden;
+}
+.pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.figure figcaption {
+  margin-top: 0.5rem;
+  font-size: var(--fs-text-small);
+  color: var(--gris);
+}
+.theme-vin .figure figcaption,
+.theme-bleu .figure figcaption,
+.theme-vert .figure figcaption {
+  color: inherit;
+  opacity: 0.85;
+}
+
+/* Tags & Chips ------------------------------------------------------------- */
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  padding: 0.28em 0.7em 0.28em 0.4em;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: 0.02em;
+}
+.tag__signet {
+  width: 1.15em;
+  height: 1.15em;
+}
+.tag--garage { background: var(--vin-pale); color: var(--vin); }
+.tag--kiosque { background: var(--bleu-pale); color: var(--bleu); }
+.tag--marche { background: var(--vert-pale); color: var(--vert-deep); }
+.tag--marche .signet { color: var(--vert-deep); }
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  min-height: 2.75rem;
+  padding: 0 1.15em;
+  border-radius: 999px;
+  border: 1.5px solid var(--encre);
+  background: var(--blanc);
+  color: var(--encre);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+.chip__signet {
+  width: 1.2em;
+  height: 1.2em;
+}
+.chip:hover {
+  background: var(--nacre);
+}
+.chip[aria-pressed='true'] {
+  background: var(--encre);
+  color: var(--blanc);
+}
+.chip--garage[aria-pressed='true'] { background: var(--vin); border-color: var(--vin); }
+.chip--kiosque[aria-pressed='true'] { background: var(--bleu); border-color: var(--bleu); }
+.chip--marche[aria-pressed='true'] { background: var(--vert); border-color: var(--vert); color: var(--encre); }
+.chip[aria-pressed='true'] .signet { color: currentColor; --signet-pivot: transparent; }
+
+/* Live-Anzeige ------------------------------------------------------------- */
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  margin-top: var(--space-s);
+  padding: 0.55em 1.1em 0.55em 0.9em;
+  border-radius: 999px;
+  background: var(--nacre);
+  font-size: 0.9375rem;
+  line-height: 1.3;
+}
+.live[hidden] {
+  display: none;
+}
+.live a {
+  font-weight: 600;
+}
+.live__dot {
+  position: relative;
+  width: 0.62em;
+  height: 0.62em;
+  border-radius: 50%;
+  background: var(--live, var(--gris));
+  flex: none;
+}
+.live.is-open .live__dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: inherit;
+  animation: live-pulse 2.4s var(--ease-out) infinite;
+}
+@keyframes live-pulse {
+  from { transform: scale(1); opacity: 0.6; }
+  to { transform: scale(3); opacity: 0; }
+}
+
+/* Pausen-Hinweis ------------------------------------------------------------ */
+
+.closures {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-2xs);
+  margin-top: var(--space-m);
+}
+.closure {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.75em;
+  margin: 0;
+  padding: 0.6em 1.15em 0.6em 0.95em;
+  border-radius: 1.4em;
+  background: var(--vin-pale);
+  color: var(--encre);
+  font-size: 0.9375rem;
+  line-height: 1.35;
+}
+.closure strong {
+  font-weight: 600;
+}
+/* Pausenzeichen ‖ aus zwei Balken */
+.closure__icon {
+  flex: none;
+  width: 0.62em;
+  height: 0.72em;
+  translate: 0 0.06em;
+  background: linear-gradient(90deg, var(--vin) 0 34%, transparent 34% 66%, var(--vin) 66%);
+}
+
+/* Wochenuhr ----------------------------------------------------------------- */
+
+.wc {
+  position: relative;
+  width: min(100%, 82vh, 46rem);
+  margin-inline: auto;
+}
+.wc__svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.wc__ring {
+  fill: none;
+  stroke: var(--line-strong);
+  stroke-width: 2;
+}
+.wc__weekdays {
+  fill: none;
+  stroke: var(--encre);
+  stroke-width: 6;
+  stroke-dasharray: 2 14;
+  stroke-linecap: round;
+  opacity: 0.45;
+}
+.wc__tick {
+  stroke: var(--encre);
+  stroke-opacity: 0.3;
+  stroke-width: 2;
+}
+.wc__tick--day {
+  stroke-opacity: 0.75;
+  stroke-width: 3;
+}
+.wc__day {
+  font-family: var(--font-text);
+  font-size: 27px;
+  font-weight: 500;
+  fill: var(--encre);
+  letter-spacing: 0.01em;
+}
+.wc__day--muted {
+  fill: var(--gris);
+  font-weight: 400;
+}
+.wc__arc {
+  fill: none;
+  stroke-width: 52;
+  transition: stroke-width 0.35s var(--ease-out);
+}
+.wc__arc--garage { stroke: var(--vin); }
+.wc__arc--kiosque { stroke: var(--bleu); }
+.wc__arc--marche { stroke: var(--vert); }
+.wc__arc--tail { opacity: 0.35; }
+.wc__label {
+  font-family: var(--font-text);
+}
+.wc__label-name {
+  font-size: 30px;
+  font-weight: 600;
+  font-stretch: 75%;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.wc__label--garage .wc__label-name { fill: var(--vin); }
+.wc__label--kiosque .wc__label-name { fill: var(--bleu); }
+.wc__label--marche .wc__label-name { fill: var(--vert-deep); }
+.wc__label-time {
+  font-size: 26px;
+  fill: var(--encre);
+}
+.wc__hand {
+  transform-box: view-box;
+  transform-origin: 0 0;
+  transition: transform 1.6s var(--ease-out);
+}
+.wc__hand path {
+  fill: var(--encre);
+}
+.wc__hub {
+  fill: var(--blanc);
+  stroke: var(--line);
+  stroke-width: 2;
+}
+.wc__pivot {
+  fill: var(--nacre);
+  stroke: var(--encre);
+  stroke-width: 7;
+}
+.wc {
+  container-type: inline-size;
+}
+.wc__status {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 0.35em;
+  margin-top: var(--space-s);
+  text-align: center;
+}
+@container (min-width: 30rem) {
+  .wc__status {
+    position: absolute;
+    inset: 30%;
+    margin: 0;
+    pointer-events: none;
+  }
+}
+.wc__status a {
+  pointer-events: auto;
+}
+.wc__kicker {
+  font-size: var(--fs-text-small);
+  color: var(--gris);
+  max-width: 18ch;
+}
+.wc__fallback {
+  font-size: 0.9375rem;
+  max-width: 24ch;
+}
+.wc__state {
+  font-size: 0.875rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.wc__state::before {
+  content: '';
+  width: 0.55em;
+  height: 0.55em;
+  border-radius: 50%;
+  background: var(--live, var(--gris));
+}
+.wc__name {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 8.5cqi, 4.236rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  font-weight: 360;
+  color: var(--live, var(--encre));
+  text-decoration: none;
+}
+.wc__name:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+.wc__detail {
+  font-size: clamp(0.9375rem, 2.4cqi, 1.125rem);
+  font-weight: 500;
+}
+.wc__place {
+  font-size: var(--fs-text-small);
+  color: var(--gris);
+}
+.wc[data-state='open'] .wc__state::before {
+  animation: live-pulse-dot 2.4s ease-in-out infinite;
+}
+@keyframes live-pulse-dot {
+  50% { opacity: 0.35; }
+}
+.wc__arc.is-paused {
+  opacity: 0.22;
+}
+/* Zeile im Fahrplan ↔ Bogen in der Uhr */
+.weekend:has(.tide[data-slot='0']:hover, .tide[data-slot='0']:focus-within) .wc__arc[data-slot='0'],
+.weekend:has(.tide[data-slot='1']:hover, .tide[data-slot='1']:focus-within) .wc__arc[data-slot='1'],
+.weekend:has(.tide[data-slot='2']:hover, .tide[data-slot='2']:focus-within) .wc__arc[data-slot='2'],
+.weekend:has(.tide[data-slot='3']:hover, .tide[data-slot='3']:focus-within) .wc__arc[data-slot='3'] {
+  stroke-width: 84;
+}
+
+/* Jahresuhr ----------------------------------------------------------------- */
+
+.yr {
+  position: relative;
+  width: min(100%, 80vh, 44rem);
+  margin-inline: auto;
+}
+.yr__svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.yr__ring {
+  fill: none;
+  stroke: var(--line-strong);
+  stroke-width: 2;
+}
+.yr__rband {
+  fill: none;
+  stroke: var(--bleu-pale);
+  stroke-width: 118;
+}
+.yr__tick {
+  stroke: var(--encre);
+  stroke-opacity: 0.35;
+  stroke-width: 2;
+}
+.yr__icon {
+  color: var(--gris);
+}
+.yr__icon--r {
+  color: var(--bleu);
+}
+.yr__icon.is-now {
+  color: var(--vin);
+}
+.yr__label {
+  font-family: var(--font-text);
+  font-size: 27px;
+  font-weight: 500;
+  fill: var(--gris);
+}
+.yr__label.is-now {
+  fill: var(--encre);
+  font-weight: 700;
+}
+.yr__hand {
+  transform-box: view-box;
+  transform-origin: 0 0;
+  transition: transform 1.6s var(--ease-out);
+}
+.yr__hand path {
+  fill: var(--vin);
+}
+.yr__pivot {
+  fill: var(--blanc);
+  stroke: var(--vin);
+  stroke-width: 6;
+}
+
+/* Karte: Gerichte ---------------------------------------------------------- */
+
+.dishes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.dish {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.3em 1.5em;
+  align-items: start;
+  padding: 1.15em 0 1.25em;
+  border-top: 1px solid var(--line);
+}
+.dish__name {
+  font-family: var(--font-display);
+  font-size: var(--fs-h6);
+  font-weight: 420;
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+}
+.dish__veg {
+  display: inline-grid;
+  place-items: center;
+  width: 1.15em;
+  height: 1.15em;
+  margin-left: 0.15em;
+  border-radius: 50%;
+  border: 1.5px solid var(--vert-deep);
+  color: var(--vert-deep);
+  font-family: var(--font-text);
+  font-size: 0.55em;
+  font-weight: 700;
+  vertical-align: 0.25em;
+}
+.dish__origin {
+  margin-top: 0.2em;
+  font-size: var(--fs-text-small);
+  color: var(--gris);
+}
+.dish__desc {
+  margin-top: 0.45em;
+  max-width: 54ch;
+}
+.dish__where {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35em;
+  margin-top: 0.7em;
+}
+.dish__prices {
+  display: flex;
+  gap: clamp(0.9rem, 0.6rem + 1vw, 1.6rem);
+  font-variant-numeric: tabular-nums lining-nums;
+  padding-top: 0.15em;
+}
+.dish__price {
+  display: grid;
+  justify-items: end;
+  gap: 0.15em;
+  min-width: 2.6em;
+}
+.dish__price-label {
+  font-size: 0.75rem;
+  line-height: 1.2;
+  color: var(--gris);
+  white-space: nowrap;
+}
+.dish__price-value {
+  font-family: var(--font-display);
+  font-size: 1.1875rem;
+  font-weight: 450;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+.dish__from {
+  font-family: var(--font-text);
+  font-size: 0.75rem;
+  color: var(--gris);
+}
+.dish--compact .dish__name {
+  font-size: clamp(1.25rem, 1rem + 0.9vw, 1.9rem);
+}
+.dish--compact .dish__price-label {
+  display: none;
+}
+
+.taste {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35em 1.3em;
+  margin-top: 0.7em;
+  font-size: 0.8125rem;
+}
+.taste__row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+}
+.taste__label {
+  color: var(--gris);
+  min-width: 4.6em;
+}
+.taste__dots {
+  display: inline-flex;
+  gap: 3px;
+}
+.taste__dots i {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  border: 1.5px solid var(--bleu);
+}
+.taste__dots i.on {
+  background: var(--bleu);
+}
+
+/* Kartenlinks ---------------------------------------------------------------- */
+
+.maplinks {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6em 1.6em;
+}
+
+.wc__hand[hidden],
+.yr__hand[hidden] {
+  display: none;
+}
+.dish__price-unit {
+  font-size: 0.75rem;
+  color: var(--gris);
+  white-space: nowrap;
+}
+
+/* Wochen- und Jahresuhr auf schmalen Bildschirmen: Außenbeschriftung ausblenden
+   (der Fahrplan daneben zeigt dieselben Infos), Ring größer, Schrift lesbar. */
+@container (max-width: 29.99rem) {
+  .wc__svg {
+    width: 128%;
+    max-width: none;
+    margin-inline: -14%;
+  }
+  .wc__hub {
+    fill: none;
+  }
+  .wc__label {
+    display: none;
+  }
+  .wc__day {
+    font-size: 46px;
+  }
+  .wc__arc {
+    stroke-width: 64;
+  }
+}
+.yr {
+  container-type: inline-size;
+}
+@container (max-width: 29.99rem) {
+  .yr__label {
+    font-size: 44px;
+  }
+}

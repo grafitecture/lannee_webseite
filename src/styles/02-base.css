@@ -1,0 +1,232 @@
+/* ==========================================================================
+   Basis
+   ========================================================================== */
+
+:root {
+  --font-display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  --font-text: 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --phi: 1.618;
+  --line: rgb(20 34 55 / 0.14);
+  --line-strong: rgb(20 34 55 / 0.32);
+  --header-h: 4.5rem;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.7, 0, 0.2, 1);
+  --loc: var(--vert);
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden]:not([hidden='until-found']) {
+  display: none !important;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+  hanging-punctuation: first last;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  background: var(--blanc);
+  color: var(--encre);
+  font-family: var(--font-text);
+  font-size: var(--fs-p);
+  line-height: 1.6;
+  font-kerning: normal;
+  font-variant-ligatures: common-ligatures;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 360;
+  line-height: 1.05;
+  text-wrap: balance;
+  font-optical-sizing: auto;
+}
+
+p,
+ul,
+ol,
+dl,
+blockquote,
+figure {
+  margin: 0;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+img,
+svg,
+picture,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+abbr[title] {
+  text-decoration: none;
+}
+
+code {
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.875em;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+::selection {
+  background: var(--vert);
+  color: var(--encre);
+}
+
+main:focus {
+  outline: none;
+}
+
+:lang(de) {
+  quotes: '„' '“' '‚' '‘';
+}
+:lang(fr) {
+  quotes: '«\202F' '\202F»' '“' '”';
+}
+:lang(en) {
+  quotes: '“' '”' '‘' '’';
+}
+
+/* Hilfsklassen ------------------------------------------------------------ */
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  left: var(--gutter);
+  top: -10rem;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  background: var(--encre);
+  color: var(--blanc);
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+/* Typo-Klassen nach Goldenem Schnitt (Größe unabhängig von der Semantik) */
+.t-h1 { font-size: var(--fs-h1); line-height: 0.82; letter-spacing: -0.035em; font-weight: 330; }
+.t-h2 { font-size: var(--fs-h2); line-height: 0.86; letter-spacing: -0.03em; font-weight: 330; }
+.t-h3 { font-size: var(--fs-h3); line-height: 0.94; letter-spacing: -0.022em; font-weight: 340; }
+.t-h4 { font-size: var(--fs-h4); line-height: 1; letter-spacing: -0.015em; font-weight: 360; }
+.t-h5 { font-size: var(--fs-h5); line-height: 1.1; letter-spacing: -0.01em; font-weight: 380; }
+.t-h6 { font-size: var(--fs-h6); line-height: 1.25; font-weight: 420; }
+
+.lead {
+  font-size: var(--fs-h6);
+  line-height: 1.45;
+  max-width: 38ch;
+}
+
+/* Themen: Farbflächen der Subbrands --------------------------------------- */
+
+.theme-vin,
+.theme-bleu,
+.theme-vert,
+.theme-encre {
+  background: var(--bg);
+  color: var(--fg);
+}
+.theme-vin { --bg: var(--vin); --fg: var(--blanc); --loc: var(--blanc); --soft: var(--vin-soft); }
+.theme-bleu { --bg: var(--bleu); --fg: var(--blanc); --loc: var(--blanc); --soft: var(--bleu-soft); }
+.theme-vert { --bg: var(--vert); --fg: var(--encre); --loc: var(--encre); --soft: var(--vert-pale); }
+.theme-encre { --bg: var(--encre); --fg: var(--nacre); --loc: var(--vert); }
+
+.theme-vin-text { --loc: var(--vin); --loc-pale: var(--vin-pale); }
+.theme-bleu-text { --loc: var(--bleu); --loc-pale: var(--bleu-pale); }
+.theme-vert-text { --loc: var(--vert); --loc-pale: var(--vert-pale); }
+
+.page--garage { --loc: var(--vin); --loc-pale: var(--vin-pale); --loc-text: var(--vin); }
+.page--kiosque { --loc: var(--bleu); --loc-pale: var(--bleu-pale); --loc-text: var(--bleu); }
+.page--marche { --loc: var(--vert); --loc-pale: var(--vert-pale); --loc-text: var(--vert-deep); }
+
+/* Seitenübergänge (Chrome, Edge, Safari 18.2+) ----------------------------- */
+
+@view-transition {
+  navigation: auto;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.32s;
+  animation-timing-function: var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

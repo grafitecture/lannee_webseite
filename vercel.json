@@ -1,0 +1,51 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "node src/build.mjs",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "trailingSlash": true,
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/fonts/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [{ "key": "Cache-Control", "value": "public, max-age=2592000, stale-while-revalidate=86400" }]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), payment=()" },
+        { "key": "X-Frame-Options", "value": "DENY" },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; connect-src 'self'; manifest-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "missing": [{ "type": "host", "value": "1898.ma" }],
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    }
+  ],
+  "redirects": [
+    { "source": "/(.*)", "has": [{ "type": "host", "value": "garage.ma" }], "destination": "https://1898.ma/garage/", "permanent": false },
+    { "source": "/(.*)", "has": [{ "type": "host", "value": "www.garage.ma" }], "destination": "https://1898.ma/garage/", "permanent": false },
+    { "source": "/(.*)", "has": [{ "type": "host", "value": "kiosque.ma" }], "destination": "https://1898.ma/kiosque/", "permanent": false },
+    { "source": "/(.*)", "has": [{ "type": "host", "value": "www.kiosque.ma" }], "destination": "https://1898.ma/kiosque/", "permanent": false },
+    { "source": "/(.*)", "has": [{ "type": "host", "value": "www.1898.ma" }], "destination": "https://1898.ma/$1", "permanent": true },
+    { "source": "/legal_notice", "destination": "/impressum/", "permanent": true },
+    { "source": "/legal_notice/", "destination": "/impressum/", "permanent": true },
+    { "source": "/mentions-legales", "destination": "/datenschutz/", "permanent": true },
+    { "source": "/mentions-legales/", "destination": "/datenschutz/", "permanent": true }
+  ]
+}

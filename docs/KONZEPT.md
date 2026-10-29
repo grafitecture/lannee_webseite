@@ -1,0 +1,123 @@
+# L’ANNÉE – Konzept & Markensystem
+
+Stand: Oktober 2026 · Grundlage: Briefing, PDF „LANNEE_Garage_Kiosque_Marche“, bestehende Seite 1898.ma, Fotos
+
+## 1. Ausgangslage
+
+- **Dachmarke:** L’ANNÉE (L’ANNÉE GbR, Andrea & Eric Schweppe, Mannheim), Web: 1898.ma
+- **Gemeinsames Versprechen:** *Huîtres & Bulles*: Austern und Schaumwein, unkompliziert („Wir reservieren nicht – komm einfach vorbei, ein Plätzchen findet sich.“)
+- **Drei Orte:**
+
+| Ort | Wann | Wo | Ansprache |
+| --- | --- | --- | --- |
+| Garage | Fr & Sa ab 18 Uhr | Beilstraße 6, Jungbusch | bonsoir@garage.ma |
+| Kiosque | So ab 10 Uhr | Lindenhofplatz 1, Lindenhof | bonjour@kiosque.ma |
+| Marché | Sa 8–13 Uhr | Wochenmarkt Lindenhof, weitere Orte nach Ankündigung | 1898.ma |
+
+## 2. Leitidee: Die Zeit
+
+*L’ANNÉE* heißt „das Jahr“. Austern folgen dem Kalender (Monate mit R) und den Gezeiten, und die drei Orte teilen sich ein Wochenende. Deshalb ist **Zeit** das verbindende Motiv:
+
+- Der **Akzent aus dem É** des Logos wird zum **Uhrzeiger**.
+- Kreise stehen für Zyklen: Woche (Wochenuhr), Jahr (Jahresuhr), Zifferblatt (Signets).
+- Farben folgen dem **Tageslicht**: Morgen (Grün), Sonntag (Blau), Abend (Bordeaux), Nacht (Encre).
+
+## 3. Gliederung
+
+```
+L’ANNÉE (1898.ma)
+├── Start: Wochenuhr (live), Fahrplan des Wochenendes, drei Orte, Karte, Jahr
+├── Garage   (garage.ma → /garage/)
+├── Kiosque  (kiosque.ma → /kiosque/)
+├── Marché   (/marche/: Termine, Einladung für Feste)
+├── La Carte (/karte/: Filter nach Ort)
+├── Das Jahr (/das-jahr/: Austernkalender, R-Regel, Größen, Anleitung, Weine)
+├── Kontakt
+└── Impressum, Datenschutz
+```
+
+Sprachen: Deutsch (ohne Präfix), Französisch (`/fr/…`), Englisch (`/en/…`), jeweils mit hreflang.
+
+## 4. Subbrands
+
+Jede Subbrand = **Signet + L’ANNÉE + NAME + Huîtres & Bulles**. Das Signet ist ein Kreis mit dem Akzent als Zeiger auf die Öffnungsstunde:
+
+| Subbrand | Zeiger | Farbe |
+| --- | --- | --- |
+| Marché | 8 Uhr | Vert L’ANNÉE |
+| Kiosque | 10 Uhr | Bleu Marée |
+| Garage | 6 Uhr (18 Uhr) | Rouge Bordeaux |
+| L’ANNÉE | alle drei | Encre + drei Farben |
+
+Der Name steht in gesperrten Versalien (Instrument Sans, schmal), wie bereits auf dem Marché-Anhänger.
+
+## 5. Farben
+
+| Name | HEX | OKLCH | Rolle |
+| --- | --- | --- | --- |
+| Vert L’ANNÉE | #4D9D6E | 63.2 % 0.107 155.8 | bestehend, Marché |
+| **Bleu Marée** | #2E669C | 50 % 0.105 250 | neu: Meer, Gezeiten, Kiosque |
+| **Rouge Bordeaux** | #7D2131 | 40 % 0.125 15 | neu: Wein, Abend, Garage |
+| Encre | #142237 | 25 % 0.045 258 | Text, Fußzeile |
+| Nacre | #F1F7F7 | 97.2 % 0.006 200 | Perlmutt, ruhige Flächen |
+
+Harmonie: gleiche Sättigung (Chroma ≈ 0,11), Farbtöne rund 95° bzw. 140° auseinander, Helligkeit fällt vom Morgen zum Abend. Mit Nacre ergibt sich ein leises Bleu-Blanc-Rouge.
+Kontraste: Weiß auf Bleu 6,0 : 1, auf Bordeaux 9,8 : 1, Encre auf Vert 4,8 : 1, Encre auf Weiß 16 : 1.
+
+## 6. Typografie
+
+- **Fraunces** (variabel, SIL OFL), Titel: weiche, gerundete Serifen wie die Ecken des Logos; optische Größe passt sich an. Zugeschnitten auf Gewicht 300–700, SOFT 100.
+- **Instrument Sans** (variabel, SIL OFL), Text & UI: schmale Breite (wdth 75) für Subbrand-Namen.
+- Beide selbst gehostet (DSGVO: keine Verbindung zu Google).
+
+**Skala im Goldenen Schnitt** (Desktop laut Vorgabe, fluid per `clamp()` zwischen 360 und 1920 px, mobil Verhältnis 1,25):
+
+| Token | 360 px | 1920 px |
+| --- | --- | --- |
+| h1 | 3.815rem | 17.942rem |
+| h2 | 3.052rem | 11.089rem |
+| h3 | 2.441rem | 6.854rem |
+| h4 | 1.953rem | 4.236rem |
+| h5 | 1.562rem | 2.618rem |
+| h6 | 1.25rem | 1.618rem |
+| p | 1rem | 1rem |
+| small | 0.618rem (als Text mind. 0.8125rem) | |
+| xs | 0.382rem (Abstände) | |
+
+Abstände ebenfalls in φ-Schritten (0.382 … 17.942rem).
+
+## 7. Breakpoints
+
+Abgeleitet aus StatCounter Deutschland, September 2026 (mobil 360–430 px; Tablets 600–834 hochkant / 1024–1334 quer; Desktop 1920×1080 = 34 %, 2560×1440 = 8 %, 1536×864 = 8 %).
+
+| Name | min-width | Geräte |
+| --- | --- | --- |
+| xs | 0 | Smartphones |
+| sm | 480 | große Phones quer, Foldables |
+| md | 768 | Tablets hochkant |
+| lg | 1024 | Tablets quer, kleine Laptops (Navigation voll) |
+| xl | 1280 | Laptops |
+| 2xl | 1536 | Desktop 125 % |
+| 3xl | 1920 | Full HD |
+| 4xl | 2560 | QHD |
+
+Seiten sind auf dem Desktop immer volle Breite. Begrenzt wird nur die Zeilenlänge von Fließtext. Uhren nutzen Container Queries.
+
+## 8. Gestaltungsprinzipien
+
+1. **Ein mutiger Moment pro Seite:** Logo in voller Breite, riesige Ortsnamen, die Wochenuhr. Alles andere ist ruhig.
+2. **Große Flächen, viel Weiß:** Farbflächen nur für die drei Orte, sonst Weiß und Nacre.
+3. **Goldener Schnitt im Raster:** Spalten 1 : 1,618, Bildformate 1,618 : 1.
+4. **Bewegung nur mit Sinn:** Logo-Auftakt, Zeiger dreht zur aktuellen Zeit. `prefers-reduced-motion` wird respektiert.
+5. **Datenschutz durch Technik:** keine Cookies, kein Tracking, keine Einbettungen, Kartenlinks statt Karten.
+
+## 9. Eigene Inhalte
+
+- Wochenuhr mit Live-Status „Wo gibt’s gerade Austern?“
+- Fahrplan des Wochenendes (Gezeitentafel)
+- Das Jahr: 12 Monate (Galette des Rois, Saint-Jacques, Schwetzinger Spargel, Nachtwandel, Beaujolais Nouveau, Réveillon …), Regel mit dem R, Austerngrößen Nº 0–5, Austern essen in vier Schritten, Weinbegleitung
+- La Carte (fiktiv): Struktur „Hunger / Durst“ nach dem Vorbild De Blauwe Kiosk (Gent), Inhalte aus der L’ANNÉE-Karte, Geschmacksprofile der Austern (jodig, fleischig, nussig), Filter nach Ort
+
+## 10. Offene Punkte
+
+Siehe README → „Vor dem Livegang prüfen“.

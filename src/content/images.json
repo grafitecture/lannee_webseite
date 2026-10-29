@@ -1,0 +1,199 @@
+{
+  "garage-hof": {
+    "width": 2480,
+    "height": 2140,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1920,
+      2480
+    ],
+    "color": "#5a645d"
+  },
+  "kiosque-visualisierung": {
+    "width": 2480,
+    "height": 2280,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1920,
+      2480
+    ],
+    "color": "#383821"
+  },
+  "marche-wagen": {
+    "width": 1086,
+    "height": 1448,
+    "widths": [
+      480,
+      768,
+      1080,
+      1086
+    ],
+    "color": "#7f8990"
+  },
+  "marche-auslage": {
+    "width": 361,
+    "height": 640,
+    "widths": [
+      361
+    ],
+    "color": "#5f5a5b"
+  },
+  "austern-postkarte": {
+    "width": 480,
+    "height": 640,
+    "widths": [
+      480
+    ],
+    "color": "#828076"
+  },
+  "austern-oeffnen": {
+    "width": 360,
+    "height": 640,
+    "widths": [
+      360
+    ],
+    "color": "#b7b1ae"
+  },
+  "wein-eis": {
+    "width": 360,
+    "height": 640,
+    "widths": [
+      360
+    ],
+    "color": "#919492"
+  },
+  "bulles": {
+    "width": 2048,
+    "height": 3072,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1920,
+      2048
+    ],
+    "color": "#23273d"
+  },
+  "huitres-glace": {
+    "width": 1024,
+    "height": 1024,
+    "widths": [
+      480,
+      768,
+      1024
+    ],
+    "color": "#5d6b73"
+  },
+  "garage-austernbar": {
+    "width": 768,
+    "height": 1024,
+    "widths": [
+      480,
+      768
+    ],
+    "color": "#6d6050"
+  },
+  "garage-fenster": {
+    "width": 768,
+    "height": 1024,
+    "widths": [
+      480,
+      768
+    ],
+    "color": "#7f7367"
+  },
+  "garage-wand": {
+    "width": 768,
+    "height": 1024,
+    "widths": [
+      480,
+      768
+    ],
+    "color": "#8a8176"
+  },
+  "hof-bistrotische": {
+    "width": 768,
+    "height": 1024,
+    "widths": [
+      480,
+      768
+    ],
+    "color": "#727055"
+  },
+  "garage-merci": {
+    "width": 768,
+    "height": 1024,
+    "widths": [
+      480,
+      768
+    ],
+    "color": "#81827f"
+  },
+  "garage-weinlaub": {
+    "width": 768,
+    "height": 1024,
+    "widths": [
+      480,
+      768
+    ],
+    "color": "#807f66"
+  },
+  "garage-bar": {
+    "width": 768,
+    "height": 1024,
+    "widths": [
+      480,
+      768
+    ],
+    "color": "#757268"
+  },
+  "garage-boot": {
+    "width": 768,
+    "height": 1024,
+    "widths": [
+      480,
+      768
+    ],
+    "color": "#6b5d46"
+  },
+  "garage-eingang": {
+    "width": 1200,
+    "height": 1600,
+    "widths": [
+      480,
+      768,
+      1080,
+      1200
+    ],
+    "color": "#827d68"
+  },
+  "schweppes": {
+    "width": 1200,
+    "height": 1600,
+    "widths": [
+      480,
+      768,
+      1080,
+      1200
+    ],
+    "color": "#95876b"
+  },
+  "baguettes": {
+    "width": 1200,
+    "height": 1600,
+    "widths": [
+      480,
+      768,
+      1080,
+      1200
+    ],
+    "color": "#af9278"
+  }
+}

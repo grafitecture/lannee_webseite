@@ -1,0 +1,17 @@
+{
+  "name": "lannee-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Website L’ANNÉE – Huîtres & Bulles in Mannheim: Garage, Kiosque, Marché (DE/FR/EN)",
+  "scripts": {
+    "build": "node src/build.mjs",
+    "dev": "node src/build.mjs && node scripts/serve.mjs",
+    "preview": "node scripts/serve.mjs",
+    "images": "node scripts/images.mjs",
+    "brand-assets": "node scripts/brand-assets.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
