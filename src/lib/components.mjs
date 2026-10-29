@@ -9,6 +9,7 @@ import { DICT, url, pick, fill, formatTime } from './i18n.mjs';
 import { LOCATIONS, LOCATION_ORDER, SCHEDULE, CLOSURES } from '../content/site.mjs';
 import { MEDIA } from '../content/media.mjs';
 import { MONTHS } from '../content/year.mjs';
+import { oysterArt } from './oyster-art.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const read = (p) => fs.readFileSync(path.join(ROOT, p), 'utf8');
@@ -88,7 +89,14 @@ export function icon(name, { cls = 'icon', label } = {}) {
     : html`<svg class="${cls}" aria-hidden="true" focusable="false"><use href="${SPRITE_URL}#${name}"/></svg>`;
 }
 
-/** Baut das Sprite aus den Higgsfield-Icons (+ Jungbusch-Emblem). */
+/** Austern-Strichzeichnung aus dem Sprite, mit passendem Seitenverhältnis. */
+export function oysterDrawing(key, { cls = 'oyster__svg' } = {}) {
+  const art = oysterArt().find((a) => a.key === key);
+  if (!art) throw new Error(`Austern-Zeichnung fehlt: ${key}`);
+  return html`<svg class="${cls}" viewBox="0 0 ${art.width} ${art.height}" aria-hidden="true" focusable="false"><use href="${SPRITE_URL}#oy-${key}"/></svg>`;
+}
+
+/** Baut das Sprite aus den Higgsfield-Icons (+ Jungbusch-Emblem, Austernatlas). */
 export function buildSprite() {
   const lines = read('src/icons/higgsfield-icons.txt').trim().split('\n');
   const symbols = lines.map((line) => {
@@ -108,6 +116,7 @@ export function buildSprite() {
     `<symbol id="arrow-out" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8"/></symbol>`,
     `<symbol id="instagram" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></g></symbol>`
   );
+  symbols.push(...oysterArt().map((a) => a.symbol));
   return `<svg xmlns="http://www.w3.org/2000/svg">${symbols.join('')}</svg>`;
 }
 
