@@ -32,7 +32,7 @@ Voraussetzung: Node.js ab Version 20. Der Build hat **keine npm-Abhängigkeiten*
 
 Mini-Markup in den Texten: `_kursiv_`, `**fett**`, `{fr|Texte français}` (Sprachauszeichnung), `[Link](/pfad/)`.
 
-Die **Wochenuhr** auf der Startseite liest `SCHEDULE` und zeigt live (Zeitzone Europe/Berlin), wo gerade geöffnet ist bzw. was als Nächstes kommt. Bei „ab … Uhr“ ist das Ende nur eine Annahme (`openEnd: true`).
+Der **Wochenplan** auf der Startseite liest `SCHEDULE`: Tage als Zeilen, Öffnungszeiten als Balken auf einer Stundenskala (mobil als Liste). Live (Zeitzone Europe/Berlin) markiert er, was gerade geöffnet ist bzw. als Nächstes kommt, und zeigt die aktuelle Uhrzeit als Linie. Bei „ab … Uhr“ ist das Ende nur eine Annahme (`openEnd: true`).
 
 **Pause eintragen** (Urlaub, private Feier): einen Eintrag in `CLOSURES` ergänzen, z. B.
 
@@ -41,7 +41,7 @@ Die **Wochenuhr** auf der Startseite liest `SCHEDULE` und zeigt live (Zeitzone E
   note: { de: 'Weihnachtspause', fr: 'Pause de Noël', en: 'Christmas break' } }
 ```
 
-Dann erscheint auf der Startseite und den betroffenen Ortsseiten ein Hinweis, die Wochenuhr streicht die Termine und zeigt den nächsten geöffneten Ort. Vergangene Pausen und Marché-Termine blenden sich von selbst aus.
+Dann erscheint auf der Startseite und den betroffenen Ortsseiten ein Hinweis, der Wochenplan schraffiert die betroffenen Termine („Diesmal Pause“) und die Live-Anzeige springt zum nächsten geöffneten Ort. Vergangene Pausen und Marché-Termine blenden sich von selbst aus.
 
 ## Bilder
 

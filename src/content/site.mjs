@@ -92,7 +92,7 @@ export const LOCATION_ORDER = ['garage', 'kiosque', 'marche'];
 /**
  * Wochenplan. day: 1 = Montag … 7 = Sonntag (ISO).
  * `openEnd: true` heißt „ab … Uhr“ – das Ende ist nur eine Annahme
- * für die Live-Anzeige der Wochenuhr. Bitte bei Bedarf anpassen.
+ * für die Live-Anzeige und den auslaufenden Balken im Wochenplan. Bitte bei Bedarf anpassen.
  */
 export const SCHEDULE = [
   { location: 'garage', day: 5, start: '18:00', end: '23:00', openEnd: true },

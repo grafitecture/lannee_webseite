@@ -24,7 +24,7 @@ Website der Dachmarke L’ANNÉE (Huîtres & Bulles, Mannheim) mit Garage, Kiosq
 
 - Templates nutzen das Tagged Template `html` aus `src/lib/html.mjs`; Werte werden escaped. Mini-Markup in Texten über `rich()`: `_kursiv_`, `**fett**`, `{fr|…}`, `[Link](/pfad/)`.
 - Französische Typografie (schmales geschütztes Leerzeichen vor `: ; ! ? »`) erledigt `typo()`.
-- Wochenuhr: Winkel über `weekAngle()` – in `components.mjs` und `main.js` identisch halten.
+- Wochenplan (`weekPlan()` in `components.mjs`, Live-Teil `initPlan()` in `main.js`): Balkenlage per CSS aus `--from`/`--to` und der Skala `--axis-from`/`--axis-span`; die Skala ergibt sich aus `SCHEDULE`.
 
 ## Prüfen vor dem Commit
 

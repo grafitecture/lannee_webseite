@@ -19,14 +19,14 @@ Stand: Oktober 2026 · Grundlage: Briefing, PDF „LANNEE_Garage_Kiosque_Marche�
 *L’ANNÉE* heißt „das Jahr“. Austern folgen dem Kalender (Monate mit R) und den Gezeiten, und die drei Orte teilen sich ein Wochenende. Deshalb ist **Zeit** das verbindende Motiv:
 
 - Der **Akzent aus dem É** des Logos wird zum **Uhrzeiger**.
-- Kreise stehen für Zyklen: Woche (Wochenuhr), Jahr (Jahresuhr), Zifferblatt (Signets).
+- Kreise stehen für Zyklen: Jahr (Jahresuhr), Zifferblatt (Signets). Die Woche zeigt ein klarer Wochenplan mit Zeitachse.
 - Farben folgen dem **Tageslicht**: Morgen (Grün), Sonntag (Blau), Abend (Bordeaux), Nacht (Encre).
 
 ## 3. Gliederung
 
 ```
 L’ANNÉE (1898.ma)
-├── Start: Wochenuhr (live), Fahrplan des Wochenendes, drei Orte, Karte, Jahr
+├── Start: Wochenplan (live), drei Orte, Karte, Jahr
 ├── Garage   (garage.ma → /garage/)
 ├── Kiosque  (kiosque.ma → /kiosque/)
 ├── Marché   (/marche/: Termine, Einladung für Feste)
@@ -42,7 +42,7 @@ Sprachen: Deutsch (ohne Präfix), Französisch (`/fr/…`), Englisch (`/en/…`)
 
 Lockup jeder Subbrand = **L’ANNÉE-Logo + Zweizeiler (NAME, Linie, Huîtres & Bulles)**. Die Buchstaben des Logos sind genau so hoch wie der Zweizeiler: von der Versalhöhe des Namens bis zur Grundlinie von „Huîtres & Bulles“; die Akzente ragen darüber hinaus. Auf den Farbflächen ist die Schrift bei allen drei Orten weiß.
 
-Die Signets (Kreis mit dem Akzent als Zeiger auf die Öffnungsstunde) bleiben als kleine Wegweiser in Navigation, Fahrplan, Zitaten und Fußzeile:
+Die Signets (Kreis mit dem Akzent als Zeiger auf die Öffnungsstunde) bleiben als kleine Wegweiser in Navigation, Zitaten und Fußzeile:
 
 | Subbrand | Zeiger | Farbe |
 | --- | --- | --- |
@@ -103,11 +103,11 @@ Abgeleitet aus StatCounter Deutschland, September 2026 (mobil 360–430 px; Tabl
 | 3xl | 1920 | Full HD |
 | 4xl | 2560 | QHD |
 
-Seiten sind auf dem Desktop immer volle Breite. Begrenzt wird nur die Zeilenlänge von Fließtext. Uhren nutzen Container Queries.
+Seiten sind auf dem Desktop immer volle Breite. Begrenzt wird nur die Zeilenlänge von Fließtext. Wochenplan und Jahresuhr nutzen Container Queries.
 
 ## 8. Gestaltungsprinzipien
 
-1. **Ein mutiger Moment pro Seite:** Logo in voller Breite, riesige Ortsnamen, die Wochenuhr. Alles andere ist ruhig.
+1. **Ein mutiger Moment pro Seite:** Logo in voller Breite, riesige Ortsnamen. Alles andere ist ruhig, Informationen wie die Öffnungszeiten sauber und übersichtlich.
 2. **Große Flächen, viel Weiß:** Farbflächen nur für die drei Orte, sonst Weiß und Nacre.
 3. **Goldener Schnitt im Raster:** Spalten 1 : 1,618, Bildformate 1,618 : 1.
 4. **Bewegung nur mit Sinn:** Logo-Auftakt, Zeiger dreht zur aktuellen Zeit. `prefers-reduced-motion` wird respektiert.
@@ -115,8 +115,7 @@ Seiten sind auf dem Desktop immer volle Breite. Begrenzt wird nur die Zeilenlän
 
 ## 9. Eigene Inhalte
 
-- Wochenuhr mit Live-Status „Wo gibt’s gerade Austern?“
-- Fahrplan des Wochenendes (Gezeitentafel)
+- Wochenplan: Tage als Zeilen, Öffnungszeiten als farbige Balken auf einer Stundenskala (mobil als Liste mit Mini-Balken); live mit „Jetzt geöffnet“ / „Als Nächstes“, Jetzt-Linie, Datum und Pausen
 - Das Jahr: 12 Monate (Galette des Rois, Saint-Jacques, Schwetzinger Spargel, Nachtwandel, Beaujolais Nouveau, Réveillon …), Regel mit dem R, Austerngrößen Nº 0–5, Austern essen in vier Schritten, Weinbegleitung
 - Austernatlas nach der Fußzeile auf jeder Seite: 24 Arten und Herkünfte als graue Strichzeichnungen mit Name, Herkunft und kurzer Erklärung
 - La Carte (fiktiv): Struktur „Hunger / Durst“ nach dem Vorbild De Blauwe Kiosk (Gent), Inhalte aus der L’ANNÉE-Karte, Geschmacksprofile der Austern (jodig, fleischig, nussig), Filter nach Ort

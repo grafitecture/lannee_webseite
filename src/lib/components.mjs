@@ -1,11 +1,11 @@
 /**
- * Bausteine: Logo, Signets, Lockups, Icons, Bilder, Wochenuhr, Jahresuhr.
+ * Bausteine: Logo, Signets, Lockups, Icons, Bilder, Wochenplan, Jahresuhr.
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { html, raw, esc, rich, setExternalLinkRenderer } from './html.mjs';
-import { DICT, url, pick, fill, formatTime } from './i18n.mjs';
+import { html, raw, esc, rich, typo, setExternalLinkRenderer } from './html.mjs';
+import { DICT, url, pick, fill, formatTime, formatSpan } from './i18n.mjs';
 import { LOCATIONS, LOCATION_ORDER, SCHEDULE, CLOSURES } from '../content/site.mjs';
 import { MEDIA } from '../content/media.mjs';
 import { MONTHS } from '../content/year.mjs';
@@ -156,125 +156,97 @@ function arc(r, a1, a2) {
   return `M${f(x1)} ${f(y1)}A${r} ${r} 0 ${sweep > 180 ? 1 : 0} 1 ${f(x2)} ${f(y2)}`;
 }
 
-/**
- * Nichtlineare Wochenskala: Montag–Donnerstag (96 h) auf 60° gestaucht,
- * Freitag–Sonntag (72 h) auf 300°. Samstag 12 Uhr liegt oben.
- */
-export function weekAngle(hours) {
-  const h = ((hours % 168) + 168) % 168;
-  if (h < 96) return (150 + h * 0.625) % 360;
-  return (210 + (h - 96) * (300 / 72)) % 360;
-}
-
 const hhmm = (s) => {
   const [h, m] = s.split(':').map(Number);
   return h + m / 60;
 };
 
 /* ------------------------------------------------------------------ */
-/* Wochenuhr                                                           */
+/* Wochenplan: Tage als Zeilen, Öffnungszeiten als Balken auf einer     */
+/* Stundenskala. Schmal (Handy) wird daraus eine Liste mit Mini-Balken. */
 /* ------------------------------------------------------------------ */
 
-const HUB_R = 236;
+const cap = (s) => s.charAt(0).toLocaleUpperCase() + s.slice(1);
 
-export function weekClock(locale, { id = 'wochenuhr' } = {}) {
-  const t = DICT[locale].ui;
-  const R = 380;
-  const parts = [];
+export function weekPlan(locale) {
+  const T = DICT[locale];
+  const t = T.ui;
 
-  // Grundring + Nabe für die Statusanzeige
-  parts.push(`<circle class="wc__ring" r="${R}"/>`);
-  parts.push(`<circle class="wc__hub" r="${HUB_R}"/>`);
-  // gestauchter Wochenteil (Mo–Do)
-  parts.push(`<path class="wc__weekdays" d="${arc(R, 150, 210)}"/>`);
+  // Stundenskala: auf gerade Stunden gerundet, höchstens bis Mitternacht
+  const starts = SCHEDULE.map((s) => hhmm(s.start));
+  const ends = SCHEDULE.map((s) => hhmm(s.end));
+  const axisFrom = Math.floor(Math.min(...starts) / 2) * 2;
+  const axisTo = Math.min(24, Math.ceil(Math.max(...ends) / 2) * 2);
+  const span = axisTo - axisFrom;
+  const ticks = [];
+  for (let h = axisFrom; h <= axisTo; h += 2) ticks.push(h);
+  const tickLabel = (h) => (locale === 'en' ? formatTime(`${h % 24}:00`, 'en') : locale === 'fr' ? `${h} h` : String(h));
 
-  // Stundenstriche am Wochenende (alle 3 h), Tagesgrenzen kräftiger
-  for (let h = 96; h <= 168; h += 3) {
-    const a = weekAngle(h === 168 ? 167.999 : h);
-    const major = (h - 96) % 24 === 0;
-    const [x1, y1] = pt(R - (major ? 34 : 14), a);
-    const [x2, y2] = pt(R + (major ? 34 : 0), a);
-    parts.push(`<line class="wc__tick${major ? ' wc__tick--day' : ''}" x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}"/>`);
-  }
-  // Tagesgrenzen Di, Mi, Do im gestauchten Teil
-  for (let d = 1; d <= 3; d++) {
-    const a = weekAngle(d * 24);
-    const [x1, y1] = pt(R - 10, a);
-    const [x2, y2] = pt(R + 10, a);
-    parts.push(`<line class="wc__tick" x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}"/>`);
-  }
+  const place = (L) => (L.street ? `${L.street}, ${L.district}` : T.pages.marche.whereText);
 
-  // Öffnungs-Bögen + Beschriftung
-  SCHEDULE.forEach((s, i) => {
+  const slot = (s, i) => {
     const L = LOCATIONS[s.location];
-    const h0 = (s.day - 1) * 24 + hhmm(s.start);
-    const h1 = (s.day - 1) * 24 + hhmm(s.end);
-    const a0 = weekAngle(h0);
-    const a1 = weekAngle(h1);
-    if (s.openEnd) {
-      // „ab … Uhr“: die letzte Stunde läuft blass aus – das Ende ist offen.
-      const aTail = weekAngle(h1 - 1.25);
-      parts.push(`<path class="wc__arc wc__arc--${L.key}" d="${arc(R, a0, aTail)}" data-slot="${i}"/>`);
-      parts.push(`<path class="wc__arc wc__arc--${L.key} wc__arc--tail" d="${arc(R, aTail, a1)}" data-slot="${i}"/>`);
-    } else {
-      parts.push(`<path class="wc__arc wc__arc--${L.key}" d="${arc(R, a0, a1)}" data-slot="${i}"/>`);
-    }
-    const mid = (a0 + ((a1 - a0 + 360) % 360) / 2) % 360;
-    const [lx, ly] = pt(R + 78, mid);
-    const anchor = Math.abs(lx) < 60 ? 'middle' : lx > 0 ? 'start' : 'end';
-    const time = s.openEnd
-      ? fill(t.time.from, { t: formatTime(s.start, locale) })
-      : fill(t.time.range, { a: formatTime(s.start, locale), b: formatTime(s.end, locale) });
-    parts.push(
-      `<text class="wc__label wc__label--${L.key}" x="${f(lx)}" y="${f(ly)}" text-anchor="${anchor}"><tspan class="wc__label-name" x="${f(
-        lx
-      )}" dy="-0.15em">${esc(L.name)}</tspan><tspan class="wc__label-time" x="${f(lx)}" dy="1.25em">${esc(time)}</tspan></text>`
-    );
-  });
-
-  // Tagesnamen
-  const dayLabel = (text, a, cls = '') => {
-    const [x, y] = pt(R - 86, a);
-    return `<text class="wc__day ${cls}" x="${f(x)}" y="${f(y)}" text-anchor="middle" dominant-baseline="middle">${esc(text)}</text>`;
+    const time = s.openEnd ? fill(t.time.from, { t: formatTime(s.start, locale) }) : formatSpan(s.start, s.end, locale);
+    return html`<li class="plan__item"><a class="plan__slot plan__slot--${L.key}${s.openEnd ? ' plan__slot--open-end' : ''}" href="${url(
+      L.key,
+      locale
+    )}" data-slot="${i}" style="--from:${hhmm(s.start)};--to:${hhmm(s.end)}"><span class="plan__name">${L.name}</span><span class="plan__time">${typo(
+      time,
+      locale
+    )}</span><span class="plan__place">${place(L)}</span><span class="plan__pause"><span class="closure__icon" aria-hidden="true"></span>${
+      t.live.paused
+    }</span></a></li>`;
   };
-  parts.push(dayLabel(t.days[4], weekAngle(96 + 12)));
-  parts.push(dayLabel(t.days[5], weekAngle(120 + 12)));
-  parts.push(dayLabel(t.days[6], weekAngle(144 + 12)));
-  parts.push(dayLabel(`${t.daysShort[0]}–${t.daysShort[3]}`, 180, 'wc__day--muted'));
 
-  // Zeiger (wird per JS gedreht; ohne JS ausgeblendet): der Akzent läuft außen um die Mitte
-  parts.push(`<g class="wc__hand" hidden><path d="${HAND_D}" transform="translate(0 -${HUB_R + 18}) scale(0.82)"/></g>`);
+  // Tage 1–7; aufeinanderfolgende Tage ohne Öffnung werden zu einer Zeile zusammengefasst
+  const rows = [];
+  for (let day = 1; day <= 7; day++) {
+    const slots = SCHEDULE.map((s, i) => [s, i]).filter(([s]) => s.day === day);
+    const last = rows.at(-1);
+    if (!slots.length && last?.rest) last.days.push(day);
+    else rows.push({ days: [day], rest: !slots.length, slots });
+  }
 
-  const data = SCHEDULE.map((s) => ({
-    loc: s.location,
-    day: s.day,
-    start: s.start,
-    end: s.end,
-    openEnd: !!s.openEnd,
-  }));
+  const head = (r) => {
+    const name =
+      r.days.length > 1
+        ? html`<span aria-hidden="true">${cap(t.daysShort[r.days[0] - 1])} – ${t.daysShort[r.days.at(-1) - 1]}</span><span class="visually-hidden">${fill(
+            t.time.range,
+            { a: t.days[r.days[0] - 1], b: t.days[r.days.at(-1) - 1] }
+          )}</span>`
+        : cap(t.days[r.days[0] - 1]);
+    return html`<div class="plan__head"><h3 class="plan__dayname">${name}</h3><p class="plan__date"></p></div>`;
+  };
+
+  const days = rows.map((r) =>
+    r.rest
+      ? html`<li class="plan__day plan__day--rest" data-days="${r.days.join(',')}">${head(r)}<div class="plan__track plan__track--rest"><p class="plan__closed">${
+          t.live.closed
+        }</p></div></li>`
+      : html`<li class="plan__day" data-days="${r.days.join(',')}">${head(r)}<div class="plan__track"><ul class="plan__slots" role="list">${r.slots.map(([s, i]) =>
+          slot(s, i)
+        )}</ul><span class="plan__now" aria-hidden="true" hidden></span></div></li>`
+  );
+
+  // Daten für die Live-Anzeige (main.js)
+  const data = SCHEDULE.map((s, i) => ({ i, loc: s.location, day: s.day, start: s.start, end: s.end, openEnd: !!s.openEnd }));
   const strings = {
-    ...t.clock,
+    ...t.live,
+    intl: T.intl,
     days: t.days,
-    from: t.time.from,
-    locations: Object.fromEntries(
-      Object.values(LOCATIONS).map((L) => [
-        L.key,
-        { name: L.name, place: L.street ? `${L.street}, ${L.district}` : pick(DICT[locale].pages.marche.whereText, locale), url: url(L.key, locale) },
-      ])
-    ),
+    locations: Object.fromEntries(Object.values(LOCATIONS).map((L) => [L.key, { name: L.name, place: place(L), url: url(L.key, locale) }])),
   };
 
-  return html`<figure class="wc" id="${id}" data-week-clock data-locale="${locale}" data-schedule="${JSON.stringify(
+  return html`<div class="plan" data-plan data-locale="${locale}" data-axis="${axisFrom},${axisTo}" data-schedule="${JSON.stringify(
     data
-  )}" data-closures="${JSON.stringify(CLOSURES)}" data-strings="${JSON.stringify(strings)}">
-    <svg class="wc__svg" viewBox="-560 -560 1120 1120" role="img" aria-labelledby="${id}-label"><title id="${id}-label">${
-    t.clock.label
-  }</title>${raw(parts.join(''))}</svg>
-    <figcaption class="wc__status" aria-live="polite">
-      <span class="wc__kicker">${t.clock.title}</span>
-      <span class="wc__fallback">${t.clock.fallback}</span>
-    </figcaption>
-  </figure>`;
+  )}" data-closures="${JSON.stringify(CLOSURES)}" data-strings="${JSON.stringify(strings)}" style="--axis-from:${axisFrom};--axis-span:${span};--ticks:${
+    span / 2
+  }">
+  <div class="plan__scale" aria-hidden="true"><span class="plan__unit">${t.live.unit}</span><span class="plan__ticks">${ticks.map(
+    (h) => html`<span style="--h:${h}">${tickLabel(h)}</span>`
+  )}</span></div>
+  <ol class="plan__days" role="list">${days}</ol>
+</div>`;
 }
 
 /* ------------------------------------------------------------------ */

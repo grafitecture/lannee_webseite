@@ -220,7 +220,7 @@ function datenschutzDe() {
     {
       h: 'Keine Cookies, kein Tracking',
       p: [
-        'Wir setzen keine Cookies und speichern oder lesen keine Informationen auf deinem Endgerät (§ 25 TDDDG). Die Wochenuhr auf der Startseite berechnet Uhrzeit und Öffnungsstatus ausschließlich in deinem Browser, dabei werden keine Daten an uns übertragen. Analyse- oder Werbedienste verwenden wir nicht.',
+        'Wir setzen keine Cookies und speichern oder lesen keine Informationen auf deinem Endgerät (§ 25 TDDDG). Der Wochenplan auf der Startseite berechnet Uhrzeit und Öffnungsstatus ausschließlich in deinem Browser, dabei werden keine Daten an uns übertragen. Analyse- oder Werbedienste verwenden wir nicht.',
       ],
     },
     {
@@ -311,7 +311,7 @@ function datenschutzFr() {
     {
       h: 'Pas de cookies, pas de suivi',
       p: [
-        'Nous ne déposons pas de cookies et ne stockons ni ne lisons d’informations sur votre appareil (§ 25 TDDDG). L’horloge de la semaine sur la page d’accueil calcule l’heure et les horaires d’ouverture uniquement dans votre navigateur ; aucune donnée ne nous est transmise. Nous n’utilisons aucun service d’analyse ou de publicité.',
+        'Nous ne déposons pas de cookies et ne stockons ni ne lisons d’informations sur votre appareil (§ 25 TDDDG). Le planning de la semaine sur la page d’accueil calcule l’heure et les horaires d’ouverture uniquement dans votre navigateur ; aucune donnée ne nous est transmise. Nous n’utilisons aucun service d’analyse ou de publicité.',
       ],
     },
     {
@@ -402,7 +402,7 @@ function datenschutzEn() {
     {
       h: 'No cookies, no tracking',
       p: [
-        'We do not set cookies and do not store or read information on your device (§ 25 TDDDG). The week clock on the home page calculates the time and opening status entirely in your browser; no data is sent to us. We use no analytics or advertising services.',
+        'We do not set cookies and do not store or read information on your device (§ 25 TDDDG). The weekly schedule on the home page calculates the time and opening status entirely in your browser; no data is sent to us. We use no analytics or advertising services.',
       ],
     },
     {

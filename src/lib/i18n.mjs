@@ -45,6 +45,15 @@ export function formatTime(hhmm, locale) {
 }
 
 /** Preis 3.8 → "3,80" (de/fr) bzw. "3.80" (en); ganze Zahlen ohne Nachkommastellen. */
+/** Zeitspanne kompakt: de „8–13 Uhr“, fr „8 h – 13 h“, en „8 am – 1 pm“. */
+export function formatSpan(a, b, locale) {
+  if (locale === 'de') {
+    const whole = (x) => x.endsWith(':00');
+    return whole(a) && whole(b) ? `${Number(a.split(':')[0])}–${formatTime(b, 'de')}` : `${formatTime(a, 'de')} – ${formatTime(b, 'de')}`;
+  }
+  return `${formatTime(a, locale)}\u00a0– ${formatTime(b, locale)}`;
+}
+
 export function formatPrice(value, locale) {
   if (value == null) return '';
   const intl = DICT[locale].intl;

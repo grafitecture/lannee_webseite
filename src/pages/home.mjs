@@ -1,8 +1,8 @@
 import { html, raw, rich } from '../lib/html.mjs';
-import { DICT, url, pick, fill, formatTime } from '../lib/i18n.mjs';
-import { LOCATIONS, LOCATION_ORDER, SCHEDULE, SITE } from '../content/site.mjs';
+import { DICT, url, pick, fill } from '../lib/i18n.mjs';
+import { LOCATIONS, LOCATION_ORDER, SITE } from '../content/site.mjs';
 import { MONTHS } from '../content/year.mjs';
-import { logo, signet, lockup, picture, weekClock, yearRing, arrowLink, icon, closureNotes, LOGO_VIEWBOX } from '../lib/components.mjs';
+import { logo, lockup, picture, weekPlan, yearRing, arrowLink, icon, closureNotes, LOGO_VIEWBOX } from '../lib/components.mjs';
 
 const [, , LOGO_W, LOGO_H] = LOGO_VIEWBOX.split(/\s+/);
 import { menuExcerpt } from '../lib/menu-render.mjs';
@@ -15,22 +15,6 @@ export function render(ctx) {
   const { locale } = ctx;
   const t = DICT[locale];
   const p = t.pages.home;
-
-  /* Fahrplan (Gezeitentafel des Wochenendes) */
-  const timetable = SCHEDULE.map((s, i) => {
-    const L = LOCATIONS[s.location];
-    const note = p.weekend.notes[`${s.location}-${s.day}`];
-    return html`<li class="tide tide--${L.key}" data-slot="${i}">
-      <a class="tide__link" href="${url(L.key, locale)}">
-        <span class="tide__day">${t.ui.days[s.day - 1]}</span>
-        <span class="tide__time">${formatTime(s.start, locale)}</span>
-        <span class="tide__name">${signet(L.key, { cls: 'tide__signet' })}<span>${L.name}</span></span>
-        <span class="tide__place">${L.street ? `${L.street}, ${L.district}` : t.pages.marche.whereText}</span>
-        <span class="tide__note">${note}</span>
-        <span class="tide__pause"><span class="closure__icon" aria-hidden="true"></span>${t.ui.clock.paused}</span>
-      </a>
-    </li>`;
-  });
 
   /* Drei Orte als große Farbflächen */
   const places = LOCATION_ORDER.map((key, i) => {
@@ -82,13 +66,8 @@ export function render(ctx) {
     <h2 class="t-h3" id="weekend-title">${p.weekend.heading}</h2>
     <p class="lead">${rich(p.weekend.lead, locale)}</p>
   </div>
-  <div class="weekend__grid">
-    <div class="weekend__clock">${weekClock(locale)}</div>
-    <div class="weekend__side">
-      <ol class="tides" role="list">${timetable}</ol>
-      ${closureNotes(locale, LOCATION_ORDER)}
-    </div>
-  </div>
+  ${weekPlan(locale)}
+  ${closureNotes(locale, LOCATION_ORDER)}
 </section>
 
 <div class="places">${places}</div>

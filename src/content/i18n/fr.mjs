@@ -14,10 +14,9 @@ export default {
     nav: { garage: 'Garage', kiosque: 'Kiosque', marche: 'Marché', carte: 'La carte', annee: 'L’année', contact: 'Contact' },
     home: 'Accueil',
     days: ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'],
-    daysShort: ['lu', 'ma', 'me', 'je', 've', 'sa', 'di'],
+    daysShort: ['lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.', 'dim.'],
     time: { from: 'dès {t}', range: 'de {a} à {b}' },
-    clock: {
-      title: 'Où trouver des huîtres en ce moment ?',
+    live: {
       open: 'Ouvert en ce moment',
       next: 'Prochain rendez-vous',
       today: 'aujourd’hui',
@@ -26,8 +25,8 @@ export default {
       since: 'depuis {t}',
       until: 'jusqu’à {t}',
       paused: 'Relâche cette fois',
-      label: 'Horloge de la semaine : les arcs indiquent nos horaires du lundi au dimanche, l’aiguille l’heure actuelle.',
-      fallback: 'Vendredi et samedi dès 18 h au Garage, samedi de 8 h à 13 h au Marché, dimanche dès 10 h au Kiosque.',
+      closed: 'Fermé',
+      unit: '',
     },
     map: { title: 'Itinéraire', google: 'Google Maps', apple: 'Plans (Apple)', osm: 'OpenStreetMap', note: 'Liens externes' },
     closure: { one: '**{names} fait relâche :** {when}', many: '**{names} font relâche :** {when}' },
@@ -58,12 +57,6 @@ export default {
       weekend: {
         heading: 'Un week-end, trois adresses.',
         lead: 'En semaine, on va chercher les huîtres, on polit les verres et on fait la grasse matinée. Dès le vendredi soir, vous nous trouvez ici :',
-        notes: {
-          'garage-5': 'Le portail s’ouvre.',
-          'marche-6': 'Au marché, jusqu’à 13 h.',
-          'garage-6': 'Deuxième service dans la cour.',
-          'kiosque-7': 'La fenêtre du dimanche.',
-        },
       },
       places: {
         garage: {

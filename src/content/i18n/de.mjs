@@ -16,8 +16,7 @@ export default {
     days: ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'],
     daysShort: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
     time: { from: 'ab {t}', range: '{a} bis {b}' },
-    clock: {
-      title: 'Wo gibt’s gerade Austern?',
+    live: {
       open: 'Jetzt geöffnet',
       next: 'Als Nächstes',
       today: 'heute',
@@ -26,8 +25,8 @@ export default {
       since: 'seit {t}',
       until: 'bis {t}',
       paused: 'Diesmal Pause',
-      label: 'Wochenuhr: Die Bögen zeigen unsere Öffnungszeiten von Montag bis Sonntag, der Zeiger die aktuelle Zeit.',
-      fallback: 'Freitag und Samstag ab 18 Uhr Garage, Samstag 8 bis 13 Uhr Marché, Sonntag ab 10 Uhr Kiosque.',
+      closed: 'Geschlossen',
+      unit: 'Uhr',
     },
     map: { title: 'Route planen', google: 'Google Maps', apple: 'Apple Karten', osm: 'OpenStreetMap', note: 'Externe Links' },
     closure: { one: '**{names} macht Pause:** {when}', many: '**{names} machen Pause:** {when}' },
@@ -58,12 +57,6 @@ export default {
       weekend: {
         heading: 'Ein Wochenende, drei Orte.',
         lead: 'Unter der Woche holen wir Austern, polieren Gläser und schlafen aus. Ab Freitagabend findest du uns hier:',
-        notes: {
-          'garage-5': 'Das Tor geht auf.',
-          'marche-6': 'Auf dem Wochenmarkt, bis 13 Uhr.',
-          'garage-6': 'Zweite Runde im Hof.',
-          'kiosque-7': 'Sonntagsfenster am Platz.',
-        },
       },
       places: {
         garage: {

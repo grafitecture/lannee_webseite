@@ -139,7 +139,7 @@ export function render() {
     <a class="btn btn--line" href="#sg-ui"><span>Wo wir sind</span></a>
     ${LOCATION_ORDER.map((k) => html`<span class="tag tag--${k}">${signet(k, { cls: 'tag__signet' })}${LOCATIONS[k].name}</span>`)}
   </div>
-  <p class="sg__note">Pausen-Hinweis: erscheint automatisch auf der Startseite und der jeweiligen Ortsseite, sobald in <code>CLOSURES</code> (site.mjs) ein Eintrag steht. Die Wochenuhr streicht betroffene Termine und zeigt den nächsten geöffneten Ort.</p>
+  <p class="sg__note">Pausen-Hinweis: erscheint automatisch auf der Startseite und der jeweiligen Ortsseite, sobald in <code>CLOSURES</code> (site.mjs) ein Eintrag steht. Der Wochenplan schraffiert betroffene Termine („Diesmal Pause“), die Live-Anzeige springt zum nächsten geöffneten Ort.</p>
   <p class="closure"><span class="closure__icon" aria-hidden="true"></span><span><strong>Garage und Kiosque machen Pause:</strong> 24.–26. Dezember (Weihnachtspause)</span></p>
 </section>
 `;

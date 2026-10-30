@@ -344,178 +344,6 @@
   background: linear-gradient(90deg, var(--vin) 0 34%, transparent 34% 66%, var(--vin) 66%);
 }
 
-/* Wochenuhr ----------------------------------------------------------------- */
-
-.wc {
-  position: relative;
-  width: min(100%, 82vh, 46rem);
-  margin-inline: auto;
-}
-.wc__svg {
-  width: 100%;
-  height: auto;
-  overflow: visible;
-}
-.wc__ring {
-  fill: none;
-  stroke: var(--line-strong);
-  stroke-width: 2;
-}
-.wc__weekdays {
-  fill: none;
-  stroke: var(--encre);
-  stroke-width: 6;
-  stroke-dasharray: 2 14;
-  stroke-linecap: round;
-  opacity: 0.45;
-}
-.wc__tick {
-  stroke: var(--encre);
-  stroke-opacity: 0.3;
-  stroke-width: 2;
-}
-.wc__tick--day {
-  stroke-opacity: 0.75;
-  stroke-width: 3;
-}
-.wc__day {
-  font-family: var(--font-text);
-  font-size: 27px;
-  font-weight: 500;
-  fill: var(--encre);
-  letter-spacing: 0.01em;
-}
-.wc__day--muted {
-  fill: var(--gris);
-  font-weight: 400;
-}
-.wc__arc {
-  fill: none;
-  stroke-width: 52;
-  transition: stroke-width 0.35s var(--ease-out);
-}
-.wc__arc--garage { stroke: var(--vin); }
-.wc__arc--kiosque { stroke: var(--bleu); }
-.wc__arc--marche { stroke: var(--vert); }
-.wc__arc--tail { opacity: 0.35; }
-.wc__label {
-  font-family: var(--font-text);
-}
-.wc__label-name {
-  font-size: 30px;
-  font-weight: 600;
-  font-stretch: 75%;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-}
-.wc__label--garage .wc__label-name { fill: var(--vin); }
-.wc__label--kiosque .wc__label-name { fill: var(--bleu); }
-.wc__label--marche .wc__label-name { fill: var(--vert-deep); }
-.wc__label-time {
-  font-size: 26px;
-  fill: var(--encre);
-}
-.wc__hand {
-  transform-box: view-box;
-  transform-origin: 0 0;
-  transition: transform 1.6s var(--ease-out);
-}
-.wc__hand path {
-  fill: var(--encre);
-}
-.wc__hub {
-  fill: var(--blanc);
-  stroke: var(--line);
-  stroke-width: 2;
-}
-.wc__pivot {
-  fill: var(--nacre);
-  stroke: var(--encre);
-  stroke-width: 7;
-}
-.wc {
-  container-type: inline-size;
-}
-.wc__status {
-  display: grid;
-  align-content: center;
-  justify-items: center;
-  gap: 0.35em;
-  margin-top: var(--space-s);
-  text-align: center;
-}
-@container (min-width: 30rem) {
-  .wc__status {
-    position: absolute;
-    inset: 30%;
-    margin: 0;
-    pointer-events: none;
-  }
-}
-.wc__status a {
-  pointer-events: auto;
-}
-.wc__kicker {
-  font-size: var(--fs-text-small);
-  color: var(--gris);
-  max-width: 18ch;
-}
-.wc__fallback {
-  font-size: 0.9375rem;
-  max-width: 24ch;
-}
-.wc__state {
-  font-size: 0.875rem;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5em;
-}
-.wc__state::before {
-  content: '';
-  width: 0.55em;
-  height: 0.55em;
-  border-radius: 50%;
-  background: var(--live, var(--gris));
-}
-.wc__name {
-  font-family: var(--font-display);
-  font-size: clamp(2rem, 8.5cqi, 4.236rem);
-  line-height: 0.92;
-  letter-spacing: -0.02em;
-  font-weight: 360;
-  color: var(--live, var(--encre));
-  text-decoration: none;
-}
-.wc__name:hover {
-  text-decoration: underline;
-  text-decoration-thickness: 2px;
-}
-.wc__detail {
-  font-size: clamp(0.9375rem, 2.4cqi, 1.125rem);
-  font-weight: 500;
-}
-.wc__place {
-  font-size: var(--fs-text-small);
-  color: var(--gris);
-}
-.wc[data-state='open'] .wc__state::before {
-  animation: live-pulse-dot 2.4s ease-in-out infinite;
-}
-@keyframes live-pulse-dot {
-  50% { opacity: 0.35; }
-}
-.wc__arc.is-paused {
-  opacity: 0.22;
-}
-/* Zeile im Fahrplan ↔ Bogen in der Uhr */
-.weekend:has(.tide[data-slot='0']:hover, .tide[data-slot='0']:focus-within) .wc__arc[data-slot='0'],
-.weekend:has(.tide[data-slot='1']:hover, .tide[data-slot='1']:focus-within) .wc__arc[data-slot='1'],
-.weekend:has(.tide[data-slot='2']:hover, .tide[data-slot='2']:focus-within) .wc__arc[data-slot='2'],
-.weekend:has(.tide[data-slot='3']:hover, .tide[data-slot='3']:focus-within) .wc__arc[data-slot='3'] {
-  stroke-width: 84;
-}
-
 /* Jahresuhr ----------------------------------------------------------------- */
 
 .yr {
@@ -704,7 +532,6 @@
   gap: 0.6em 1.6em;
 }
 
-.wc__hand[hidden],
 .yr__hand[hidden] {
   display: none;
 }
@@ -714,27 +541,7 @@
   white-space: nowrap;
 }
 
-/* Wochen- und Jahresuhr auf schmalen Bildschirmen: Außenbeschriftung ausblenden
-   (der Fahrplan daneben zeigt dieselben Infos), Ring größer, Schrift lesbar. */
-@container (max-width: 29.99rem) {
-  .wc__svg {
-    width: 128%;
-    max-width: none;
-    margin-inline: -14%;
-  }
-  .wc__hub {
-    fill: none;
-  }
-  .wc__label {
-    display: none;
-  }
-  .wc__day {
-    font-size: 46px;
-  }
-  .wc__arc {
-    stroke-width: 64;
-  }
-}
+/* Jahresuhr auf schmalen Bildschirmen: Schrift lesbar */
 .yr {
   container-type: inline-size;
 }

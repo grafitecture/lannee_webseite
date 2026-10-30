@@ -16,8 +16,7 @@ export default {
     days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
     daysShort: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     time: { from: 'from {t}', range: '{a} to {b}' },
-    clock: {
-      title: 'Where are the oysters right now?',
+    live: {
       open: 'Open now',
       next: 'Up next',
       today: 'today',
@@ -26,8 +25,8 @@ export default {
       since: 'since {t}',
       until: 'until {t}',
       paused: 'Closed this time',
-      label: 'Week clock: the arcs show our opening hours from Monday to Sunday, the hand shows the current time.',
-      fallback: 'Friday and Saturday from 6 pm at the Garage, Saturday 8 am to 1 pm at the Marché, Sunday from 10 am at the Kiosque.',
+      closed: 'Closed',
+      unit: '',
     },
     map: { title: 'Get directions', google: 'Google Maps', apple: 'Apple Maps', osm: 'OpenStreetMap', note: 'External links' },
     closure: { one: '**{names} is taking a break:** {when}', many: '**{names} are taking a break:** {when}' },
@@ -58,12 +57,6 @@ export default {
       weekend: {
         heading: 'One weekend, three places.',
         lead: 'During the week we fetch oysters, polish glasses and sleep in. From Friday evening, you’ll find us here:',
-        notes: {
-          'garage-5': 'The gate opens.',
-          'marche-6': 'At the market, until 1 pm.',
-          'garage-6': 'Round two in the courtyard.',
-          'kiosque-7': 'Our Sunday window.',
-        },
       },
       places: {
         garage: {

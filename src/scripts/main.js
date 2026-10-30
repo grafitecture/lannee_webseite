@@ -46,13 +46,6 @@ const toHours = (s) => {
   return h + m / 60;
 };
 
-/** Winkel auf der nichtlinearen Wochenskala (muss zu components.mjs passen). */
-function weekAngle(hours) {
-  const h = ((hours % 168) + 168) % 168;
-  if (h < 96) return (150 + h * 0.625) % 360;
-  return (210 + (h - 96) * (300 / 72)) % 360;
-}
-
 function formatTime(hhmm, locale) {
   const [h, m] = hhmm.split(':').map(Number);
   if (locale === 'en') {
@@ -67,7 +60,7 @@ function formatTime(hhmm, locale) {
 const fill = (tpl, vars) => tpl.replace(/\{(\w+)\}/g, (_, k) => vars[k] ?? '');
 
 /* ------------------------------------------------------------------ */
-/* Wochenuhr & Live-Anzeige                                            */
+/* Wochenplan & Live-Anzeige                                           */
 /* ------------------------------------------------------------------ */
 
 const LOC_COLOR = { garage: 'var(--vin)', kiosque: 'var(--bleu)', marche: 'var(--vert)' };
@@ -132,97 +125,77 @@ function statusParts(status, strings, locale) {
   return { state: strings.next, name: loc.name, url: loc.url, detail: `${detail} (${when})`, place: loc.place, key: status.slot.loc };
 }
 
-function initWeekClocks() {
-  const clocks = document.querySelectorAll('[data-week-clock]');
+function initPlan() {
+  const plan = document.querySelector('[data-plan]');
+  if (!plan) return;
   const live = document.querySelector('[data-live]');
-  if (!clocks.length && !live) return;
-
-  const source = clocks[0];
-  if (!source) return;
-  const schedule = JSON.parse(source.dataset.schedule);
-  const closures = JSON.parse(source.dataset.closures || '[]');
-  const strings = JSON.parse(source.dataset.strings);
-  const locale = source.dataset.locale;
-
-  let firstRun = true;
+  const schedule = JSON.parse(plan.dataset.schedule);
+  const closures = JSON.parse(plan.dataset.closures || '[]');
+  const strings = JSON.parse(plan.dataset.strings);
+  const locale = plan.dataset.locale;
+  const [axisFrom, axisTo] = plan.dataset.axis.split(',').map(Number);
+  const dateFmt = new Intl.DateTimeFormat(strings.intl, { day: 'numeric', month: 'short', timeZone: 'UTC' });
 
   const update = () => {
     const now = berlinNow();
     const status = computeStatus(schedule, now, closures);
     const parts = statusParts(status, strings, locale);
-    const color = LOC_COLOR[parts.key];
     const paused = pausedSlots(schedule, now, closures);
-    document.querySelectorAll('.tide[data-slot], .wc__arc[data-slot]').forEach((node) => {
-      node.classList.toggle('is-paused', paused.has(Number(node.dataset.slot)));
+
+    // Balken: geöffnet, als Nächstes, diesmal Pause
+    plan.querySelectorAll('[data-slot]').forEach((node) => {
+      const i = Number(node.dataset.slot);
+      const isOpen = status.state === 'open' && status.slot.i === i;
+      const isNext = status.state === 'next' && status.slot.i === i;
+      node.classList.toggle('is-paused', paused.has(i));
+      node.classList.toggle('is-open', isOpen);
+      node.classList.toggle('is-next', isNext);
+      let badge = node.querySelector('.plan__badge');
+      if (isOpen || isNext) {
+        if (!badge) {
+          badge = el('span', 'plan__badge');
+          node.prepend(badge);
+        }
+        badge.textContent = isOpen ? strings.open : strings.next;
+      } else if (badge) badge.remove();
     });
 
-    clocks.forEach((clock) => {
-      clock.dataset.state = status.state;
-      clock.style.setProperty('--live', color);
-      const hand = clock.querySelector('.wc__hand');
-      const target = weekAngle(now.weekHours);
-      if (hand) {
-        hand.removeAttribute('hidden');
-        if (firstRun && !reduceMotion) {
-          hand.style.transform = 'rotate(0deg)';
-          requestAnimationFrame(() => requestAnimationFrame(() => (hand.style.transform = `rotate(${target}deg)`)));
-        } else {
-          hand.style.transform = `rotate(${target}deg)`;
+    // Tage: heute / morgen / Datum, Jetzt-Linie
+    plan.querySelectorAll('.plan__day').forEach((row) => {
+      const days = row.dataset.days.split(',').map(Number);
+      const isToday = days.includes(now.iso);
+      row.classList.toggle('is-today', isToday);
+      const date = row.querySelector('.plan__date');
+      if (date) {
+        if (days.length > 1) date.textContent = isToday ? strings.today : '';
+        else {
+          const ahead = (days[0] - now.iso + 7) % 7;
+          date.textContent =
+            ahead === 0 ? strings.today : ahead === 1 ? strings.tomorrow : dateFmt.format(new Date(`${addDays(now.ymd, ahead)}T00:00:00Z`));
         }
       }
-      const fig = clock.querySelector('.wc__status');
-      if (fig) {
-        fig.innerHTML = '';
-        const state = el('span', 'wc__state', parts.state);
-        const name = el('a', 'wc__name', parts.name);
-        name.href = parts.url;
-        const detail = el('span', 'wc__detail', parts.detail);
-        const place = el('span', 'wc__place', parts.place);
-        fig.append(state, name, detail, place);
+      const marker = row.querySelector('.plan__now');
+      if (marker) {
+        const show = isToday && now.hour >= axisFrom && now.hour <= axisTo;
+        marker.hidden = !show;
+        if (show) row.style.setProperty('--now', now.hour.toFixed(3));
       }
     });
 
+    // Live-Anzeige im Hero
     if (live) {
       live.hidden = false;
       live.classList.toggle('is-open', status.state === 'open');
-      live.style.setProperty('--live', color);
+      live.style.setProperty('--live', LOC_COLOR[parts.key]);
       const text = live.querySelector('.live__text');
       text.innerHTML = '';
       const a = el('a', '', parts.name);
       a.href = parts.url;
       text.append(document.createTextNode(`${parts.state}: `), a, document.createTextNode(`, ${parts.detail}`));
     }
-    firstRun = false;
   };
 
-  // Zeiger erst drehen, wenn die Uhr sichtbar wird
-  if ('IntersectionObserver' in window && clocks.length && !reduceMotion) {
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((e) => e.isIntersecting)) {
-          io.disconnect();
-          update();
-        }
-      },
-      { threshold: 0.35 }
-    );
-    clocks.forEach((c) => io.observe(c));
-    // Live-Anzeige im Hero sofort füllen
-    if (live) {
-      const now = berlinNow();
-      const status = computeStatus(schedule, now, closures);
-      const parts = statusParts(status, strings, locale);
-      live.hidden = false;
-      live.classList.toggle('is-open', status.state === 'open');
-      live.style.setProperty('--live', LOC_COLOR[parts.key]);
-      const text = live.querySelector('.live__text');
-      const a = el('a', '', parts.name);
-      a.href = parts.url;
-      text.append(document.createTextNode(`${parts.state}: `), a, document.createTextNode(`, ${parts.detail}`));
-    }
-  } else {
-    update();
-  }
+  update();
   setInterval(update, 60_000);
 }
 
@@ -440,6 +413,6 @@ function initLogoMorph() {
 initLogoMorph();
 initExpiry();
 initMenu();
-initWeekClocks();
+initPlan();
 initYear();
 initMenuFilter();
