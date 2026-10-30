@@ -6,6 +6,7 @@ import { DICT, LOCALES, ROUTES, url, pick, fill, formatTime } from './i18n.mjs';
 import { SITE, LOCATIONS, LOCATION_ORDER, SCHEDULE } from '../content/site.mjs';
 import { logo, signet, icon, arrowLink, upcomingClosures } from './components.mjs';
 import { atlas } from './atlas.mjs';
+import { tokenHex } from '../content/tokens.mjs';
 
 const NAV = ['garage', 'kiosque', 'marche', 'carte', 'annee', 'contact'];
 
@@ -44,7 +45,7 @@ function head(ctx) {
 ${page.noindex ? html`<meta name="robots" content="noindex, nofollow">` : ''}
 <link rel="canonical" href="${canonical}">
 ${alternates}
-<meta name="theme-color" content="#F1F7F7">
+<meta name="theme-color" content="${tokenHex('nacre')}">
 <meta name="color-scheme" content="light">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="L’ANNÉE">

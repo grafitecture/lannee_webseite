@@ -820,7 +820,7 @@
 }
 .loc-menu--board .dishes {
   padding: var(--space-m) clamp(1rem, 3vw, 2.4rem);
-  border: 10px solid #b9824f;
+  border: 10px solid #757944; /* Rahmen in Oliv-Holz */
   border-radius: 6px;
   background: var(--blanc);
   box-shadow: 0 1px 0 rgb(0 0 0 / 0.05);

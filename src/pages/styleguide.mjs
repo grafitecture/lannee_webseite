@@ -6,7 +6,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { html, raw } from '../lib/html.mjs';
 import { LOCATIONS, LOCATION_ORDER } from '../content/site.mjs';
-import { COLORS, SHADES, TYPE_SCALE, SPACE, BREAKPOINTS, clampRem } from '../content/tokens.mjs';
+import { COLORS, SHADES, TYPE_SCALE, SPACE, BREAKPOINTS, clampRem, tokenHex } from '../content/tokens.mjs';
 import { logo, signet, lockup, icon } from '../lib/components.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
@@ -42,11 +42,11 @@ export function render() {
   <h2 class="t-h4" id="sg-brand">Dachmarke und Subbrands</h2>
   <div class="sg__cols">
     <div>
-      <p class="lead">Der Akzent aus dem É von L’ANNÉE wird zum Uhrzeiger. Jedes Signet zeigt auf die Stunde, zu der der Ort öffnet. Die Farben folgen dem Tageslicht: Grün am Morgen, Blau am Sonntag, Bordeaux am Abend.</p>
+      <p class="lead">Der Akzent aus dem É von L’ANNÉE wird zum Uhrzeiger. Jedes Signet zeigt auf die Stunde, zu der der Ort öffnet. Alle Farben sind warme Grüntöne, ihre Helligkeit folgt dem Tageslicht: helles Grün am Morgen, Moos am Sonntag, Oliv am Abend.</p>
       <ul class="sg__rules">
         <li><strong>Marché</strong>: Zeiger auf 8 Uhr, Vert L’ANNÉE</li>
-        <li><strong>Kiosque</strong>: Zeiger auf 10 Uhr, Bleu Marée</li>
-        <li><strong>Garage</strong>: Zeiger auf 6, also 18 Uhr, Rouge Bordeaux</li>
+        <li><strong>Kiosque</strong>: Zeiger auf 10 Uhr, Vert Mousse</li>
+        <li><strong>Garage</strong>: Zeiger auf 6, also 18 Uhr, Vert Olive</li>
         <li><strong>L’ANNÉE</strong>: alle drei Zeiger zusammen</li>
       </ul>
     </div>
@@ -69,7 +69,7 @@ export function render() {
 
 <section class="sg" aria-labelledby="sg-colors">
   <h2 class="t-h4" id="sg-colors">Farben</h2>
-  <p class="lead">Zum bestehenden Grün kommen zwei Farben: Bleu Marée für Meer, Austern und Gezeiten und Rouge Bordeaux für Wein und Frankreich. Alle drei haben eine ähnliche Sättigung (OKLCH-Chroma ≈ 0,11) und liegen im Farbkreis rund 95° bzw. 140° auseinander: harmonisch, aber klar unterscheidbar. Mit Nacre und Encre ergibt sich ein leises Bleu-Blanc-Rouge.</p>
+  <p class="lead">Die ganze Palette besteht aus warmen Grüntönen: Farbton zwischen 112° und 135° in OKLCH, also zum Gelb hin. Die drei Ortsfarben unterscheiden sich vor allem in der Helligkeit, die vom Morgen zum Abend fällt: Vert L’ANNÉE (Marché), Vert Mousse (Kiosque), Vert Olive (Garage). Encre ist ein fast schwarzes Waldgrün, Nacre ein warmes, grünliches Weiß.</p>
   <ul class="swatches" role="list">${COLORS.map(
     (c) => html`<li class="swatch" style="--sw:${c.hex}">
       <span class="swatch__chip"></span>
@@ -77,7 +77,7 @@ export function render() {
       <code>${c.hex}</code>
       <code>${c.oklch}</code>
       <span class="swatch__role">${c.role}</span>
-      <span class="swatch__contrast">Weiß ${contrast(c.hex, '#FFFFFF').toFixed(2)} : 1, Encre ${contrast(c.hex, '#142237').toFixed(2)} : 1</span>
+      <span class="swatch__contrast">Weiß ${contrast(c.hex, '#FFFFFF').toFixed(2)} : 1, Encre ${contrast(c.hex, tokenHex('encre')).toFixed(2)} : 1</span>
     </li>`
   )}</ul>
   <ul class="shades" role="list">${SHADES.map(

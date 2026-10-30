@@ -334,13 +334,14 @@
 
 /* Störer: Hinweis, dass die Seite fiktiv ist (SITE.demoNotice) --------------- */
 /*
- * Flamingo-Pink #F06292: Weiß darauf 3,1 : 1, deshalb fette, schmale Schrift.
+ * Chartreuse #CEE65A (warmes Gelbgrün, heller als alle Markenfarben, damit der
+ * Hinweis heraussticht): Encre darauf 11,5 : 1, fette, schmale Schrift.
  * Fixiert unten rechts, wandert also beim Scrollen mit. Der Schatten liegt als
  * eigene, unscharfe Scheibe darunter; beim Schweben hebt sich die Scheibe,
  * der Schatten wird kleiner und heller (nur transform/opacity).
  */
 .stoerer {
-  --flamingo: #f06292;
+  --stoerer: #cee65a;
   --size: clamp(5.25rem, 4.1rem + 4.6vw, 9.5rem);
   position: fixed;
   right: max(var(--gutter), env(safe-area-inset-right));
@@ -355,7 +356,7 @@
   position: absolute;
   inset: 8%;
   border-radius: 50%;
-  background: rgb(20 34 55 / 0.34);
+  background: color-mix(in srgb, var(--encre) 34%, transparent);
   filter: blur(calc(var(--size) * 0.07));
   translate: 0 10%;
 }
@@ -368,8 +369,8 @@
   margin: 0;
   padding: 0 13%;
   border-radius: 50%;
-  background: radial-gradient(circle at 32% 28%, color-mix(in oklab, var(--flamingo) 82%, white), var(--flamingo) 58%);
-  color: #fff;
+  background: radial-gradient(circle at 32% 28%, color-mix(in oklab, var(--stoerer) 72%, white), var(--stoerer) 58%);
+  color: var(--encre);
   font-family: var(--font-text);
   font-stretch: 80%;
   font-weight: 650;
@@ -377,7 +378,7 @@
   line-height: 1.12;
   text-align: center;
   text-wrap: balance;
-  text-shadow: 0 1px 1px rgb(120 20 60 / 0.25);
+  text-shadow: 0 1px 0 rgb(255 255 255 / 0.35);
   rotate: -9deg;
 }
 @media (prefers-reduced-motion: no-preference) {

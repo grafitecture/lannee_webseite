@@ -12,7 +12,7 @@ import { fileURLToPath } from 'node:url';
 import { LOCALES, ROUTES, DICT, url } from './lib/i18n.mjs';
 import { layout } from './lib/layout.mjs';
 import { buildSprite, setSpriteUrl } from './lib/components.mjs';
-import { tokensCss } from './content/tokens.mjs';
+import { tokensCss, tokenHex } from './content/tokens.mjs';
 import { SITE } from './content/site.mjs';
 
 import * as home from './pages/home.mjs';
@@ -162,8 +162,8 @@ async function build() {
         short_name: 'L’ANNÉE',
         start_url: '/',
         display: 'browser',
-        background_color: '#F1F7F7',
-        theme_color: '#4D9D6E',
+        background_color: tokenHex('nacre'),
+        theme_color: tokenHex('vert'),
         icons: [
           { src: '/icon-192.png', sizes: '192x192', type: 'image/png' },
           { src: '/icon-512.png', sizes: '512x512', type: 'image/png' },

@@ -20,7 +20,7 @@ Stand: Oktober 2026 · Grundlage: Briefing, PDF „LANNEE_Garage_Kiosque_Marche�
 
 - Der **Akzent aus dem É** des Logos wird zum **Uhrzeiger**.
 - Kreise stehen für Zyklen: Jahr (Jahresuhr), Zifferblatt (Signets). Die Woche zeigt ein klarer Wochenplan mit Zeitachse.
-- Farben folgen dem **Tageslicht**: Morgen (Grün), Sonntag (Blau), Abend (Bordeaux), Nacht (Encre).
+- Alle Farben sind **warme Grüntöne**; ihre Helligkeit folgt dem **Tageslicht**: Morgen (helles Grün), Sonntag (Moos), Abend (Oliv), Nacht (Encre).
 
 ## 3. Gliederung
 
@@ -47,8 +47,8 @@ Die Signets (Kreis mit dem Akzent als Zeiger auf die Öffnungsstunde) bleiben al
 | Subbrand | Zeiger | Farbe |
 | --- | --- | --- |
 | Marché | 8 Uhr | Vert L’ANNÉE |
-| Kiosque | 10 Uhr | Bleu Marée |
-| Garage | 6 Uhr (18 Uhr) | Rouge Bordeaux |
+| Kiosque | 10 Uhr | Vert Mousse |
+| Garage | 6 Uhr (18 Uhr) | Vert Olive |
 | L’ANNÉE | alle drei | Encre + drei Farben |
 
 Der Name steht in gesperrten Versalien (Instrument Sans, schmal) über einer Linie, wie bereits auf dem Marché-Anhänger.
@@ -57,14 +57,15 @@ Der Name steht in gesperrten Versalien (Instrument Sans, schmal) über einer Lin
 
 | Name | HEX | OKLCH | Rolle |
 | --- | --- | --- | --- |
-| Vert L’ANNÉE | #4D9D6E | 63.2 % 0.107 155.8 | bestehend, Marché |
-| **Bleu Marée** | #2E669C | 50 % 0.105 250 | neu: Meer, Gezeiten, Kiosque |
-| **Rouge Bordeaux** | #7D2131 | 40 % 0.125 15 | neu: Wein, Abend, Garage |
-| Encre | #142237 | 25 % 0.045 258 | Text, Fußzeile |
-| Nacre | #F1F7F7 | 97.2 % 0.006 200 | Perlmutt, ruhige Flächen |
+| Vert L’ANNÉE | #709B4A | 64 % 0.12 132 | Markenfarbe, Marché, der Morgen |
+| Vert Mousse | #586C2A | 50 % 0.095 124 | Kiosque, der Sonntag |
+| Vert Olive | #434815 | 38.5 % 0.072 115 | Garage, der Abend |
+| Encre | #1C2411 | 24.5 % 0.035 128 | Text, Fußzeile (fast schwarzes Waldgrün) |
+| Nacre | #F6F7EC | 97.2 % 0.014 112 | Perlmutt, ruhige Flächen (warmes, grünliches Weiß) |
+| Chartreuse | #CEE65A | 88 % 0.165 118 | nur der Störer „fiktiv“ |
 
-Harmonie: gleiche Sättigung (Chroma ≈ 0,11), Farbtöne rund 95° bzw. 140° auseinander, Helligkeit fällt vom Morgen zum Abend. Mit Nacre ergibt sich ein leises Bleu-Blanc-Rouge.
-Kontraste: Weiß auf Bleu 6,0 : 1, auf Bordeaux 9,8 : 1, auf Vert 3,3 : 1 (reicht für große Schrift), Encre auf Weiß 16 : 1.
+Seit 30.10.2026 (vorher Vert #4D9D6E, Bleu Marée #2E669C, Rouge Bordeaux #7D2131): Die ganze Palette besteht aus warmen Grüntönen, Farbton 112–135° in OKLCH, also zum Gelb hin. Die drei Ortsfarben unterscheiden sich vor allem in der Helligkeit, die vom Morgen zum Abend fällt. Im Code heißen die Tokens weiter `vert`/`bleu`/`vin` (= Marché/Kiosque/Garage).
+Kontraste: Weiß auf Vert Mousse 5,8 : 1, auf Vert Olive 9,7 : 1, auf Vert L’ANNÉE 3,2 : 1 (reicht für große Schrift), Encre auf Weiß 16 : 1.
 
 ## 6. Typografie
 

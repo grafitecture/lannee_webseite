@@ -27,7 +27,7 @@ export const SITE = {
     register: null,
   },
   agency: { name: 'Grafitecture', url: 'https://www.grafitecture.de/' }, // immer verlinken, mit www
-  // Störer „Diese Webseite ist fiktiv“ (rosa Kreis unten rechts). Für den echten Livegang auf false setzen.
+  // Störer „Diese Webseite ist fiktiv“ (Kreis unten rechts). Für den echten Livegang auf false setzen.
   demoNotice: true,
 };
 
@@ -40,7 +40,7 @@ export const LOCATIONS = {
     key: 'marche',
     name: 'Marché',
     color: 'vert',
-    hex: '#4D9D6E',
+    hex: '#709B4A',
     hour: 8,
     domain: null,
     email: 'bonjour@lannee.de',
@@ -56,7 +56,7 @@ export const LOCATIONS = {
     key: 'kiosque',
     name: 'Kiosque',
     color: 'bleu',
-    hex: '#2E669C',
+    hex: '#586C2A',
     hour: 10,
     domain: 'kiosque.ma',
     email: 'bonjour@kiosque.ma',
@@ -72,7 +72,7 @@ export const LOCATIONS = {
     key: 'garage',
     name: 'Garage',
     color: 'vin',
-    hex: '#7D2131',
+    hex: '#434815',
     hour: 18,
     domain: 'garage.ma',
     email: 'bonsoir@garage.ma',

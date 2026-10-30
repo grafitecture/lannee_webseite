@@ -8,7 +8,9 @@ import path from 'node:path';
 import os from 'node:os';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
+import { tokenHex } from '../src/content/tokens.mjs';
 
+const C = { vert: tokenHex('vert'), bleu: tokenHex('bleu'), vin: tokenHex('vin'), encre: tokenHex('encre'), nacre: tokenHex('nacre') };
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const require = createRequire(import.meta.url);
 
@@ -28,7 +30,7 @@ const LOGO_VB = logoSvg.match(/viewBox="([^"]+)"/)[1];
 const LOGO_D = logoSvg.match(/ d="([^"]+)"/)[1];
 const subs = LOGO_D.split('Z').filter((s) => s.trim()).map((s) => s.trim() + 'Z');
 
-/* ---------- Favicon: „L’“ aus dem Logo, weiß auf Grün ---------- */
+/* ---------- Favicon: „L’“ aus dem Logo, weiß auf Vert L’ANNÉE ---------- */
 // Teilpfade: L (x 23–202) und Apostroph (x 183–272), siehe Logo-Analyse
 const pick = (minX, maxX) =>
   subs.filter((d) => {
@@ -44,7 +46,7 @@ const gh = 503 - 24;
 const scale = 330 / gh;
 const tx = (512 - gw * scale) / 2 - 23 * scale;
 const ty = (512 - gh * scale) / 2 - 24 * scale;
-const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="112" fill="#4D9D6E"/><path fill="#FFFFFF" fill-rule="evenodd" transform="translate(${tx.toFixed(1)} ${ty.toFixed(1)}) scale(${scale.toFixed(4)})" d="${lPaths}"/></svg>`;
+const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="112" fill="${C.vert}"/><path fill="#FFFFFF" fill-rule="evenodd" transform="translate(${tx.toFixed(1)} ${ty.toFixed(1)}) scale(${scale.toFixed(4)})" d="${lPaths}"/></svg>`;
 await fs.writeFile(path.join(ROOT, 'public/favicon.svg'), favicon);
 for (const [file, size] of [
   ['favicon-32.png', 32],
@@ -84,17 +86,17 @@ const lockupHtml = (name, fg, size = 30) => `<div style="--cap:calc(2.625em + 1.
   </div>
 </div>`;
 const OG = {
-  lannee: `<div style="width:1200px;height:630px;background:#F1F7F7;display:grid;grid-template-rows:auto 1fr;padding:64px 80px 60px">
-      <div style="width:820px">${logo('#4D9D6E')}</div>
+  lannee: `<div style="width:1200px;height:630px;background:${C.nacre};display:grid;grid-template-rows:auto 1fr;padding:64px 80px 60px">
+      <div style="width:820px">${logo(C.vert)}</div>
       <div style="display:flex;align-items:flex-end;justify-content:space-between">
-        <div style="font-family:Fraunces;font-style:italic;font-weight:330;font-size:76px;line-height:1;color:#142237">Huîtres &amp; Bulles<br><span style="font-style:normal;font-size:34px;font-family:'Instrument Sans';font-weight:500">Garage, Kiosque &amp; Marché in Mannheim</span></div>
-        <div style="width:150px;height:150px">${signet([18, 8, 10], ['#7D2131', '#4D9D6E', '#2E669C'], '#142237')}</div>
+        <div style="font-family:Fraunces;font-style:italic;font-weight:330;font-size:76px;line-height:1;color:${C.encre}">Huîtres &amp; Bulles<br><span style="font-style:normal;font-size:34px;font-family:'Instrument Sans';font-weight:500">Garage, Kiosque &amp; Marché in Mannheim</span></div>
+        <div style="width:150px;height:150px">${signet([18, 8, 10], [C.vin, C.vert, C.bleu], C.encre)}</div>
       </div></div>`,
 };
 const LOC = {
-  garage: { bg: '#7D2131', fg: '#fff', name: 'Garage', sub: 'Garage à huîtres &amp; vins', when: 'Fr &amp; Sa ab 18 Uhr, Jungbusch', hour: 18, photo: 'garage-hof' },
-  kiosque: { bg: '#2E669C', fg: '#fff', name: 'Kiosque', sub: 'Kiosque à huîtres &amp; vins', when: 'Sonntag ab 10 Uhr, Lindenhof', hour: 10, photo: 'kiosque-visualisierung' },
-  marche: { bg: '#4D9D6E', fg: '#fff', name: 'Marché', sub: 'Huîtres &amp; Bulles auf Rädern', when: 'Samstag 8–13 Uhr, Wochenmarkt Lindenhof', hour: 8, photo: 'marche-wagen' },
+  garage: { bg: C.vin, fg: '#fff', name: 'Garage', sub: 'Garage à huîtres &amp; vins', when: 'Fr &amp; Sa ab 18 Uhr, Jungbusch', hour: 18, photo: 'garage-hof' },
+  kiosque: { bg: C.bleu, fg: '#fff', name: 'Kiosque', sub: 'Kiosque à huîtres &amp; vins', when: 'Sonntag ab 10 Uhr, Lindenhof', hour: 10, photo: 'kiosque-visualisierung' },
+  marche: { bg: C.vert, fg: '#fff', name: 'Marché', sub: 'Huîtres &amp; Bulles auf Rädern', when: 'Samstag 8–13 Uhr, Wochenmarkt Lindenhof', hour: 8, photo: 'marche-wagen' },
 };
 for (const [key, L] of Object.entries(LOC)) {
   OG[key] = `<div style="width:1200px;height:630px;display:grid;grid-template-columns:1fr 520px;background:${L.bg};color:${L.fg}">

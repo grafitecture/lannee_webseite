@@ -6,29 +6,39 @@
 /** Fluid-Bereich für clamp(): 360 px → 1920 px Viewport. */
 export const FLUID = { minVw: 360, maxVw: 1920, root: 16 };
 
+/*
+ * Palette: warme Grüntöne (Farbton 112–135° in OKLCH, also zum Gelb hin).
+ * Die Helligkeit folgt dem Tageslicht: hell am Morgen (Marché), mittel am
+ * Sonntag (Kiosque), dunkel am Abend (Garage), fast schwarz in der Nacht (Encre).
+ * Die Token-Namen vert/bleu/vin sind historisch und stehen für die Orte:
+ * vert = Marché, bleu = Kiosque, vin = Garage.
+ */
 export const COLORS = [
-  { token: 'vert', name: 'Vert L’ANNÉE', hex: '#4D9D6E', oklch: 'oklch(63.2% 0.107 155.8)', role: 'Bestehende Markenfarbe. Marché, der Morgen', text: 'encre' },
-  { token: 'bleu', name: 'Bleu Marée', hex: '#2E669C', oklch: 'oklch(50% 0.105 250)', role: 'Neu. Meer und Gezeiten. Kiosque, der Sonntag', text: 'blanc' },
-  { token: 'vin', name: 'Rouge Bordeaux', hex: '#7D2131', oklch: 'oklch(40% 0.125 15)', role: 'Neu. Wein und Abend. Garage', text: 'blanc' },
-  { token: 'encre', name: 'Encre', hex: '#142237', oklch: 'oklch(25% 0.045 258)', role: 'Text und Fußzeile, die Nacht', text: 'blanc' },
-  { token: 'nacre', name: 'Nacre', hex: '#F1F7F7', oklch: 'oklch(97.2% 0.006 200)', role: 'Perlmutt der Auster, ruhige Flächen', text: 'encre' },
+  { token: 'vert', name: 'Vert L’ANNÉE', hex: '#709B4A', oklch: 'oklch(64% 0.12 132)', role: 'Markenfarbe, frisches Grün. Marché, der Morgen', text: 'encre' },
+  { token: 'bleu', name: 'Vert Mousse', hex: '#586C2A', oklch: 'oklch(50% 0.095 124)', role: 'Moosgrün. Kiosque, der Sonntag', text: 'blanc' },
+  { token: 'vin', name: 'Vert Olive', hex: '#434815', oklch: 'oklch(38.5% 0.072 115)', role: 'Dunkles Oliv. Garage, der Abend', text: 'blanc' },
+  { token: 'encre', name: 'Encre', hex: '#1C2411', oklch: 'oklch(24.5% 0.035 128)', role: 'Text und Fußzeile, die Nacht', text: 'blanc' },
+  { token: 'nacre', name: 'Nacre', hex: '#F6F7EC', oklch: 'oklch(97.2% 0.014 112)', role: 'Perlmutt der Auster, ruhige Flächen', text: 'encre' },
   { token: 'blanc', name: 'Blanc', hex: '#FFFFFF', oklch: 'oklch(100% 0 0)', role: 'Weißraum', text: 'encre' },
 ];
 
 /** Abgeleitete Töne (für Text auf Weiß, zarte Flächen). */
 export const SHADES = [
-  { token: 'vert-deep', hex: '#286A45' },
-  { token: 'vert-pale', hex: '#E4F6E9' },
-  { token: 'bleu-deep', hex: '#1D3E66' },
-  { token: 'bleu-pale', hex: '#E6F2FE' },
-  { token: 'vin-deep', hex: '#52151F' },
-  { token: 'vin-pale', hex: '#FCECEC' },
-  { token: 'nacre-2', hex: '#E5EDED' },
-  { token: 'vin-soft', hex: '#E9A1A6' },
-  { token: 'bleu-soft', hex: '#93BCE6' },
-  { token: 'vert-soft', hex: '#87D1A3' },
-  { token: 'gris', hex: '#6B727A' },
+  { token: 'vert-deep', hex: '#456626' },
+  { token: 'vert-pale', hex: '#E7F6DA' },
+  { token: 'bleu-deep', hex: '#374614' },
+  { token: 'bleu-pale', hex: '#ECF4DB' },
+  { token: 'vin-deep', hex: '#2B2E0A' },
+  { token: 'vin-pale', hex: '#F1F2DC' },
+  { token: 'nacre-2', hex: '#EBEDE0' },
+  { token: 'vin-soft', hex: '#C1C382' },
+  { token: 'bleu-soft', hex: '#B1C887' },
+  { token: 'vert-soft', hex: '#A5D48B' },
+  { token: 'gris', hex: '#6D7162' },
 ];
+
+/** Hex-Wert eines Tokens (für Meta-Tags, Manifest, Share-Bilder). */
+export const tokenHex = (token) => [...COLORS, ...SHADES].find((c) => c.token === token)?.hex;
 
 /**
  * Typo-Skala im Goldenen Schnitt (Desktop-Werte laut Vorgabe).
