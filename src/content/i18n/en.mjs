@@ -80,12 +80,6 @@ export default {
         lead: 'Oysters from France and Ireland, seafood to share, little things and plenty of bubbles. Not everything is everywhere, the menu tells you where.',
         cta: 'See the full menu',
       },
-      year: {
-        heading: 'Oysters keep a calendar.',
-        body: 'They used to say: oysters only in months with an R. Why that was, when the Beaujolais arrives and what belongs on the table in December: our year, month by month.',
-        now: 'It’s {month}:',
-        cta: 'See the year',
-      },
       insta: 'Closures, special dates and what’s fresh right now: on Instagram.',
     },
 

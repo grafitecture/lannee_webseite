@@ -1,8 +1,7 @@
 import { html, raw, rich } from '../lib/html.mjs';
-import { DICT, url, pick, fill } from '../lib/i18n.mjs';
+import { DICT, url } from '../lib/i18n.mjs';
 import { LOCATIONS, LOCATION_ORDER, SITE } from '../content/site.mjs';
-import { MONTHS } from '../content/year.mjs';
-import { logo, lockup, picture, weekPlan, yearRing, arrowLink, icon, closureNotes, LOGO_VIEWBOX } from '../lib/components.mjs';
+import { logo, lockup, picture, weekPlan, arrowLink, icon, closureNotes, LOGO_VIEWBOX } from '../lib/components.mjs';
 
 const [, , LOGO_W, LOGO_H] = LOGO_VIEWBOX.split(/\s+/);
 import { menuExcerpt } from '../lib/menu-render.mjs';
@@ -37,9 +36,6 @@ export function render(ctx) {
       </div>
     </section>`;
   });
-
-  /* Jahr-Teaser: aktueller Monat wird per JS markiert, Build-Monat als Startwert */
-  const month = MONTHS[new Date().getMonth()];
 
   return html`
 <section class="hero" aria-labelledby="hero-title">
@@ -82,22 +78,6 @@ export function render(ctx) {
     ${menuExcerpt(locale, { signatureOnly: true, limit: 6 })}
   </div>
   <div class="teaser-menu__icons" aria-hidden="true">${['oyster', 'flute', 'shrimp', 'lemon', 'sardines', 'wine'].map((n) => icon(n, { cls: 'icon icon--float' }))}</div>
-</section>
-
-<section class="teaser-year" aria-labelledby="year-title">
-  <div class="teaser-year__ring">${yearRing(locale, { id: 'jahresuhr-start' })}</div>
-  <div class="teaser-year__text">
-    <h2 class="t-h3" id="year-title">${p.year.heading}</h2>
-    <p class="lead">${rich(p.year.body, locale)}</p>
-    <div class="month-now" data-month-now data-months="${JSON.stringify(
-      MONTHS.map((m) => ({ n: m.n, icon: m.icon, name: pick(m.name, locale), title: pick(m.title, locale), text: pick(m.text, locale) }))
-    )}" data-template="${p.year.now}">
-      <p class="month-now__label">${fill(p.year.now, { month: pick(month.name, locale) })}</p>
-      <p class="month-now__title">${icon(month.icon, { cls: 'icon month-now__icon' })}<span>${pick(month.title, locale)}</span></p>
-      <p class="month-now__text">${rich(pick(month.text, locale), locale)}</p>
-    </div>
-    ${arrowLink(url('annee', locale), p.year.cta, { cls: 'btn btn--line' })}
-  </div>
 </section>
 
 <section class="gallery" aria-label="${{ de: 'Fotos', fr: 'Photos', en: 'Photos' }[locale]}">

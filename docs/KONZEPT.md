@@ -26,7 +26,7 @@ Stand: Oktober 2026 · Grundlage: Briefing, PDF „LANNEE_Garage_Kiosque_Marche�
 
 ```
 L’ANNÉE (1898.ma)
-├── Start: Wochenplan (live), drei Orte, Karte, Jahr
+├── Start: Wochenplan (live), drei Orte, Karte, Galerie
 ├── Garage   (garage.ma → /garage/)
 ├── Kiosque  (kiosque.ma → /kiosque/)
 ├── Marché   (/marche/: Termine, Einladung für Feste)

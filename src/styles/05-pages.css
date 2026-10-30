@@ -629,49 +629,6 @@
   }
 }
 
-.teaser-year {
-  display: grid;
-  gap: var(--space-xl);
-  padding: var(--space-2xl) var(--gutter);
-  background: var(--nacre);
-  align-items: center;
-}
-.teaser-year__text {
-  display: grid;
-  gap: var(--space-m);
-  justify-items: start;
-}
-.month-now {
-  display: grid;
-  gap: 0.3em;
-  padding: var(--space-m);
-  background: var(--blanc);
-  border-left: 4px solid var(--vin);
-  max-width: 34rem;
-}
-.month-now__label {
-  font-size: var(--fs-text-small);
-  color: var(--gris);
-}
-.month-now__title {
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-  font-family: var(--font-display);
-  font-size: var(--fs-h5);
-  line-height: 1.05;
-}
-.month-now__icon {
-  width: 1.2em;
-  height: 1.2em;
-  color: var(--vin);
-}
-@media (min-width: 1024px) {
-  .teaser-year {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  }
-}
-
 /* Startseite: Galerie & Instagram ------------------------------------------ */
 
 .gallery {

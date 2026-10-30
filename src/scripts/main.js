@@ -235,21 +235,6 @@ function initYear() {
   document.querySelectorAll('.months [data-month]').forEach((li) => {
     li.classList.toggle('is-now', Number(li.dataset.month) === now.month);
   });
-
-  // Teaser auf der Startseite: Monat aktualisieren, falls der Build älter ist
-  const box = document.querySelector('[data-month-now]');
-  if (box && box.dataset.months) {
-    const months = JSON.parse(box.dataset.months);
-    const m = months[now.month - 1];
-    const label = box.querySelector('.month-now__label');
-    const title = box.querySelector('.month-now__title span');
-    const text = box.querySelector('.month-now__text');
-    const use = box.querySelector('.month-now__icon use');
-    if (label) label.textContent = fill(box.dataset.template, { month: m.name });
-    if (title) title.textContent = m.title;
-    if (text) text.textContent = m.text;
-    if (use) use.setAttribute('href', use.getAttribute('href').replace(/#.*$/, `#${m.icon}`));
-  }
 }
 
 /* ------------------------------------------------------------------ */

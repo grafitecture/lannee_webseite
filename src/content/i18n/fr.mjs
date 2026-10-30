@@ -80,12 +80,6 @@ export default {
         lead: 'Des huîtres de France et d’Irlande, des fruits de mer à partager, de quoi grignoter et beaucoup de bulles. Tout n’est pas proposé partout : la carte vous dit où.',
         cta: 'Voir toute la carte',
       },
-      year: {
-        heading: 'Les huîtres ont un calendrier.',
-        body: 'Autrefois, on ne mangeait les huîtres que les mois en R. Pourquoi, quand arrive le beaujolais, et ce qui se déguste en décembre : notre année, mois par mois.',
-        now: 'Nous sommes en {month} :',
-        cta: 'Voir l’année',
-      },
       insta: 'Fermetures, rendez-vous spéciaux et arrivages du moment : sur Instagram.',
     },
 

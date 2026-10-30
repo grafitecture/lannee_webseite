@@ -80,12 +80,6 @@ export default {
         lead: 'Austern aus Frankreich und Irland, Meeresfrüchte zum Teilen, Kleinigkeiten und viel Prickelndes. Nicht alles gibt es überall, die Karte verrät dir, wo.',
         cta: 'Ganze Karte ansehen',
       },
-      year: {
-        heading: 'Austern haben einen Kalender.',
-        body: 'Früher galt: Austern nur in Monaten mit R. Warum das so war, wann der Beaujolais kommt und was im Dezember auf den Tisch gehört: unser Jahr, Monat für Monat.',
-        now: 'Gerade ist {month}:',
-        cta: 'Zum Jahr',
-      },
       insta: 'Ausnahmen, Sondertermine und was gerade frisch ist: auf Instagram.',
     },
 
