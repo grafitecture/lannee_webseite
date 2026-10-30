@@ -77,21 +77,27 @@
   gap: 0.75rem;
   margin-top: var(--space-m);
 }
-/* Startbild im Hochformat (Schriftzug mit Neon „1898“): mobil 4 : 5, ab Tablet
-   neben dem Text im Originalformat 3 : 4, damit es nicht größer als nötig wird */
+/* Startbild (KI-Komposition: Austern und Coupes vor dem Hof mit L’ANNÉE-Schild):
+   mobil quadratisch, damit Platte, beide Coupes und Schild im Bild bleiben;
+   ab Tablet breit im Goldenen Schnitt */
 .hero__photo {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1 / 1;
 }
 .hero__photo img {
-  object-position: 50% 30%;
+  object-position: 62% 60%;
 }
 @media (min-width: 768px) {
-  .hero__grid {
-    grid-template-columns: minmax(0, 1.618fr) minmax(0, 1fr);
-    align-items: start;
-  }
   .hero__photo {
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 1.618 / 1;
+  }
+  .hero__photo img {
+    object-position: 50% 55%;
+  }
+}
+@media (min-width: 1024px) {
+  .hero__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.618fr);
+    align-items: start;
   }
   .hero__text {
     padding-top: 0.2em;

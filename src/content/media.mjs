@@ -50,11 +50,11 @@ export const MEDIA = {
       en: 'Wine bottles in an ice bucket',
     },
   },
-  'hero-schild-1898': {
+  'hero-austern-hof': {
     alt: {
-      de: 'Der Schriftzug L’ANNÉE aus weißen Holzbuchstaben vor einer berankten Backsteinwand, darüber leuchtet „1898“ in Neon; davor Rittersporn, Gräser und Glasvasen',
-      fr: 'Les lettres L’ANNÉE en bois blanc devant un mur de briques couvert de lierre, au-dessus « 1898 » en néon ; devant, des delphiniums, des herbes et des vases en verre',
-      en: 'The letters L’ANNÉE in white wood against an ivy-covered brick wall, “1898” glowing in neon above; in front, delphiniums, grasses and glass vases',
+      de: 'Austern auf Eis mit Zitronen und zwei Coupes Champagner auf einem Holztisch, dahinter im berankten Hof der Schriftzug L’ANNÉE und die Neonschrift „1898“',
+      fr: 'Des huîtres sur glace avec des citrons et deux coupes de champagne sur une table en bois ; derrière, dans la cour couverte de lierre, les lettres L’ANNÉE et le néon « 1898 »',
+      en: 'Oysters on ice with lemons and two coupes of champagne on a wooden table; behind them, in the ivy-covered courtyard, the letters L’ANNÉE and the neon “1898”',
     },
   },
   bulles: {

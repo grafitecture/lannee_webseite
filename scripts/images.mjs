@@ -56,8 +56,9 @@ const SOURCES = {
   'garage-eingang': { file: 'garage-eingang.jpg' },
   'schweppes': { file: 'schweppes.jpg' },
   'baguettes': { file: 'baguettes.jpg' },
-  // Startbild: Schriftzug L’ANNÉE mit Neon „1898“ im Hof, Blumen (Foto, derzeit nur 480×640)
-  'hero-schild-1898': { file: 'hero-schild-1898.jpg' },
+  // Startbild: KI-Komposition (Higgsfield AI, Nano Banana 2.1) aus dem früheren Austern-Stimmungsbild
+  // und dem Foto des Schriftzugs L’ANNÉE mit Neon „1898“ (Referenz: hero-schild-1898.jpg)
+  'hero-austern-hof': { file: 'hero-austern-hof.jpg' },
 };
 
 const toHex = (r, g, b) => '#' + [r, g, b].map((v) => v.toString(16).padStart(2, '0')).join('');
