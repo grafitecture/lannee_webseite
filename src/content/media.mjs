@@ -50,11 +50,11 @@ export const MEDIA = {
       en: 'Wine bottles in an ice bucket',
     },
   },
-  'hero-huitres-champagne': {
+  'hero-schild-1898': {
     alt: {
-      de: 'Ein Teller Austern auf Eis mit Zitronen, daneben zwei Coupes Champagner auf einem blauen Holztisch am Fenster',
-      fr: 'Un plateau d’huîtres sur glace avec des citrons, à côté deux coupes de champagne sur une table en bois bleue près de la fenêtre',
-      en: 'A platter of oysters on ice with lemons, two coupes of champagne beside it on a blue wooden table by the window',
+      de: 'Der Schriftzug L’ANNÉE aus weißen Holzbuchstaben vor einer berankten Backsteinwand, darüber leuchtet „1898“ in Neon; davor Rittersporn, Gräser und Glasvasen',
+      fr: 'Les lettres L’ANNÉE en bois blanc devant un mur de briques couvert de lierre, au-dessus « 1898 » en néon ; devant, des delphiniums, des herbes et des vases en verre',
+      en: 'The letters L’ANNÉE in white wood against an ivy-covered brick wall, “1898” glowing in neon above; in front, delphiniums, grasses and glass vases',
     },
   },
   bulles: {

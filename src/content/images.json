@@ -196,17 +196,12 @@
     ],
     "color": "#af9278"
   },
-  "hero-huitres-champagne": {
-    "width": 2400,
-    "height": 1792,
+  "hero-schild-1898": {
+    "width": 480,
+    "height": 640,
     "widths": [
-      480,
-      768,
-      1080,
-      1440,
-      1920,
-      2400
+      480
     ],
-    "color": "#5e5c56"
+    "color": "#6a6b59"
   }
 }

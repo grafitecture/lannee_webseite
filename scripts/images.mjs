@@ -56,8 +56,8 @@ const SOURCES = {
   'garage-eingang': { file: 'garage-eingang.jpg' },
   'schweppes': { file: 'schweppes.jpg' },
   'baguettes': { file: 'baguettes.jpg' },
-  // Stimmungsbild Startseite, generiert mit Higgsfield AI (Nano Banana), 2400×1792
-  'hero-huitres-champagne': { file: 'hero-huitres-champagne.webp' },
+  // Startbild: Schriftzug L’ANNÉE mit Neon „1898“ im Hof, Blumen (Foto, derzeit nur 480×640)
+  'hero-schild-1898': { file: 'hero-schild-1898.jpg' },
 };
 
 const toHex = (r, g, b) => '#' + [r, g, b].map((v) => v.toString(16).padStart(2, '0')).join('');
