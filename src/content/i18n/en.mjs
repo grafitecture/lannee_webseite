@@ -11,7 +11,7 @@ export default {
     close: 'Close',
     mainNav: 'Main navigation',
     langNav: 'Choose language',
-    nav: { garage: 'Garage', kiosque: 'Kiosque', marche: 'Marché', carte: 'Menu', annee: 'The Year', contact: 'Contact' },
+    nav: { garage: 'Garage', kiosque: 'Kiosque', marche: 'Marché', carte: 'Menu', annee: 'The Year', atlas: 'Oyster atlas', contact: 'Contact' },
     home: 'Home',
     days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
     daysShort: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -32,7 +32,7 @@ export default {
     closure: { one: '**{names} is taking a break:** {when}', many: '**{names} are taking a break:** {when}' },
     facts: { when: 'When', where: 'Where', mail: 'Email', more: 'Also' },
     footer: {
-      tagline: 'Huîtres & Bulles in Mannheim',
+      tagline: 'Austern & Bulles in Mannheim',
       legal: 'Legal',
       impressum: 'Legal notice',
       datenschutz: 'Privacy',
@@ -50,7 +50,7 @@ export default {
       title: 'L’ANNÉE – Oysters & bubbles in Mannheim',
       description:
         'Oysters, crémant and champagne in three places in Mannheim: the Garage in Jungbusch, the Kiosque on Lindenhofplatz and the Marché at the Lindenhof farmers’ market.',
-      h1: 'L’ANNÉE – Huîtres & Bulles in Mannheim',
+      h1: 'L’ANNÉE – Austern & Bulles in Mannheim',
       lead: 'Oysters, bubbles and a spot in the sun. In three places in Mannheim, every weekend.',
       ctaMenu: 'See the menu',
       ctaWhere: 'Where to find us',
@@ -140,7 +140,7 @@ export default {
       description:
         'The L’ANNÉE Marché: Saturdays from 8 am to 1 pm at the Lindenhof farmers’ market in Mannheim. Freshly shucked oysters, a glass of wine and oysters to take home.',
       h1: 'Marché',
-      subtitle: '{fr|Huîtres & Bulles} on wheels',
+      subtitle: 'Austern & Bulles on wheels',
       when: 'Saturday, 8 am to 1 pm',
       whereText: 'Lindenhof farmers’ market, Mannheim',
       more: 'More places and dates announced as we go.',
@@ -226,6 +226,12 @@ export default {
           { name: 'Crémant & champagne', text: 'The bubbles refresh the palate for the next oyster.' },
         ],
       },
+    },
+
+    atlas: {
+      title: 'Oyster atlas – species and origins | L’ANNÉE',
+      description:
+        'The L’ANNÉE oyster atlas: the main oyster species and the best-known origins, from Marennes-Oléron and Cancale to Sylt, briefly explained.',
     },
 
     contact: {

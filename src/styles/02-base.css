@@ -6,12 +6,12 @@
   --font-display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
   --font-text: 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --phi: 1.618;
-  --line: color-mix(in srgb, var(--encre) 14%, transparent);
-  --line-strong: color-mix(in srgb, var(--encre) 32%, transparent);
+  --line: color-mix(in srgb, var(--palm) 50%, transparent);
+  --line-strong: var(--palm);
   --header-h: 4.5rem;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.7, 0, 0.2, 1);
-  --loc: var(--vert);
+  --loc: var(--marche);
   color-scheme: light;
 }
 
@@ -42,7 +42,7 @@ body {
   margin: 0;
   min-height: 100svh;
   background: var(--blanc);
-  color: var(--encre);
+  color: var(--ink);
   font-family: var(--font-text);
   font-size: var(--fs-p);
   line-height: 1.6;
@@ -123,8 +123,8 @@ button {
 }
 
 ::selection {
-  background: var(--vert);
-  color: var(--encre);
+  background: var(--lime);
+  color: var(--ink);
 }
 
 main:focus {
@@ -161,7 +161,7 @@ main:focus {
   top: -10rem;
   z-index: 100;
   padding: 0.75rem 1.25rem;
-  background: var(--encre);
+  background: var(--ink);
   color: var(--blanc);
   border-radius: 999px;
   font-weight: 600;
@@ -187,25 +187,25 @@ main:focus {
 
 /* Themen: Farbflächen der Subbrands --------------------------------------- */
 
-.theme-vin,
-.theme-bleu,
-.theme-vert,
-.theme-encre {
+.theme-garage,
+.theme-kiosque,
+.theme-marche,
+.theme-ink {
   background: var(--bg);
   color: var(--fg);
 }
-.theme-vin { --bg: var(--vin); --fg: var(--blanc); --loc: var(--blanc); --soft: var(--vin-soft); }
-.theme-bleu { --bg: var(--bleu); --fg: var(--blanc); --loc: var(--blanc); --soft: var(--bleu-soft); }
-.theme-vert { --bg: var(--vert); --fg: var(--blanc); --loc: var(--blanc); --soft: var(--vert-pale); }
-.theme-encre { --bg: var(--encre); --fg: var(--nacre); --loc: var(--vert); }
+.theme-garage { --bg: var(--garage); --fg: var(--blanc); --loc: var(--blanc); --soft: var(--lime); }
+.theme-kiosque { --bg: var(--kiosque); --fg: var(--blanc); --loc: var(--blanc); --soft: var(--lime); }
+.theme-marche { --bg: var(--marche); --fg: var(--blanc); --loc: var(--blanc); --soft: var(--lime); }
+.theme-ink { --bg: var(--ink); --fg: var(--blanc); --loc: var(--lime); }
 
-.theme-vin-text { --loc: var(--vin); --loc-pale: var(--vin-pale); }
-.theme-bleu-text { --loc: var(--bleu); --loc-pale: var(--bleu-pale); }
-.theme-vert-text { --loc: var(--vert); --loc-pale: var(--vert-pale); }
+.theme-garage-text { --loc: var(--garage); --loc-pale: var(--lime); }
+.theme-kiosque-text { --loc: var(--kiosque); --loc-pale: var(--lime); }
+.theme-marche-text { --loc: var(--marche); --loc-pale: var(--lime); }
 
-.page--garage { --loc: var(--vin); --loc-pale: var(--vin-pale); --loc-text: var(--vin); }
-.page--kiosque { --loc: var(--bleu); --loc-pale: var(--bleu-pale); --loc-text: var(--bleu); }
-.page--marche { --loc: var(--vert); --loc-pale: var(--vert-pale); --loc-text: var(--vert-deep); }
+.page--garage { --loc: var(--garage); --loc-pale: var(--lime); --loc-text: var(--garage); }
+.page--kiosque { --loc: var(--kiosque); --loc-pale: var(--lime); --loc-text: var(--kiosque); }
+.page--marche { --loc: var(--marche); --loc-pale: var(--lime); --loc-text: var(--marche); }
 
 /* Seitenübergänge (Chrome, Edge, Safari 18.2+) ----------------------------- */
 

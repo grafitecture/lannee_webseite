@@ -7,7 +7,7 @@ import { SITE, LOCATIONS, LOCATION_ORDER, SCHEDULE } from '../content/site.mjs';
 import { logo, signet, icon, arrowLink, upcomingClosures } from './components.mjs';
 import { tokenHex } from '../content/tokens.mjs';
 
-const NAV = ['garage', 'kiosque', 'marche', 'carte', 'annee', 'contact'];
+const NAV = ['garage', 'kiosque', 'marche', 'carte', 'annee', 'atlas', 'contact'];
 
 /** Öffnungszeit-Text eines Ortes, z. B. „Freitag & Samstag ab 18 Uhr“ */
 export function whenText(key, locale) {
@@ -44,7 +44,7 @@ function head(ctx) {
 ${page.noindex ? html`<meta name="robots" content="noindex, nofollow">` : ''}
 <link rel="canonical" href="${canonical}">
 ${alternates}
-<meta name="theme-color" content="${tokenHex('nacre')}">
+<meta name="theme-color" content="${tokenHex('blanc')}">
 <meta name="color-scheme" content="light">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="L’ANNÉE">
@@ -134,7 +134,7 @@ function footer(ctx) {
   ${ctx.page.compactFooter ? '' : html`<div class="site-footer__places">${places}</div>`}
   <a class="site-footer__mark" href="${url('home', locale)}" aria-label="L’ANNÉE – ${t.ui.home}">${logo({ cls: 'site-footer__logo', decorative: true })}</a>
   <div class="site-footer__bottom">
-    <p class="site-footer__tagline" lang="fr">${t.ui.footer.tagline}</p>
+    <p class="site-footer__tagline">${t.ui.footer.tagline}</p>
     <ul class="site-footer__links">
       <li><a href="${url('impressum', locale)}">${t.ui.footer.impressum}</a></li>
       <li><a href="${url('datenschutz', locale)}">${t.ui.footer.datenschutz}</a></li>

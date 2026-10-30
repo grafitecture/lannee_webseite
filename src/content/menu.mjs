@@ -306,7 +306,7 @@ export const MENU = [
           {
             id: 'sans',
             name: { de: 'Alkoholfreier Schaumwein', fr: 'Pétillant sans alcool', en: 'Alcohol-free sparkling' },
-            desc: { de: '0,0 %, trotzdem Bläschen.', fr: '0,0 %, mais des bulles.', en: '0.0%, still bubbles.' },
+            desc: { de: '0,0 %, trotzdem Bulles.', fr: '0,0 %, mais des bulles.', en: '0.0%, still bubbles.' },
             prices: [6, 29],
             where: ALL,
           },

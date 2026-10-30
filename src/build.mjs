@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url';
 
 import { LOCALES, ROUTES, DICT, url } from './lib/i18n.mjs';
 import { layout } from './lib/layout.mjs';
-import { buildSprite, setSpriteUrl } from './lib/components.mjs';
+import { buildSprite, setSpriteUrl, buildAtlasSprite, setAtlasSpriteUrl } from './lib/components.mjs';
 import { tokensCss, tokenHex } from './content/tokens.mjs';
 import { SITE } from './content/site.mjs';
 
@@ -19,6 +19,7 @@ import * as home from './pages/home.mjs';
 import * as location from './pages/location.mjs';
 import * as carte from './pages/carte.mjs';
 import * as annee from './pages/annee.mjs';
+import * as atlas from './pages/atlas.mjs';
 import * as contact from './pages/contact.mjs';
 import * as legal from './pages/legal.mjs';
 import * as notfound from './pages/notfound.mjs';
@@ -65,6 +66,7 @@ const PAGES = {
   marche: { module: location, og: 'marche' },
   carte: { module: carte, og: 'lannee' },
   annee: { module: annee, og: 'lannee' },
+  atlas: { module: atlas, og: 'lannee' },
   contact: { module: contact, og: 'lannee', compactFooter: true },
   impressum: { module: legal, og: 'lannee', noindex: false },
   datenschutz: { module: legal, og: 'lannee', noindex: false },
@@ -80,6 +82,10 @@ async function build() {
   const spriteFile = `assets/icons.${hash(sprite)}.svg`;
   await write(spriteFile, sprite);
   setSpriteUrl('/' + spriteFile);
+  const atlasSprite = buildAtlasSprite();
+  const atlasSpriteFile = `assets/atlas.${hash(atlasSprite)}.svg`;
+  await write(atlasSpriteFile, atlasSprite);
+  setAtlasSpriteUrl('/' + atlasSpriteFile);
 
   // CSS
   const styleDir = path.join(ROOT, 'src', 'styles');
@@ -158,12 +164,12 @@ async function build() {
     'site.webmanifest',
     JSON.stringify(
       {
-        name: 'L’ANNÉE – Huîtres & Bulles',
+        name: 'L’ANNÉE – Austern & Bulles',
         short_name: 'L’ANNÉE',
         start_url: '/',
         display: 'browser',
-        background_color: tokenHex('nacre'),
-        theme_color: tokenHex('vert'),
+        background_color: tokenHex('blanc'),
+        theme_color: tokenHex('brand'),
         icons: [
           { src: '/icon-192.png', sizes: '192x192', type: 'image/png' },
           { src: '/icon-512.png', sizes: '512x512', type: 'image/png' },

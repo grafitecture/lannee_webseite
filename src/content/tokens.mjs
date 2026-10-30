@@ -7,38 +7,34 @@
 export const FLUID = { minVw: 360, maxVw: 1920, root: 16 };
 
 /*
- * Palette: warme Grüntöne (Farbton 112–135° in OKLCH, also zum Gelb hin).
- * Die Helligkeit folgt dem Tageslicht: hell am Morgen (Marché), mittel am
- * Sonntag (Kiosque), dunkel am Abend (Garage), fast schwarz in der Nacht (Encre).
- * Die Token-Namen vert/bleu/vin sind historisch und stehen für die Orte:
- * vert = Marché, bleu = Kiosque, vin = Garage.
+ * Palette: nur Grün (Vorgabe 30.10.2026) – fünf Töne plus Weiß.
+ * Regel: grüne Fläche mit weißer Schrift oder weiße Fläche mit grüner Schrift.
+ * Nichts Schwarzes, nichts Graues: Das dunkelste Grün (Evergreen) ersetzt Schwarz.
  */
 export const COLORS = [
-  { token: 'vert', name: 'Vert L’ANNÉE', hex: '#709B4A', oklch: 'oklch(64% 0.12 132)', role: 'Markenfarbe, frisches Grün. Marché, der Morgen', text: 'encre' },
-  { token: 'bleu', name: 'Vert Mousse', hex: '#586C2A', oklch: 'oklch(50% 0.095 124)', role: 'Moosgrün. Kiosque, der Sonntag', text: 'blanc' },
-  { token: 'vin', name: 'Vert Olive', hex: '#434815', oklch: 'oklch(38.5% 0.072 115)', role: 'Dunkles Oliv. Garage, der Abend', text: 'blanc' },
-  { token: 'encre', name: 'Encre', hex: '#1C2411', oklch: 'oklch(24.5% 0.035 128)', role: 'Text und Fußzeile, die Nacht', text: 'blanc' },
-  { token: 'nacre', name: 'Nacre', hex: '#F6F7EC', oklch: 'oklch(97.2% 0.014 112)', role: 'Perlmutt der Auster, ruhige Flächen', text: 'encre' },
-  { token: 'blanc', name: 'Blanc', hex: '#FFFFFF', oklch: 'oklch(100% 0 0)', role: 'Weißraum', text: 'encre' },
+  { token: 'evergreen', name: 'Evergreen', hex: '#132A13', oklch: 'oklch(25.9% 0.051 143.9)', role: 'Dunkelstes Grün, ersetzt Schwarz: Text, Fußzeile. Garage, der Abend', text: 'blanc' },
+  { token: 'hunter', name: 'Hunter Green', hex: '#31572C', oklch: 'oklch(41.7% 0.081 141.5)', role: 'Kiosque, der Sonntag', text: 'blanc' },
+  { token: 'fern', name: 'Fern', hex: '#4F772D', oklch: 'oklch(52.2% 0.113 132.9)', role: 'Marché, der Morgen. Auch Nebentext auf Weiß', text: 'blanc' },
+  { token: 'palm', name: 'Palm Leaf', hex: '#90A955', oklch: 'oklch(69.7% 0.114 123)', role: 'Logo, Linien, Zeichnungen (für Schrift zu hell)', text: 'evergreen' },
+  { token: 'lime', name: 'Lime Cream', hex: '#ECF39E', oklch: 'oklch(94% 0.107 112.3)', role: 'Akzent: Störer, Markierungen, Signets auf Dunkelgrün', text: 'evergreen' },
+  { token: 'blanc', name: 'Weiß', hex: '#FFFFFF', oklch: 'oklch(100% 0 0)', role: 'Flächen und Schrift auf Grün', text: 'evergreen' },
 ];
 
-/** Abgeleitete Töne (für Text auf Weiß, zarte Flächen). */
-export const SHADES = [
-  { token: 'vert-deep', hex: '#456626' },
-  { token: 'vert-pale', hex: '#E7F6DA' },
-  { token: 'bleu-deep', hex: '#374614' },
-  { token: 'bleu-pale', hex: '#ECF4DB' },
-  { token: 'vin-deep', hex: '#2B2E0A' },
-  { token: 'vin-pale', hex: '#F1F2DC' },
-  { token: 'nacre-2', hex: '#EBEDE0' },
-  { token: 'vin-soft', hex: '#C1C382' },
-  { token: 'bleu-soft', hex: '#B1C887' },
-  { token: 'vert-soft', hex: '#A5D48B' },
-  { token: 'gris', hex: '#6D7162' },
+/** Rollen: welcher Ton wofür steht (werden zu CSS-Variablen, die auf die Palette zeigen). */
+export const ROLES = [
+  { token: 'ink', ref: 'evergreen', role: 'Text, Buttons, Fußzeile' },
+  { token: 'garage', ref: 'evergreen', role: 'Garage' },
+  { token: 'kiosque', ref: 'hunter', role: 'Kiosque' },
+  { token: 'marche', ref: 'fern', role: 'Marché' },
+  { token: 'brand', ref: 'palm', role: 'Logo' },
+  { token: 'muted', ref: 'fern', role: 'Nebentext auf Weiß' },
 ];
 
-/** Hex-Wert eines Tokens (für Meta-Tags, Manifest, Share-Bilder). */
-export const tokenHex = (token) => [...COLORS, ...SHADES].find((c) => c.token === token)?.hex;
+/** Hex-Wert einer Farbe oder Rolle (für Meta-Tags, Manifest, Share-Bilder). */
+export const tokenHex = (token) => {
+  const role = ROLES.find((r) => r.token === token);
+  return COLORS.find((c) => c.token === (role ? role.ref : token))?.hex;
+};
 
 /**
  * Typo-Skala im Goldenen Schnitt (Desktop-Werte laut Vorgabe).
@@ -94,7 +90,7 @@ export function clampRem(min, max, { minVw = FLUID.minVw, maxVw = FLUID.maxVw, r
 export function tokensCss() {
   const lines = [];
   for (const c of COLORS) lines.push(`  --${c.token}: ${c.hex};`);
-  for (const s of SHADES) lines.push(`  --${s.token}: ${s.hex};`);
+  for (const r of ROLES) lines.push(`  --${r.token}: var(--${r.ref});`);
   for (const t of TYPE_SCALE) lines.push(`  --fs-${t.token}: ${clampRem(t.min, t.max)};`);
   lines.push('  --fs-text-small: max(var(--fs-small), 0.8125rem);');
   for (const s of SPACE) lines.push(`  --space-${s.token}: ${clampRem(s.min, s.max)};`);

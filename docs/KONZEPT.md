@@ -5,7 +5,7 @@ Stand: Oktober 2026 · Grundlage: Briefing, PDF „LANNEE_Garage_Kiosque_Marche�
 ## 1. Ausgangslage
 
 - **Dachmarke:** L’ANNÉE (L’ANNÉE GbR, Andrea & Eric Schweppe, Mannheim), Web: 1898.ma
-- **Gemeinsames Versprechen:** *Huîtres & Bulles*: Austern und Schaumwein, unkompliziert („Wir reservieren nicht – komm einfach vorbei, ein Plätzchen findet sich.“)
+- **Gemeinsames Versprechen:** *Austern & Bulles* (feststehender Slogan, „Bulles“ wird nie mit „Bläschen“ übersetzt): Austern und Schaumwein, unkompliziert („Wir reservieren nicht – komm einfach vorbei, ein Plätzchen findet sich.“)
 - **Drei Orte:**
 
 | Ort | Wann | Wo | Ansprache |
@@ -20,7 +20,7 @@ Stand: Oktober 2026 · Grundlage: Briefing, PDF „LANNEE_Garage_Kiosque_Marche�
 
 - Der **Akzent aus dem É** des Logos wird zum **Uhrzeiger**.
 - Kreise stehen für Zyklen: Jahr (Jahresuhr), Zifferblatt (Signets). Die Woche zeigt ein klarer Wochenplan mit Zeitachse.
-- Alle Farben sind **warme Grüntöne**; ihre Helligkeit folgt dem **Tageslicht**: Morgen (helles Grün), Sonntag (Moos), Abend (Oliv), Nacht (Encre).
+- Es gibt **nur Grün**; die Helligkeit der Ortsfarben folgt dem **Tageslicht**: Morgen (Fern), Sonntag (Hunter Green), Abend (Evergreen).
 
 ## 3. Gliederung
 
@@ -32,6 +32,7 @@ L’ANNÉE (1898.ma)
 ├── Marché   (/marche/: Termine, Einladung für Feste)
 ├── La Carte (/karte/: Filter nach Ort)
 ├── Das Jahr (/das-jahr/: Austernkalender, R-Regel, Größen, Anleitung, Weine)
+├── Austernatlas (/austernatlas/: 24 Arten und Herkünfte als Strichzeichnungen)
 ├── Kontakt
 └── Impressum, Datenschutz
 ```
@@ -40,16 +41,16 @@ Sprachen: Deutsch (ohne Präfix), Französisch (`/fr/…`), Englisch (`/en/…`)
 
 ## 4. Subbrands
 
-Lockup jeder Subbrand = **L’ANNÉE-Logo + Zweizeiler (NAME, Linie, Huîtres & Bulles)**. Die Buchstaben des Logos sind genau so hoch wie der Zweizeiler: von der Versalhöhe des Namens bis zur Grundlinie von „Huîtres & Bulles“; die Akzente ragen darüber hinaus. Auf den Farbflächen ist die Schrift bei allen drei Orten weiß.
+Lockup jeder Subbrand = **L’ANNÉE-Logo + Zweizeiler (NAME, Linie, Austern & Bulles)**. Die Buchstaben des Logos sind genau so hoch wie der Zweizeiler: von der Versalhöhe des Namens bis zur Grundlinie von „Austern & Bulles“; die Akzente ragen darüber hinaus. Auf den Farbflächen ist die Schrift bei allen drei Orten weiß.
 
 Die Signets (Kreis mit dem Akzent als Zeiger auf die Öffnungsstunde) bleiben als kleine Wegweiser in Navigation, Zitaten und Fußzeile:
 
 | Subbrand | Zeiger | Farbe |
 | --- | --- | --- |
-| Marché | 8 Uhr | Vert L’ANNÉE |
-| Kiosque | 10 Uhr | Vert Mousse |
-| Garage | 6 Uhr (18 Uhr) | Vert Olive |
-| L’ANNÉE | alle drei | Encre + drei Farben |
+| Marché | 8 Uhr | Fern |
+| Kiosque | 10 Uhr | Hunter Green |
+| Garage | 6 Uhr (18 Uhr) | Evergreen |
+| L’ANNÉE | alle drei | Logo in Palm Leaf |
 
 Der Name steht in gesperrten Versalien (Instrument Sans, schmal) über einer Linie, wie bereits auf dem Marché-Anhänger.
 
@@ -57,15 +58,15 @@ Der Name steht in gesperrten Versalien (Instrument Sans, schmal) über einer Lin
 
 | Name | HEX | OKLCH | Rolle |
 | --- | --- | --- | --- |
-| Vert L’ANNÉE | #709B4A | 64 % 0.12 132 | Markenfarbe, Marché, der Morgen |
-| Vert Mousse | #586C2A | 50 % 0.095 124 | Kiosque, der Sonntag |
-| Vert Olive | #434815 | 38.5 % 0.072 115 | Garage, der Abend |
-| Encre | #1C2411 | 24.5 % 0.035 128 | Text, Fußzeile (fast schwarzes Waldgrün) |
-| Nacre | #F6F7EC | 97.2 % 0.014 112 | Perlmutt, ruhige Flächen (warmes, grünliches Weiß) |
-| Chartreuse | #CEE65A | 88 % 0.165 118 | nur der Störer „fiktiv“ |
+| Evergreen | #132A13 | 25.9 % 0.051 143.9 | dunkelstes Grün, ersetzt Schwarz: Text, Fußzeile; Garage, der Abend |
+| Hunter Green | #31572C | 41.7 % 0.081 141.5 | Kiosque, der Sonntag |
+| Fern | #4F772D | 52.2 % 0.113 132.9 | Marché, der Morgen; Nebentext auf Weiß |
+| Palm Leaf | #90A955 | 69.7 % 0.114 123 | Logo, Linien, Zeichnungen (für Schrift zu hell) |
+| Lime Cream | #ECF39E | 94 % 0.107 112.3 | Akzent: Störer, Markierungen, Signets auf Dunkelgrün |
+| Weiß | #FFFFFF | 100 % 0 0 | Flächen, Schrift auf Grün |
 
-Seit 30.10.2026 (vorher Vert #4D9D6E, Bleu Marée #2E669C, Rouge Bordeaux #7D2131): Die ganze Palette besteht aus warmen Grüntönen, Farbton 112–135° in OKLCH, also zum Gelb hin. Die drei Ortsfarben unterscheiden sich vor allem in der Helligkeit, die vom Morgen zum Abend fällt. Im Code heißen die Tokens weiter `vert`/`bleu`/`vin` (= Marché/Kiosque/Garage).
-Kontraste: Weiß auf Vert Mousse 5,8 : 1, auf Vert Olive 9,7 : 1, auf Vert L’ANNÉE 3,2 : 1 (reicht für große Schrift), Encre auf Weiß 16 : 1.
+Vorgabe seit 30.10.2026: **nur Grün.** Entweder grüne Fläche mit weißer Schrift oder weiße Fläche mit grüner Schrift; nichts Schwarzes, nichts Graues. Rollen im Code: `--ink` und `--garage` = Evergreen, `--kiosque` = Hunter Green, `--marche` und `--muted` = Fern, `--brand` = Palm Leaf.
+Kontraste: Weiß auf Evergreen 15,4 : 1, auf Hunter Green 8,3 : 1, auf Fern 5,2 : 1 (alle für Fließtext geeignet); auf Palm Leaf nur 2,6 : 1, deshalb trägt Palm Leaf keine Schrift und keinen Ort.
 
 ## 6. Typografie
 
@@ -109,7 +110,7 @@ Seiten sind auf dem Desktop immer volle Breite. Begrenzt wird nur die Zeilenlän
 ## 8. Gestaltungsprinzipien
 
 1. **Ein mutiger Moment pro Seite:** Logo in voller Breite, riesige Ortsnamen. Alles andere ist ruhig, Informationen wie die Öffnungszeiten sauber und übersichtlich.
-2. **Große Flächen, viel Weiß:** Farbflächen nur für die drei Orte, sonst Weiß und Nacre.
+2. **Große Flächen, viel Weiß:** Farbflächen nur für die drei Orte und die Fußzeile, sonst Weiß.
 3. **Goldener Schnitt im Raster:** Spalten 1 : 1,618, Bildformate 1,618 : 1.
 4. **Bewegung nur mit Sinn:** Logo-Auftakt, Zeiger dreht zur aktuellen Zeit. `prefers-reduced-motion` wird respektiert.
 5. **Datenschutz durch Technik:** keine Cookies, kein Tracking, keine Einbettungen, Kartenlinks statt Karten.

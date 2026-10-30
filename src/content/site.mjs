@@ -10,7 +10,7 @@ export const SITE = {
   name: "L'ANNÉE",
   /** Produktions-URL (für Canonical, Sitemap, Open Graph). */
   url: 'https://1898.ma',
-  tagline: 'Huîtres & Bulles',
+  tagline: 'Austern & Bulles', // feststehender Slogan, „Bulles“ nie als „Bläschen“ übersetzen
   instagram: { handle: '@lannee1898', url: 'https://www.instagram.com/lannee1898/' },
   company: {
     name: 'L’ANNÉE GbR',
@@ -39,8 +39,8 @@ export const LOCATIONS = {
   marche: {
     key: 'marche',
     name: 'Marché',
-    color: 'vert',
-    hex: '#709B4A',
+    color: 'marche',
+    hex: '#4F772D',
     hour: 8,
     domain: null,
     email: 'bonjour@lannee.de',
@@ -55,8 +55,8 @@ export const LOCATIONS = {
   kiosque: {
     key: 'kiosque',
     name: 'Kiosque',
-    color: 'bleu',
-    hex: '#586C2A',
+    color: 'kiosque',
+    hex: '#31572C',
     hour: 10,
     domain: 'kiosque.ma',
     email: 'bonjour@kiosque.ma',
@@ -71,8 +71,8 @@ export const LOCATIONS = {
   garage: {
     key: 'garage',
     name: 'Garage',
-    color: 'vin',
-    hex: '#434815',
+    color: 'garage',
+    hex: '#132A13',
     hour: 18,
     domain: 'garage.ma',
     email: 'bonsoir@garage.ma',

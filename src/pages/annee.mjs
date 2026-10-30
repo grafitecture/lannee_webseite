@@ -48,7 +48,7 @@ export function render(ctx) {
   <ol class="months" role="list">${months}</ol>
 </section>
 
-<section class="rule theme-bleu" aria-labelledby="rule-h">
+<section class="rule theme-kiosque" aria-labelledby="rule-h">
   <h2 class="t-h3 rule__heading" id="rule-h"><span class="rule__r" aria-hidden="true">R</span>${p.rule.heading}</h2>
   <div class="rule__body">${p.rule.body.map((para) => html`<p>${rich(para, locale)}</p>`)}</div>
 </section>

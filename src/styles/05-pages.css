@@ -8,7 +8,7 @@
   padding: var(--space-m) var(--gutter) var(--space-2xl);
 }
 .hero__mark {
-  color: var(--vert);
+  color: var(--brand);
   aspect-ratio: var(--logo-ratio, auto);
 }
 /* Übergang: Das Logo schrumpft beim Scrollen an die Stelle des kleinen Logos */
@@ -55,13 +55,15 @@
   gap: var(--space-l);
   margin-top: var(--space-l);
 }
+/* Feststehender Slogan „Austern & Bulles“ in gesperrten Versalien, wie die Ortsnamen im Lockup */
 .hero__tagline {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 330;
-  font-size: var(--fs-h3);
-  line-height: 0.92;
-  letter-spacing: -0.02em;
+  font-family: var(--font-text);
+  font-stretch: 75%;
+  font-weight: 600;
+  font-size: var(--fs-h5);
+  line-height: 1.05;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 .hero__lead {
   margin-top: var(--space-s);
@@ -106,7 +108,7 @@
  */
 
 .weekend {
-  background: var(--nacre);
+  background: var(--blanc);
   padding: var(--space-2xl) var(--gutter);
 }
 .weekend__intro {
@@ -137,7 +139,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  border-top: 1.5px solid var(--encre);
+  border-top: 1.5px solid var(--ink);
 }
 .plan__day {
   display: grid;
@@ -159,13 +161,13 @@
 }
 .plan__date {
   font-size: var(--fs-text-small);
-  color: var(--gris);
+  color: var(--muted);
 }
 .plan__date:empty {
   display: none;
 }
 .plan__day.is-today .plan__date {
-  color: var(--encre);
+  color: var(--ink);
   font-weight: 600;
 }
 
@@ -180,15 +182,14 @@
   inset: 0 0 auto;
   height: var(--mini-h);
   border-radius: 1rem;
-  background: color-mix(in oklab, var(--encre) 7%, transparent);
+  background: var(--lime);
 }
 .plan__track--rest::before {
-  background: radial-gradient(circle, var(--gris) 0 1px, transparent 1.5px) 0 50% / 7px 100% repeat-x;
-  opacity: 0.6;
+  background: radial-gradient(circle, var(--palm) 0 1px, transparent 1.5px) 0 50% / 7px 100% repeat-x;
 }
 .plan__closed {
   margin: 0;
-  color: var(--gris);
+  color: var(--muted);
 }
 .plan__slots {
   list-style: none;
@@ -198,8 +199,8 @@
   gap: 0.85rem;
 }
 .plan__slot {
-  --c: var(--vert);
-  --c-text: var(--vert-deep);
+  --c: var(--marche);
+  --c-text: var(--marche);
   display: grid;
   grid-template-columns: minmax(6.25rem, auto) minmax(0, 1fr);
   grid-template-areas:
@@ -208,11 +209,11 @@
     'time extra';
   column-gap: 1rem;
   align-items: baseline;
-  color: var(--encre);
+  color: var(--ink);
   text-decoration: none;
 }
-.plan__slot--garage { --c: var(--vin); --c-text: var(--vin); }
-.plan__slot--kiosque { --c: var(--bleu); --c-text: var(--bleu); }
+.plan__slot--garage { --c: var(--garage); --c-text: var(--garage); }
+.plan__slot--kiosque { --c: var(--kiosque); --c-text: var(--kiosque); }
 .plan__slot::before {
   content: '';
   position: absolute;
@@ -246,7 +247,7 @@
 .plan__place {
   grid-area: place;
   font-size: var(--fs-text-small);
-  color: var(--gris);
+  color: var(--muted);
 }
 .plan__slot:hover .plan__name {
   text-decoration: underline;
@@ -278,13 +279,13 @@
 }
 .plan__pause {
   display: none;
-  color: var(--vin);
+  color: var(--garage);
 }
 .plan__slot.is-paused .plan__pause {
   display: inline-flex;
 }
 .plan__slot.is-paused .plan__time {
-  color: var(--gris);
+  color: var(--muted);
   text-decoration: line-through;
   text-decoration-thickness: 0.06em;
 }
@@ -302,7 +303,7 @@
   height: 1.1rem;
   translate: -1px 0;
   border-radius: 1px;
-  background: var(--encre);
+  background: var(--ink);
   pointer-events: none;
 }
 .plan__now::before {
@@ -314,7 +315,7 @@
   height: 0.5rem;
   translate: -50% 0;
   border-radius: 50%;
-  background: var(--encre);
+  background: var(--ink);
 }
 
 /* Schmal: Ruhetage kompakt in einer Zeile */
@@ -340,7 +341,7 @@
     column-gap: var(--space-m);
     padding-bottom: 0.65rem;
     font-size: var(--fs-text-small);
-    color: var(--gris);
+    color: var(--muted);
     font-variant-numeric: tabular-nums;
   }
   .plan__ticks {
@@ -394,7 +395,7 @@
   .plan__closed {
     position: relative;
     padding-right: 0.75rem;
-    background: var(--nacre);
+    background: var(--blanc);
     font-size: var(--fs-text-small);
   }
   .plan__slots {
@@ -415,7 +416,7 @@
     column-gap: 0.65em;
     row-gap: 0.2rem;
     padding: 0 1.15rem;
-    color: #fff;
+    color: var(--blanc);
   }
   .plan__slot--open-end {
     padding-right: 3rem;
@@ -439,7 +440,7 @@
     text-decoration: none;
   }
   .plan__slot:focus-visible {
-    outline: 2px solid var(--encre);
+    outline: 2px solid var(--ink);
     outline-offset: 3px;
     border-radius: 999px;
   }
@@ -456,7 +457,6 @@
   .plan__place {
     flex-basis: 100%;
     color: inherit;
-    opacity: 0.86;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -466,7 +466,7 @@
     left: 1.15rem;
     bottom: calc(100% + 0.4rem);
     margin: 0;
-    color: var(--encre);
+    color: var(--ink);
     white-space: nowrap;
   }
   .plan__pause {
@@ -544,7 +544,6 @@
 }
 .place__facts dt {
   font-size: var(--fs-text-small);
-  opacity: 0.8;
 }
 .place__facts dd {
   margin: 0.1em 0 0;
@@ -606,7 +605,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-s);
-  color: var(--vert);
+  color: var(--brand);
 }
 .teaser-menu__icons .icon {
   width: clamp(2.2rem, 1.6rem + 2vw, 3.6rem);
@@ -708,7 +707,7 @@
 }
 .facts dt {
   font-size: var(--fs-text-small);
-  color: var(--gris);
+  color: var(--muted);
 }
 .facts dd {
   margin: 0.2em 0 0;
@@ -816,16 +815,16 @@
 }
 .loc-menu--board .dishes {
   padding: var(--space-m) clamp(1rem, 3vw, 2.4rem);
-  border: 10px solid #757944; /* Rahmen in Oliv-Holz */
+  border: 10px solid var(--marche);
   border-radius: 6px;
   background: var(--blanc);
-  box-shadow: 0 1px 0 rgb(0 0 0 / 0.05);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--ink) 6%, transparent);
 }
 .loc-menu--board .dish:first-child {
   border-top: 0;
 }
 .loc-menu--board .dish__name {
-  color: var(--vert-deep);
+  color: var(--marche);
 }
 
 .dates {
@@ -849,11 +848,11 @@
   font-size: var(--fs-h6);
 }
 .dates__where {
-  color: var(--gris);
+  color: var(--muted);
 }
 .dates__empty {
   margin-top: var(--space-s);
-  color: var(--gris);
+  color: var(--muted);
   max-width: 48ch;
 }
 @media (min-width: 1024px) {
@@ -938,7 +937,7 @@
   display: grid;
   gap: var(--space-l);
   padding: var(--space-2xl) var(--gutter);
-  background: var(--nacre);
+  background: var(--blanc);
   align-items: center;
 }
 .quarter__emblem {
@@ -977,7 +976,7 @@
 }
 .directions__label {
   font-size: var(--fs-text-small);
-  color: var(--gris);
+  color: var(--muted);
   margin-bottom: 0.6rem;
 }
 @media (min-width: 1024px) {
@@ -1058,7 +1057,7 @@
     display: flex;
     gap: var(--space-s);
     justify-content: flex-end;
-    color: var(--vert);
+    color: var(--brand);
     grid-row: 2;
     grid-column: 2;
   }
@@ -1093,10 +1092,10 @@
   font-weight: 330;
   line-height: 0.85;
   letter-spacing: -0.035em;
-  color: var(--vert);
+  color: var(--marche);
 }
 #soif .chapter__title {
-  color: var(--vin);
+  color: var(--garage);
 }
 .chapter__sections {
   display: grid;
@@ -1118,7 +1117,7 @@
 .menu-section__icon {
   width: 2.8rem;
   height: 2.8rem;
-  color: var(--bleu);
+  color: var(--kiosque);
 }
 .menu-section__title {
   font-size: var(--fs-h5);
@@ -1126,7 +1125,7 @@
 }
 .menu-section__intro {
   grid-column: 1 / -1;
-  color: var(--gris);
+  color: var(--muted);
   max-width: 56ch;
 }
 /* Filter nach Ort */
@@ -1157,7 +1156,7 @@
   list-style: none;
   border-top: 1px solid var(--line);
   font-size: var(--fs-text-small);
-  color: var(--gris);
+  color: var(--muted);
 }
 
 /* Das Jahr ------------------------------------------------------------------ */
@@ -1194,7 +1193,7 @@
   scroll-margin-top: calc(var(--header-h) + 2rem);
 }
 .month--r {
-  border-top-color: var(--bleu);
+  border-top-color: var(--kiosque);
 }
 .month__head {
   display: flex;
@@ -1204,10 +1203,10 @@
 .month__icon {
   width: 2.1rem;
   height: 2.1rem;
-  color: var(--gris);
+  color: var(--muted);
 }
 .month--r .month__icon {
-  color: var(--bleu);
+  color: var(--kiosque);
 }
 .month__name {
   display: grid;
@@ -1219,7 +1218,7 @@
   font-family: var(--font-text);
   font-size: 0.8125rem;
   font-weight: 500;
-  color: var(--gris);
+  color: var(--muted);
 }
 .month__r {
   margin-left: auto;
@@ -1228,7 +1227,7 @@
   width: 1.7rem;
   height: 1.7rem;
   border-radius: 50%;
-  background: var(--bleu);
+  background: var(--kiosque);
   color: var(--blanc);
   font-family: var(--font-display);
   font-style: italic;
@@ -1249,9 +1248,9 @@
 }
 .month.is-now {
   padding: var(--space-s);
-  background: var(--vin);
+  background: var(--garage);
   color: var(--blanc);
-  border-top-color: var(--vin);
+  border-top-color: var(--garage);
 }
 .month.is-now .month__icon,
 .month.is-now .month__local {
@@ -1259,7 +1258,7 @@
 }
 .month.is-now .month__r {
   background: var(--blanc);
-  color: var(--vin);
+  color: var(--garage);
 }
 .month.is-now .month__now {
   display: inline-block;
@@ -1268,7 +1267,7 @@
   right: var(--space-s);
   padding: 0.2em 0.7em;
   border-radius: 999px;
-  background: var(--encre);
+  background: var(--ink);
   color: var(--blanc);
   font-size: 0.75rem;
   font-weight: 700;
@@ -1332,7 +1331,7 @@
   width: calc(var(--s) * clamp(5.5rem, 3rem + 9vw, 13rem));
   height: auto;
   aspect-ratio: 1;
-  color: var(--encre);
+  color: var(--ink);
 }
 .calibre__n {
   font-family: var(--font-display);
@@ -1340,7 +1339,7 @@
 }
 .calibre__g {
   font-size: var(--fs-text-small);
-  color: var(--gris);
+  color: var(--muted);
   white-space: nowrap;
 }
 @media (min-width: 1024px) {
@@ -1354,7 +1353,7 @@
   display: grid;
   gap: var(--space-xl);
   padding: var(--space-2xl) var(--gutter);
-  background: var(--nacre);
+  background: var(--blanc);
 }
 .howto__photo {
   aspect-ratio: 9 / 16;
@@ -1373,7 +1372,7 @@
   font-size: var(--fs-h3);
   font-weight: 300;
   line-height: 0.8;
-  color: var(--bleu);
+  color: var(--kiosque);
 }
 .step__title {
   margin: 0.35em 0 0.25em;
@@ -1412,7 +1411,7 @@
 .pairing__icon {
   width: 2.6rem;
   height: 2.6rem;
-  color: var(--vin);
+  color: var(--garage);
 }
 .pairing__name {
   margin: 0.6em 0 0.3em;
@@ -1480,7 +1479,7 @@
 }
 .contact-more__address {
   font-style: normal;
-  color: var(--gris);
+  color: var(--muted);
 }
 
 /* Rechtliches ---------------------------------------------------------------- */
@@ -1496,7 +1495,7 @@
 }
 .legal__note {
   padding: var(--space-s) var(--space-m);
-  background: var(--nacre);
+  background: var(--blanc);
   font-style: italic;
 }
 .legal__block {
@@ -1545,7 +1544,7 @@
   width: clamp(5rem, 3rem + 8vw, 11rem);
   height: auto;
   aspect-ratio: 1;
-  color: var(--vert);
+  color: var(--brand);
 }
 .nf__links {
   display: flex;
@@ -1616,12 +1615,12 @@
   width: 100%;
   height: auto;
 }
-.sg__logo--white { background: var(--blanc); color: var(--vert); outline: 1px solid var(--line); }
-.sg__logo--ink { background: var(--encre); color: var(--vert); }
-.sg__logo--green { background: var(--vert); color: var(--blanc); }
+.sg__logo--white { background: var(--blanc); color: var(--brand); outline: 1px solid var(--line); }
+.sg__logo--ink { background: var(--ink); color: var(--brand); }
+.sg__logo--green { background: var(--marche); color: var(--blanc); }
 .sg__note {
   font-size: var(--fs-text-small);
-  color: var(--gris);
+  color: var(--muted);
 }
 .swatches {
   display: grid;
@@ -1647,7 +1646,7 @@
 }
 .swatch__role,
 .swatch__contrast {
-  color: var(--gris);
+  color: var(--muted);
 }
 .shades {
   display: flex;
@@ -1699,10 +1698,10 @@
   display: grid;
   gap: 0.2em;
   font-size: 0.8125rem;
-  color: var(--gris);
+  color: var(--muted);
 }
 .scale__meta code:first-child {
-  color: var(--encre);
+  color: var(--ink);
   font-weight: 700;
 }
 .scale__clamp {
@@ -1741,7 +1740,7 @@
 }
 .bp-table thead th {
   font-size: 0.8125rem;
-  color: var(--gris);
+  color: var(--muted);
   font-weight: 600;
 }
 .space-list {
@@ -1761,7 +1760,7 @@
   display: block;
   width: var(--w);
   height: 0.8rem;
-  background: var(--vert);
+  background: var(--brand);
 }
 .icon-grid {
   display: grid;
@@ -1775,19 +1774,145 @@
   justify-items: center;
   gap: 0.5em;
   padding: var(--space-s) 0.5rem;
-  background: var(--nacre);
+  background: var(--blanc);
   font-size: 0.75rem;
 }
 .icon-grid__icon {
   width: 3.4rem;
   height: 3.4rem;
-  color: var(--encre);
+  color: var(--ink);
 }
 .sg__ui {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-s);
   align-items: center;
+}
+
+/* Austernatlas (eigene Seite) ------------------------------------------------ */
+
+.page-hero__title--atlas {
+  font-size: var(--fs-h2);
+  line-height: 0.88;
+}
+.atlas__cta {
+  margin-top: var(--space-s);
+}
+.atlas__cta .link-arrow {
+  white-space: normal;
+}
+.atlas {
+  padding: 0 var(--gutter) var(--space-2xl);
+}
+.atlas__section + .atlas__section {
+  margin-top: var(--space-xl);
+}
+.atlas__heading {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+  margin-bottom: var(--space-s);
+  font-size: var(--fs-h4);
+  font-weight: 330;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.atlas__count {
+  font-family: var(--font-text);
+  font-size: var(--fs-text-small);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+}
+.atlas__grid {
+  display: grid;
+  margin: 0;
+  border-top: 1px solid var(--line);
+}
+.oyster {
+  padding: var(--space-s) 0 var(--space-m);
+  border-bottom: 1px solid var(--line);
+}
+.oyster__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+}
+.oyster__art {
+  flex: none;
+  display: block;
+  width: 4.5rem;
+  height: 3.5rem;
+  color: var(--palm);
+}
+.oyster__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.oyster__name {
+  font-family: var(--font-display);
+  font-size: 1.1875rem;
+  line-height: 1.15;
+}
+.oyster__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.6em;
+  margin: 0.5rem 0 0;
+  font-size: var(--fs-text-small);
+  line-height: 1.35;
+  color: var(--muted);
+}
+.oyster__meta i {
+  font-family: var(--font-display);
+}
+.oyster__text {
+  margin: 0.35rem 0 0;
+  font-size: var(--fs-text-small);
+  line-height: 1.5;
+  color: var(--muted);
+}
+@media (max-width: 479.98px) {
+  .oyster__meta,
+  .oyster__text {
+    padding-left: calc(4.5rem + var(--space-s));
+  }
+}
+@media (min-width: 480px) {
+  .atlas__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-left: 1px solid var(--line);
+  }
+  .oyster {
+    padding: var(--space-s) var(--space-s) var(--space-m);
+    border-right: 1px solid var(--line);
+  }
+  .oyster__head {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-xs);
+  }
+  .oyster__art {
+    width: 100%;
+    height: 5.75rem;
+    padding: 0.4rem 0;
+  }
+}
+@media (min-width: 768px) {
+  .atlas__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1280px) {
+  .atlas__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1920px) {
+  .atlas__grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
 }
 
 /* Druck (z. B. die Karte) -------------------------------------------------------- */

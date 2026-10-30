@@ -6,9 +6,10 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { html, raw, esc, rich, typo, setExternalLinkRenderer } from './html.mjs';
 import { DICT, url, pick, fill, formatTime, formatSpan } from './i18n.mjs';
-import { LOCATIONS, LOCATION_ORDER, SCHEDULE, CLOSURES } from '../content/site.mjs';
+import { SITE, LOCATIONS, LOCATION_ORDER, SCHEDULE, CLOSURES } from '../content/site.mjs';
 import { MEDIA } from '../content/media.mjs';
 import { MONTHS } from '../content/year.mjs';
+import { oysterArt } from './oyster-art.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const read = (p) => fs.readFileSync(path.join(ROOT, p), 'utf8');
@@ -61,12 +62,12 @@ export function signet(key, { cls = '' } = {}) {
   return html`<svg class="signet signet--${key} ${cls}" viewBox="-120 -120 240 240" aria-hidden="true" focusable="false"><circle class="signet__ring" r="104"/>${raw(hands)}<circle class="signet__pivot" r="9"/></svg>`;
 }
 
-/** Subbrand-Lockup: Signet · L'ANNÉE · NAME · Huîtres & Bulles */
+/** Subbrand-Lockup: Signet · L'ANNÉE · NAME · Austern & Bulles */
 export function lockup(key, { cls = '', tagline = true, as = 'div' } = {}) {
   const L = LOCATIONS[key];
   const inner = html`${logo({ cls: 'lockup__logo', decorative: true })}<span class="lockup__words"><span class="lockup__name"><span class="visually-hidden">L’ANNÉE </span>${
     L.name
-  }</span>${tagline ? html`<span class="lockup__tagline" lang="fr">Huîtres &amp; Bulles</span>` : ''}</span>`;
+  }</span>${tagline ? html`<span class="lockup__tagline">${SITE.tagline}</span>` : ''}</span>`;
   return as === 'span'
     ? html`<span class="lockup lockup--${key} ${cls}">${inner}</span>`
     : html`<div class="lockup lockup--${key} ${cls}">${inner}</div>`;
@@ -83,6 +84,24 @@ export function icon(name, { cls = 'icon', label } = {}) {
   return label
     ? html`<svg class="${cls}" role="img" aria-label="${label}"><use href="${SPRITE_URL}#${name}"/></svg>`
     : html`<svg class="${cls}" aria-hidden="true" focusable="false"><use href="${SPRITE_URL}#${name}"/></svg>`;
+}
+
+/*
+ * Austern-Strichzeichnungen (Austernatlas): eigenes Sprite, das nur die
+ * Atlas-Seite lädt (die Zeichnungen sind zusammen gut 260 KB).
+ */
+let ATLAS_SPRITE_URL = '/assets/atlas.svg';
+export const setAtlasSpriteUrl = (u) => (ATLAS_SPRITE_URL = u);
+
+export function buildAtlasSprite() {
+  return `<svg xmlns="http://www.w3.org/2000/svg">${oysterArt().map((a) => a.symbol).join('')}</svg>`;
+}
+
+/** Austern-Strichzeichnung aus dem Atlas-Sprite, mit passendem Seitenverhältnis. */
+export function oysterDrawing(key, { cls = 'oyster__svg' } = {}) {
+  const art = oysterArt().find((a) => a.key === key);
+  if (!art) throw new Error(`Austern-Zeichnung fehlt: ${key}`);
+  return html`<svg class="${cls}" viewBox="0 0 ${art.width} ${art.height}" aria-hidden="true" focusable="false"><use href="${ATLAS_SPRITE_URL}#oy-${key}"/></svg>`;
 }
 
 /** Baut das Sprite aus den Higgsfield-Icons (+ Jungbusch-Emblem). */
@@ -120,7 +139,7 @@ export function picture(name, locale, { sizes = '100vw', cls = '', eager = false
   const srcset = (fmt) => img.widths.map((w) => `/images/${name}-${w}.${fmt} ${w}w`).join(', ');
   const fallback = img.widths.find((w) => w >= 1080) ?? img.widths.at(-1);
   const loading = eager ? raw('loading="eager" fetchpriority="high"') : raw('loading="lazy"');
-  const pic = html`<picture class="pic ${cls}" style="--ph:${img.color}"><source type="image/avif" srcset="${srcset(
+  const pic = html`<picture class="pic ${cls}"><source type="image/avif" srcset="${srcset(
     'avif'
   )}" sizes="${sizes}"><source type="image/webp" srcset="${srcset('webp')}" sizes="${sizes}"><img src="/images/${name}-${fallback}.webp" width="${
     img.width

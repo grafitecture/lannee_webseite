@@ -1,6 +1,6 @@
 # L’ANNÉE – Website
 
-Website der Dachmarke **L’ANNÉE** (Huîtres & Bulles, Mannheim) mit den drei Orten **Garage**, **Kiosque** und **Marché**. Dreisprachig (Deutsch, Französisch, Englisch), statisch, schnell, ohne Cookies und ohne Tracking.
+Website der Dachmarke **L’ANNÉE** (Austern & Bulles, Mannheim) mit den drei Orten **Garage**, **Kiosque** und **Marché**. Dreisprachig (Deutsch, Französisch, Englisch), statisch, schnell, ohne Cookies und ohne Tracking.
 
 - Konzept und Markensystem: [`docs/KONZEPT.md`](docs/KONZEPT.md)
 - Lebender Styleguide (nicht indexiert): `/styleguide/`
@@ -25,6 +25,7 @@ Voraussetzung: Node.js ab Version 20. Der Build hat **keine npm-Abhängigkeiten*
 | Speisekarte (alle Sprachen) | `src/content/menu.mjs` |
 | Texte der Seiten | `src/content/i18n/de.mjs`, `fr.mjs`, `en.mjs` |
 | Jahreskalender | `src/content/year.mjs` |
+| Austernatlas (eigene Seite) | Texte: `src/content/oysters.mjs`, Zeichnungen: `src/lib/oyster-art.mjs` |
 | Impressum & Datenschutz | `src/content/legal.mjs` (Daten aus `site.mjs`) |
 | Bildtexte (alt) | `src/content/media.mjs` |
 | Farben, Typo-Skala, Breakpoints | `src/content/tokens.mjs` |

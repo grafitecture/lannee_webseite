@@ -6,7 +6,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { html, raw } from '../lib/html.mjs';
 import { LOCATIONS, LOCATION_ORDER } from '../content/site.mjs';
-import { COLORS, SHADES, TYPE_SCALE, SPACE, BREAKPOINTS, clampRem, tokenHex } from '../content/tokens.mjs';
+import { COLORS, ROLES, TYPE_SCALE, SPACE, BREAKPOINTS, clampRem, tokenHex } from '../content/tokens.mjs';
 import { logo, signet, lockup, icon } from '../lib/components.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
@@ -30,7 +30,7 @@ function contrast(a, b) {
 const HUE_LABEL = { h1: 'Seitentitel', h2: 'Ortsname, große Aussage', h3: 'Kapitel', h4: 'Abschnitt', h5: 'Zwischentitel', h6: 'Lead, Untertitel', p: 'Fließtext', small: 'Kleintext', xs: 'Detail' };
 
 export function render() {
-  const sample = { h1: 'Garage', h2: 'Kiosque', h3: 'Huîtres & Bulles', h4: 'Ein Hof, ein Tor, ein Boot.', h5: 'Heute Abend in der Garage', h6: 'Austern, Bläschen und ein Plätzchen in der Sonne.', p: 'Freitags und samstags ab 18 Uhr öffnen wir das Tor in der Beilstraße.', small: 'Alle Preise in Euro inklusive Mehrwertsteuer.', xs: '' };
+  const sample = { h1: 'Garage', h2: 'Kiosque', h3: 'Austern & Bulles', h4: 'Ein Hof, ein Tor, ein Boot.', h5: 'Heute Abend in der Garage', h6: 'Austern, Bulles und ein Plätzchen in der Sonne.', p: 'Freitags und samstags ab 18 Uhr öffnen wir das Tor in der Beilstraße.', small: 'Alle Preise in Euro inklusive Mehrwertsteuer.', xs: '' };
 
   return html`
 <section class="page-hero page-hero--sg">
@@ -42,11 +42,11 @@ export function render() {
   <h2 class="t-h4" id="sg-brand">Dachmarke und Subbrands</h2>
   <div class="sg__cols">
     <div>
-      <p class="lead">Der Akzent aus dem É von L’ANNÉE wird zum Uhrzeiger. Jedes Signet zeigt auf die Stunde, zu der der Ort öffnet. Alle Farben sind warme Grüntöne, ihre Helligkeit folgt dem Tageslicht: helles Grün am Morgen, Moos am Sonntag, Oliv am Abend.</p>
+      <p class="lead">Der Akzent aus dem É von L’ANNÉE wird zum Uhrzeiger. Jedes Signet zeigt auf die Stunde, zu der der Ort öffnet. Die Farben sind nur Grün, ihre Helligkeit folgt dem Tageslicht: Fern am Morgen, Hunter Green am Sonntag, Evergreen am Abend.</p>
       <ul class="sg__rules">
-        <li><strong>Marché</strong>: Zeiger auf 8 Uhr, Vert L’ANNÉE</li>
-        <li><strong>Kiosque</strong>: Zeiger auf 10 Uhr, Vert Mousse</li>
-        <li><strong>Garage</strong>: Zeiger auf 6, also 18 Uhr, Vert Olive</li>
+        <li><strong>Marché</strong>: Zeiger auf 8 Uhr, Fern</li>
+        <li><strong>Kiosque</strong>: Zeiger auf 10 Uhr, Hunter Green</li>
+        <li><strong>Garage</strong>: Zeiger auf 6, also 18 Uhr, Evergreen</li>
         <li><strong>L’ANNÉE</strong>: alle drei Zeiger zusammen</li>
       </ul>
     </div>
@@ -55,7 +55,7 @@ export function render() {
       ${LOCATION_ORDER.map((k) => signet(k, { cls: `sg__signet theme-${LOCATIONS[k].color}-text` }))}
     </div>
   </div>
-  <p class="sg__note">Lockup: Das L’ANNÉE-Logo steht so hoch wie der Zweizeiler aus Ortsname (mit Linie) und <span lang="fr">Huîtres &amp; Bulles</span>. Auf den Farbflächen aller drei Orte ist die Schrift weiß. Die Signets bleiben als kleine Wegweiser in Navigation, Fahrplan und Fußzeile.</p>
+  <p class="sg__note">Lockup: Das L’ANNÉE-Logo steht so hoch wie der Zweizeiler aus Ortsname (mit Linie) und „Austern &amp; Bulles“. Auf den Farbflächen aller drei Orte ist die Schrift weiß. Die Signets bleiben als kleine Wegweiser in Navigation, Fahrplan und Fußzeile.</p>
   <div class="sg__lockups">
     ${LOCATION_ORDER.map((k) => html`<div class="sg__lockup">${lockup(k)}</div>`)}
   </div>
@@ -69,7 +69,7 @@ export function render() {
 
 <section class="sg" aria-labelledby="sg-colors">
   <h2 class="t-h4" id="sg-colors">Farben</h2>
-  <p class="lead">Die ganze Palette besteht aus warmen Grüntönen: Farbton zwischen 112° und 135° in OKLCH, also zum Gelb hin. Die drei Ortsfarben unterscheiden sich vor allem in der Helligkeit, die vom Morgen zum Abend fällt: Vert L’ANNÉE (Marché), Vert Mousse (Kiosque), Vert Olive (Garage). Encre ist ein fast schwarzes Waldgrün, Nacre ein warmes, grünliches Weiß.</p>
+  <p class="lead">Auf der Seite gibt es nur Grün: fünf Töne und Weiß. Entweder grüne Fläche mit weißer Schrift oder weiße Fläche mit grüner Schrift. Nichts ist schwarz oder grau; wo sonst Schwarz stünde, steht Evergreen. Palm Leaf ist für Schrift zu hell und trägt das Logo, Linien und Zeichnungen; Lime Cream setzt kleine Akzente (Störer, Markierungen).</p>
   <ul class="swatches" role="list">${COLORS.map(
     (c) => html`<li class="swatch" style="--sw:${c.hex}">
       <span class="swatch__chip"></span>
@@ -77,11 +77,11 @@ export function render() {
       <code>${c.hex}</code>
       <code>${c.oklch}</code>
       <span class="swatch__role">${c.role}</span>
-      <span class="swatch__contrast">Weiß ${contrast(c.hex, '#FFFFFF').toFixed(2)} : 1, Encre ${contrast(c.hex, tokenHex('encre')).toFixed(2)} : 1</span>
+      <span class="swatch__contrast">Weiß ${contrast(c.hex, '#FFFFFF').toFixed(2)} : 1, Evergreen ${contrast(c.hex, tokenHex('evergreen')).toFixed(2)} : 1</span>
     </li>`
   )}</ul>
-  <ul class="shades" role="list">${SHADES.map(
-    (s) => html`<li class="shade" style="--sw:${s.hex}"><span class="shade__chip"></span><code>--${s.token}</code><code>${s.hex}</code></li>`
+  <ul class="shades" role="list">${ROLES.map(
+    (r) => html`<li class="shade" style="--sw:${tokenHex(r.token)}"><span class="shade__chip"></span><code>--${r.token}</code><code>→ --${r.ref}</code><span>${r.role}</span></li>`
   )}</ul>
 </section>
 

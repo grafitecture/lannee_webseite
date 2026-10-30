@@ -11,7 +11,7 @@ export default {
     close: 'Schließen',
     mainNav: 'Hauptnavigation',
     langNav: 'Sprache wählen',
-    nav: { garage: 'Garage', kiosque: 'Kiosque', marche: 'Marché', carte: 'Karte', annee: 'Das Jahr', contact: 'Kontakt' },
+    nav: { garage: 'Garage', kiosque: 'Kiosque', marche: 'Marché', carte: 'Karte', annee: 'Das Jahr', atlas: 'Austernatlas', contact: 'Kontakt' },
     home: 'Startseite',
     days: ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'],
     daysShort: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
@@ -32,7 +32,7 @@ export default {
     closure: { one: '**{names} macht Pause:** {when}', many: '**{names} machen Pause:** {when}' },
     facts: { when: 'Wann', where: 'Wo', mail: 'Post', more: 'Außerdem' },
     footer: {
-      tagline: 'Huîtres & Bulles in Mannheim',
+      tagline: 'Austern & Bulles in Mannheim',
       legal: 'Rechtliches',
       impressum: 'Impressum',
       datenschutz: 'Datenschutz',
@@ -50,8 +50,8 @@ export default {
       title: 'L’ANNÉE – Austern & Schaumwein in Mannheim',
       description:
         'Austern, Crémant und Champagner an drei Orten in Mannheim: in der Garage im Jungbusch, am Kiosque auf dem Lindenhofplatz und mit dem Marché auf dem Wochenmarkt Lindenhof.',
-      h1: 'L’ANNÉE – Huîtres & Bulles in Mannheim',
-      lead: 'Austern, Bläschen und ein Plätzchen in der Sonne. An drei Orten in Mannheim, jedes Wochenende.',
+      h1: 'L’ANNÉE – Austern & Bulles in Mannheim',
+      lead: 'Austern, Bulles und ein Plätzchen in der Sonne. An drei Orten in Mannheim, jedes Wochenende.',
       ctaMenu: 'Zur Karte',
       ctaWhere: 'Wo wir sind',
       weekend: {
@@ -61,7 +61,7 @@ export default {
       places: {
         garage: {
           heading: 'Bonsoir im Hinterhof.',
-          body: 'Freitags und samstags ab 18 Uhr öffnen wir das Tor in der Beilstraße. Unter Weinranken gibt es Austern auf Eis, Crevetten zum Teilen, Tarte aus dem Ofen und Bläschen aus der Loire und der Champagne. Reservieren? Machen wir nicht. Komm einfach vorbei, ein Plätzchen findet sich.',
+          body: 'Freitags und samstags ab 18 Uhr öffnen wir das Tor in der Beilstraße. Unter Weinranken gibt es Austern auf Eis, Crevetten zum Teilen, Tarte aus dem Ofen und Bulles aus der Loire und der Champagne. Reservieren? Machen wir nicht. Komm einfach vorbei, ein Plätzchen findet sich.',
           cta: 'Zur Garage',
         },
         kiosque: {
@@ -120,7 +120,7 @@ export default {
       intro: {
         heading: 'Sonntag, zehn Uhr, Lindenhofplatz.',
         body: [
-          'Der Kiosque ist unser Sonntagsfenster zum Platz. Ein Tresen, ein paar Plätze in der Sonne, Austern auf Eis und kalte Bläschen. Mehr braucht ein Sonntag nicht.',
+          'Der Kiosque ist unser Sonntagsfenster zum Platz. Ein Tresen, ein paar Plätze in der Sonne, Austern auf Eis und kalte Bulles. Mehr braucht ein Sonntag nicht.',
           'Auf der Karte stehen Fines de Claire und Spéciales, irische Felsenaustern, Krabbenkroketten, Räucherlachs und Sardinen. Dazu Crémant, Muscadet oder eine hausgemachte Citronnade.',
         ],
       },
@@ -140,7 +140,7 @@ export default {
       description:
         'Der Marché von L’ANNÉE: samstags von 8 bis 13 Uhr auf dem Wochenmarkt Lindenhof in Mannheim. Frisch geöffnete Austern, ein Glas Wein und Austern zum Mitnehmen.',
       h1: 'Marché',
-      subtitle: '{fr|Huîtres & Bulles} auf Rädern',
+      subtitle: 'Austern & Bulles auf Rädern',
       when: 'Samstag, 8 bis 13 Uhr',
       whereText: 'Wochenmarkt Lindenhof, Mannheim',
       more: 'Weitere Standorte und Termine nach Ankündigung.',
@@ -223,9 +223,15 @@ export default {
           { name: 'Muscadet', text: 'Salzig und schlank. Der Klassiker zur Fines de Claire.' },
           { name: 'Chablis', text: 'Kreidig und mineralisch, für große, fleischige Austern.' },
           { name: 'Picpoul de Pinet', text: 'Wächst direkt am Austernbecken von Thau.' },
-          { name: 'Crémant & Champagner', text: 'Die Bläschen putzen den Gaumen für die nächste Auster.' },
+          { name: 'Crémant & Champagner', text: 'Die Bulles putzen den Gaumen für die nächste Auster.' },
         ],
       },
+    },
+
+    atlas: {
+      title: 'Austernatlas – Arten und Herkünfte | L’ANNÉE',
+      description:
+        'Der Austernatlas von L’ANNÉE: die wichtigsten Austernarten und die bekanntesten Herkünfte, von Marennes-Oléron über Cancale bis Sylt, kurz erklärt.',
     },
 
     contact: {

@@ -40,7 +40,7 @@
 .site-header__brand {
   display: block;
   margin-right: auto;
-  color: var(--vert);
+  color: var(--brand);
   padding-block: 0.5rem;
 }
 .site-header__logo {
@@ -84,16 +84,16 @@
   height: 1.05em;
 }
 .nav__link:hover {
-  color: var(--vert-deep);
+  color: var(--marche);
 }
-.nav__link--garage:hover { color: var(--vin); }
-.nav__link--kiosque:hover { color: var(--bleu); }
+.nav__link--garage:hover { color: var(--garage); }
+.nav__link--kiosque:hover { color: var(--kiosque); }
 .nav__link[aria-current='page'] {
   border-bottom-color: currentColor;
 }
-.nav__link--garage[aria-current='page'] { color: var(--vin); }
-.nav__link--kiosque[aria-current='page'] { color: var(--bleu); }
-.nav__link--marche[aria-current='page'] { color: var(--vert-deep); }
+.nav__link--garage[aria-current='page'] { color: var(--garage); }
+.nav__link--kiosque[aria-current='page'] { color: var(--kiosque); }
+.nav__link--marche[aria-current='page'] { color: var(--marche); }
 
 /* Sprachwahl */
 .lang ul {
@@ -113,15 +113,15 @@
   font-weight: 600;
   letter-spacing: 0.06em;
   text-decoration: none;
-  color: var(--gris);
+  color: var(--muted);
 }
 .lang a:hover {
-  color: var(--encre);
-  background: var(--nacre);
+  color: var(--ink);
+  background: var(--lime);
 }
 .lang a[aria-current='true'] {
   color: var(--blanc);
-  background: var(--encre);
+  background: var(--ink);
 }
 .lang--header {
   display: none;
@@ -135,7 +135,7 @@
   min-height: 2.75rem;
   padding: 0 1rem;
   border-radius: 999px;
-  border: 1.5px solid var(--encre);
+  border: 1.5px solid var(--ink);
   font-size: 0.9375rem;
   font-weight: 600;
   text-decoration: none;
@@ -166,7 +166,7 @@
   position: fixed;
   inset: 0;
   z-index: 60;
-  background: var(--nacre);
+  background: var(--blanc);
   overflow-y: auto;
 }
 .drawer:target,
@@ -187,7 +187,7 @@
   min-height: 2.75rem;
   padding: 0 1.1rem;
   border-radius: 999px;
-  border: 1.5px solid var(--encre);
+  border: 1.5px solid var(--ink);
   font-weight: 600;
   text-decoration: none;
 }
@@ -229,9 +229,9 @@
 /* Fußzeile ------------------------------------------------------------------- */
 
 .site-footer {
-  --bg: var(--encre);
-  background: var(--encre);
-  color: var(--nacre);
+  --bg: var(--ink);
+  background: var(--ink);
+  color: var(--blanc);
   padding: var(--space-2xl) var(--gutter) var(--space-m);
 }
 .site-footer a {
@@ -266,25 +266,25 @@
 .footer-place__signet {
   width: 0.85em;
   height: 0.85em;
-  --signet-pivot: var(--encre);
+  --signet-pivot: var(--ink);
 }
-.site-footer .signet--garage { color: var(--vin-soft); }
-.site-footer .signet--kiosque { color: var(--bleu-soft); }
-.site-footer .signet--marche { color: var(--vert-soft); }
+.site-footer .signet--garage { color: var(--lime); }
+.site-footer .signet--kiosque { color: var(--lime); }
+.site-footer .signet--marche { color: var(--lime); }
 .footer-place__when {
   font-weight: 600;
 }
 .footer-place__where {
-  color: color-mix(in oklab, var(--nacre) 78%, var(--encre));
+  color: var(--blanc);
 }
 .footer-place__mail {
-  color: var(--nacre);
+  color: var(--blanc);
 }
 
 .site-footer .site-footer__mark {
   display: block;
   margin: var(--space-2xl) 0 var(--space-l);
-  color: var(--vert);
+  color: var(--brand);
 }
 .site-footer__logo {
   width: 100%;
@@ -318,30 +318,30 @@
   padding: 0;
 }
 .site-footer__legal {
-  color: color-mix(in oklab, var(--nacre) 72%, var(--encre));
+  color: var(--blanc);
 }
 .site-footer .lang a {
-  color: color-mix(in oklab, var(--nacre) 72%, var(--encre));
+  color: var(--blanc);
 }
 .site-footer .lang a:hover {
   background: rgb(255 255 255 / 0.08);
   color: var(--blanc);
 }
 .site-footer .lang a[aria-current='true'] {
-  background: var(--nacre);
-  color: var(--encre);
+  background: var(--blanc);
+  color: var(--ink);
 }
 
 /* Störer: Hinweis, dass die Seite fiktiv ist (SITE.demoNotice) --------------- */
 /*
- * Chartreuse #CEE65A (warmes Gelbgrün, heller als alle Markenfarben, damit der
- * Hinweis heraussticht): Encre darauf 11,5 : 1, fette, schmale Schrift.
+ * Lime Cream #ECF39E (hellster Ton der Palette, damit der Hinweis heraussticht):
+ * Evergreen darauf 13 : 1, fette, schmale Schrift.
  * Fixiert unten rechts, wandert also beim Scrollen mit. Der Schatten liegt als
  * eigene, unscharfe Scheibe darunter; beim Schweben hebt sich die Scheibe,
  * der Schatten wird kleiner und heller (nur transform/opacity).
  */
 .stoerer {
-  --stoerer: #cee65a;
+  --stoerer: var(--lime);
   --size: clamp(5.25rem, 4.1rem + 4.6vw, 9.5rem);
   position: fixed;
   right: max(var(--gutter), env(safe-area-inset-right));
@@ -360,7 +360,7 @@ body:has(.stoerer) .site-footer {
   position: absolute;
   inset: 8%;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--encre) 34%, transparent);
+  background: color-mix(in srgb, var(--ink) 34%, transparent);
   filter: blur(calc(var(--size) * 0.07));
   translate: 0 10%;
 }
@@ -374,7 +374,7 @@ body:has(.stoerer) .site-footer {
   padding: 0 13%;
   border-radius: 50%;
   background: radial-gradient(circle at 32% 28%, color-mix(in oklab, var(--stoerer) 72%, white), var(--stoerer) 58%);
-  color: var(--encre);
+  color: var(--ink);
   font-family: var(--font-text);
   font-stretch: 80%;
   font-weight: 650;

@@ -43,7 +43,7 @@ export function render(ctx) {
   <div class="hero__mark" data-logo-morph style="--logo-ratio: ${LOGO_W} / ${LOGO_H}">${logo({ cls: 'hero__logo', decorative: true })}</div>
   <div class="hero__grid">
     <div class="hero__text">
-      <p class="hero__tagline" lang="fr">Huîtres &amp; Bulles</p>
+      <p class="hero__tagline">${SITE.tagline}</p>
       <p class="hero__lead">${rich(p.lead, locale)}</p>
       <p class="live" data-live hidden><span class="live__dot" aria-hidden="true"></span><span class="live__text"></span></p>
       <div class="hero__actions">

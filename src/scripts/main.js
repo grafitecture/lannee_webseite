@@ -63,7 +63,7 @@ const fill = (tpl, vars) => tpl.replace(/\{(\w+)\}/g, (_, k) => vars[k] ?? '');
 /* Wochenplan & Live-Anzeige                                           */
 /* ------------------------------------------------------------------ */
 
-const LOC_COLOR = { garage: 'var(--vin)', kiosque: 'var(--bleu)', marche: 'var(--vert)' };
+const LOC_COLOR = { garage: 'var(--garage)', kiosque: 'var(--kiosque)', marche: 'var(--marche)' };
 
 function addDays(ymd, days) {
   const [y, m, d] = ymd.split('-').map(Number);

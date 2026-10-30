@@ -11,7 +11,7 @@ export default {
     close: 'Fermer',
     mainNav: 'Navigation principale',
     langNav: 'Choisir la langue',
-    nav: { garage: 'Garage', kiosque: 'Kiosque', marche: 'Marché', carte: 'La carte', annee: 'L’année', contact: 'Contact' },
+    nav: { garage: 'Garage', kiosque: 'Kiosque', marche: 'Marché', carte: 'La carte', annee: 'L’année', atlas: 'Atlas des huîtres', contact: 'Contact' },
     home: 'Accueil',
     days: ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'],
     daysShort: ['lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.', 'dim.'],
@@ -32,7 +32,7 @@ export default {
     closure: { one: '**{names} fait relâche :** {when}', many: '**{names} font relâche :** {when}' },
     facts: { when: 'Quand', where: 'Où', mail: 'E-mail', more: 'Aussi' },
     footer: {
-      tagline: 'Huîtres & Bulles à Mannheim',
+      tagline: 'Austern & Bulles à Mannheim',
       legal: 'Informations légales',
       impressum: 'Mentions légales',
       datenschutz: 'Confidentialité',
@@ -47,10 +47,10 @@ export default {
 
   pages: {
     home: {
-      title: 'L’ANNÉE – Huîtres & bulles à Mannheim',
+      title: 'L’ANNÉE – Austern & Bulles à Mannheim',
       description:
         'Huîtres, crémant et champagne en trois lieux à Mannheim : le Garage dans le Jungbusch, le Kiosque sur la Lindenhofplatz et le Marché au marché du Lindenhof.',
-      h1: 'L’ANNÉE – Huîtres & Bulles à Mannheim',
+      h1: 'L’ANNÉE – Austern & Bulles à Mannheim',
       lead: 'Des huîtres, des bulles et une petite place au soleil. En trois lieux à Mannheim, chaque week-end.',
       ctaMenu: 'Voir la carte',
       ctaWhere: 'Où nous trouver',
@@ -140,7 +140,7 @@ export default {
       description:
         'Le Marché de L’ANNÉE : le samedi de 8 h à 13 h au marché du Lindenhof à Mannheim. Huîtres ouvertes à la minute, un verre de vin et des huîtres à emporter.',
       h1: 'Marché',
-      subtitle: 'Huîtres & Bulles sur roues',
+      subtitle: 'Austern & Bulles sur roues',
       when: 'Samedi, de 8 h à 13 h',
       whereText: 'Marché du Lindenhof, Mannheim',
       more: 'Autres lieux et dates annoncés au fur et à mesure.',
@@ -226,6 +226,12 @@ export default {
           { name: 'Crémant & champagne', text: 'Les bulles rafraîchissent le palais avant l’huître suivante.' },
         ],
       },
+    },
+
+    atlas: {
+      title: 'Atlas des huîtres – espèces et origines | L’ANNÉE',
+      description:
+        'L’atlas des huîtres de L’ANNÉE : les principales espèces et les origines les plus célèbres, de Marennes-Oléron à Cancale et jusqu’à Sylt, expliquées en bref.',
     },
 
     contact: {

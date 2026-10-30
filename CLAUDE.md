@@ -1,6 +1,6 @@
 # L’ANNÉE – Hinweise für Claude Code
 
-Website der Dachmarke L’ANNÉE (Huîtres & Bulles, Mannheim) mit Garage, Kiosque, Marché. Sprache im Team: Deutsch.
+Website der Dachmarke L’ANNÉE (Austern & Bulles, Mannheim) mit Garage, Kiosque, Marché. Sprache im Team: Deutsch.
 
 ## Grundregeln
 
@@ -9,12 +9,15 @@ Website der Dachmarke L’ANNÉE (Huîtres & Bulles, Mannheim) mit Garage, Kiosq
 - Die Live-Domain `1898.ma` nicht anfassen (Domains, DNS, Weiterleitungen), außer der Nutzer verlangt es ausdrücklich.
 - Inhalte immer in allen drei Sprachen pflegen: `src/content/i18n/{de,fr,en}.mjs`. Deutsch ist führend.
 - Keine Cookies, kein Tracking, keine externen Requests (CSP in `vercel.json`). Karten nur als Links.
+- **Nur Grün:** Evergreen #132A13, Hunter Green #31572C, Fern #4F772D, Palm Leaf #90A955, Lime Cream #ECF39E und Weiß. Entweder grüne Fläche mit weißer Schrift oder weiße Fläche mit grüner Schrift; nichts Schwarzes, nichts Graues (statt Schwarz: Evergreen). In CSS nur die Variablen aus `tokens.mjs` (`--ink`, `--garage`, `--kiosque`, `--marche`, `--brand`, `--muted`, `--palm`, `--lime`, `--blanc`), keine festen Farbwerte.
+- **Slogan:** „Austern & Bulles“ (`SITE.tagline`), in allen Sprachen gleich. „Bulles“ nie mit „Bläschen“ übersetzen.
 - „Grafitecture“ immer verlinken: `https://www.grafitecture.de/` (mit www), öffnet in neuem Fenster. Im Mini-Markup `[Grafitecture](https://www.grafitecture.de/)`, sonst `SITE.agency`.
 
 ## Wo was liegt
 
 - Stammdaten, Öffnungszeiten, Pausen, Marché-Termine: `src/content/site.mjs` (dort auch `SITE.demoNotice` für den Störer)
 - Karte: `src/content/menu.mjs` · Jahreskalender: `src/content/year.mjs` · Rechtstexte: `src/content/legal.mjs`
+- Austernatlas (eigene Seite `/austernatlas/`, Menüpunkt): Texte `src/content/oysters.mjs`, Strichzeichnungen `src/lib/oyster-art.mjs` (eigenes Sprite, nur auf der Atlas-Seite), Vorlage `src/pages/atlas.mjs`
 - Farben, Typo-Skala (Goldener Schnitt, `clamp()`), Breakpoints: `src/content/tokens.mjs`
 - Templates: `src/pages/*.mjs`, Bausteine: `src/lib/components.mjs`, Layout/JSON-LD: `src/lib/layout.mjs`
 - CSS: `src/styles/01–05`, Skript: `src/scripts/main.js` (nur progressive Verbesserung)

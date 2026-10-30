@@ -35,11 +35,11 @@
   transition: background-color 0.25s, color 0.25s, border-color 0.25s;
 }
 .btn--solid {
-  background: var(--encre);
+  background: var(--ink);
   color: var(--blanc);
 }
 .btn--solid:hover {
-  background: var(--vert-deep);
+  background: var(--marche);
 }
 .btn--line {
   border-color: currentColor;
@@ -56,12 +56,12 @@
   transform: translate(0.1em, -0.1em);
 }
 
-.theme-vin .btn--solid,
-.theme-bleu .btn--solid,
-.theme-vert .btn--solid,
-.theme-encre .btn--solid {
+.theme-garage .btn--solid,
+.theme-kiosque .btn--solid,
+.theme-marche .btn--solid,
+.theme-ink .btn--solid {
   background: var(--blanc);
-  color: var(--encre);
+  color: var(--ink);
 }
 
 .link-arrow {
@@ -111,28 +111,28 @@
   stroke: currentColor;
   stroke-width: 7;
 }
-.signet--garage { color: var(--vin); }
-.signet--kiosque { color: var(--bleu); }
-.signet--marche { color: var(--vert); }
-.signet--all { color: var(--encre); }
-.signet--all .signet__hand--garage { fill: var(--vin); }
-.signet--all .signet__hand--kiosque { fill: var(--bleu); }
-.signet--all .signet__hand--marche { fill: var(--vert); }
+.signet--garage { color: var(--garage); }
+.signet--kiosque { color: var(--kiosque); }
+.signet--marche { color: var(--marche); }
+.signet--all { color: var(--ink); }
+.signet--all .signet__hand--garage { fill: var(--garage); }
+.signet--all .signet__hand--kiosque { fill: var(--kiosque); }
+.signet--all .signet__hand--marche { fill: var(--marche); }
 
-.theme-vin .signet,
-.theme-bleu .signet,
-.theme-vert .signet {
+.theme-garage .signet,
+.theme-kiosque .signet,
+.theme-marche .signet {
   color: var(--blanc);
   --signet-pivot: var(--bg);
 }
-.theme-encre .signet--garage { color: var(--vin-soft); --signet-pivot: var(--encre); }
-.theme-encre .signet--kiosque { color: var(--bleu-soft); --signet-pivot: var(--encre); }
-.theme-encre .signet--marche { color: var(--vert-soft); --signet-pivot: var(--encre); }
+.theme-ink .signet--garage { color: var(--lime); --signet-pivot: var(--ink); }
+.theme-ink .signet--kiosque { color: var(--lime); --signet-pivot: var(--ink); }
+.theme-ink .signet--marche { color: var(--lime); --signet-pivot: var(--ink); }
 
-/* Lockup: L'ANNÉE + Zweizeiler (NAME, Linie, Huîtres & Bulles) -------------- */
+/* Lockup: L'ANNÉE + Zweizeiler (NAME, Linie, Austern & Bulles) -------------- */
 /*
  * Die Buchstaben des Logos sind genau so hoch wie der Zweizeiler: von der
- * Versalhöhe des Ortsnamens bis zur Grundlinie von „Huîtres & Bulles“.
+ * Versalhöhe des Ortsnamens bis zur Grundlinie von „Austern & Bulles“.
  * Werte aus den Schriftmetriken (line-height 1):
  *   Instrument Sans: Versal-Oberkante 0,14 em unter der Zeilenoberkante
  *   Fraunces Italic: Grundlinie 0,1385 em über der Zeilenunterkante
@@ -147,14 +147,14 @@
   gap: 0.8em;
   padding-top: calc(var(--lk-cap) * 0.2078 - 0.14em);
   font-size: 1em;
-  color: var(--encre);
+  color: var(--ink);
 }
 .lockup__logo {
   flex: none;
   width: auto;
   height: calc(var(--lk-cap) * 1.2141);
   margin-top: calc(0.14em - var(--lk-cap) * 0.2078);
-  color: var(--vert);
+  color: var(--brand);
 }
 .lockup__words {
   display: grid;
@@ -179,27 +179,27 @@
   line-height: 1;
   white-space: nowrap;
 }
-.lockup--garage .lockup__name { color: var(--vin); }
-.lockup--kiosque .lockup__name { color: var(--bleu); }
-.lockup--marche .lockup__name { color: var(--vert-deep); }
-.theme-vin .lockup,
-.theme-bleu .lockup,
-.theme-vert .lockup {
+.lockup--garage .lockup__name { color: var(--garage); }
+.lockup--kiosque .lockup__name { color: var(--kiosque); }
+.lockup--marche .lockup__name { color: var(--marche); }
+.theme-garage .lockup,
+.theme-kiosque .lockup,
+.theme-marche .lockup {
   color: var(--fg);
 }
-.theme-vin .lockup__logo,
-.theme-bleu .lockup__logo,
-.theme-vert .lockup__logo,
-.theme-vin .lockup__name,
-.theme-bleu .lockup__name,
-.theme-vert .lockup__name {
+.theme-garage .lockup__logo,
+.theme-kiosque .lockup__logo,
+.theme-marche .lockup__logo,
+.theme-garage .lockup__name,
+.theme-kiosque .lockup__name,
+.theme-marche .lockup__name {
   color: var(--fg);
 }
 
 /* Bilder -------------------------------------------------------------------- */
 
 .pic {
-  background: var(--ph, var(--nacre-2));
+  background: var(--palm); /* Platzhalter, bis das Foto geladen ist */
   overflow: hidden;
 }
 .pic img {
@@ -210,13 +210,12 @@
 .figure figcaption {
   margin-top: 0.5rem;
   font-size: var(--fs-text-small);
-  color: var(--gris);
+  color: var(--muted);
 }
-.theme-vin .figure figcaption,
-.theme-bleu .figure figcaption,
-.theme-vert .figure figcaption {
+.theme-garage .figure figcaption,
+.theme-kiosque .figure figcaption,
+.theme-marche .figure figcaption {
   color: inherit;
-  opacity: 0.85;
 }
 
 /* Tags & Chips ------------------------------------------------------------- */
@@ -236,10 +235,11 @@
   width: 1.15em;
   height: 1.15em;
 }
-.tag--garage { background: var(--vin-pale); color: var(--vin); }
-.tag--kiosque { background: var(--bleu-pale); color: var(--bleu); }
-.tag--marche { background: var(--vert-pale); color: var(--vert-deep); }
-.tag--marche .signet { color: var(--vert-deep); }
+/* Grüne Fläche, weiße Schrift */
+.tag--garage { background: var(--garage); color: var(--blanc); }
+.tag--kiosque { background: var(--kiosque); color: var(--blanc); }
+.tag--marche { background: var(--marche); color: var(--blanc); }
+.tag .signet { color: var(--blanc); --signet-pivot: transparent; }
 
 .chip {
   display: inline-flex;
@@ -248,9 +248,9 @@
   min-height: 2.75rem;
   padding: 0 1.15em;
   border-radius: 999px;
-  border: 1.5px solid var(--encre);
+  border: 1.5px solid var(--ink);
   background: var(--blanc);
-  color: var(--encre);
+  color: var(--ink);
   font-size: 0.9375rem;
   font-weight: 600;
   cursor: pointer;
@@ -261,15 +261,15 @@
   height: 1.2em;
 }
 .chip:hover {
-  background: var(--nacre);
+  background: var(--blanc);
 }
 .chip[aria-pressed='true'] {
-  background: var(--encre);
+  background: var(--ink);
   color: var(--blanc);
 }
-.chip--garage[aria-pressed='true'] { background: var(--vin); border-color: var(--vin); }
-.chip--kiosque[aria-pressed='true'] { background: var(--bleu); border-color: var(--bleu); }
-.chip--marche[aria-pressed='true'] { background: var(--vert); border-color: var(--vert); color: var(--blanc); }
+.chip--garage[aria-pressed='true'] { background: var(--garage); border-color: var(--garage); }
+.chip--kiosque[aria-pressed='true'] { background: var(--kiosque); border-color: var(--kiosque); }
+.chip--marche[aria-pressed='true'] { background: var(--marche); border-color: var(--marche); color: var(--blanc); }
 .chip[aria-pressed='true'] .signet { color: currentColor; --signet-pivot: transparent; }
 
 /* Live-Anzeige ------------------------------------------------------------- */
@@ -281,7 +281,7 @@
   margin-top: var(--space-s);
   padding: 0.55em 1.1em 0.55em 0.9em;
   border-radius: 999px;
-  background: var(--nacre);
+  background: var(--blanc);
   font-size: 0.9375rem;
   line-height: 1.3;
 }
@@ -296,7 +296,7 @@
   width: 0.62em;
   height: 0.62em;
   border-radius: 50%;
-  background: var(--live, var(--gris));
+  background: var(--live, var(--muted));
   flex: none;
 }
 .live.is-open .live__dot::after {
@@ -327,8 +327,8 @@
   margin: 0;
   padding: 0.6em 1.15em 0.6em 0.95em;
   border-radius: 1.4em;
-  background: var(--vin-pale);
-  color: var(--encre);
+  background: var(--lime);
+  color: var(--ink);
   font-size: 0.9375rem;
   line-height: 1.35;
 }
@@ -341,7 +341,7 @@
   width: 0.62em;
   height: 0.72em;
   translate: 0 0.06em;
-  background: linear-gradient(90deg, var(--vin) 0 34%, transparent 34% 66%, var(--vin) 66%);
+  background: linear-gradient(90deg, var(--garage) 0 34%, transparent 34% 66%, var(--garage) 66%);
 }
 
 /* Jahresuhr ----------------------------------------------------------------- */
@@ -363,31 +363,31 @@
 }
 .yr__rband {
   fill: none;
-  stroke: var(--bleu-pale);
+  stroke: var(--lime);
   stroke-width: 118;
 }
 .yr__tick {
-  stroke: var(--encre);
+  stroke: var(--ink);
   stroke-opacity: 0.35;
   stroke-width: 2;
 }
 .yr__icon {
-  color: var(--gris);
+  color: var(--muted);
 }
 .yr__icon--r {
-  color: var(--bleu);
+  color: var(--kiosque);
 }
 .yr__icon.is-now {
-  color: var(--vin);
+  color: var(--garage);
 }
 .yr__label {
   font-family: var(--font-text);
   font-size: 27px;
   font-weight: 500;
-  fill: var(--gris);
+  fill: var(--muted);
 }
 .yr__label.is-now {
-  fill: var(--encre);
+  fill: var(--ink);
   font-weight: 700;
 }
 .yr__hand {
@@ -396,11 +396,11 @@
   transition: transform 1.6s var(--ease-out);
 }
 .yr__hand path {
-  fill: var(--vin);
+  fill: var(--garage);
 }
 .yr__pivot {
   fill: var(--blanc);
-  stroke: var(--vin);
+  stroke: var(--garage);
   stroke-width: 6;
 }
 
@@ -433,8 +433,8 @@
   height: 1.15em;
   margin-left: 0.15em;
   border-radius: 50%;
-  border: 1.5px solid var(--vert-deep);
-  color: var(--vert-deep);
+  border: 1.5px solid var(--marche);
+  color: var(--marche);
   font-family: var(--font-text);
   font-size: 0.55em;
   font-weight: 700;
@@ -443,7 +443,7 @@
 .dish__origin {
   margin-top: 0.2em;
   font-size: var(--fs-text-small);
-  color: var(--gris);
+  color: var(--muted);
 }
 .dish__desc {
   margin-top: 0.45em;
@@ -470,7 +470,7 @@
 .dish__price-label {
   font-size: 0.75rem;
   line-height: 1.2;
-  color: var(--gris);
+  color: var(--muted);
   white-space: nowrap;
 }
 .dish__price-value {
@@ -483,7 +483,7 @@
 .dish__from {
   font-family: var(--font-text);
   font-size: 0.75rem;
-  color: var(--gris);
+  color: var(--muted);
 }
 .dish--compact .dish__name {
   font-size: clamp(1.25rem, 1rem + 0.9vw, 1.9rem);
@@ -505,7 +505,7 @@
   gap: 0.55em;
 }
 .taste__label {
-  color: var(--gris);
+  color: var(--muted);
   min-width: 4.6em;
 }
 .taste__dots {
@@ -516,10 +516,10 @@
   width: 0.55rem;
   height: 0.55rem;
   border-radius: 50%;
-  border: 1.5px solid var(--bleu);
+  border: 1.5px solid var(--kiosque);
 }
 .taste__dots i.on {
-  background: var(--bleu);
+  background: var(--kiosque);
 }
 
 /* Kartenlinks ---------------------------------------------------------------- */
@@ -537,7 +537,7 @@
 }
 .dish__price-unit {
   font-size: 0.75rem;
-  color: var(--gris);
+  color: var(--muted);
   white-space: nowrap;
 }
 

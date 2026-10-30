@@ -67,7 +67,7 @@ export function render(ctx) {
           </ul>
           <p class="dates__empty" data-expiry-empty${dates.length ? raw(' hidden') : ''}>${p.dates.empty}</p>
         </section>
-        <section class="invite theme-vert" aria-labelledby="invite-h">
+        <section class="invite theme-marche" aria-labelledby="invite-h">
           ${icon('marche', { cls: 'icon invite__icon' })}
           <div class="invite__text">
             <h2 class="t-h3" id="invite-h">${p.invite.heading}</h2>
