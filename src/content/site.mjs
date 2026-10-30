@@ -18,7 +18,7 @@ export const SITE = {
     street: 'Rennershofstraße 7',
     zip: '68163',
     city: 'Mannheim',
-    email: 'lannee@1898.ma',
+    email: 'bonjour@lannee.de',
     /** Optional – wird nur angezeigt, wenn gesetzt. */
     phone: null,
     /** Optional – Umsatzsteuer-ID nach § 27a UStG, falls vorhanden. */
@@ -43,7 +43,7 @@ export const LOCATIONS = {
     hex: '#4D9D6E',
     hour: 8,
     domain: null,
-    email: 'lannee@1898.ma',
+    email: 'bonjour@lannee.de',
     place: 'Wochenmarkt Lindenhof',
     street: null,
     zip: '68163',
