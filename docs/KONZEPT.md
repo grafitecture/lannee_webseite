@@ -118,7 +118,6 @@ Seiten sind auf dem Desktop immer volle Breite. Begrenzt wird nur die Zeilenlän
 
 - Wochenplan: Tage als Zeilen, Öffnungszeiten als farbige Balken auf einer Stundenskala (mobil als Liste mit Mini-Balken); live mit „Jetzt geöffnet“ / „Als Nächstes“, Jetzt-Linie, Datum und Pausen
 - Das Jahr: 12 Monate (Galette des Rois, Saint-Jacques, Schwetzinger Spargel, Nachtwandel, Beaujolais Nouveau, Réveillon …), Regel mit dem R, Austerngrößen Nº 0–5, Austern essen in vier Schritten, Weinbegleitung
-- Austernatlas nach der Fußzeile auf jeder Seite: 24 Arten und Herkünfte als graue Strichzeichnungen mit Name, Herkunft und kurzer Erklärung
 - La Carte (fiktiv): Struktur „Hunger / Durst“ nach dem Vorbild De Blauwe Kiosk (Gent), Inhalte aus der L’ANNÉE-Karte, Geschmacksprofile der Austern (jodig, fleischig, nussig), Filter nach Ort
 
 ## 10. Offene Punkte

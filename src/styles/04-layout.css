@@ -351,6 +351,10 @@
   height: var(--size);
   pointer-events: none; /* verdeckt nichts Klickbares */
 }
+/* Am Seitenende Platz lassen, damit der Störer nicht über der Fußzeile liegt */
+body:has(.stoerer) .site-footer {
+  padding-bottom: calc(clamp(5.25rem, 4.1rem + 4.6vw, 9.5rem) + 2rem);
+}
 .stoerer::before {
   content: '';
   position: absolute;
@@ -403,143 +407,6 @@
     position: absolute;
     top: 1cm;
     bottom: auto;
-  }
-}
-
-/* Austernatlas (nach der Fußzeile, auf jeder Seite) ----------------------- */
-
-.atlas {
-  padding: var(--space-xl) var(--gutter) var(--space-2xl);
-  background: var(--nacre);
-  color: var(--gris);
-  content-visibility: auto;
-  contain-intrinsic-size: auto 1800px;
-}
-.atlas__head {
-  display: grid;
-  gap: var(--space-xs);
-  justify-items: start;
-}
-.atlas__title {
-  font-family: var(--font-display);
-  font-size: var(--fs-h4);
-  font-style: italic;
-  font-weight: 330;
-  line-height: 1;
-  letter-spacing: -0.01em;
-  color: var(--encre);
-}
-.atlas__lead {
-  max-width: 42ch;
-  font-size: 1.0625rem;
-  line-height: 1.45;
-}
-.atlas__cta {
-  color: var(--encre);
-  font-size: 0.9375rem;
-  white-space: normal;
-}
-.atlas__grid {
-  display: grid;
-  margin: var(--space-l) 0 0;
-  border-top: 1px solid var(--line);
-}
-.oyster {
-  padding: var(--space-s) 0 var(--space-m);
-  border-bottom: 1px solid var(--line);
-}
-.oyster__head {
-  display: flex;
-  align-items: center;
-  gap: var(--space-s);
-}
-.oyster__art {
-  flex: none;
-  display: block;
-  width: 4.5rem;
-  height: 3.5rem;
-  color: color-mix(in oklab, var(--gris) 72%, var(--nacre));
-}
-.oyster__svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-}
-.oyster__name {
-  font-family: var(--font-display);
-  font-size: 1.1875rem;
-  line-height: 1.15;
-  color: var(--encre);
-}
-.oyster__meta {
-  margin: 0.5rem 0 0;
-  font-size: var(--fs-text-small);
-  line-height: 1.35;
-}
-.oyster__group {
-  font-stretch: 75%;
-  font-weight: 600;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-.oyster__meta i {
-  font-family: var(--font-display);
-}
-.oyster__text {
-  margin: 0.35rem 0 0;
-  font-size: var(--fs-text-small);
-  line-height: 1.5;
-}
-@media (max-width: 479.98px) {
-  .oyster__meta,
-  .oyster__text {
-    padding-left: calc(4.5rem + var(--space-s));
-  }
-}
-@media (min-width: 480px) {
-  .atlas__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    border-left: 1px solid var(--line);
-  }
-  .oyster {
-    padding: var(--space-s) var(--space-s) var(--space-m);
-    border-right: 1px solid var(--line);
-  }
-  .oyster__head {
-    flex-direction: column;
-    align-items: stretch;
-    gap: var(--space-xs);
-  }
-  .oyster__art {
-    width: 100%;
-    height: 5.75rem;
-    padding: 0.4rem 0;
-  }
-}
-@media (min-width: 768px) {
-  .atlas__grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-@media (min-width: 1024px) {
-  .atlas__head {
-    grid-template-columns: minmax(0, 1.618fr) minmax(0, 1fr);
-    align-items: end;
-    column-gap: var(--space-xl);
-  }
-  .atlas__title {
-    grid-row: span 2;
-    align-self: start;
-  }
-}
-@media (min-width: 1280px) {
-  .atlas__grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-@media (min-width: 1920px) {
-  .atlas__grid {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 }
 

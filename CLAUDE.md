@@ -15,7 +15,6 @@ Website der Dachmarke L’ANNÉE (Huîtres & Bulles, Mannheim) mit Garage, Kiosq
 
 - Stammdaten, Öffnungszeiten, Pausen, Marché-Termine: `src/content/site.mjs` (dort auch `SITE.demoNotice` für den Störer)
 - Karte: `src/content/menu.mjs` · Jahreskalender: `src/content/year.mjs` · Rechtstexte: `src/content/legal.mjs`
-- Austernatlas nach der Fußzeile: Texte `src/content/oysters.mjs`, Strichzeichnungen (prozedural, ins Sprite) `src/lib/oyster-art.mjs`
 - Farben, Typo-Skala (Goldener Schnitt, `clamp()`), Breakpoints: `src/content/tokens.mjs`
 - Templates: `src/pages/*.mjs`, Bausteine: `src/lib/components.mjs`, Layout/JSON-LD: `src/lib/layout.mjs`
 - CSS: `src/styles/01–05`, Skript: `src/scripts/main.js` (nur progressive Verbesserung)

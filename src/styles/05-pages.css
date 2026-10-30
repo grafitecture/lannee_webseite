@@ -1797,9 +1797,6 @@
 /* Druck (z. B. die Karte) -------------------------------------------------------- */
 
 @media print {
-  .atlas {
-    display: none !important;
-  }
   .logo-morph .hero__logo {
     position: static;
     width: 100%;

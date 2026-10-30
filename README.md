@@ -25,7 +25,6 @@ Voraussetzung: Node.js ab Version 20. Der Build hat **keine npm-Abhängigkeiten*
 | Speisekarte (alle Sprachen) | `src/content/menu.mjs` |
 | Texte der Seiten | `src/content/i18n/de.mjs`, `fr.mjs`, `en.mjs` |
 | Jahreskalender | `src/content/year.mjs` |
-| Austernatlas (nach der Fußzeile) | Texte: `src/content/oysters.mjs`, Zeichnungen: `src/lib/oyster-art.mjs` |
 | Impressum & Datenschutz | `src/content/legal.mjs` (Daten aus `site.mjs`) |
 | Bildtexte (alt) | `src/content/media.mjs` |
 | Farben, Typo-Skala, Breakpoints | `src/content/tokens.mjs` |

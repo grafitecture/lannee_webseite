@@ -5,7 +5,6 @@ import { html, raw, esc, plain, typo } from './html.mjs';
 import { DICT, LOCALES, ROUTES, url, pick, fill, formatTime } from './i18n.mjs';
 import { SITE, LOCATIONS, LOCATION_ORDER, SCHEDULE } from '../content/site.mjs';
 import { logo, signet, icon, arrowLink, upcomingClosures } from './components.mjs';
-import { atlas } from './atlas.mjs';
 import { tokenHex } from '../content/tokens.mjs';
 
 const NAV = ['garage', 'kiosque', 'marche', 'carte', 'annee', 'contact'];
@@ -247,7 +246,6 @@ ${header(ctx)}
 ${main}
 </main>
 ${footer(ctx)}
-${atlas(locale)}
 </body>
 </html>`.toString()
   );
