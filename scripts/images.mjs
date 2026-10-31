@@ -60,40 +60,13 @@ const SOURCES = {
   'hero-austern-hof': { file: 'hero-austern-hof.jpg' },
   // Startbild seit 31.10.2026: historisches Schwarzweißfoto einer Austernbar (nur 757 px breit)
   'hero-austernbar-historisch': { file: 'hero-austernbar-historisch.jpg' },
-  // Logo: weiße Holzbuchstaben, freigestellt (PNG mit Transparenz). Wird auf die Buchstaben
-  // zugeschnitten, die fast deckenden Flächen werden voll deckend (siehe prepareLogo).
-  'logo-lannee': { file: 'logo-lannee-holz.png', logo: true, widths: [240, 360, 480, 768, 1080], quality: { avif: 64, webp: 86 } },
 };
-
-/**
- * Freisteller aufbereiten: Die Buchstaben im PNG sind zu 90–99 % deckend (Alpha 229–254),
- * auf Grün schimmert der Grund dann leicht durch. Alpha / 0,9 macht sie voll deckend und lässt
- * die weiche Kante fast unverändert. Danach auf die Buchstaben zuschneiden (Alpha > 32).
- */
-async function prepareLogo(input) {
-  const { data, info } = await sharp(input).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
-  const { width, height } = info;
-  let x0 = width, y0 = height, x1 = -1, y1 = -1;
-  for (let y = 0; y < height; y++) {
-    for (let x = 0; x < width; x++) {
-      const i = (y * width + x) * 4 + 3;
-      data[i] = Math.min(255, Math.round(data[i] / 0.9));
-      if (data[i] > 32) {
-        if (x < x0) x0 = x;
-        if (x > x1) x1 = x;
-        if (y < y0) y0 = y;
-        if (y > y1) y1 = y;
-      }
-    }
-  }
-  return sharp(data, { raw: info }).extract({ left: x0, top: y0, width: x1 - x0 + 1, height: y1 - y0 + 1 }).png().toBuffer();
-}
 
 const toHex = (r, g, b) => '#' + [r, g, b].map((v) => v.toString(16).padStart(2, '0')).join('');
 
 async function processImage(name, cfg) {
   const input = path.join(SRC, cfg.file);
-  let base = cfg.logo ? sharp(await prepareLogo(input)) : sharp(input).rotate();
+  let base = sharp(input).rotate();
   const meta = await base.metadata();
   let { width, height } = meta;
   if (cfg.crop) {
@@ -109,15 +82,14 @@ async function processImage(name, cfg) {
     height = region.height;
   }
   const buffer = await base.toBuffer();
-  const widths = (cfg.widths ?? WIDTHS).filter((w) => w < width);
+  const widths = WIDTHS.filter((w) => w < width);
   widths.push(width); // Originalbreite immer mit ausgeben
   const unique = [...new Set(widths)].sort((a, b) => a - b);
 
   for (const w of unique) {
     const pipeline = sharp(buffer).resize({ width: w, withoutEnlargement: true });
-    const q = cfg.quality ?? { avif: 52, webp: 74 };
-    await pipeline.clone().avif({ quality: q.avif, effort: 6 }).toFile(path.join(OUT, `${name}-${w}.avif`));
-    await pipeline.clone().webp({ quality: q.webp, alphaQuality: 100, effort: 6 }).toFile(path.join(OUT, `${name}-${w}.webp`));
+    await pipeline.clone().avif({ quality: 52, effort: 6 }).toFile(path.join(OUT, `${name}-${w}.avif`));
+    await pipeline.clone().webp({ quality: 74, effort: 6 }).toFile(path.join(OUT, `${name}-${w}.webp`));
   }
 
   // Platzhalterfarbe (Durchschnitt eines 1×1-Thumbnails)

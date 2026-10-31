@@ -5,13 +5,29 @@
 
 /* Kopfzeile ------------------------------------------------------------------ */
 
-/* Grüne Kopfzeile: Das Logo ist weiß und steht deshalb auf Evergreen */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: var(--ink);
-  color: var(--blanc);
+  background: var(--blanc);
+  border-bottom: 1px solid transparent;
+}
+@supports (animation-timeline: scroll()) {
+  .site-header {
+    animation: header-line linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 140px;
+  }
+  @keyframes header-line {
+    to {
+      border-bottom-color: var(--line);
+    }
+  }
+}
+@supports not (animation-timeline: scroll()) {
+  .site-header {
+    border-bottom-color: var(--line);
+  }
 }
 
 .site-header__inner {
@@ -24,29 +40,19 @@
 .site-header__brand {
   display: block;
   margin-right: auto;
-  padding-block: 0.7rem;
-  text-decoration: none;
+  color: var(--brand);
+  padding-block: 0.5rem;
 }
-/* Bildmarke klein: Logo + „Austern & Bulles“ (Slogan mindestens 13 px) */
-.site-header__mark {
-  width: 10rem;
+.site-header__logo {
+  height: clamp(1.2rem, 0.95rem + 0.6vw, 2rem);
+  width: auto;
 }
-@media (min-width: 1024px) {
-  .site-header__mark {
-    width: 11rem;
-  }
-}
-@media (min-width: 1536px) {
-  .site-header__mark {
-    width: 12rem;
-  }
-}
-/* Startseite: Die große Bildmarke wandert beim Scrollen hierher (siehe main.js) */
-.page--home .site-header__mark {
+/* Startseite: Das große Logo wandert beim Scrollen hierher (siehe main.js) */
+.page--home .site-header__logo {
   opacity: 0;
 }
-.page--home.logo-docked .site-header__mark,
-.page--home .site-header__brand:focus-visible .site-header__mark {
+.page--home.logo-docked .site-header__logo,
+.page--home .site-header__brand:focus-visible .site-header__logo {
   opacity: 1;
 }
 
@@ -73,17 +79,21 @@
   border-bottom: 2px solid transparent;
   transition: color 0.2s, border-color 0.2s;
 }
-.nav__link {
-  color: var(--blanc);
+.nav__signet {
+  width: 1.05em;
+  height: 1.05em;
 }
 .nav__link:hover {
-  color: var(--lime);
+  color: var(--marche);
 }
+.nav__link--garage:hover { color: var(--garage); }
+.nav__link--kiosque:hover { color: var(--kiosque); }
 .nav__link[aria-current='page'] {
-  color: var(--lime);
   border-bottom-color: currentColor;
 }
-
+.nav__link--garage[aria-current='page'] { color: var(--garage); }
+.nav__link--kiosque[aria-current='page'] { color: var(--kiosque); }
+.nav__link--marche[aria-current='page'] { color: var(--marche); }
 
 /* Sprachwahl */
 .lang ul {
@@ -125,8 +135,7 @@
   min-height: 2.75rem;
   padding: 0 1rem;
   border-radius: 999px;
-  border: 1.5px solid var(--blanc);
-  color: var(--blanc);
+  border: 1.5px solid var(--ink);
   font-size: 0.9375rem;
   font-weight: 600;
   text-decoration: none;
@@ -158,7 +167,6 @@
   inset: 0;
   z-index: 60;
   background: var(--blanc);
-  color: var(--ink);
   overflow-y: auto;
 }
 .drawer:target,
@@ -203,6 +211,10 @@
 }
 .drawer__link[aria-current='page'] {
   font-style: italic;
+}
+.drawer__signet {
+  width: 0.62em;
+  height: 0.62em;
 }
 .menu-open {
   overflow: hidden;
@@ -269,10 +281,14 @@
   color: var(--blanc);
 }
 
-.site-footer .site-footer__brand {
+.site-footer .site-footer__mark {
   display: block;
   margin: var(--space-2xl) 0 var(--space-l);
-  text-decoration: none;
+  color: var(--brand);
+}
+.site-footer__logo {
+  width: 100%;
+  height: auto;
 }
 .site-footer__bottom {
   display: grid;
@@ -283,10 +299,15 @@
 }
 @media (min-width: 1024px) {
   .site-footer__bottom {
-    grid-template-columns: 1fr auto auto;
+    grid-template-columns: auto 1fr auto auto;
     align-items: center;
     gap: var(--space-m);
   }
+}
+.site-footer__tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.125rem;
 }
 .site-footer__links {
   display: flex;
@@ -299,17 +320,14 @@
 .site-footer__legal {
   color: var(--blanc);
 }
-.site-footer .lang a,
-.lang--header a {
+.site-footer .lang a {
   color: var(--blanc);
 }
-.site-footer .lang a:hover,
-.lang--header a:hover {
+.site-footer .lang a:hover {
   background: rgb(255 255 255 / 0.08);
   color: var(--blanc);
 }
-.site-footer .lang a[aria-current='true'],
-.lang--header a[aria-current='true'] {
+.site-footer .lang a[aria-current='true'] {
   background: var(--blanc);
   color: var(--ink);
 }

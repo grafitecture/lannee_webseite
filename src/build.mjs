@@ -18,6 +18,7 @@ import { SITE } from './content/site.mjs';
 import * as home from './pages/home.mjs';
 import * as location from './pages/location.mjs';
 import * as carte from './pages/carte.mjs';
+import * as annee from './pages/annee.mjs';
 import * as atlas from './pages/atlas.mjs';
 import * as contact from './pages/contact.mjs';
 import * as legal from './pages/legal.mjs';
@@ -64,6 +65,7 @@ const PAGES = {
   kiosque: { module: location, og: 'kiosque' },
   marche: { module: location, og: 'marche' },
   carte: { module: carte, og: 'lannee' },
+  annee: { module: annee, og: 'lannee' },
   atlas: { module: atlas, og: 'lannee' },
   contact: { module: contact, og: 'lannee', compactFooter: true },
   impressum: { module: legal, og: 'lannee', noindex: false },
@@ -169,7 +171,7 @@ async function build() {
         start_url: '/',
         display: 'browser',
         background_color: tokenHex('blanc'),
-        theme_color: tokenHex('ink'),
+        theme_color: tokenHex('brand'),
         icons: [
           { src: '/icon-192.png', sizes: '192x192', type: 'image/png' },
           { src: '/icon-512.png', sizes: '512x512', type: 'image/png' },

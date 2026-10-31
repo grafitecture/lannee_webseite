@@ -1,6 +1,5 @@
 /**
- * Erzeugt Favicons (das É aus dem Holz-Logo auf Evergreen) und Open-Graph-Bilder (1200 × 630).
- * Braucht das aufbereitete Logo aus scripts/images.mjs (public/images/logo-lannee-1563.webp).
+ * Erzeugt Favicons und Open-Graph-Bilder (1200 × 630).
  *   npm install --no-save sharp playwright && npm run brand-assets
  * Ergebnis landet in /public (wird mit eingecheckt, der Build braucht es nicht neu).
  */
@@ -26,32 +25,36 @@ async function load(name) {
 const sharp = await load('sharp');
 const { chromium } = await load('playwright');
 
-/* Logo: weiße Holzbuchstaben, aufbereitet von scripts/images.mjs (zugeschnitten, voll deckend) */
-const LOGO_FILE = path.join(ROOT, 'public/images/logo-lannee-1563.webp');
-const LOGO_URL = 'file://' + LOGO_FILE;
+const logoSvg = await fs.readFile(path.join(ROOT, 'src/icons/logo-raw.svg'), 'utf8');
+const LOGO_VB = logoSvg.match(/viewBox="([^"]+)"/)[1];
+const LOGO_D = logoSvg.match(/ d="([^"]+)"/)[1];
+const subs = LOGO_D.split('Z').filter((s) => s.trim()).map((s) => s.trim() + 'Z');
 
-/* ---------- Favicons: das É aus dem Logo, weiß auf Evergreen ---------- */
-// Spalten des É im Logo (1563 × 472): x 1100–1321, mit Akzent y 1–468
-const E_BOX = { left: 1096, top: 0, width: 230, height: 472 };
-const ink = C.ink;
-const iconPng = async (size) => {
-  const glyphH = Math.round(size * 0.7);
-  const glyph = await sharp(LOGO_FILE).extract(E_BOX).resize({ height: glyphH }).png().toBuffer();
-  const { width: gw } = await sharp(glyph).metadata();
-  const r = Math.round(size * 0.22);
-  const bg = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}"><rect width="${size}" height="${size}" rx="${r}" fill="${ink}"/></svg>`);
-  return sharp(bg)
-    .composite([{ input: glyph, left: Math.round((size - gw) / 2), top: Math.round((size - glyphH) / 2) }])
-    .png()
-    .toBuffer();
-};
+/* ---------- Favicon: „L’“ aus dem Logo, weiß auf Hunter Green ---------- */
+// Teilpfade: L (x 23–202) und Apostroph (x 183–272), siehe Logo-Analyse
+const pick = (minX, maxX) =>
+  subs.filter((d) => {
+    const xs = d.match(/-?\d+(?:\.\d+)?/g).map(Number).filter((_, i) => i % 2 === 0);
+    const lo = Math.min(...xs);
+    const hi = Math.max(...xs);
+    return lo >= minX && hi <= maxX;
+  });
+const lPaths = pick(20, 205).concat(pick(180, 275)).join(' ');
+// Glyphen-Box: x 23–272, y 24–503 → in 512er-Quadrat zentrieren
+const gw = 272 - 23;
+const gh = 503 - 24;
+const scale = 330 / gh;
+const tx = (512 - gw * scale) / 2 - 23 * scale;
+const ty = (512 - gh * scale) / 2 - 24 * scale;
+const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><rect width="512" height="512" rx="112" fill="${C.kiosque}"/><path fill="#FFFFFF" fill-rule="evenodd" transform="translate(${tx.toFixed(1)} ${ty.toFixed(1)}) scale(${scale.toFixed(4)})" d="${lPaths}"/></svg>`;
+await fs.writeFile(path.join(ROOT, 'public/favicon.svg'), favicon);
 for (const [file, size] of [
   ['favicon-32.png', 32],
   ['apple-touch-icon.png', 180],
   ['icon-192.png', 192],
   ['icon-512.png', 512],
 ]) {
-  await fs.writeFile(path.join(ROOT, 'public', file), await iconPng(size));
+  await sharp(Buffer.from(favicon)).resize(size, size).png().toFile(path.join(ROOT, 'public', file));
 }
 console.log('✓ Favicons');
 
@@ -63,25 +66,31 @@ const fontCss = `
 *{margin:0;box-sizing:border-box}
 body{width:1200px;height:630px;overflow:hidden;font-family:'Instrument Sans',sans-serif;}
 `;
-/** Bildmarke wie auf der Website: Logo + „Austern & Bulles“ gesperrt über die volle Breite (siehe .mark). */
-const mark = (width) => `<div style="width:${width}px;color:#fff">
-  <img src="${LOGO_URL}" style="display:block;width:100%;height:auto">
-  <div style="margin:${(width * 0.024).toFixed(1)}px -.34em 0 0;font-family:'Instrument Sans';font-stretch:75%;font-weight:600;font-size:${(width / 11.7014).toFixed(2)}px;line-height:1;letter-spacing:.34em;text-transform:uppercase;white-space:nowrap">Austern &amp; Bulles</div>
-</div>`;
+const logo = (color) => `<svg viewBox="${LOGO_VB}" style="display:block;width:100%;height:auto;color:${color}"><path fill="currentColor" fill-rule="evenodd" d="${LOGO_D}"/></svg>`;
+const accent = await fs.readFile(path.join(ROOT, 'src/icons/accent-hand.txt'), 'utf8');
+const pts = accent.match(/-?\d+(?:\.\d+)?/g).map(Number);
+let hand = 'M';
+for (let i = 0; i < pts.length; i += 2) hand += `${(pts[i] * 0.8).toFixed(1)} ${(-pts[i + 1] - 76).toFixed(1)}${i + 2 < pts.length ? 'L' : 'Z'}`;
+const signet = (hours, colors, ring) =>
+  `<svg viewBox="-120 -120 240 240" style="display:block;width:100%;height:100%;overflow:visible"><circle r="104" fill="none" stroke="${ring}" stroke-width="13"/>${hours
+    .map((h, i) => `<path d="${hand}" fill="${colors[i]}" transform="rotate(${((h % 12) / 12) * 360})"/>`)
+    .join('')}<circle r="9" fill="#fff" stroke="${ring}" stroke-width="7"/></svg>`;
+
 const img = (name) => `file://${ROOT}/public/images/${name}-1080.webp`;
 /** Lockup wie auf der Website: Logo so hoch wie der Zweizeiler NAME / Linie / Austern & Bulles (siehe 03-components.css). */
-const lockupHtml = (name, fg, size = 30) => `<div style="--cap:calc(2.625em + 1.5px);display:inline-flex;align-items:flex-start;gap:.8em;font-size:${size}px;padding-top:calc(var(--cap) * .1394 - .14em);color:${fg}">
-  <img src="${LOGO_URL}" style="display:block;flex:none;width:auto;height:calc(var(--cap) * 1.154);margin-top:calc(.14em - var(--cap) * .1394)">
+const lockupHtml = (name, fg, size = 30) => `<div style="--cap:calc(2.625em + 1.5px);display:inline-flex;align-items:flex-start;gap:.8em;font-size:${size}px;padding-top:calc(var(--cap) * .2078 - .14em);color:${fg}">
+  <svg viewBox="${LOGO_VB}" style="display:block;flex:none;width:auto;height:calc(var(--cap) * 1.2141);margin-top:calc(.14em - var(--cap) * .2078)"><path fill="currentColor" fill-rule="evenodd" d="${LOGO_D}"/></svg>
   <div style="display:grid;gap:.42em">
     <div style="font-family:'Instrument Sans';font-stretch:75%;font-weight:600;font-size:1em;line-height:1;letter-spacing:.34em;text-transform:uppercase;padding-bottom:.38em;border-bottom:1.5px solid currentColor">${name}</div>
     <div style="font-family:Fraunces;font-style:italic;font-size:1.12em;line-height:1;white-space:nowrap">Austern &amp; Bulles</div>
   </div>
 </div>`;
 const OG = {
-  lannee: `<div style="width:1200px;height:630px;background:${C.ink};color:${C.blanc};display:grid;grid-template-rows:auto 1fr;padding:60px 80px 56px">
-      ${mark(940)}
-      <div style="display:flex;align-items:flex-end">
-        <div style="font-family:Fraunces;font-style:italic;font-weight:330;font-size:44px;line-height:1">Garage, Kiosque &amp; Marché in Mannheim</div>
+  lannee: `<div style="width:1200px;height:630px;background:${C.blanc};display:grid;grid-template-rows:auto 1fr;padding:64px 80px 60px">
+      <div style="width:820px">${logo(C.brand)}</div>
+      <div style="display:flex;align-items:flex-end;justify-content:space-between">
+        <div style="font-family:Fraunces;font-style:italic;font-weight:330;font-size:76px;line-height:1;color:${C.ink}">Austern &amp; Bulles<br><span style="font-style:normal;font-size:34px;font-family:'Instrument Sans';font-weight:500">Garage, Kiosque &amp; Marché in Mannheim</span></div>
+        <div style="width:150px;height:150px">${signet([18, 8, 10], [C.garage, C.marche, C.kiosque], C.ink)}</div>
       </div></div>`,
 };
 const LOC = {

@@ -1,5 +1,5 @@
 /**
- * Bausteine: Logo, Signets, Lockups, Icons, Bilder, Wochenplan.
+ * Bausteine: Logo, Signets, Lockups, Icons, Bilder, Wochenplan, Jahresuhr.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -8,6 +8,7 @@ import { html, raw, esc, rich, typo, setExternalLinkRenderer } from './html.mjs'
 import { DICT, url, pick, fill, formatTime, formatSpan } from './i18n.mjs';
 import { SITE, LOCATIONS, LOCATION_ORDER, SCHEDULE, CLOSURES } from '../content/site.mjs';
 import { MEDIA } from '../content/media.mjs';
+import { MONTHS } from '../content/year.mjs';
 import { oysterArt } from './oyster-art.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
@@ -19,14 +20,12 @@ export const IMAGES = JSON.parse(read('src/content/images.json'));
 /* Logo & Zeiger                                                       */
 /* ------------------------------------------------------------------ */
 
-/**
- * Logo: weiße Holzbuchstaben (freigestelltes Rasterbild, AVIF/WebP aus scripts/images.mjs).
- * Weiß gehört auf Grün: Das Logo steht immer auf einer grünen Fläche.
- */
-export const LOGO = IMAGES['logo-lannee'];
+const logoSvg = read('src/icons/logo-raw.svg');
+export const LOGO_VIEWBOX = logoSvg.match(/viewBox="([^"]+)"/)[1];
+export const LOGO_D = logoSvg.match(/ d="([^"]+)"/)[1];
 
 /**
- * Der Zeiger der Signets ist der Akzent aus dem É des früheren Logos: Spitze nach außen,
+ * Der Zeiger ist der Akzent aus dem É des Logos: Spitze nach außen,
  * breites Ende am Drehpunkt. Länge 100 Einheiten, Drehpunkt (0,0), zeigt nach oben.
  */
 const accentPts = read('src/icons/accent-hand.txt')
@@ -36,26 +35,9 @@ const handPts = [];
 for (let i = 0; i < accentPts.length; i += 2) handPts.push([accentPts[i] * 0.8, -accentPts[i + 1] - 76]);
 export const HAND_D = 'M' + handPts.map(([x, y]) => `${x.toFixed(1)} ${y.toFixed(1)}`).join('L') + 'Z';
 
-export function logo({ cls = 'logo', label = 'L’ANNÉE', decorative = false, sizes = '12rem', eager = false } = {}) {
-  const srcset = (fmt) => LOGO.widths.map((w) => `/images/logo-lannee-${w}.${fmt} ${w}w`).join(', ');
-  const fallback = LOGO.widths.find((w) => w >= 480) ?? LOGO.widths.at(-1);
-  const loading = eager ? raw('loading="eager"') : raw('loading="lazy"');
-  return html`<picture class="${cls}"${decorative ? raw(' aria-hidden="true"') : ''}><source type="image/avif" srcset="${srcset(
-    'avif'
-  )}" sizes="${sizes}"><source type="image/webp" srcset="${srcset('webp')}" sizes="${sizes}"><img src="/images/logo-lannee-${fallback}.webp" width="${
-    LOGO.width
-  }" height="${LOGO.height}" alt="${decorative ? '' : label}" ${loading} decoding="async"></picture>`;
-}
-
-/**
- * Bildmarke: Logo mit „Austern & Bulles“ darunter. Der Slogan läuft gesperrt über die volle
- * Logobreite (Schriftgröße in cqi, siehe .mark in 03-components.css) und skaliert mit dem Logo –
- * groß im Hero, klein in Kopf- und Fußzeile. So wandert er beim Schrumpfen mit.
- */
-export function brandmark({ cls = '', sizes = '12rem', eager = false } = {}) {
-  return html`<span class="mark ${cls}" aria-hidden="true">${logo({ cls: 'mark__logo', decorative: true, sizes, eager })}<span class="mark__tagline">${
-    SITE.tagline
-  }</span></span>`;
+export function logo({ cls = 'logo', label = 'L’ANNÉE', decorative = false } = {}) {
+  const a11y = decorative ? raw('aria-hidden="true" focusable="false"') : raw(`role="img" aria-label="${esc(label)}"`);
+  return html`<svg class="${cls}" viewBox="${LOGO_VIEWBOX}" ${a11y}><path fill="currentColor" fill-rule="evenodd" d="${LOGO_D}"/></svg>`;
 }
 
 /* ------------------------------------------------------------------ */
@@ -81,9 +63,9 @@ export function signet(key, { cls = '' } = {}) {
 }
 
 /** Subbrand-Lockup: Signet · L'ANNÉE · NAME · Austern & Bulles */
-export function lockup(key, { cls = '', tagline = true, as = 'div', sizes = '20rem' } = {}) {
+export function lockup(key, { cls = '', tagline = true, as = 'div' } = {}) {
   const L = LOCATIONS[key];
-  const inner = html`${logo({ cls: 'lockup__logo', decorative: true, sizes })}<span class="lockup__words"><span class="lockup__name"><span class="visually-hidden">L’ANNÉE </span>${
+  const inner = html`${logo({ cls: 'lockup__logo', decorative: true })}<span class="lockup__words"><span class="lockup__name"><span class="visually-hidden">L’ANNÉE </span>${
     L.name
   }</span>${tagline ? html`<span class="lockup__tagline">${SITE.tagline}</span>` : ''}</span>`;
   return as === 'span'
@@ -165,6 +147,23 @@ export function picture(name, locale, { sizes = '100vw', cls = '', eager = false
   const t = DICT[locale].ui;
   const cap = caption ?? (media.caption ? pick(media.caption, locale) : media.visual ? t.visualisation : null);
   return cap ? html`<figure class="figure ${cls ? cls + '-figure' : ''}">${pic}<figcaption>${cap}</figcaption></figure>` : pic;
+}
+
+/* ------------------------------------------------------------------ */
+/* Kreis-Geometrie                                                     */
+/* ------------------------------------------------------------------ */
+
+const rad = (deg) => (deg * Math.PI) / 180;
+const pt = (r, deg) => [r * Math.sin(rad(deg)), -r * Math.cos(rad(deg))];
+const f = (n) => Number(n.toFixed(2));
+
+/** Bogen im Uhrzeigersinn von a1 nach a2 (Grad, 0 = oben). */
+function arc(r, a1, a2) {
+  let sweep = (a2 - a1 + 360) % 360;
+  if (sweep === 0) sweep = 360;
+  const [x1, y1] = pt(r, a1);
+  const [x2, y2] = pt(r, a1 + Math.min(sweep, 359.99));
+  return `M${f(x1)} ${f(y1)}A${r} ${r} 0 ${sweep > 180 ? 1 : 0} 1 ${f(x2)} ${f(y2)}`;
 }
 
 const hhmm = (s) => {
@@ -258,6 +257,42 @@ export function weekPlan(locale) {
   )}</span></div>
   <ol class="plan__days" role="list">${days}</ol>
 </div>`;
+}
+
+/* ------------------------------------------------------------------ */
+/* Jahresuhr                                                           */
+/* ------------------------------------------------------------------ */
+
+export function yearRing(locale, { id = 'jahresuhr' } = {}) {
+  const t = DICT[locale].pages.annee;
+  const R = 380;
+  const parts = [`<circle class="yr__ring" r="${R}"/>`];
+  // R-Monate: September (Index 8) bis April (Index 3) → 240° bis 120°
+  parts.push(`<path class="yr__rband" d="${arc(R - 110, 240, 120)}"/>`);
+  MONTHS.forEach((m, i) => {
+    const a0 = i * 30;
+    const [x1, y1] = pt(R - 26, a0);
+    const [x2, y2] = pt(R + 26, a0);
+    parts.push(`<line class="yr__tick" x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}"/>`);
+    const mid = a0 + 15;
+    const [ix, iy] = pt(R - 110, mid);
+    parts.push(
+      `<use class="yr__icon${m.r ? ' yr__icon--r' : ''}" href="${SPRITE_URL}#${m.icon}" x="${f(ix - 34)}" y="${f(iy - 34)}" width="68" height="68" data-month="${m.n}"/>`
+    );
+    const [tx, ty] = pt(R + 70, mid);
+    const label = pick(m.name, locale).slice(0, 3) + (pick(m.name, locale).length > 3 ? '.' : '');
+    parts.push(
+      `<text class="yr__label" x="${f(tx)}" y="${f(ty)}" text-anchor="middle" dominant-baseline="middle" data-month="${m.n}">${esc(
+        locale === 'fr' ? pick(m.name, 'fr') : label
+      )}</text>`
+    );
+  });
+  parts.push(`<g class="yr__hand" hidden><path d="${HAND_D}" transform="scale(2.05)"/></g><circle class="yr__pivot" r="14"/>`);
+  return html`<figure class="yr" id="${id}" data-year-ring>
+    <svg class="yr__svg" viewBox="-540 -540 1080 1080" role="img" aria-labelledby="${id}-label"><title id="${id}-label">${t.ringLabel}</title>${raw(
+    parts.join('')
+  )}</svg>
+  </figure>`;
 }
 
 /* ------------------------------------------------------------------ */

@@ -5,19 +5,14 @@
 /* Startseite: Hero ---------------------------------------------------------- */
 
 .hero {
-  padding-bottom: var(--space-2xl);
+  padding: var(--space-m) var(--gutter) var(--space-2xl);
 }
-/* Grüne Bühne für die weiße Bildmarke, schließt bündig an die grüne Kopfzeile an */
-.hero__stage {
-  background: var(--ink);
-  padding: var(--space-xs) var(--gutter) var(--space-xl);
-}
-/* Platzhalter im Fluss; die Höhe setzt main.js, sobald die Bildmarke fixiert wird */
 .hero__mark {
-  position: relative;
+  color: var(--brand);
+  aspect-ratio: var(--logo-ratio, auto);
 }
-/* Übergang: Die Bildmarke schrumpft beim Scrollen an die Stelle der kleinen in der Kopfzeile */
-.logo-morph .hero__brand {
+/* Übergang: Das Logo schrumpft beim Scrollen an die Stelle des kleinen Logos */
+.logo-morph .hero__logo {
   position: fixed;
   top: var(--morph-top);
   left: var(--morph-left);
@@ -26,13 +21,16 @@
   transform-origin: 0 0;
   pointer-events: none;
 }
-.logo-morph.logo-docked .hero__brand,
-.menu-open .logo-morph .hero__brand,
-.logo-morph:has(.drawer:target) .hero__brand {
+.logo-morph.logo-docked .hero__logo,
+.menu-open .logo-morph .hero__logo {
   visibility: hidden;
 }
+.hero__logo {
+  width: 100%;
+  height: auto;
+}
 @media (prefers-reduced-motion: no-preference) {
-  .hero__brand {
+  .hero__logo {
     clip-path: inset(0 100% 0 0);
     animation: logo-in 1.25s var(--ease-in-out) 0.15s forwards;
   }
@@ -44,6 +42,7 @@
   .hero__text > :nth-child(1) { animation-delay: 0.85s; }
   .hero__text > :nth-child(2) { animation-delay: 0.95s; }
   .hero__text > :nth-child(3) { animation-delay: 1.05s; }
+  .hero__text > :nth-child(4) { animation-delay: 1.1s; }
 }
 @keyframes logo-in {
   to { clip-path: inset(0 0 0 0); }
@@ -54,9 +53,20 @@
 .hero__grid {
   display: grid;
   gap: var(--space-l);
-  padding: var(--space-l) var(--gutter) 0;
+  margin-top: var(--space-l);
+}
+/* Feststehender Slogan „Austern & Bulles“ in gesperrten Versalien, wie die Ortsnamen im Lockup */
+.hero__tagline {
+  font-family: var(--font-text);
+  font-stretch: 75%;
+  font-weight: 600;
+  font-size: var(--fs-h5);
+  line-height: 1.05;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 .hero__lead {
+  margin-top: var(--space-s);
   font-size: var(--fs-h6);
   line-height: 1.42;
   max-width: 30ch;
@@ -572,7 +582,7 @@
   }
 }
 
-/* Startseite: Karte ------------------------------------------------------ */
+/* Startseite: Karte & Jahr -------------------------------------------------- */
 
 .teaser-menu {
   display: grid;
@@ -692,10 +702,6 @@
 .facts dt {
   font-size: var(--fs-text-small);
   color: var(--muted);
-}
-/* Ortsseiten: Kopf auf der Farbfläche des Ortes (weißes Logo, weiße Schrift) */
-.loc-hero .facts dt {
-  color: var(--fg);
 }
 .facts dd {
   margin: 0.2em 0 0;
@@ -1147,6 +1153,265 @@
   color: var(--muted);
 }
 
+/* Das Jahr ------------------------------------------------------------------ */
+
+.year {
+  display: grid;
+  gap: var(--space-xl);
+  padding: var(--space-l) var(--gutter) var(--space-2xl);
+}
+@media (min-width: 1280px) {
+  .year {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.618fr);
+    align-items: start;
+  }
+  .year__ring {
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+  }
+}
+.months {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  gap: var(--space-m) var(--space-m);
+  list-style: none;
+  padding: 0;
+}
+.month {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 0.4em;
+  padding: var(--space-s) 0 0;
+  border-top: 2px solid var(--line-strong);
+  scroll-margin-top: calc(var(--header-h) + 2rem);
+}
+.month--r {
+  border-top-color: var(--kiosque);
+}
+.month__head {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+}
+.month__icon {
+  width: 2.1rem;
+  height: 2.1rem;
+  color: var(--muted);
+}
+.month--r .month__icon {
+  color: var(--kiosque);
+}
+.month__name {
+  display: grid;
+  font-size: var(--fs-h6);
+  font-weight: 400;
+  line-height: 1.05;
+}
+.month__local {
+  font-family: var(--font-text);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+.month__r {
+  margin-left: auto;
+  display: inline-grid;
+  place-items: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  background: var(--kiosque);
+  color: var(--blanc);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+}
+.month__now {
+  display: none;
+}
+.month__title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.3rem;
+  line-height: 1.15;
+  margin-top: 0.3em;
+}
+.month__text {
+  max-width: 46ch;
+}
+.month.is-now {
+  padding: var(--space-s);
+  background: var(--garage);
+  color: var(--blanc);
+  border-top-color: var(--garage);
+}
+.month.is-now .month__icon,
+.month.is-now .month__local {
+  color: var(--blanc);
+}
+.month.is-now .month__r {
+  background: var(--blanc);
+  color: var(--garage);
+}
+.month.is-now .month__now {
+  display: inline-block;
+  position: absolute;
+  top: -0.85rem;
+  right: var(--space-s);
+  padding: 0.2em 0.7em;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--blanc);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.rule {
+  display: grid;
+  gap: var(--space-l);
+  padding: var(--space-2xl) var(--gutter);
+}
+.rule__heading {
+  max-width: 12ch;
+}
+.rule__r {
+  display: block;
+  font-size: var(--fs-h1);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 0.8;
+  margin-bottom: 0.1em;
+}
+.rule__body {
+  display: grid;
+  gap: var(--space-s);
+  font-size: var(--fs-h6);
+  line-height: 1.45;
+}
+.rule__body p {
+  max-width: 44ch;
+}
+@media (min-width: 1024px) {
+  .rule {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.618fr);
+    align-items: end;
+  }
+}
+
+.calibres {
+  display: grid;
+  gap: var(--space-xl);
+  padding: var(--space-2xl) var(--gutter);
+}
+.calibres__text {
+  display: grid;
+  gap: var(--space-m);
+}
+.calibres__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-m) var(--space-l);
+  list-style: none;
+  padding: 0;
+}
+.calibre {
+  display: grid;
+  justify-items: center;
+  gap: 0.25em;
+}
+.calibre__icon {
+  width: calc(var(--s) * clamp(5.5rem, 3rem + 9vw, 13rem));
+  height: auto;
+  aspect-ratio: 1;
+  color: var(--ink);
+}
+.calibre__n {
+  font-family: var(--font-display);
+  font-size: var(--fs-h6);
+}
+.calibre__g {
+  font-size: var(--fs-text-small);
+  color: var(--muted);
+  white-space: nowrap;
+}
+@media (min-width: 1024px) {
+  .calibres {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.618fr);
+    align-items: end;
+  }
+}
+
+.howto {
+  display: grid;
+  gap: var(--space-xl);
+  padding: var(--space-2xl) var(--gutter);
+  background: var(--blanc);
+}
+.howto__photo {
+  aspect-ratio: 9 / 16;
+  max-width: 22rem;
+}
+.steps {
+  display: grid;
+  gap: var(--space-l) var(--space-xl);
+  margin-top: var(--space-l);
+  list-style: none;
+  padding: 0;
+}
+.step__n {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-weight: 300;
+  line-height: 0.8;
+  color: var(--kiosque);
+}
+.step__title {
+  margin: 0.35em 0 0.25em;
+  font-size: var(--fs-h6);
+  font-weight: 450;
+}
+.step p {
+  max-width: 40ch;
+}
+@media (min-width: 768px) {
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  .howto {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.618fr);
+    align-items: center;
+  }
+  .howto__media {
+    justify-self: center;
+  }
+}
+
+.pairing {
+  padding: var(--space-2xl) var(--gutter);
+}
+.pairing__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  gap: var(--space-l);
+  margin-top: var(--space-l);
+  list-style: none;
+  padding: 0;
+}
+.pairing__icon {
+  width: 2.6rem;
+  height: 2.6rem;
+  color: var(--garage);
+}
+.pairing__name {
+  margin: 0.6em 0 0.3em;
+  font-size: var(--fs-h5);
+}
+
 /* Kontakt ------------------------------------------------------------------- */
 
 .contact-places {
@@ -1327,9 +1592,7 @@
   gap: var(--space-l);
 }
 .sg__lockup {
-  max-width: 100%;
-  padding: var(--space-s);
-  font-size: clamp(0.875rem, 0.6rem + 1.3vw, 1.6rem);
+  font-size: clamp(1.05rem, 0.75rem + 1.3vw, 1.6rem);
 }
 .sg__logos {
   display: grid;
@@ -1346,13 +1609,13 @@
   aspect-ratio: 1.618 / 1;
   padding: 12%;
 }
-.sg__logo-img,
-.sg__logo-img img,
-.sg__mark {
-  display: block;
+.sg__logo-svg {
   width: 100%;
   height: auto;
 }
+.sg__logo--white { background: var(--blanc); color: var(--brand); outline: 1px solid var(--line); }
+.sg__logo--ink { background: var(--ink); color: var(--brand); }
+.sg__logo--green { background: var(--marche); color: var(--blanc); }
 .sg__note {
   font-size: var(--fs-text-small);
   color: var(--muted);
@@ -1653,7 +1916,7 @@
 /* Druck (z. B. die Karte) -------------------------------------------------------- */
 
 @media print {
-  .logo-morph .hero__brand {
+  .logo-morph .hero__logo {
     position: static;
     width: 100%;
     transform: none !important;

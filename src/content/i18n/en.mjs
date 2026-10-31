@@ -11,7 +11,7 @@ export default {
     close: 'Close',
     mainNav: 'Main navigation',
     langNav: 'Choose language',
-    nav: { garage: 'Garage', kiosque: 'Kiosque', marche: 'Marché', carte: 'Menu', atlas: 'Oyster atlas', contact: 'Contact' },
+    nav: { garage: 'Garage', kiosque: 'Kiosque', marche: 'Marché', carte: 'Menu', annee: 'The Year', atlas: 'Oyster atlas', contact: 'Contact' },
     home: 'Home',
     days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
     daysShort: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -32,6 +32,7 @@ export default {
     closure: { one: '**{names} is taking a break:** {when}', many: '**{names} are taking a break:** {when}' },
     facts: { when: 'When', where: 'Where', mail: 'Email', more: 'Also' },
     footer: {
+      tagline: 'Austern & Bulles in Mannheim',
       legal: 'Legal',
       impressum: 'Legal notice',
       datenschutz: 'Privacy',
@@ -183,6 +184,48 @@ export default {
         'Please ask our team about allergens and additives.',
         'Oysters are served raw. We advise against them during pregnancy and for people with weakened immune systems.',
       ],
+    },
+
+    annee: {
+      title: 'The Year – the L’ANNÉE oyster calendar',
+      description:
+        'L’ANNÉE means “the year”. Twelve months of oysters, wine and France: the R rule, oyster sizes and how to eat an oyster properly.',
+      h1: 'The Year',
+      lead: 'L’ANNÉE means “the year”. And oysters keep a calendar.',
+      ringLabel: 'Year clock: highlighted months contain an R, the hand points to the current month.',
+      rMonth: 'Month with an R',
+      now: 'Now',
+      rule: {
+        heading: 'The R rule',
+        body: [
+          'They used to say: oysters only in months with an R, so from September to April. The reason was less about taste than about summer. Without refrigeration, oysters spoiled quickly on their way inland, and in summer they spawn.',
+          'Today oysters travel chilled and reach the bar within hours. In summer they often taste milkier and creamier, the French call them “laiteuses”. Firm, briny oysters, though, are still a winter thing.',
+        ],
+      },
+      calibres: {
+        heading: 'The smaller the number, the bigger the oyster.',
+        body: 'In France, oysters are graded by weight. Nº 3 is the classic apéritif oyster, Nº 2 one for the hungry.',
+        over: 'over {g} g',
+        range: '{a}–{b} g',
+      },
+      howto: {
+        heading: 'How to eat an oyster, in four steps',
+        steps: [
+          { title: 'Look', text: 'A fresh oyster is plump, glistening and smells of the sea, never of fish.' },
+          { title: 'Pour off the first water', text: 'Tip out the first liquor. After a minute or two the oyster makes more, and it tastes rounder.' },
+          { title: 'Loosen and season', text: 'Loosen the muscle with the little fork. A drop of lemon or mignonette, or simply nothing.' },
+          { title: 'Chew', text: 'Don’t just swallow: chew two or three times and the salt, nut and sweetness come through. Finish with the juice.' },
+        ],
+      },
+      pairing: {
+        heading: 'What to drink',
+        items: [
+          { name: 'Muscadet', text: 'Saline and lean. The classic with a Fines de Claire.' },
+          { name: 'Chablis', text: 'Chalky and mineral, for big, meaty oysters.' },
+          { name: 'Picpoul de Pinet', text: 'Grown right by the oyster beds of the Étang de Thau.' },
+          { name: 'Crémant & champagne', text: 'The bubbles refresh the palate for the next oyster.' },
+        ],
+      },
     },
 
     atlas: {
