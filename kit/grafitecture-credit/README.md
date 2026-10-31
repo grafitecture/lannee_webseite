@@ -69,6 +69,7 @@ Stellschrauben (optional, auf einem Elternelement setzen):
 | --- | --- | --- | --- |
 | L’ANNÉE (lannee.de, später 1898.ma) | grafitecture/lannee_webseite | 1.2 | Modul + CSS aus diesem Ordner |
 | raumrent.de | grafitecture/raumrent | 1.2 | `snippet.de.html` in `impressum/` und `datenschutz/`, CSS als Abschnitt 14 in `assets/css/site.css` |
+| CORE e. V. (core-bewegung-kommunikation.de) | grafitecture/core-webseite | 1.2 | `snippet.de.html` in `impressum/` und `datenschutz/` (dort nach der mitlaufenden Zurück-Schaltfläche), CSS am Ende von `assets/css/site.css` |
 
 Bei einer neuen Version alle Websites in dieser Liste nachziehen.
 
