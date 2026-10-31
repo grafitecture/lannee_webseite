@@ -72,6 +72,7 @@ Stellschrauben (optional, auf einem Elternelement setzen):
 | CORE e. V. (core-bewegung-kommunikation.de) | grafitecture/core-webseite | 1.2 | `snippet.de.html` in `impressum/` und `datenschutz/` (dort nach der mitlaufenden Zurück-Schaltfläche), CSS am Ende von `assets/css/site.css` |
 | core-cc.com | grafitecture/core_cc | 1.2 | `snippet.de.html` in `impressum.html` und `datenschutz.html`, `snippet.en.html` in `en/legal-notice.html` und `en/privacy.html` (je am Ende von `.legal__body`), CSS am Ende von `assets/css/style.css`; Kit-Kopie in `kit/grafitecture-credit/` |
 | San Remo (www.sanremo.ma) | grafitecture/sanremowebseite (Spiegel: grafitecture/sanremo) | 1.2 | Modul + CSS aus `kit/grafitecture-credit/`: `tools/build.mjs` ersetzt `<!--#gt-credit de\|en\|it-->` in `src/impressum.html` und `src/datenschutz.html` (je Sprachblock, Italienisch auf Englisch) und kopiert das CSS als letzten Block in `public/assets/css/main.css` |
+| Covendos Healthcare Group (covendos.ai) | grafitecture/covendos_ai_webseite | 1.2 | `snippet.de.html` / `snippet.en.html` in den Ansichten Impressum und Datenschutz von `index.html` und `en/index.html`, CSS am Ende von `css/site.css`, Kit in `kit/grafitecture-credit/` |
 
 Bei einer neuen Version alle Websites in dieser Liste nachziehen.
 
