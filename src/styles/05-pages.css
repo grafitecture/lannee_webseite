@@ -7,8 +7,8 @@
  * Ein Dach, drei Orte: Das Stimmungsbild füllt den ersten Bildschirm. Darauf steht
  * L’ANNÉE in Weiß mit „Austern & Bulles“, unten die drei Orte als Farbbänder
  * (Garage Evergreen, Kiosque Hunter Green, Marché Fern) – jedes ein Link mit Signet,
- * Name, Zusatz, Zeit und Ort. Beim Scrollen schrumpft das Logo in die Kopfzeile und
- * wird dabei von Weiß zu Palm Leaf (--morph-p aus main.js).
+ * Name, Zusatz, Zeit und Ort. Beim Scrollen schrumpft das weiße Logo in die grüne
+ * Kopfzeile.
  */
 
 .hero {
@@ -51,7 +51,6 @@
   width: min(100%, max(18rem, (100svh - 30rem) * 2.749));
   aspect-ratio: var(--logo-ratio, auto);
   color: var(--blanc);
-  color: color-mix(in srgb, var(--brand) calc(var(--morph-p, 0) * 100%), var(--blanc));
 }
 /* Übergang: Das Logo schrumpft beim Scrollen an die Stelle des kleinen Logos */
 .logo-morph .hero__logo {

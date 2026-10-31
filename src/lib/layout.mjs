@@ -44,7 +44,7 @@ function head(ctx) {
 ${page.noindex ? html`<meta name="robots" content="noindex, nofollow">` : ''}
 <link rel="canonical" href="${canonical}">
 ${alternates}
-<meta name="theme-color" content="${tokenHex('blanc')}">
+<meta name="theme-color" content="${tokenHex('ink')}">
 <meta name="color-scheme" content="light">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="L’ANNÉE">

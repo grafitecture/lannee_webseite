@@ -392,8 +392,6 @@ function initLogoMorph() {
     const shrink = 1 - (1 - p) ** 2;
     const move = p * p * (3 - 2 * p);
     logo.style.transform = `translate(${geo.dx * move}px, ${geo.dy * move}px) scale(${1 + (geo.scale - 1) * shrink})`;
-    // Auf dem Bild weiß, in der Kopfzeile Palm Leaf
-    mark.style.setProperty('--morph-p', move.toFixed(3));
     dock(p >= 1);
   };
 

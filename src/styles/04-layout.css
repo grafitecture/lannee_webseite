@@ -5,29 +5,13 @@
 
 /* Kopfzeile ------------------------------------------------------------------ */
 
+/* Grüne Kopfzeile (Evergreen) mit weißem Logo und weißer Schrift */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 40;
-  background: var(--blanc);
-  border-bottom: 1px solid transparent;
-}
-@supports (animation-timeline: scroll()) {
-  .site-header {
-    animation: header-line linear both;
-    animation-timeline: scroll(root);
-    animation-range: 0 140px;
-  }
-  @keyframes header-line {
-    to {
-      border-bottom-color: var(--line);
-    }
-  }
-}
-@supports not (animation-timeline: scroll()) {
-  .site-header {
-    border-bottom-color: var(--line);
-  }
+  background: var(--ink);
+  color: var(--blanc);
 }
 
 .site-header__inner {
@@ -40,7 +24,7 @@
 .site-header__brand {
   display: block;
   margin-right: auto;
-  color: var(--brand);
+  color: var(--blanc);
   padding-block: 0.5rem;
 }
 .site-header__logo {
@@ -79,17 +63,16 @@
   border-bottom: 2px solid transparent;
   transition: color 0.2s, border-color 0.2s;
 }
-.nav__link:hover {
-  color: var(--marche);
+.nav__link {
+  color: var(--blanc);
 }
-.nav__link--garage:hover { color: var(--garage); }
-.nav__link--kiosque:hover { color: var(--kiosque); }
+.nav__link:hover {
+  color: var(--lime);
+}
 .nav__link[aria-current='page'] {
+  color: var(--lime);
   border-bottom-color: currentColor;
 }
-.nav__link--garage[aria-current='page'] { color: var(--garage); }
-.nav__link--kiosque[aria-current='page'] { color: var(--kiosque); }
-.nav__link--marche[aria-current='page'] { color: var(--marche); }
 
 /* Sprachwahl */
 .lang ul {
@@ -131,7 +114,8 @@
   min-height: 2.75rem;
   padding: 0 1rem;
   border-radius: 999px;
-  border: 1.5px solid var(--ink);
+  border: 1.5px solid var(--blanc);
+  color: var(--blanc);
   font-size: 0.9375rem;
   font-weight: 600;
   text-decoration: none;
@@ -163,6 +147,7 @@
   inset: 0;
   z-index: 60;
   background: var(--blanc);
+  color: var(--ink);
   overflow-y: auto;
 }
 .drawer:target,
@@ -312,14 +297,17 @@
 .site-footer__legal {
   color: var(--blanc);
 }
-.site-footer .lang a {
+.site-footer .lang a,
+.lang--header a {
   color: var(--blanc);
 }
-.site-footer .lang a:hover {
+.site-footer .lang a:hover,
+.lang--header a:hover {
   background: rgb(255 255 255 / 0.08);
   color: var(--blanc);
 }
-.site-footer .lang a[aria-current='true'] {
+.site-footer .lang a[aria-current='true'],
+.lang--header a[aria-current='true'] {
   background: var(--blanc);
   color: var(--ink);
 }
