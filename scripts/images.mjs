@@ -58,8 +58,6 @@ const SOURCES = {
   'baguettes': { file: 'baguettes.jpg' },
   // Früheres Startbild: KI-Komposition (Higgsfield AI, Nano Banana 2.1) – derzeit nicht eingebunden
   'hero-austern-hof': { file: 'hero-austern-hof.jpg' },
-  // Startbild seit 31.10.2026: historisches Schwarzweißfoto einer Austernbar (nur 757 px breit)
-  'hero-austernbar-historisch': { file: 'hero-austernbar-historisch.jpg' },
 };
 
 const toHex = (r, g, b) => '#' + [r, g, b].map((v) => v.toString(16).padStart(2, '0')).join('');

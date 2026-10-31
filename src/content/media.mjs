@@ -50,13 +50,6 @@ export const MEDIA = {
       en: 'Wine bottles in an ice bucket',
     },
   },
-  'hero-austernbar-historisch': {
-    alt: {
-      de: 'Historisches Schwarzweißfoto: Männer mit Schiebermützen und Hüten öffnen und essen Austern an einem einfachen Holztresen vor einem Sprossenfenster',
-      fr: 'Photo historique en noir et blanc : des hommes en casquettes et chapeaux ouvrent et mangent des huîtres autour d’un comptoir en bois, devant une fenêtre à petits carreaux',
-      en: 'Historic black-and-white photo: men in flat caps and hats opening and eating oysters at a simple wooden counter in front of a paned window',
-    },
-  },
   'hero-austern-hof': {
     alt: {
       de: 'Austern auf Eis mit Zitronen und zwei Coupes Champagner auf einem Holztisch, dahinter im berankten Hof der Schriftzug L’ANNÉE und die Neonschrift „1898“',

@@ -77,7 +77,6 @@ Suchmaschinen: Nur `1898.ma` wird indexiert. Alle anderen Adressen (Vorschau-URL
 - [ ] Adresse Kiosque (PDF: Lindenhofplatz 1) bestätigen
 - [ ] Ort des Wochenmarkts Lindenhof für den Kartenlink bestätigen
 - [ ] Bedeutung von „1898“ – könnte eine eigene Geschichte werden
-- [ ] Startbild (historisches Foto der Austernbar): Quelle und Bildrechte klären, Bildnachweis im Impressum ergänzen; besser eine höher aufgelöste Fassung (derzeit 757 px breit)
 
 ## Technik
 

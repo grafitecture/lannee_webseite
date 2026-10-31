@@ -182,6 +182,17 @@ function initPlan() {
       }
     });
 
+    // Hero: Band des Ortes, der gerade geöffnet hat oder als Nächstes öffnet, markieren
+    document.querySelectorAll('[data-place-live]').forEach((node) => {
+      const mine = (status.state === 'open' || status.state === 'next') && status.slot.loc === node.dataset.placeLive;
+      node.classList.toggle('is-open', mine && status.state === 'open');
+      node.classList.toggle('is-next', mine && status.state === 'next');
+      const badge = node.querySelector('.hero-place__badge');
+      if (!badge) return;
+      badge.hidden = !mine;
+      badge.textContent = mine ? (status.state === 'open' ? strings.open : strings.next) : '';
+    });
+
     // Live-Anzeige im Hero
     if (live) {
       live.hidden = false;
@@ -381,6 +392,8 @@ function initLogoMorph() {
     const shrink = 1 - (1 - p) ** 2;
     const move = p * p * (3 - 2 * p);
     logo.style.transform = `translate(${geo.dx * move}px, ${geo.dy * move}px) scale(${1 + (geo.scale - 1) * shrink})`;
+    // Auf dem Bild weiß, in der Kopfzeile Palm Leaf
+    mark.style.setProperty('--morph-p', move.toFixed(3));
     dock(p >= 1);
   };
 
