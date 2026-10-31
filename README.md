@@ -27,6 +27,7 @@ Voraussetzung: Node.js ab Version 20. Der Build hat **keine npm-Abhängigkeiten*
 | Jahreskalender | `src/content/year.mjs` |
 | Austernatlas (eigene Seite) | Texte: `src/content/oysters.mjs`, Zeichnungen: `src/lib/oyster-art.mjs` |
 | Impressum & Datenschutz | `src/content/legal.mjs` (Daten aus `site.mjs`) |
+| Grafitecture-Feld ganz unten in Impressum & Datenschutz | `kit/grafitecture-credit/` (wiederverwendbar für alle Grafitecture-Websites, siehe README dort) |
 | Bildtexte (alt) | `src/content/media.mjs` |
 | Farben, Typo-Skala, Breakpoints | `src/content/tokens.mjs` |
 

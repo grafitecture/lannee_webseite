@@ -1,6 +1,8 @@
-import { html, rich } from '../lib/html.mjs';
+import { html, raw, rich } from '../lib/html.mjs';
 import { DICT } from '../lib/i18n.mjs';
 import { impressum, datenschutz } from '../content/legal.mjs';
+// Grafitecture-Feld: immer ganz unten in Impressum und Datenschutz (Kit in kit/grafitecture-credit/)
+import { grafitectureCredit } from '../../kit/grafitecture-credit/grafitecture-credit.mjs';
 
 function blocks(list, locale) {
   return list.map((b) => {
@@ -24,6 +26,6 @@ export function render(ctx) {
 <section class="page-hero page-hero--legal" aria-labelledby="legal-title">
   <h1 class="page-hero__title page-hero__title--legal" id="legal-title">${p.h1}</h1>
 </section>
-<article class="legal">${blocks(content, locale)}</article>
+<article class="legal">${blocks(content, locale)}${raw(grafitectureCredit(locale))}</article>
 `;
 }

@@ -1533,6 +1533,10 @@
 .legal__lines {
   margin-top: 0.5em;
 }
+/* Grafitecture-Feld ganz unten (Kit: kit/grafitecture-credit/) */
+.legal {
+  --gt-credit-space: var(--space-xl);
+}
 
 /* 404 -------------------------------------------------------------------------- */
 
