@@ -129,6 +129,40 @@
 .theme-ink .signet--kiosque { color: var(--lime); --signet-pivot: var(--ink); }
 .theme-ink .signet--marche { color: var(--lime); --signet-pivot: var(--ink); }
 
+/* Bildmarke: Logo + „Austern & Bulles“ ------------------------------------- */
+/*
+ * Der Slogan steht gesperrt unter dem Logo und läuft über die volle Logobreite.
+ * Alles in cqi (Breite der Bildmarke), damit er mit dem Logo skaliert:
+ *   „AUSTERN & BULLES“ in Instrument Sans 75 %, 600, Sperrung 0,34 em
+ *   = 6,6014 em Zeichen + 15 × 0,34 em = 11,7014 em → Schriftgröße 100 cqi / 11,7014
+ *   (die Sperrung nach dem letzten Buchstaben fängt margin-right ab).
+ * Höhe gesamt: Logo 30,2 cqi + Abstand 2,4 cqi + Zeile 8,546 cqi.
+ * Weiß auf Grün: Die Bildmarke steht immer auf einer grünen Fläche.
+ */
+.mark {
+  display: block;
+  container-type: inline-size;
+  color: var(--blanc);
+}
+.mark__logo,
+.mark__logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.mark__tagline {
+  display: block;
+  margin: 2.4cqi -0.34em 0 0;
+  font-family: var(--font-text);
+  font-stretch: 75%;
+  font-weight: 600;
+  font-size: calc(100cqi / 11.7014);
+  line-height: 1;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
 /* Lockup: L'ANNÉE + Zweizeiler (NAME, Linie, Austern & Bulles) -------------- */
 /*
  * Die Buchstaben des Logos sind genau so hoch wie der Zweizeiler: von der
@@ -138,23 +172,30 @@
  *   Fraunces Italic: Grundlinie 0,1385 em über der Zeilenunterkante
  * Zweizeiler = 1 em + 0,38 em + 1,5 px + 0,42 em + 1,12 em
  * Buchstabenhöhe (--lk-cap) = Zweizeiler − 0,14 em − 0,155 em
- * Logo: Buchstaben 397 von 482 Einheiten, Akzente ragen 82,5 Einheiten darüber.
+ * Logo (Holzbuchstaben, 1563 × 472 px): Versalhöhe 409 px (y 57–466), die Akzente ragen
+ * 57 px darüber, unten 6 px Schatten. Bildhöhe = 472 / 409 = 1,1540 × Buchstabenhöhe,
+ * Oberkante der Buchstaben 57 / 409 = 0,1394 × Buchstabenhöhe unter der Bildkante.
  */
 .lockup {
   --lk-cap: calc(2.625em + 1.5px);
   display: inline-flex;
   align-items: flex-start;
   gap: 0.8em;
-  padding-top: calc(var(--lk-cap) * 0.2078 - 0.14em);
+  padding-top: calc(var(--lk-cap) * 0.1394 - 0.14em);
   font-size: 1em;
   color: var(--ink);
 }
 .lockup__logo {
+  display: block;
   flex: none;
-  width: auto;
-  height: calc(var(--lk-cap) * 1.2141);
-  margin-top: calc(0.14em - var(--lk-cap) * 0.2078);
-  color: var(--brand);
+  height: calc(var(--lk-cap) * 1.154);
+  aspect-ratio: 1563 / 472;
+  margin-top: calc(0.14em - var(--lk-cap) * 0.1394);
+}
+.lockup__logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 .lockup__words {
   display: grid;
@@ -187,9 +228,6 @@
 .theme-marche .lockup {
   color: var(--fg);
 }
-.theme-garage .lockup__logo,
-.theme-kiosque .lockup__logo,
-.theme-marche .lockup__logo,
 .theme-garage .lockup__name,
 .theme-kiosque .lockup__name,
 .theme-marche .lockup__name {
@@ -344,66 +382,6 @@
   background: linear-gradient(90deg, var(--garage) 0 34%, transparent 34% 66%, var(--garage) 66%);
 }
 
-/* Jahresuhr ----------------------------------------------------------------- */
-
-.yr {
-  position: relative;
-  width: min(100%, 80vh, 44rem);
-  margin-inline: auto;
-}
-.yr__svg {
-  width: 100%;
-  height: auto;
-  overflow: visible;
-}
-.yr__ring {
-  fill: none;
-  stroke: var(--line-strong);
-  stroke-width: 2;
-}
-.yr__rband {
-  fill: none;
-  stroke: var(--lime);
-  stroke-width: 118;
-}
-.yr__tick {
-  stroke: var(--ink);
-  stroke-opacity: 0.35;
-  stroke-width: 2;
-}
-.yr__icon {
-  color: var(--muted);
-}
-.yr__icon--r {
-  color: var(--kiosque);
-}
-.yr__icon.is-now {
-  color: var(--garage);
-}
-.yr__label {
-  font-family: var(--font-text);
-  font-size: 27px;
-  font-weight: 500;
-  fill: var(--muted);
-}
-.yr__label.is-now {
-  fill: var(--ink);
-  font-weight: 700;
-}
-.yr__hand {
-  transform-box: view-box;
-  transform-origin: 0 0;
-  transition: transform 1.6s var(--ease-out);
-}
-.yr__hand path {
-  fill: var(--garage);
-}
-.yr__pivot {
-  fill: var(--blanc);
-  stroke: var(--garage);
-  stroke-width: 6;
-}
-
 /* Karte: Gerichte ---------------------------------------------------------- */
 
 .dishes {
@@ -532,21 +510,8 @@
   gap: 0.6em 1.6em;
 }
 
-.yr__hand[hidden] {
-  display: none;
-}
 .dish__price-unit {
   font-size: 0.75rem;
   color: var(--muted);
   white-space: nowrap;
-}
-
-/* Jahresuhr auf schmalen Bildschirmen: Schrift lesbar */
-.yr {
-  container-type: inline-size;
-}
-@container (max-width: 29.99rem) {
-  .yr__label {
-    font-size: 44px;
-  }
 }

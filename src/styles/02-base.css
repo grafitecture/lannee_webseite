@@ -8,7 +8,7 @@
   --phi: 1.618;
   --line: color-mix(in srgb, var(--palm) 50%, transparent);
   --line-strong: var(--palm);
-  --header-h: 4.5rem;
+  --header-h: 5.75rem; /* Bildmarke mit Slogan, siehe .site-header__mark */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.7, 0, 0.2, 1);
   --loc: var(--marche);

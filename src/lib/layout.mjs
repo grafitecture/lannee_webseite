@@ -4,10 +4,10 @@
 import { html, raw, esc, plain, typo } from './html.mjs';
 import { DICT, LOCALES, ROUTES, url, pick, fill, formatTime } from './i18n.mjs';
 import { SITE, LOCATIONS, LOCATION_ORDER, SCHEDULE } from '../content/site.mjs';
-import { logo, signet, icon, arrowLink, upcomingClosures } from './components.mjs';
+import { brandmark, signet, icon, arrowLink, upcomingClosures } from './components.mjs';
 import { tokenHex } from '../content/tokens.mjs';
 
-const NAV = ['garage', 'kiosque', 'marche', 'carte', 'annee', 'atlas', 'contact'];
+const NAV = ['garage', 'kiosque', 'marche', 'carte', 'atlas', 'contact'];
 
 /** Öffnungszeit-Text eines Ortes, z. B. „Freitag & Samstag ab 18 Uhr“ */
 export function whenText(key, locale) {
@@ -44,7 +44,7 @@ function head(ctx) {
 ${page.noindex ? html`<meta name="robots" content="noindex, nofollow">` : ''}
 <link rel="canonical" href="${canonical}">
 ${alternates}
-<meta name="theme-color" content="${tokenHex('blanc')}">
+<meta name="theme-color" content="${tokenHex('ink')}">
 <meta name="color-scheme" content="light">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="L’ANNÉE">
@@ -57,14 +57,14 @@ ${alternates}
 <meta property="og:locale" content="${t.ogLocale}">
 ${LOCALES.filter((l) => l !== locale).map((l) => html`<meta property="og:locale:alternate" content="${DICT[l].ogLocale}">`)}
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/icon-192.png" sizes="192x192" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${assets.css}">
-${page.key === 'home' ? raw('<noscript><style>.page--home .site-header__logo{opacity:1}</style></noscript>') : ''}
+${page.key === 'home' ? raw('<noscript><style>.page--home .site-header__mark{opacity:1}</style></noscript>') : ''}
 <script type="module" src="${assets.js}"></script>
 ${jsonLd(ctx)}
 </head>`;
@@ -77,13 +77,16 @@ function header(ctx) {
   const t = DICT[locale].ui;
   const links = NAV.map((key) => {
     const current = page.key === key ? raw(' aria-current="page"') : '';
-    const mark = LOCATIONS[key] ? signet(key, { cls: 'nav__signet' }) : '';
-    return html`<li><a class="nav__link nav__link--${key}" href="${url(key, locale)}"${current}>${mark}<span>${t.nav[key]}</span></a></li>`;
+    return html`<li><a class="nav__link nav__link--${key}" href="${url(key, locale)}"${current}><span>${t.nav[key]}</span></a></li>`;
   });
   return html`<header class="site-header">
   <a class="skip-link" href="#inhalt">${t.skip}</a>
   <div class="site-header__inner">
-    <a class="site-header__brand" href="${url('home', locale)}" aria-label="L’ANNÉE – ${t.home}">${logo({ cls: 'site-header__logo', decorative: true })}</a>
+    <a class="site-header__brand" href="${url('home', locale)}" aria-label="L’ANNÉE – ${t.home}">${brandmark({
+      cls: 'site-header__mark',
+      sizes: '(min-width: 1536px) 12rem, (min-width: 1024px) 11rem, 10rem',
+      eager: true,
+    })}</a>
     <nav class="nav" aria-label="${t.mainNav}"><ul class="nav__list">${links}</ul></nav>
     ${langSwitch(ctx, 'lang--header')}
     <a class="menu-toggle" href="#menu" aria-controls="menu" aria-expanded="false" data-menu-toggle><span class="menu-toggle__label">${t.menu}</span><span class="menu-toggle__bars" aria-hidden="true"></span></a>
@@ -95,7 +98,7 @@ function header(ctx) {
         (key) =>
           html`<li><a class="drawer__link drawer__link--${key}" href="${url(key, locale)}"${
             page.key === key ? raw(' aria-current="page"') : ''
-          }>${LOCATIONS[key] ? signet(key, { cls: 'drawer__signet' }) : ''}<span>${t.nav[key]}</span></a></li>`
+          }><span>${t.nav[key]}</span></a></li>`
       )}</ul>
       ${langSwitch(ctx, 'lang--menu')}
     </div>
@@ -132,9 +135,8 @@ function footer(ctx) {
   });
   return html`<footer class="site-footer">
   ${ctx.page.compactFooter ? '' : html`<div class="site-footer__places">${places}</div>`}
-  <a class="site-footer__mark" href="${url('home', locale)}" aria-label="L’ANNÉE – ${t.ui.home}">${logo({ cls: 'site-footer__logo', decorative: true })}</a>
+  <a class="site-footer__brand" href="${url('home', locale)}" aria-label="L’ANNÉE – ${t.ui.home}">${brandmark({ cls: 'site-footer__mark', sizes: '100vw' })}</a>
   <div class="site-footer__bottom">
-    <p class="site-footer__tagline">${t.ui.footer.tagline}</p>
     <ul class="site-footer__links">
       <li><a href="${url('impressum', locale)}">${t.ui.footer.impressum}</a></li>
       <li><a href="${url('datenschutz', locale)}">${t.ui.footer.datenschutz}</a></li>

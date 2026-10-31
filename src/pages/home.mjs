@@ -1,9 +1,7 @@
 import { html, raw, rich } from '../lib/html.mjs';
 import { DICT, url } from '../lib/i18n.mjs';
 import { LOCATIONS, LOCATION_ORDER, SITE } from '../content/site.mjs';
-import { logo, lockup, picture, weekPlan, arrowLink, icon, closureNotes, LOGO_VIEWBOX } from '../lib/components.mjs';
-
-const [, , LOGO_W, LOGO_H] = LOGO_VIEWBOX.split(/\s+/);
+import { brandmark, lockup, picture, weekPlan, arrowLink, icon, closureNotes } from '../lib/components.mjs';
 import { menuExcerpt } from '../lib/menu-render.mjs';
 import { placeText } from '../lib/layout.mjs';
 
@@ -40,10 +38,11 @@ export function render(ctx) {
   return html`
 <section class="hero" aria-labelledby="hero-title">
   <h1 class="visually-hidden" id="hero-title">${rich(p.h1, locale)}</h1>
-  <div class="hero__mark" data-logo-morph style="--logo-ratio: ${LOGO_W} / ${LOGO_H}">${logo({ cls: 'hero__logo', decorative: true })}</div>
+  <div class="hero__stage">
+    <div class="hero__mark" data-logo-morph>${brandmark({ cls: 'hero__brand', sizes: '100vw', eager: true })}</div>
+  </div>
   <div class="hero__grid">
     <div class="hero__text">
-      <p class="hero__tagline">${SITE.tagline}</p>
       <p class="hero__lead">${rich(p.lead, locale)}</p>
       <p class="live" data-live hidden><span class="live__dot" aria-hidden="true"></span><span class="live__text"></span></p>
       <div class="hero__actions">
@@ -52,7 +51,7 @@ export function render(ctx) {
       </div>
     </div>
     <div class="hero__media">
-      ${picture('hero-austern-hof', locale, { sizes: '(min-width: 1024px) 60vw, 100vw', cls: 'hero__photo', eager: true })}
+      ${picture('hero-austernbar-historisch', locale, { sizes: '(min-width: 1024px) 60vw, 100vw', cls: 'hero__photo', eager: true })}
     </div>
   </div>
 </section>

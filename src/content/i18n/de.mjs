@@ -11,7 +11,7 @@ export default {
     close: 'Schließen',
     mainNav: 'Hauptnavigation',
     langNav: 'Sprache wählen',
-    nav: { garage: 'Garage', kiosque: 'Kiosque', marche: 'Marché', carte: 'Karte', annee: 'Das Jahr', atlas: 'Austernatlas', contact: 'Kontakt' },
+    nav: { garage: 'Garage', kiosque: 'Kiosque', marche: 'Marché', carte: 'Karte', atlas: 'Austernatlas', contact: 'Kontakt' },
     home: 'Startseite',
     days: ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'],
     daysShort: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
@@ -32,7 +32,6 @@ export default {
     closure: { one: '**{names} macht Pause:** {when}', many: '**{names} machen Pause:** {when}' },
     facts: { when: 'Wann', where: 'Wo', mail: 'Post', more: 'Außerdem' },
     footer: {
-      tagline: 'Austern & Bulles in Mannheim',
       legal: 'Rechtliches',
       impressum: 'Impressum',
       datenschutz: 'Datenschutz',
@@ -184,48 +183,6 @@ export default {
         'Informationen zu Allergenen und Zusatzstoffen bekommst du bei unserem Team.',
         'Austern werden roh serviert. Schwangeren und Menschen mit geschwächtem Immunsystem raten wir davon ab.',
       ],
-    },
-
-    annee: {
-      title: 'Das Jahr – der Austernkalender von L’ANNÉE',
-      description:
-        'L’ANNÉE heißt „das Jahr“. Zwölf Monate rund um Austern, Wein und Frankreich: die Regel mit dem R, Austerngrößen und wie man eine Auster richtig isst.',
-      h1: 'Das Jahr',
-      lead: 'L’ANNÉE heißt „das Jahr“. Und Austern haben einen Kalender.',
-      ringLabel: 'Jahresuhr: Die hervorgehobenen Monate enthalten ein R, der Zeiger steht auf dem aktuellen Monat.',
-      rMonth: 'Monat mit R',
-      now: 'Jetzt',
-      rule: {
-        heading: 'Die Regel mit dem R',
-        body: [
-          'Früher hieß es: Austern nur in Monaten mit R, also von September bis April. Der Grund war weniger der Geschmack als der Sommer. Ohne Kühlung verdarben Austern auf dem Weg ins Landesinnere schnell, und im Sommer laichen sie.',
-          'Heute sind Austern gekühlt in wenigen Stunden vom Becken auf dem Tresen. Im Sommer schmecken sie oft milchiger und cremiger, die Franzosen sagen „laiteuses“. Feste, jodige Austern bleiben aber Wintersache.',
-        ],
-      },
-      calibres: {
-        heading: 'Je kleiner die Zahl, desto größer die Auster.',
-        body: 'Austern werden in Frankreich nach Gewicht sortiert. Nº 3 ist der Klassiker zum Aperitif, Nº 2 etwas für Hungrige.',
-        over: 'über {g} g',
-        range: '{a}–{b} g',
-      },
-      howto: {
-        heading: 'Eine Auster essen, in vier Schritten',
-        steps: [
-          { title: 'Ansehen', text: 'Eine frische Auster ist prall, glänzt und riecht nach Meer, nie nach Fisch.' },
-          { title: 'Das erste Wasser abgießen', text: 'Kipp das erste Wasser ab. Nach ein, zwei Minuten bildet die Auster neues, und das schmeckt runder.' },
-          { title: 'Lösen und würzen', text: 'Mit der kleinen Gabel den Muskel lösen. Ein Tropfen Zitrone oder Mignonette, oder einfach pur.' },
-          { title: 'Kauen', text: 'Nicht einfach schlucken: zwei-, dreimal kauen, dann kommen Salz, Nuss und Süße. Zum Schluss den Saft trinken.' },
-        ],
-      },
-      pairing: {
-        heading: 'Was ins Glas gehört',
-        items: [
-          { name: 'Muscadet', text: 'Salzig und schlank. Der Klassiker zur Fines de Claire.' },
-          { name: 'Chablis', text: 'Kreidig und mineralisch, für große, fleischige Austern.' },
-          { name: 'Picpoul de Pinet', text: 'Wächst direkt am Austernbecken von Thau.' },
-          { name: 'Crémant & Champagner', text: 'Die Bulles putzen den Gaumen für die nächste Auster.' },
-        ],
-      },
     },
 
     atlas: {

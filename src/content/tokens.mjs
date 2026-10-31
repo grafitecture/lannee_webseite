@@ -15,7 +15,7 @@ export const COLORS = [
   { token: 'evergreen', name: 'Evergreen', hex: '#132A13', oklch: 'oklch(25.9% 0.051 143.9)', role: 'Dunkelstes Grün, ersetzt Schwarz: Text, Fußzeile. Garage, der Abend', text: 'blanc' },
   { token: 'hunter', name: 'Hunter Green', hex: '#31572C', oklch: 'oklch(41.7% 0.081 141.5)', role: 'Kiosque, der Sonntag', text: 'blanc' },
   { token: 'fern', name: 'Fern', hex: '#4F772D', oklch: 'oklch(52.2% 0.113 132.9)', role: 'Marché, der Morgen. Auch Nebentext auf Weiß', text: 'blanc' },
-  { token: 'palm', name: 'Palm Leaf', hex: '#90A955', oklch: 'oklch(69.7% 0.114 123)', role: 'Logo, Linien, Zeichnungen (für Schrift zu hell)', text: 'evergreen' },
+  { token: 'palm', name: 'Palm Leaf', hex: '#90A955', oklch: 'oklch(69.7% 0.114 123)', role: 'Linien, Zeichnungen, Icons (für Schrift zu hell)', text: 'evergreen' },
   { token: 'lime', name: 'Lime Cream', hex: '#ECF39E', oklch: 'oklch(94% 0.107 112.3)', role: 'Akzent: Störer, Markierungen, Signets auf Dunkelgrün', text: 'evergreen' },
   { token: 'blanc', name: 'Weiß', hex: '#FFFFFF', oklch: 'oklch(100% 0 0)', role: 'Flächen und Schrift auf Grün', text: 'evergreen' },
 ];
@@ -26,7 +26,7 @@ export const ROLES = [
   { token: 'garage', ref: 'evergreen', role: 'Garage' },
   { token: 'kiosque', ref: 'hunter', role: 'Kiosque' },
   { token: 'marche', ref: 'fern', role: 'Marché' },
-  { token: 'brand', ref: 'palm', role: 'Logo' },
+  { token: 'brand', ref: 'palm', role: 'Markenakzent: Icons, Zeichnungen (das Logo selbst ist weiß)' },
   { token: 'muted', ref: 'fern', role: 'Nebentext auf Weiß' },
 ];
 

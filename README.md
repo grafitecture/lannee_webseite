@@ -24,7 +24,6 @@ Voraussetzung: Node.js ab Version 20. Der Build hat **keine npm-Abhängigkeiten*
 | Zusätzliche Marché-Termine | `src/content/site.mjs` → `MARCHE_DATES` |
 | Speisekarte (alle Sprachen) | `src/content/menu.mjs` |
 | Texte der Seiten | `src/content/i18n/de.mjs`, `fr.mjs`, `en.mjs` |
-| Jahreskalender | `src/content/year.mjs` |
 | Austernatlas (eigene Seite) | Texte: `src/content/oysters.mjs`, Zeichnungen: `src/lib/oyster-art.mjs` |
 | Impressum & Datenschutz | `src/content/legal.mjs` (Daten aus `site.mjs`) |
 | Grafitecture-Feld ganz unten in Impressum & Datenschutz | `kit/grafitecture-credit/` (wiederverwendbar für alle Grafitecture-Websites, siehe README dort) |
@@ -56,7 +55,9 @@ npm run images
 Neues Bild: Datei in `assets-src/` legen, in `scripts/images.mjs` (`SOURCES`) und `src/content/media.mjs` (Alt-Text) eintragen.
 Nur einzelne Bilder neu erzeugen: `npm run images -- name1 name2` (Namen wie in `SOURCES`).
 
-Favicons und Open-Graph-Bilder: `npm install --no-save sharp playwright && npm run brand-assets`.
+Logo: Das Holz-Logo (`assets-src/logo-lannee-holz.png`, freigestellt) läuft ebenfalls durch `npm run images -- logo-lannee`; dabei wird es auf die Buchstaben zugeschnitten und voll deckend gemacht.
+
+Favicons (das É aus dem Logo auf Evergreen) und Open-Graph-Bilder: `npm install --no-save sharp playwright && npm run brand-assets` (nach `npm run images -- logo-lannee`).
 
 ## Deployment: GitHub → Vercel
 
@@ -77,6 +78,8 @@ Suchmaschinen: Nur `1898.ma` wird indexiert. Alle anderen Adressen (Vorschau-URL
 - [ ] Adresse Kiosque (PDF: Lindenhofplatz 1) bestätigen
 - [ ] Ort des Wochenmarkts Lindenhof für den Kartenlink bestätigen
 - [ ] Bedeutung von „1898“ – könnte eine eigene Geschichte werden
+- [ ] Startbild (historisches Foto der Austernbar): Quelle und Bildrechte klären, Bildnachweis im Impressum ergänzen; besser eine höher aufgelöste Fassung (derzeit 757 px breit)
+- [ ] Logo in höherer Auflösung (derzeit 1563 px breit; für scharfe Darstellung im Hero auf Retina ca. 3000 px)
 
 ## Technik
 

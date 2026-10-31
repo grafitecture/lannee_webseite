@@ -46,6 +46,12 @@
     { "source": "/legal_notice", "destination": "/impressum/", "permanent": true },
     { "source": "/legal_notice/", "destination": "/impressum/", "permanent": true },
     { "source": "/mentions-legales", "destination": "/datenschutz/", "permanent": true },
-    { "source": "/mentions-legales/", "destination": "/datenschutz/", "permanent": true }
+    { "source": "/mentions-legales/", "destination": "/datenschutz/", "permanent": true },
+    { "source": "/das-jahr", "destination": "/", "permanent": false },
+    { "source": "/das-jahr/", "destination": "/", "permanent": false },
+    { "source": "/fr/l-annee", "destination": "/fr/", "permanent": false },
+    { "source": "/fr/l-annee/", "destination": "/fr/", "permanent": false },
+    { "source": "/en/the-year", "destination": "/en/", "permanent": false },
+    { "source": "/en/the-year/", "destination": "/en/", "permanent": false }
   ]
 }

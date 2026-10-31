@@ -207,37 +207,6 @@ function el(tag, cls, text) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Jahresuhr & aktueller Monat                                         */
-/* ------------------------------------------------------------------ */
-
-function initYear() {
-  const now = berlinNow();
-  const rings = document.querySelectorAll('[data-year-ring]');
-  rings.forEach((ring) => {
-    const hand = ring.querySelector('.yr__hand');
-    const daysInMonth = new Date(now.year, now.month, 0).getDate();
-    const angle = (now.month - 1 + (now.day - 0.5) / daysInMonth) * 30;
-    ring.querySelectorAll(`[data-month="${now.month}"]`).forEach((n) => n.classList.add('is-now'));
-    if (!hand) return;
-    hand.removeAttribute('hidden');
-    const go = () => (hand.style.transform = `rotate(${angle}deg)`);
-    if (reduceMotion || !('IntersectionObserver' in window)) return go();
-    hand.style.transform = 'rotate(0deg)';
-    const io = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting)) {
-        io.disconnect();
-        requestAnimationFrame(go);
-      }
-    }, { threshold: 0.3 });
-    io.observe(ring);
-  });
-
-  document.querySelectorAll('.months [data-month]').forEach((li) => {
-    li.classList.toggle('is-now', Number(li.dataset.month) === now.month);
-  });
-}
-
-/* ------------------------------------------------------------------ */
 /* Kartenfilter                                                        */
 /* ------------------------------------------------------------------ */
 
@@ -338,18 +307,19 @@ function initExpiry() {
 }
 
 /* ------------------------------------------------------------------ */
-/* Startseite: großes Logo wird beim Scrollen zum kleinen Logo         */
+/* Startseite: große Bildmarke wird beim Scrollen zur kleinen          */
+/* (Logo + „Austern & Bulles“ schrumpfen gemeinsam in die Kopfzeile)   */
 /* ------------------------------------------------------------------ */
 
 function initLogoMorph() {
   const mark = document.querySelector('[data-logo-morph]');
-  const target = document.querySelector('.site-header__logo');
-  const logo = mark?.querySelector('svg');
-  if (!mark || !target || !logo) return;
+  const target = document.querySelector('.site-header__mark');
+  const brand = mark?.querySelector('.mark');
+  if (!mark || !target || !brand) return;
   const body = document.body;
   const dock = (docked) => body.classList.toggle('logo-docked', docked);
 
-  // Reduzierte Bewegung: kein Schrumpfen, das kleine Logo erscheint, sobald das große aus dem Blick ist
+  // Reduzierte Bewegung: kein Schrumpfen, die kleine Bildmarke erscheint, sobald die große aus dem Blick ist
   if (reduceMotion || !('IntersectionObserver' in window)) {
     if (!('IntersectionObserver' in window)) return dock(true);
     const headerHeight = document.querySelector('.site-header')?.offsetHeight ?? 0;
@@ -359,10 +329,16 @@ function initLogoMorph() {
     return;
   }
 
+  // Seitenverhältnis der Bildmarke (Logo + Slogan skalieren gemeinsam), solange sie noch im Fluss steht
+  const first = brand.getBoundingClientRect();
+  const ratio = first.height / first.width;
+
   let geo;
   const measure = () => {
+    const width = mark.getBoundingClientRect().width;
+    mark.style.height = `${width * ratio}px`; // Platzhalter hält die Höhe, während die Bildmarke fixiert ist
     const from = mark.getBoundingClientRect(); // Platzhalter im Fluss
-    const to = target.getBoundingClientRect(); // kleines Logo in der Kopfzeile (sticky)
+    const to = target.getBoundingClientRect(); // kleine Bildmarke in der Kopfzeile (sticky)
     const top = from.top + window.scrollY;
     geo = {
       dx: to.left - from.left,
@@ -376,11 +352,11 @@ function initLogoMorph() {
   };
   const update = () => {
     const p = Math.min(Math.max(window.scrollY / geo.distance, 0), 1);
-    // Erst schrumpfen, dann hochgleiten: So ist das Logo schon klein, wenn es die Navigation erreicht,
+    // Erst schrumpfen, dann hochgleiten: So ist die Bildmarke schon klein, wenn sie die Navigation erreicht,
     // und kommt ohne Ruck in der Kopfzeile an.
     const shrink = 1 - (1 - p) ** 2;
     const move = p * p * (3 - 2 * p);
-    logo.style.transform = `translate(${geo.dx * move}px, ${geo.dy * move}px) scale(${1 + (geo.scale - 1) * shrink})`;
+    brand.style.transform = `translate(${geo.dx * move}px, ${geo.dy * move}px) scale(${1 + (geo.scale - 1) * shrink})`;
     dock(p >= 1);
   };
 
@@ -399,5 +375,4 @@ initLogoMorph();
 initExpiry();
 initMenu();
 initPlan();
-initYear();
 initMenuFilter();

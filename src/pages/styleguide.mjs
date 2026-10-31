@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { html, raw } from '../lib/html.mjs';
 import { LOCATIONS, LOCATION_ORDER } from '../content/site.mjs';
 import { COLORS, ROLES, TYPE_SCALE, SPACE, BREAKPOINTS, clampRem, tokenHex } from '../content/tokens.mjs';
-import { logo, signet, lockup, icon } from '../lib/components.mjs';
+import { logo, brandmark, signet, lockup, icon } from '../lib/components.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const ICON_NAMES = fs
@@ -42,7 +42,7 @@ export function render() {
   <h2 class="t-h4" id="sg-brand">Dachmarke und Subbrands</h2>
   <div class="sg__cols">
     <div>
-      <p class="lead">Der Akzent aus dem É von L’ANNÉE wird zum Uhrzeiger. Jedes Signet zeigt auf die Stunde, zu der der Ort öffnet. Die Farben sind nur Grün, ihre Helligkeit folgt dem Tageslicht: Fern am Morgen, Hunter Green am Sonntag, Evergreen am Abend.</p>
+      <p class="lead">Der Akzent aus dem É des ersten L’ANNÉE-Logos wird zum Uhrzeiger. Jedes Signet zeigt auf die Stunde, zu der der Ort öffnet. Die Farben sind nur Grün, ihre Helligkeit folgt dem Tageslicht: Fern am Morgen, Hunter Green am Sonntag, Evergreen am Abend.</p>
       <ul class="sg__rules">
         <li><strong>Marché</strong>: Zeiger auf 8 Uhr, Fern</li>
         <li><strong>Kiosque</strong>: Zeiger auf 10 Uhr, Hunter Green</li>
@@ -55,21 +55,21 @@ export function render() {
       ${LOCATION_ORDER.map((k) => signet(k, { cls: `sg__signet theme-${LOCATIONS[k].color}-text` }))}
     </div>
   </div>
-  <p class="sg__note">Lockup: Das L’ANNÉE-Logo steht so hoch wie der Zweizeiler aus Ortsname (mit Linie) und „Austern &amp; Bulles“. Auf den Farbflächen aller drei Orte ist die Schrift weiß. Die Signets bleiben als kleine Wegweiser in Navigation, Fahrplan und Fußzeile.</p>
+  <p class="sg__note">Lockup: Das L’ANNÉE-Logo steht so hoch wie der Zweizeiler aus Ortsname (mit Linie) und „Austern &amp; Bulles“. Das Logo ist weiß, der Lockup steht deshalb immer auf der Farbfläche des Ortes, auch die Schrift ist dort weiß. Die Signets bleiben als kleine Wegweiser in Fahrplan, Zitaten und Fußzeile (nicht in der Navigation).</p>
   <div class="sg__lockups">
-    ${LOCATION_ORDER.map((k) => html`<div class="sg__lockup">${lockup(k)}</div>`)}
+    ${LOCATION_ORDER.map((k) => html`<div class="sg__lockup theme-${LOCATIONS[k].color}">${lockup(k)}</div>`)}
   </div>
   <div class="sg__logos">
-    <div class="sg__logo sg__logo--white">${logo({ cls: 'sg__logo-svg', decorative: true })}</div>
-    <div class="sg__logo sg__logo--ink">${logo({ cls: 'sg__logo-svg', decorative: true })}</div>
-    <div class="sg__logo sg__logo--green">${logo({ cls: 'sg__logo-svg', decorative: true })}</div>
+    <div class="sg__logo theme-ink">${brandmark({ cls: 'sg__mark', sizes: '(min-width: 1024px) 28vw, 80vw' })}</div>
+    <div class="sg__logo theme-kiosque">${logo({ cls: 'sg__logo-img', decorative: true, sizes: '(min-width: 1024px) 28vw, 80vw' })}</div>
+    <div class="sg__logo theme-marche">${logo({ cls: 'sg__logo-img', decorative: true, sizes: '(min-width: 1024px) 28vw, 80vw' })}</div>
   </div>
-  <p class="sg__note">Schutzzone: mindestens die Höhe des Akzents rund um das Logo. Mindestbreite digital: 96 px.</p>
+  <p class="sg__note">Logo: weiße Holzbuchstaben, freigestellt. Weiß gehört auf Grün: Das Logo steht immer auf einer grünen Fläche (Kopfzeile, Startseite, Ortsflächen, Fußzeile). Bildmarke: Logo mit „Austern &amp; Bulles“ darunter, gesperrt über die volle Logobreite; sie skaliert als Ganzes. Schutzzone: mindestens die Höhe des Akzents rund um das Logo. Mindestbreite der Bildmarke digital: 160 px (Slogan ab 13 px).</p>
 </section>
 
 <section class="sg" aria-labelledby="sg-colors">
   <h2 class="t-h4" id="sg-colors">Farben</h2>
-  <p class="lead">Auf der Seite gibt es nur Grün: fünf Töne und Weiß. Entweder grüne Fläche mit weißer Schrift oder weiße Fläche mit grüner Schrift. Nichts ist schwarz oder grau; wo sonst Schwarz stünde, steht Evergreen. Palm Leaf ist für Schrift zu hell und trägt das Logo, Linien und Zeichnungen; Lime Cream setzt kleine Akzente (Störer, Markierungen).</p>
+  <p class="lead">Auf der Seite gibt es nur Grün: fünf Töne und Weiß. Entweder grüne Fläche mit weißer Schrift oder weiße Fläche mit grüner Schrift. Nichts ist schwarz oder grau; wo sonst Schwarz stünde, steht Evergreen. Palm Leaf ist für Schrift zu hell und trägt Linien, Icons und Zeichnungen; Lime Cream setzt kleine Akzente (Störer, Markierungen).</p>
   <ul class="swatches" role="list">${COLORS.map(
     (c) => html`<li class="swatch" style="--sw:${c.hex}">
       <span class="swatch__chip"></span>
