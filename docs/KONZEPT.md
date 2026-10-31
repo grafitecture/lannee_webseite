@@ -43,7 +43,7 @@ Sprachen: Deutsch (ohne Präfix), Französisch (`/fr/…`), Englisch (`/en/…`)
 
 Lockup jeder Subbrand = **L’ANNÉE-Logo + Zweizeiler (NAME, Linie, Austern & Bulles)**. Die Buchstaben des Logos sind genau so hoch wie der Zweizeiler: von der Versalhöhe des Namens bis zur Grundlinie von „Austern & Bulles“; die Akzente ragen darüber hinaus. Auf den Farbflächen ist die Schrift bei allen drei Orten weiß.
 
-Die Signets (Kreis mit dem Akzent als Zeiger auf die Öffnungsstunde) bleiben als kleine Wegweiser in Navigation, Zitaten und Fußzeile:
+Die Signets (Kreis mit dem Akzent als Zeiger auf die Öffnungsstunde) bleiben als kleine Wegweiser in Zitaten, Karte und Fußzeile, nicht in der Navigation (Vorgabe 31.10.2026):
 
 | Subbrand | Zeiger | Farbe |
 | --- | --- | --- |

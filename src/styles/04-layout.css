@@ -79,10 +79,6 @@
   border-bottom: 2px solid transparent;
   transition: color 0.2s, border-color 0.2s;
 }
-.nav__signet {
-  width: 1.05em;
-  height: 1.05em;
-}
 .nav__link:hover {
   color: var(--marche);
 }
@@ -211,10 +207,6 @@
 }
 .drawer__link[aria-current='page'] {
   font-style: italic;
-}
-.drawer__signet {
-  width: 0.62em;
-  height: 0.62em;
 }
 .menu-open {
   overflow: hidden;

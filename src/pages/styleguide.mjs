@@ -55,7 +55,7 @@ export function render() {
       ${LOCATION_ORDER.map((k) => signet(k, { cls: `sg__signet theme-${LOCATIONS[k].color}-text` }))}
     </div>
   </div>
-  <p class="sg__note">Lockup: Das L’ANNÉE-Logo steht so hoch wie der Zweizeiler aus Ortsname (mit Linie) und „Austern &amp; Bulles“. Auf den Farbflächen aller drei Orte ist die Schrift weiß. Die Signets bleiben als kleine Wegweiser in Navigation, Fahrplan und Fußzeile.</p>
+  <p class="sg__note">Lockup: Das L’ANNÉE-Logo steht so hoch wie der Zweizeiler aus Ortsname (mit Linie) und „Austern &amp; Bulles“. Auf den Farbflächen aller drei Orte ist die Schrift weiß. Die Signets bleiben als kleine Wegweiser in Fahrplan, Zitaten und Fußzeile, nicht in der Navigation.</p>
   <div class="sg__lockups">
     ${LOCATION_ORDER.map((k) => html`<div class="sg__lockup">${lockup(k)}</div>`)}
   </div>

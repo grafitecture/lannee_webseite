@@ -77,8 +77,7 @@ function header(ctx) {
   const t = DICT[locale].ui;
   const links = NAV.map((key) => {
     const current = page.key === key ? raw(' aria-current="page"') : '';
-    const mark = LOCATIONS[key] ? signet(key, { cls: 'nav__signet' }) : '';
-    return html`<li><a class="nav__link nav__link--${key}" href="${url(key, locale)}"${current}>${mark}<span>${t.nav[key]}</span></a></li>`;
+    return html`<li><a class="nav__link nav__link--${key}" href="${url(key, locale)}"${current}><span>${t.nav[key]}</span></a></li>`;
   });
   return html`<header class="site-header">
   <a class="skip-link" href="#inhalt">${t.skip}</a>
@@ -95,7 +94,7 @@ function header(ctx) {
         (key) =>
           html`<li><a class="drawer__link drawer__link--${key}" href="${url(key, locale)}"${
             page.key === key ? raw(' aria-current="page"') : ''
-          }>${LOCATIONS[key] ? signet(key, { cls: 'drawer__signet' }) : ''}<span>${t.nav[key]}</span></a></li>`
+          }><span>${t.nav[key]}</span></a></li>`
       )}</ul>
       ${langSwitch(ctx, 'lang--menu')}
     </div>
