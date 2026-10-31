@@ -1,5 +1,5 @@
 /*
- * Grafitecture-Feld · Kit v1 (31.10.2026)
+ * Grafitecture-Feld · Kit v1.1 (31.10.2026)
  * ------------------------------------------------------------------------
  * Ein Feld in Grafitecture-Lime #dafd55 mit Logo, Slogan „Marken mit KI.“ und
  * Link auf https://www.grafitecture.de/ (neues Fenster). Für jede Website, die
@@ -17,8 +17,9 @@
  * Kein Skript, kein Inline-Style, keine externen Requests (CSP `'self'` genügt).
  *
  * Stellschrauben (optional, auf .gt-credit oder einem Elternelement setzen):
- *   --gt-credit-font   Schrift          (Standard: geerbt)
- *   --gt-credit-space  Abstand nach oben (Standard: 4rem)
+ *   --gt-credit-font   Schrift            (Standard: geerbt)
+ *   --gt-credit-space  Abstand nach oben  (Standard: 4rem)
+ *   --gt-credit-max    größte Breite      (Standard: 36rem; v1.1, vorher volle Spaltenbreite)
  */
 
 .gt-credit {
@@ -29,7 +30,7 @@
   position: relative;
   display: block;
   box-sizing: border-box;
-  max-width: none;
+  max-width: var(--gt-credit-max, 36rem);
   margin: var(--gt-credit-space, 4rem) 0 0;
   padding: 0;
   border: 0;

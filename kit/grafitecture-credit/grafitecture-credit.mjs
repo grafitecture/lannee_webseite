@@ -1,5 +1,5 @@
 /**
- * Grafitecture-Feld · Kit v1 (31.10.2026)
+ * Grafitecture-Feld · Kit v1.1 (31.10.2026)
  * ------------------------------------------------------------------------
  * grafitectureCredit(lang) liefert das HTML des Feldes als String.
  * Dazu gehört grafitecture-credit.css (Farben, Abstände, Hover).
