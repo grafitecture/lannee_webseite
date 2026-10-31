@@ -1,4 +1,4 @@
-# Grafitecture-Feld · Kit v1.1
+# Grafitecture-Feld · Kit v1.2
 
 Das Feld für jede Website, die **Grafitecture – Marken mit KI.** entworfen hat, technisch betreut und weiterentwickelt. Es steht **immer ganz unten in Impressum und Datenschutz** und verlinkt auf **https://www.grafitecture.de/** (mit www, immer in neuem Fenster).
 
@@ -37,13 +37,13 @@ Das Feld für jede Website, die **Grafitecture – Marken mit KI.** entworfen ha
 
    Ohne JavaScript-Build: den Inhalt von `snippet.de.html` (bzw. `en`, `fr`) an dieselbe Stelle kopieren.
 
-Das Feld ist höchstens 36rem (576 px) breit, in schmaleren Spalten nimmt es deren Breite an; Schriftgrößen und Abstände richten sich nach seiner eigenen Breite (Container-Einheiten). Es funktioniert auf weißen und auf dunklen Seiten.
+Das Feld ist höchstens 25.2rem (403 px) breit, in schmaleren Spalten nimmt es deren Breite an; Schriftgrößen und Abstände richten sich nach seiner eigenen Breite (Container-Einheiten). Es funktioniert auf weißen und auf dunklen Seiten.
 
 Stellschrauben (optional, auf einem Elternelement setzen):
 
 - `--gt-credit-space`: Abstand nach oben (Standard `4rem`)
 - `--gt-credit-font`: Schrift (Standard: die Textschrift der Website)
-- `--gt-credit-max`: größte Breite (Standard `36rem`)
+- `--gt-credit-max`: größte Breite (Standard `25.2rem`)
 
 ## Regeln
 
@@ -65,6 +65,7 @@ Stellschrauben (optional, auf einem Elternelement setzen):
 
 ## Versionen
 
+- v1.2 (31.10.2026): noch einmal 30 % kleiner, höchstens 25.2rem (403 px) breit; Schriften bleiben bei mindestens 13 px
 - v1.1 (31.10.2026): Feld insgesamt kleiner, höchstens 36rem breit (vorher volle Spaltenbreite, bei L’ANNÉE 768 px)
 - v1 (31.10.2026): erste Fassung
 

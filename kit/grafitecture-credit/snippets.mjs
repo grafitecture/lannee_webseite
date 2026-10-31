@@ -8,7 +8,7 @@ import { grafitectureCredit, GT_CREDIT_TEXT } from './grafitecture-credit.mjs';
 const out = (name) => new URL(`./${name}`, import.meta.url);
 
 for (const lang of Object.keys(GT_CREDIT_TEXT)) {
-  const head = `<!-- Grafitecture-Feld (${lang}) · Kit v1.1 · ganz unten in Impressum und Datenschutz einfügen; CSS: grafitecture-credit.css -->\n`;
+  const head = `<!-- Grafitecture-Feld (${lang}) · Kit v1.2 · ganz unten in Impressum und Datenschutz einfügen; CSS: grafitecture-credit.css -->\n`;
   await writeFile(out(`snippet.${lang}.html`), head + grafitectureCredit(lang) + '\n');
   console.log(`✓ snippet.${lang}.html`);
 }
