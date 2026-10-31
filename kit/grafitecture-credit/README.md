@@ -63,6 +63,15 @@ Stellschrauben (optional, auf einem Elternelement setzen):
 | Link | www.grafitecture.de | www.grafitecture.de | www.grafitecture.de |
 | Bereich (Screenreader) | Über diese Website | About this website | À propos de ce site |
 
+## Eingebaut in
+
+| Website | Repo | Version | Wie |
+| --- | --- | --- | --- |
+| L’ANNÉE (lannee.de, später 1898.ma) | grafitecture/lannee_webseite | 1.2 | Modul + CSS aus diesem Ordner |
+| raumrent.de | grafitecture/raumrent | 1.2 | `snippet.de.html` in `impressum/` und `datenschutz/`, CSS als Abschnitt 14 in `assets/css/site.css` |
+
+Bei einer neuen Version alle Websites in dieser Liste nachziehen.
+
 ## Versionen
 
 - v1.2 (31.10.2026): noch einmal 30 % kleiner, höchstens 25.2rem (403 px) breit; Schriften bleiben bei mindestens 13 px
