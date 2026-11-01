@@ -8,7 +8,6 @@ import { html, raw, esc, rich, typo, setExternalLinkRenderer } from './html.mjs'
 import { DICT, url, pick, fill, formatTime, formatSpan } from './i18n.mjs';
 import { SITE, LOCATIONS, LOCATION_ORDER, SCHEDULE, CLOSURES } from '../content/site.mjs';
 import { MEDIA } from '../content/media.mjs';
-import { MONTHS } from '../content/year.mjs';
 import { oysterArt } from './oyster-art.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
@@ -243,42 +242,6 @@ export function weekPlan(locale) {
   )}</span></div>
   <ol class="plan__days" role="list">${days}</ol>
 </div>`;
-}
-
-/* ------------------------------------------------------------------ */
-/* Jahresuhr                                                           */
-/* ------------------------------------------------------------------ */
-
-export function yearRing(locale, { id = 'jahresuhr' } = {}) {
-  const t = DICT[locale].pages.annee;
-  const R = 380;
-  const parts = [`<circle class="yr__ring" r="${R}"/>`];
-  // R-Monate: September (Index 8) bis April (Index 3) → 240° bis 120°
-  parts.push(`<path class="yr__rband" d="${arc(R - 110, 240, 120)}"/>`);
-  MONTHS.forEach((m, i) => {
-    const a0 = i * 30;
-    const [x1, y1] = pt(R - 26, a0);
-    const [x2, y2] = pt(R + 26, a0);
-    parts.push(`<line class="yr__tick" x1="${f(x1)}" y1="${f(y1)}" x2="${f(x2)}" y2="${f(y2)}"/>`);
-    const mid = a0 + 15;
-    const [ix, iy] = pt(R - 110, mid);
-    parts.push(
-      `<use class="yr__icon${m.r ? ' yr__icon--r' : ''}" href="${SPRITE_URL}#${m.icon}" x="${f(ix - 34)}" y="${f(iy - 34)}" width="68" height="68" data-month="${m.n}"/>`
-    );
-    const [tx, ty] = pt(R + 70, mid);
-    const label = pick(m.name, locale).slice(0, 3) + (pick(m.name, locale).length > 3 ? '.' : '');
-    parts.push(
-      `<text class="yr__label" x="${f(tx)}" y="${f(ty)}" text-anchor="middle" dominant-baseline="middle" data-month="${m.n}">${esc(
-        locale === 'fr' ? pick(m.name, 'fr') : label
-      )}</text>`
-    );
-  });
-  parts.push(`<g class="yr__hand" hidden><path d="${HAND_D}" transform="scale(2.05)"/></g><circle class="yr__pivot" r="14"/>`);
-  return html`<figure class="yr" id="${id}" data-year-ring>
-    <svg class="yr__svg" viewBox="-540 -540 1080 1080" role="img" aria-labelledby="${id}-label"><title id="${id}-label">${t.ringLabel}</title>${raw(
-    parts.join('')
-  )}</svg>
-  </figure>`;
 }
 
 /* ------------------------------------------------------------------ */

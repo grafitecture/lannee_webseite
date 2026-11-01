@@ -11,7 +11,7 @@ export default {
     close: 'Fermer',
     mainNav: 'Navigation principale',
     langNav: 'Choisir la langue',
-    nav: { garage: 'Garage', kiosque: 'Kiosque', marche: 'Marché', carte: 'La carte', annee: 'L’année', atlas: 'Atlas des huîtres', contact: 'Contact' },
+    nav: { garage: 'Garage', kiosque: 'Kiosque', marche: 'Marché', carte: 'La carte', atlas: 'Atlas des huîtres', contact: 'Contact' },
     home: 'Accueil',
     days: ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'],
     daysShort: ['lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.', 'dim.'],
@@ -195,47 +195,6 @@ export default {
       ],
     },
 
-    annee: {
-      title: 'L’année – le calendrier de l’huître | L’ANNÉE',
-      description:
-        'Douze mois autour de l’huître, du vin et de la France : la règle des mois en R, les calibres et comment bien déguster une huître.',
-      h1: 'L’Année',
-      lead: 'L’ANNÉE, c’est une année entière. Et l’huître a son calendrier.',
-      ringLabel: 'Horloge de l’année : les mois mis en avant contiennent un R, l’aiguille indique le mois en cours.',
-      rMonth: 'Mois en R',
-      now: 'Maintenant',
-      rule: {
-        heading: 'La règle des mois en R',
-        body: [
-          'Autrefois, on disait : des huîtres seulement les mois en R, de septembre à avril. La raison tenait moins au goût qu’à l’été. Sans froid, les huîtres se gâtaient vite sur la route de l’intérieur des terres, et l’été, elles se reproduisent.',
-          'Aujourd’hui, les huîtres voyagent au frais et passent en quelques heures du parc au comptoir. L’été, elles sont souvent laiteuses : plus crémeuses. Les huîtres fermes et iodées restent une affaire d’hiver.',
-        ],
-      },
-      calibres: {
-        heading: 'Plus le chiffre est petit, plus l’huître est grosse.',
-        body: 'En France, les huîtres sont classées selon leur poids. La nº 3 est la classique de l’apéritif, la nº 2 celle des gourmands.',
-        over: 'plus de {g} g',
-        range: '{a} à {b} g',
-      },
-      howto: {
-        heading: 'Déguster une huître en quatre temps',
-        steps: [
-          { title: 'Regarder', text: 'Une huître fraîche est pleine, brillante et sent la mer, jamais le poisson.' },
-          { title: 'Jeter la première eau', text: 'Videz la première eau. Après une ou deux minutes, l’huître en refait, plus douce et plus ronde.' },
-          { title: 'Détacher et assaisonner', text: 'Détachez le muscle avec la petite fourchette. Une goutte de citron ou de mignonnette, ou nature.' },
-          { title: 'Mâcher', text: 'Ne pas avaler d’un coup : deux ou trois mastications, et viennent le sel, la noisette, la douceur. Buvez le jus pour finir.' },
-        ],
-      },
-      pairing: {
-        heading: 'Que boire avec',
-        items: [
-          { name: 'Muscadet', text: 'Salin et tendu. Le classique avec une fine de claire.' },
-          { name: 'Chablis', text: 'Crayeux et minéral, pour les huîtres charnues.' },
-          { name: 'Picpoul de Pinet', text: 'Il pousse au bord de l’étang de Thau.' },
-          { name: 'Crémant & champagne', text: 'Les bulles rafraîchissent le palais avant l’huître suivante.' },
-        ],
-      },
-    },
 
     atlas: {
       title: 'Atlas des huîtres – espèces et origines | L’ANNÉE',

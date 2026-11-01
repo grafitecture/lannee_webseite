@@ -7,7 +7,7 @@ import { SITE, LOCATIONS, LOCATION_ORDER, SCHEDULE } from '../content/site.mjs';
 import { logo, signet, icon, arrowLink, upcomingClosures } from './components.mjs';
 import { tokenHex } from '../content/tokens.mjs';
 
-const NAV = ['garage', 'kiosque', 'marche', 'carte', 'annee', 'atlas', 'contact'];
+const NAV = ['garage', 'kiosque', 'marche', 'carte', 'atlas', 'contact'];
 
 /** Öffnungszeit-Text eines Ortes, z. B. „Freitag & Samstag ab 18 Uhr“ */
 export function whenText(key, locale) {

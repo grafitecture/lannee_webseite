@@ -13,12 +13,47 @@
 
 .hero {
   position: relative;
+  background: var(--ink);
+  color: var(--blanc);
+}
+/* Bühne: Film/Standbild, Logo, Headline und die drei Bänder – ein Bildschirm hoch */
+.hero__stage {
+  position: relative;
   isolation: isolate;
   display: grid;
   grid-template-rows: 1fr auto;
   min-height: calc(100svh - var(--header-h));
-  background: var(--ink);
-  color: var(--blanc);
+  overflow: hidden;
+}
+
+/*
+ * Scroll-Inszenierung (main.js setzt .hero--scrolly und --reveal 0…1):
+ * Der Hero ist höher als der Bildschirm, die Bühne bleibt stehen. Beim Scrollen wandern Logo und
+ * Slogan in die Kopfzeile, Headline, Schleier und Ortsbänder gehen weg – der Film steht eine
+ * Weile voll im Bild. Danach scrollt die Bühne nach oben weg, und die Inhalte kommen.
+ */
+.hero--scrolly {
+  height: calc(100svh - var(--header-h) + var(--hero-scroll, 90svh));
+}
+.hero--scrolly .hero__stage {
+  position: sticky;
+  top: var(--header-h);
+  height: calc(100svh - var(--header-h));
+  min-height: 0;
+}
+.hero--scrolly .hero__inner,
+.hero--scrolly .hero__places {
+  opacity: clamp(0, 1 - var(--reveal, 0) * 1.6, 1);
+}
+.hero--scrolly .hero__inner {
+  translate: 0 calc(var(--reveal, 0) * -2rem);
+}
+.hero--scrolly .hero__stage::before {
+  opacity: calc(1 - var(--reveal, 0));
+}
+.hero--scrolly.is-revealed .hero__inner,
+.hero--scrolly.is-revealed .hero__places {
+  visibility: hidden;
 }
 .hero__bg {
   position: absolute;
@@ -30,7 +65,7 @@
   object-position: var(--hero-focus, 62% 50%);
 }
 /* Evergreen-Schleier: links oben für Logo und Text, unten als Übergang in die Bänder */
-.hero::before {
+.hero__stage::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -49,7 +84,7 @@
 
 /* Logo: weiß auf dem Film, so hoch, dass Headline und die drei Bänder im ersten Bildschirm bleiben */
 .hero__mark {
-  width: min(100%, 56rem, max(18rem, (100svh - 38rem) * 2.749));
+  width: min(100%, 56rem, max(18rem, (100svh - 41rem) * 2.749));
   aspect-ratio: var(--logo-ratio, auto);
   color: var(--blanc);
 }
@@ -138,10 +173,12 @@
 .hero--film .hero__bg img {
   object-position: 50% 50%;
 }
-/* Film anhalten / abspielen: kleiner runder Knopf unten rechts, über den Ortsbändern */
+/* Film anhalten / abspielen: kleiner runder Knopf unten rechts, über den Ortsbändern.
+   Gehen die Bänder weg, rutscht er mit nach unten (bleibt aber über dem Störer). */
 .hero__toggle {
+  --clear: 0rem;
   position: absolute;
-  bottom: 0.9rem;
+  bottom: calc(0.9rem + var(--places-h, 0px) * (1 - var(--reveal, 0)) + var(--clear) * var(--reveal, 0));
   right: var(--gutter);
   z-index: 1;
   display: grid;
@@ -155,6 +192,9 @@
   color: var(--blanc);
   cursor: pointer;
   transition: background-color 0.25s, color 0.25s, border-color 0.25s;
+}
+body:has(.stoerer) .hero__toggle {
+  --clear: 7.5rem;
 }
 .hero__toggle[hidden] {
   display: none;
@@ -226,13 +266,17 @@
 .hero-place {
   position: relative;
 }
+/* Die drei Bänder ganz leicht transparent: der Film scheint durch */
+.hero .hero-place {
+  background: color-mix(in srgb, var(--bg) 84%, transparent);
+}
 .hero-place__link {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   grid-template-areas:
-    'signet name arrow'
-    'signet when arrow'
-    'signet where arrow';
+    'name arrow'
+    'when arrow'
+    'where arrow';
   column-gap: 0.9rem;
   align-items: center;
   height: 100%;
@@ -248,11 +292,6 @@
 }
 .hero-place__top {
   display: contents;
-}
-.hero-place__signet {
-  grid-area: signet;
-  width: 2.1rem;
-  height: 2.1rem;
 }
 .hero-place__arrow {
   grid-area: arrow;
@@ -323,8 +362,7 @@
   .hero-place__link {
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas:
-      'signet arrow'
-      'name name'
+      'name arrow'
       'sub sub'
       'when when'
       'where where';
@@ -337,13 +375,6 @@
   }
   .hero-place:last-child .hero-place__link {
     padding-right: var(--gutter);
-  }
-  .hero-place__signet {
-    width: clamp(2.2rem, 1.6rem + 1vw, 3rem);
-    height: clamp(2.2rem, 1.6rem + 1vw, 3rem);
-  }
-  .hero-place__name {
-    margin-top: var(--space-s);
   }
   .hero-place__sub {
     display: block;
@@ -937,7 +968,7 @@
   }
 }
 
-/* Startseite: Karte & Jahr -------------------------------------------------- */
+/* Startseite: Karte ----------------------------------------------------- */
 
 .teaser-menu {
   display: grid;
@@ -1506,265 +1537,6 @@
   border-top: 1px solid var(--line);
   font-size: var(--fs-text-small);
   color: var(--muted);
-}
-
-/* Das Jahr ------------------------------------------------------------------ */
-
-.year {
-  display: grid;
-  gap: var(--space-xl);
-  padding: var(--space-l) var(--gutter) var(--space-2xl);
-}
-@media (min-width: 1280px) {
-  .year {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.618fr);
-    align-items: start;
-  }
-  .year__ring {
-    position: sticky;
-    top: calc(var(--header-h) + 2rem);
-  }
-}
-.months {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
-  gap: var(--space-m) var(--space-m);
-  list-style: none;
-  padding: 0;
-}
-.month {
-  position: relative;
-  display: grid;
-  align-content: start;
-  gap: 0.4em;
-  padding: var(--space-s) 0 0;
-  border-top: 2px solid var(--line-strong);
-  scroll-margin-top: calc(var(--header-h) + 2rem);
-}
-.month--r {
-  border-top-color: var(--kiosque);
-}
-.month__head {
-  display: flex;
-  align-items: center;
-  gap: 0.6em;
-}
-.month__icon {
-  width: 2.1rem;
-  height: 2.1rem;
-  color: var(--muted);
-}
-.month--r .month__icon {
-  color: var(--kiosque);
-}
-.month__name {
-  display: grid;
-  font-size: var(--fs-h6);
-  font-weight: 400;
-  line-height: 1.05;
-}
-.month__local {
-  font-family: var(--font-text);
-  font-size: 0.8125rem;
-  font-weight: 500;
-  color: var(--muted);
-}
-.month__r {
-  margin-left: auto;
-  display: inline-grid;
-  place-items: center;
-  width: 1.7rem;
-  height: 1.7rem;
-  border-radius: 50%;
-  background: var(--kiosque);
-  color: var(--blanc);
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 0.95rem;
-}
-.month__now {
-  display: none;
-}
-.month__title {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1.3rem;
-  line-height: 1.15;
-  margin-top: 0.3em;
-}
-.month__text {
-  max-width: 46ch;
-}
-.month.is-now {
-  padding: var(--space-s);
-  background: var(--garage);
-  color: var(--blanc);
-  border-top-color: var(--garage);
-}
-.month.is-now .month__icon,
-.month.is-now .month__local {
-  color: var(--blanc);
-}
-.month.is-now .month__r {
-  background: var(--blanc);
-  color: var(--garage);
-}
-.month.is-now .month__now {
-  display: inline-block;
-  position: absolute;
-  top: -0.85rem;
-  right: var(--space-s);
-  padding: 0.2em 0.7em;
-  border-radius: 999px;
-  background: var(--ink);
-  color: var(--blanc);
-  font-size: 0.75rem;
-  font-weight: 700;
-}
-
-.rule {
-  display: grid;
-  gap: var(--space-l);
-  padding: var(--space-2xl) var(--gutter);
-}
-.rule__heading {
-  max-width: 12ch;
-}
-.rule__r {
-  display: block;
-  font-size: var(--fs-h1);
-  font-style: italic;
-  font-weight: 300;
-  line-height: 0.8;
-  margin-bottom: 0.1em;
-}
-.rule__body {
-  display: grid;
-  gap: var(--space-s);
-  font-size: var(--fs-h6);
-  line-height: 1.45;
-}
-.rule__body p {
-  max-width: 44ch;
-}
-@media (min-width: 1024px) {
-  .rule {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.618fr);
-    align-items: end;
-  }
-}
-
-.calibres {
-  display: grid;
-  gap: var(--space-xl);
-  padding: var(--space-2xl) var(--gutter);
-}
-.calibres__text {
-  display: grid;
-  gap: var(--space-m);
-}
-.calibres__list {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  gap: var(--space-m) var(--space-l);
-  list-style: none;
-  padding: 0;
-}
-.calibre {
-  display: grid;
-  justify-items: center;
-  gap: 0.25em;
-}
-.calibre__icon {
-  width: calc(var(--s) * clamp(5.5rem, 3rem + 9vw, 13rem));
-  height: auto;
-  aspect-ratio: 1;
-  color: var(--ink);
-}
-.calibre__n {
-  font-family: var(--font-display);
-  font-size: var(--fs-h6);
-}
-.calibre__g {
-  font-size: var(--fs-text-small);
-  color: var(--muted);
-  white-space: nowrap;
-}
-@media (min-width: 1024px) {
-  .calibres {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.618fr);
-    align-items: end;
-  }
-}
-
-.howto {
-  display: grid;
-  gap: var(--space-xl);
-  padding: var(--space-2xl) var(--gutter);
-  background: var(--blanc);
-}
-.howto__photo {
-  aspect-ratio: 9 / 16;
-  max-width: 22rem;
-}
-.steps {
-  display: grid;
-  gap: var(--space-l) var(--space-xl);
-  margin-top: var(--space-l);
-  list-style: none;
-  padding: 0;
-}
-.step__n {
-  display: block;
-  font-family: var(--font-display);
-  font-size: var(--fs-h3);
-  font-weight: 300;
-  line-height: 0.8;
-  color: var(--kiosque);
-}
-.step__title {
-  margin: 0.35em 0 0.25em;
-  font-size: var(--fs-h6);
-  font-weight: 450;
-}
-.step p {
-  max-width: 40ch;
-}
-@media (min-width: 768px) {
-  .steps {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-@media (min-width: 1024px) {
-  .howto {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.618fr);
-    align-items: center;
-  }
-  .howto__media {
-    justify-self: center;
-  }
-}
-
-.pairing {
-  padding: var(--space-2xl) var(--gutter);
-}
-.pairing__list {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
-  gap: var(--space-l);
-  margin-top: var(--space-l);
-  list-style: none;
-  padding: 0;
-}
-.pairing__icon {
-  width: 2.6rem;
-  height: 2.6rem;
-  color: var(--garage);
-}
-.pairing__name {
-  margin: 0.6em 0 0.3em;
-  font-size: var(--fs-h5);
 }
 
 /* Kontakt ------------------------------------------------------------------- */

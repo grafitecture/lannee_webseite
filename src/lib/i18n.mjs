@@ -13,7 +13,6 @@ export const ROUTES = {
   kiosque: { de: '/kiosque/', fr: '/fr/kiosque/', en: '/en/kiosque/' },
   marche: { de: '/marche/', fr: '/fr/marche/', en: '/en/marche/' },
   carte: { de: '/karte/', fr: '/fr/carte/', en: '/en/menu/' },
-  annee: { de: '/das-jahr/', fr: '/fr/l-annee/', en: '/en/the-year/' },
   atlas: { de: '/austernatlas/', fr: '/fr/atlas-des-huitres/', en: '/en/oyster-atlas/' },
   contact: { de: '/kontakt/', fr: '/fr/contact/', en: '/en/contact/' },
   impressum: { de: '/impressum/', fr: '/fr/mentions-legales/', en: '/en/legal-notice/' },

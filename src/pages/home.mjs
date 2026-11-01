@@ -1,8 +1,9 @@
 import fs from 'node:fs';
+import { createHash } from 'node:crypto';
 import { html, raw, rich } from '../lib/html.mjs';
 import { DICT, url } from '../lib/i18n.mjs';
 import { LOCATIONS, LOCATION_ORDER, SITE } from '../content/site.mjs';
-import { logo, lockup, signet, picture, weekPlan, arrowLink, icon, closureNotes, LOGO_VIEWBOX } from '../lib/components.mjs';
+import { logo, lockup, picture, weekPlan, arrowLink, icon, closureNotes, LOGO_VIEWBOX } from '../lib/components.mjs';
 
 const [, , LOGO_W, LOGO_H] = LOGO_VIEWBOX.split(/\s+/);
 import { menuExcerpt } from '../lib/menu-render.mjs';
@@ -18,6 +19,13 @@ const PLACE_PHOTOS = { garage: 'garage-hof', kiosque: 'kiosque-visualisierung', 
 const FILM_DIR = new URL('../../public/film/', import.meta.url);
 const FILM = { wide: '/film/lannee-film-quer', tall: '/film/lannee-film-hoch' };
 const FILM_READY = ['lannee-film-quer.mp4', 'lannee-film-hoch.mp4'].every((f) => fs.existsSync(new URL(f, FILM_DIR)));
+// Version aus dem Inhalt: Ein neuer Schnitt bekommt eine neue Adresse (der Film wird lange zwischengespeichert)
+const FILM_VERSION = FILM_READY
+  ? createHash('sha256')
+      .update(['lannee-film-quer.mp4', 'lannee-film-hoch.mp4', 'lannee-film-quer.webm', 'lannee-film-hoch.webm'].map((f) => fs.readFileSync(new URL(f, FILM_DIR))).reduce((a, b) => Buffer.concat([a, b])))
+      .digest('hex')
+      .slice(0, 8)
+  : '';
 const HERO_IMAGE = FILM_READY && fs.existsSync(new URL('../../public/images/hero-film-480.webp', import.meta.url)) ? 'hero-film' : 'hero-austern-hof';
 const FILM_TOGGLE = {
   de: { pause: 'Film anhalten', play: 'Film abspielen' },
@@ -61,9 +69,7 @@ export function render(ctx) {
     const where = L.street ? `${L.street}, ${L.district}` : P.whereText;
     return html`<li class="hero-place theme-${L.color}" data-place-live="${key}">
       <a class="hero-place__link" href="${url(key, locale)}">
-        <span class="hero-place__top">${signet(key, { cls: 'hero-place__signet' })}<span class="hero-place__badge" hidden></span>${icon('arrow', {
-      cls: 'icon hero-place__arrow',
-    })}</span>
+        <span class="hero-place__top"><span class="hero-place__badge" hidden></span>${icon('arrow', { cls: 'icon hero-place__arrow' })}</span>
         <span class="hero-place__name">${L.name}</span>
         <span class="hero-place__sub">${rich(P.subtitle, locale)}</span>
         <span class="hero-place__when">${P.when}</span>
@@ -73,28 +79,27 @@ export function render(ctx) {
   });
 
   return html`
-<section class="hero${FILM_READY ? ' hero--film' : ''}" aria-labelledby="hero-title">
+<section class="hero${FILM_READY ? ' hero--film' : ''}" aria-labelledby="hero-title" data-hero>
   <h1 class="visually-hidden" id="hero-title">${rich(p.h1, locale)}</h1>
-  ${picture(HERO_IMAGE, locale, { sizes: '100vw', cls: 'hero__bg', eager: true, alt: FILM_READY ? '' : undefined })}
-  ${
-    FILM_READY
-      ? html`<div class="hero__film" data-film data-wide="${FILM.wide}" data-tall="${FILM.tall}" aria-hidden="true"><video class="hero__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback></video></div>`
-      : ''
-  }
-  <div class="hero__inner">${
-    FILM_READY
-      ? html`<button class="hero__toggle" type="button" data-film-toggle data-label-pause="${FILM_TOGGLE[locale].pause}" data-label-play="${FILM_TOGGLE[locale].play}" aria-label="${FILM_TOGGLE[locale].play}" hidden><span class="hero__toggle-icon" aria-hidden="true"></span></button>`
-      : ''
-  }
-    <div class="hero__brand">
-      <div class="hero__mark" data-logo-morph style="--logo-ratio: ${LOGO_W} / ${LOGO_H}">${logo({ cls: 'hero__logo', decorative: true })}</div>
-      <p class="hero__tagline" data-tagline-morph>${SITE.taglines[locale]}</p>
+  <div class="hero__stage">
+    ${picture(HERO_IMAGE, locale, { sizes: '100vw', cls: 'hero__bg', eager: true, alt: FILM_READY ? '' : undefined })}
+    ${
+      FILM_READY
+        ? html`<div class="hero__film" data-film data-wide="${FILM.wide}" data-tall="${FILM.tall}" data-version="${FILM_VERSION}" aria-hidden="true"><video class="hero__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback></video></div>
+    <button class="hero__toggle" type="button" data-film-toggle data-label-pause="${FILM_TOGGLE[locale].pause}" data-label-play="${FILM_TOGGLE[locale].play}" aria-label="${FILM_TOGGLE[locale].play}" hidden><span class="hero__toggle-icon" aria-hidden="true"></span></button>`
+        : ''
+    }
+    <div class="hero__inner">
+      <div class="hero__brand">
+        <div class="hero__mark" data-logo-morph style="--logo-ratio: ${LOGO_W} / ${LOGO_H}">${logo({ cls: 'hero__logo', decorative: true })}</div>
+        <p class="hero__tagline" data-tagline-morph>${SITE.taglines[locale]}</p>
+      </div>
+      <div class="hero__text">
+        <p class="hero__lead">${rich(p.lead, locale)}</p>
+      </div>
     </div>
-    <div class="hero__text">
-      <p class="hero__lead">${rich(p.lead, locale)}</p>
-    </div>
+    <ul class="hero__places" role="list" aria-label="${HERO_PLACES_LABEL[locale]}">${heroPlaces}</ul>
   </div>
-  <ul class="hero__places" role="list" aria-label="${HERO_PLACES_LABEL[locale]}">${heroPlaces}</ul>
 </section>
 
 <section class="weekend" id="wochenende" aria-labelledby="weekend-title">

@@ -217,37 +217,6 @@ function el(tag, cls, text) {
 }
 
 /* ------------------------------------------------------------------ */
-/* Jahresuhr & aktueller Monat                                         */
-/* ------------------------------------------------------------------ */
-
-function initYear() {
-  const now = berlinNow();
-  const rings = document.querySelectorAll('[data-year-ring]');
-  rings.forEach((ring) => {
-    const hand = ring.querySelector('.yr__hand');
-    const daysInMonth = new Date(now.year, now.month, 0).getDate();
-    const angle = (now.month - 1 + (now.day - 0.5) / daysInMonth) * 30;
-    ring.querySelectorAll(`[data-month="${now.month}"]`).forEach((n) => n.classList.add('is-now'));
-    if (!hand) return;
-    hand.removeAttribute('hidden');
-    const go = () => (hand.style.transform = `rotate(${angle}deg)`);
-    if (reduceMotion || !('IntersectionObserver' in window)) return go();
-    hand.style.transform = 'rotate(0deg)';
-    const io = new IntersectionObserver((entries) => {
-      if (entries.some((e) => e.isIntersecting)) {
-        io.disconnect();
-        requestAnimationFrame(go);
-      }
-    }, { threshold: 0.3 });
-    io.observe(ring);
-  });
-
-  document.querySelectorAll('.months [data-month]').forEach((li) => {
-    li.classList.toggle('is-now', Number(li.dataset.month) === now.month);
-  });
-}
-
-/* ------------------------------------------------------------------ */
 /* Kartenfilter                                                        */
 /* ------------------------------------------------------------------ */
 
@@ -387,11 +356,19 @@ function initLogoMorph() {
     body.append(tag);
   }
 
+  // Ausgangslage (Bildschirmkoordinaten bei Scrollposition 0). Steht die Bühne (Scroll-Inszenierung),
+  // misst man relativ zu ihr – dann stimmt es auch, wenn beim Messen schon gescrollt ist.
+  const stage = mark.closest('.hero__stage');
+  const startTop = (rect) => {
+    if (!stage || !stage.closest('.hero--scrolly')) return rect.top + window.scrollY;
+    return (parseFloat(getComputedStyle(stage).top) || 0) + rect.top - stage.getBoundingClientRect().top;
+  };
+
   let geo;
   const measure = () => {
     const from = mark.getBoundingClientRect(); // Platzhalter im Fluss
     const to = target.getBoundingClientRect(); // kleines Logo in der Kopfzeile (sticky)
-    const top = from.top + window.scrollY;
+    const top = startTop(from);
     geo = {
       dx: to.left - from.left,
       dy: to.top - top,
@@ -406,7 +383,7 @@ function initLogoMorph() {
     if (tag) {
       const tf = tagFrom.getBoundingClientRect();
       const tt = tagTo.getBoundingClientRect();
-      const ttop = tf.top + window.scrollY;
+      const ttop = startTop(tf);
       tagGeo = tt.width && tf.width ? { dx: tt.left - tf.left, dy: tt.top - ttop, scale: tt.width / tf.width } : null;
       body.classList.toggle('tagline-morph', !!tagGeo);
       tag.style.setProperty('--morph-top', `${ttop}px`);
@@ -440,6 +417,61 @@ function initLogoMorph() {
 }
 
 /* ------------------------------------------------------------------ */
+/* Startseite: Scroll-Inszenierung des Heros                           */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Die Bühne bleibt stehen (sticky). Auf dem ersten halben Bildschirm Scrollweg gehen Headline,
+ * Schleier und Ortsbänder weg (--reveal 0 → 1), dann steht der Film eine Weile voll im Bild,
+ * danach scrollt er nach oben weg. Passt die Bühne nicht in einen Bildschirm, bleibt alles normal.
+ */
+function initHeroScroll() {
+  const hero = document.querySelector('[data-hero].hero--film');
+  const stage = hero?.querySelector('.hero__stage');
+  if (!hero || !stage) return;
+  const places = hero.querySelector('.hero__places');
+  const inner = hero.querySelector('.hero__inner');
+  let on = false;
+  let start = 0;
+  let range = 1;
+
+  const layout = () => {
+    hero.classList.add('hero--scrolly');
+    // offsetHeight ohne transform (Einblendungen verschieben die Bänder kurz nach unten)
+    on = inner.offsetHeight + (places?.offsetHeight ?? 0) <= stage.clientHeight + 1;
+    hero.classList.toggle('hero--scrolly', on);
+    stage.style.setProperty('--places-h', `${places?.offsetHeight ?? 0}px`);
+    if (!on) {
+      hero.style.removeProperty('--reveal');
+      hero.classList.remove('is-revealed');
+      return;
+    }
+    const pinTop = parseFloat(getComputedStyle(stage).top) || 0;
+    start = hero.getBoundingClientRect().top + window.scrollY - pinTop;
+    range = stage.clientHeight * 0.5;
+  };
+  const update = () => {
+    if (!on) return;
+    const r = Math.min(Math.max((window.scrollY - start) / range, 0), 1);
+    hero.style.setProperty('--reveal', r.toFixed(4));
+    hero.classList.toggle('is-revealed', r >= 1);
+  };
+
+  let frame = 0;
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (!frame) frame = requestAnimationFrame(() => ((frame = 0), update()));
+    },
+    { passive: true }
+  );
+  window.addEventListener('resize', () => (layout(), update()));
+  document.fonts?.ready.then(() => (layout(), update()));
+  layout();
+  update();
+}
+
+/* ------------------------------------------------------------------ */
 /* Startseite: Filmsequenz im Hero                                     */
 /* ------------------------------------------------------------------ */
 
@@ -467,7 +499,7 @@ function initFilm() {
       ['mp4', 'video/mp4'],
     ]) {
       const source = document.createElement('source');
-      source.src = `${base}.${ext}`;
+      source.src = `${base}.${ext}${film.dataset.version ? `?v=${film.dataset.version}` : ''}`;
       source.type = type;
       video.append(source);
     }
@@ -500,10 +532,10 @@ function initFilm() {
   sync();
 }
 
+initHeroScroll();
 initLogoMorph();
 initFilm();
 initExpiry();
 initMenu();
 initPlan();
-initYear();
 initMenuFilter();

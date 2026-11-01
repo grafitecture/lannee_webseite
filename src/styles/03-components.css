@@ -344,66 +344,6 @@
   background: linear-gradient(90deg, var(--garage) 0 34%, transparent 34% 66%, var(--garage) 66%);
 }
 
-/* Jahresuhr ----------------------------------------------------------------- */
-
-.yr {
-  position: relative;
-  width: min(100%, 80vh, 44rem);
-  margin-inline: auto;
-}
-.yr__svg {
-  width: 100%;
-  height: auto;
-  overflow: visible;
-}
-.yr__ring {
-  fill: none;
-  stroke: var(--line-strong);
-  stroke-width: 2;
-}
-.yr__rband {
-  fill: none;
-  stroke: var(--lime);
-  stroke-width: 118;
-}
-.yr__tick {
-  stroke: var(--ink);
-  stroke-opacity: 0.35;
-  stroke-width: 2;
-}
-.yr__icon {
-  color: var(--muted);
-}
-.yr__icon--r {
-  color: var(--kiosque);
-}
-.yr__icon.is-now {
-  color: var(--garage);
-}
-.yr__label {
-  font-family: var(--font-text);
-  font-size: 27px;
-  font-weight: 500;
-  fill: var(--muted);
-}
-.yr__label.is-now {
-  fill: var(--ink);
-  font-weight: 700;
-}
-.yr__hand {
-  transform-box: view-box;
-  transform-origin: 0 0;
-  transition: transform 1.6s var(--ease-out);
-}
-.yr__hand path {
-  fill: var(--garage);
-}
-.yr__pivot {
-  fill: var(--blanc);
-  stroke: var(--garage);
-  stroke-width: 6;
-}
-
 /* Karte: Gerichte ---------------------------------------------------------- */
 
 .dishes {
@@ -532,21 +472,9 @@
   gap: 0.6em 1.6em;
 }
 
-.yr__hand[hidden] {
-  display: none;
-}
 .dish__price-unit {
   font-size: 0.75rem;
   color: var(--muted);
   white-space: nowrap;
 }
 
-/* Jahresuhr auf schmalen Bildschirmen: Schrift lesbar */
-.yr {
-  container-type: inline-size;
-}
-@container (max-width: 29.99rem) {
-  .yr__label {
-    font-size: 44px;
-  }
-}
