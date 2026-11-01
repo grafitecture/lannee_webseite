@@ -63,11 +63,11 @@ export function signet(key, { cls = '' } = {}) {
 }
 
 /** Subbrand-Lockup: Signet · L'ANNÉE · NAME · Austern & Bulles */
-export function lockup(key, { cls = '', tagline = true, as = 'div' } = {}) {
+export function lockup(key, { cls = '', tagline = true, as = 'div', locale = 'de' } = {}) {
   const L = LOCATIONS[key];
   const inner = html`${logo({ cls: 'lockup__logo', decorative: true })}<span class="lockup__words"><span class="lockup__name"><span class="visually-hidden">L’ANNÉE </span>${
     L.name
-  }</span>${tagline ? html`<span class="lockup__tagline">${SITE.tagline}</span>` : ''}</span>`;
+  }</span>${tagline ? html`<span class="lockup__tagline">${SITE.taglines[locale] ?? SITE.tagline}</span>` : ''}</span>`;
   return as === 'span'
     ? html`<span class="lockup lockup--${key} ${cls}">${inner}</span>`
     : html`<div class="lockup lockup--${key} ${cls}">${inner}</div>`;

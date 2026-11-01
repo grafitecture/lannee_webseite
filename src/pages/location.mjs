@@ -79,7 +79,7 @@ export function render(ctx) {
 
   return html`
 <section class="loc-hero theme-${L.color}-text" aria-labelledby="loc-title">
-  ${lockup(key, { cls: 'loc-hero__lockup' })}
+  ${lockup(key, { cls: 'loc-hero__lockup', locale })}
   <h1 class="loc-hero__title" id="loc-title">${p.h1}</h1>
   <p class="loc-hero__subtitle">${rich(p.subtitle, locale)}</p>
   ${facts}

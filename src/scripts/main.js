@@ -374,6 +374,19 @@ function initLogoMorph() {
   // (.hero__mark) behält seine Größe über aspect-ratio.
   document.body.append(logo);
 
+  // Der Slogan wandert mit: eine Kopie im <body>, das Original bleibt unsichtbar als Platzhalter im Fluss.
+  const tagFrom = document.querySelector('[data-tagline-morph]');
+  const tagTo = document.querySelector('.site-header__tagline');
+  let tag = null;
+  let tagGeo = null;
+  if (tagFrom && tagTo) {
+    tag = tagFrom.cloneNode(true);
+    tag.removeAttribute('data-tagline-morph');
+    tag.classList.add('hero__tagline--morph');
+    tag.setAttribute('aria-hidden', 'true');
+    body.append(tag);
+  }
+
   let geo;
   const measure = () => {
     const from = mark.getBoundingClientRect(); // Platzhalter im Fluss
@@ -388,6 +401,17 @@ function initLogoMorph() {
     logo.style.setProperty('--morph-top', `${top}px`);
     logo.style.setProperty('--morph-left', `${from.left}px`);
     logo.style.setProperty('--morph-width', `${from.width}px`);
+
+    // Slogan: nur wenn er in der Kopfzeile sichtbar ist (zwischen lg und xl ist er dort ausgeblendet)
+    if (tag) {
+      const tf = tagFrom.getBoundingClientRect();
+      const tt = tagTo.getBoundingClientRect();
+      const ttop = tf.top + window.scrollY;
+      tagGeo = tt.width && tf.width ? { dx: tt.left - tf.left, dy: tt.top - ttop, scale: tt.width / tf.width } : null;
+      body.classList.toggle('tagline-morph', !!tagGeo);
+      tag.style.setProperty('--morph-top', `${ttop}px`);
+      tag.style.setProperty('--morph-left', `${tf.left}px`);
+    }
   };
   const update = () => {
     const p = Math.min(Math.max(window.scrollY / geo.distance, 0), 1);
@@ -396,6 +420,7 @@ function initLogoMorph() {
     const shrink = 1 - (1 - p) ** 2;
     const move = p * p * (3 - 2 * p);
     logo.style.transform = `translate(${geo.dx * move}px, ${geo.dy * move}px) scale(${1 + (geo.scale - 1) * shrink})`;
+    if (tagGeo) tag.style.transform = `translate(${tagGeo.dx * move}px, ${tagGeo.dy * move}px) scale(${1 + (tagGeo.scale - 1) * shrink})`;
     dock(p >= 1);
   };
 
@@ -408,6 +433,10 @@ function initLogoMorph() {
   update();
   window.addEventListener('scroll', schedule, { passive: true });
   window.addEventListener('resize', () => (measure(), update()));
+  // Nachmessen, sobald Schriften geladen sind und der Slogan seine Einblendung (translateY) beendet hat
+  const remeasure = () => (measure(), update());
+  document.fonts?.ready.then(remeasure);
+  tagFrom?.addEventListener('animationend', remeasure, { once: true });
 }
 
 /* ------------------------------------------------------------------ */

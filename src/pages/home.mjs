@@ -18,7 +18,7 @@ const PLACE_PHOTOS = { garage: 'garage-hof', kiosque: 'kiosque-visualisierung', 
 const FILM_DIR = new URL('../../public/film/', import.meta.url);
 const FILM = { wide: '/film/lannee-film-quer', tall: '/film/lannee-film-hoch' };
 const FILM_READY = ['lannee-film-quer.mp4', 'lannee-film-hoch.mp4'].every((f) => fs.existsSync(new URL(f, FILM_DIR)));
-const HERO_IMAGE = FILM_READY && fs.existsSync(new URL('../../public/images/hero-film-1080.webp', import.meta.url)) ? 'hero-film' : 'hero-austern-hof';
+const HERO_IMAGE = FILM_READY && fs.existsSync(new URL('../../public/images/hero-film-480.webp', import.meta.url)) ? 'hero-film' : 'hero-austern-hof';
 const FILM_TOGGLE = {
   de: { pause: 'Film anhalten', play: 'Film abspielen' },
   fr: { pause: 'Mettre le film en pause', play: 'Lire le film' },
@@ -38,7 +38,7 @@ export function render(ctx) {
     const c = p.places[key];
     return html`<section class="place theme-${L.color}${i % 2 ? ' place--flip' : ''}" aria-labelledby="place-${key}">
       <div class="place__text">
-        ${lockup(key, { cls: 'place__lockup' })}
+        ${lockup(key, { cls: 'place__lockup', locale })}
         <h2 class="place__heading t-h3" id="place-${key}">${c.heading}</h2>
         <p class="place__body">${rich(c.body, locale)}</p>
         <dl class="place__facts">
@@ -78,14 +78,17 @@ export function render(ctx) {
   ${picture(HERO_IMAGE, locale, { sizes: '100vw', cls: 'hero__bg', eager: true, alt: FILM_READY ? '' : undefined })}
   ${
     FILM_READY
-      ? html`<div class="hero__film" data-film data-wide="${FILM.wide}" data-tall="${FILM.tall}" aria-hidden="true"><video class="hero__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback></video></div>
-  <button class="hero__toggle" type="button" data-film-toggle data-label-pause="${FILM_TOGGLE[locale].pause}" data-label-play="${FILM_TOGGLE[locale].play}" aria-label="${FILM_TOGGLE[locale].play}" hidden><span class="hero__toggle-icon" aria-hidden="true"></span></button>`
+      ? html`<div class="hero__film" data-film data-wide="${FILM.wide}" data-tall="${FILM.tall}" aria-hidden="true"><video class="hero__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback></video></div>`
       : ''
   }
-  <div class="hero__inner">
+  <div class="hero__inner">${
+    FILM_READY
+      ? html`<button class="hero__toggle" type="button" data-film-toggle data-label-pause="${FILM_TOGGLE[locale].pause}" data-label-play="${FILM_TOGGLE[locale].play}" aria-label="${FILM_TOGGLE[locale].play}" hidden><span class="hero__toggle-icon" aria-hidden="true"></span></button>`
+      : ''
+  }
     <div class="hero__brand">
       <div class="hero__mark" data-logo-morph style="--logo-ratio: ${LOGO_W} / ${LOGO_H}">${logo({ cls: 'hero__logo', decorative: true })}</div>
-      <p class="hero__tagline">${SITE.tagline}</p>
+      <p class="hero__tagline" data-tagline-morph>${SITE.taglines[locale]}</p>
     </div>
     <div class="hero__text">
       <p class="hero__lead">${rich(p.lead, locale)}</p>

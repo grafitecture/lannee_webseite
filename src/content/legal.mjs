@@ -73,7 +73,7 @@ function impressumDe() {
     {
       h: 'Bildnachweise und Schriften',
       p: [
-        'Fotos: L’ANNÉE. Die Abbildung des Kiosque ist eine Visualisierung, das Stimmungsbild auf der Startseite ist mit KI erzeugt (Higgsfield AI). Icons: generiert mit Higgsfield AI, vektorisiert und überarbeitet. Schriften: Fraunces und Instrument Sans (SIL Open Font License).',
+        'Fotos: L’ANNÉE. Die Abbildung des Kiosque ist eine Visualisierung, der Film auf der Startseite ist mit KI erzeugt (Higgsfield AI), teils auf Grundlage dieser Fotos. Icons: generiert mit Higgsfield AI, vektorisiert und überarbeitet. Schriften: Fraunces und Instrument Sans (SIL Open Font License).',
       ],
     }
   );
@@ -117,7 +117,7 @@ function impressumFr() {
     {
       h: 'Crédits',
       p: [
-        'Photos : L’ANNÉE. L’image du Kiosque est une visualisation, l’image d’ambiance de la page d’accueil a été générée par IA (Higgsfield AI). Icônes : générées avec Higgsfield AI, vectorisées et retravaillées. Polices : Fraunces et Instrument Sans (SIL Open Font License).',
+        'Photos : L’ANNÉE. L’image du Kiosque est une visualisation, le film de la page d’accueil a été généré par IA (Higgsfield AI), en partie à partir de ces photos. Icônes : générées avec Higgsfield AI, vectorisées et retravaillées. Polices : Fraunces et Instrument Sans (SIL Open Font License).',
       ],
     }
   );
@@ -161,7 +161,7 @@ function impressumEn() {
     {
       h: 'Credits',
       p: [
-        'Photos: L’ANNÉE. The image of the Kiosque is a visualisation; the mood image on the home page was generated with AI (Higgsfield AI). Icons: generated with Higgsfield AI, vectorised and refined. Typefaces: Fraunces and Instrument Sans (SIL Open Font License).',
+        'Photos: L’ANNÉE. The image of the Kiosque is a visualisation; the film on the home page was generated with AI (Higgsfield AI), partly based on these photos. Icons: generated with Higgsfield AI, vectorised and refined. Typefaces: Fraunces and Instrument Sans (SIL Open Font License).',
       ],
     }
   );

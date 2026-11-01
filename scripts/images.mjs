@@ -56,6 +56,8 @@ const SOURCES = {
   'garage-eingang': { file: 'garage-eingang.jpg' },
   'schweppes': { file: 'schweppes.jpg' },
   'baguettes': { file: 'baguettes.jpg' },
+  // Standbild der Filmsequenz im Hero (Higgsfield AI, Heimkino-Look), auch bei reduzierter Bewegung
+  'hero-film': { file: 'hero-film.jpg' },
   // Früheres Startbild: KI-Komposition (Higgsfield AI, Nano Banana 2.1) – derzeit nicht eingebunden
   'hero-austern-hof': { file: 'hero-austern-hof.jpg' },
 };

@@ -10,7 +10,9 @@ export const SITE = {
   name: "L'ANNÉE",
   /** Produktions-URL (für Canonical, Sitemap, Open Graph). */
   url: 'https://1898.ma',
-  tagline: 'Austern & Bulles', // feststehender Slogan, „Bulles“ nie als „Bläschen“ übersetzen
+  tagline: 'Austern & Bulles', // Slogan (Deutsch); am Logo immer übersetzt, siehe taglines
+  // Slogan am Logo (Kopfzeile, Hero, Lockups) je Sprache (Vorgabe 01.11.2026); „Bulles“ bleibt französisch, nie „Bläschen“
+  taglines: { de: 'Austern & Bulles', fr: 'Huîtres & Bulles', en: 'Oysters & Bulles' },
   instagram: { handle: '@lannee1898', url: 'https://www.instagram.com/lannee1898/' },
   company: {
     name: 'L’ANNÉE GbR',
