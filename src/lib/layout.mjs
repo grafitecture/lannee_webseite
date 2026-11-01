@@ -64,7 +64,7 @@ ${LOCALES.filter((l) => l !== locale).map((l) => html`<meta property="og:locale:
 <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${assets.css}">
-${page.key === 'home' ? raw('<noscript><style>.page--home .site-header__logo{opacity:1}</style></noscript>') : ''}
+${page.key === 'home' ? raw('<noscript><style>.page--home .site-header__logo,.page--home .site-header__tagline{opacity:1;translate:0 0}</style></noscript>') : ''}
 <script type="module" src="${assets.js}"></script>
 ${jsonLd(ctx)}
 </head>`;
@@ -82,7 +82,7 @@ function header(ctx) {
   return html`<header class="site-header">
   <a class="skip-link" href="#inhalt">${t.skip}</a>
   <div class="site-header__inner">
-    <a class="site-header__brand" href="${url('home', locale)}" aria-label="L’ANNÉE – ${t.home}">${logo({ cls: 'site-header__logo', decorative: true })}</a>
+    <a class="site-header__brand" href="${url('home', locale)}" aria-label="L’ANNÉE – ${t.home}">${logo({ cls: 'site-header__logo', decorative: true })}<span class="site-header__tagline" aria-hidden="true">${SITE.tagline}</span></a>
     <nav class="nav" aria-label="${t.mainNav}"><ul class="nav__list">${links}</ul></nav>
     ${langSwitch(ctx, 'lang--header')}
     <a class="menu-toggle" href="#menu" aria-controls="menu" aria-expanded="false" data-menu-toggle><span class="menu-toggle__label">${t.menu}</span><span class="menu-toggle__bars" aria-hidden="true"></span></a>
@@ -140,11 +140,7 @@ function footer(ctx) {
       <li>${arrowLink(SITE.instagram.url, 'Instagram', { external: true, locale })}</li>
       <li><a href="mailto:${SITE.company.email}">${SITE.company.email}</a></li>
     </ul>
-    <p class="site-footer__legal">© ${year} ${SITE.company.name}, ${SITE.company.city}. ${t.ui.footer.design}: ${arrowLink(SITE.agency.url, SITE.agency.name, {
-      external: true,
-      locale,
-      cls: 'link-arrow link-arrow--quiet',
-    })}</p>
+    <p class="site-footer__legal">© ${year} ${SITE.company.name}, ${SITE.company.city}.</p>
     ${langSwitch(ctx, 'lang--footer')}
   </div>
 </footer>`;

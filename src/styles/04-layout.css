@@ -22,22 +22,60 @@
   padding-inline: var(--gutter);
 }
 .site-header__brand {
-  display: block;
+  --logo-h: clamp(1.2rem, 0.95rem + 0.6vw, 2rem);
+  display: flex;
+  align-items: center;
+  gap: clamp(0.7rem, 0.5rem + 0.5vw, 1.1rem);
   margin-right: auto;
   color: var(--blanc);
   padding-block: 0.5rem;
+  text-decoration: none;
 }
 .site-header__logo {
-  height: clamp(1.2rem, 0.95rem + 0.6vw, 2rem);
+  height: var(--logo-h);
   width: auto;
+  flex: none;
 }
-/* Startseite: Das große Logo wandert beim Scrollen hierher (siehe main.js) */
-.page--home .site-header__logo {
+/* „Austern & Bulles“ neben dem Logo, abgesetzt durch eine feine Linie (wie im Lockup) */
+.site-header__tagline {
+  display: block;
+  padding-left: clamp(0.7rem, 0.5rem + 0.5vw, 1.1rem);
+  border-left: 1px solid color-mix(in srgb, var(--blanc) 45%, transparent);
+  font-family: var(--font-text);
+  font-stretch: 75%;
+  font-weight: 600;
+  font-size: clamp(0.625rem, 0.56rem + 0.2vw, 0.8125rem);
+  line-height: calc(var(--logo-h) * 0.82);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+/* Desktop mit voller Navigation: erst ab xl genug Platz für den Slogan */
+@media (min-width: 1024px) and (max-width: 1279.98px) {
+  .site-header__tagline {
+    display: none;
+  }
+}
+/* Startseite: Das große Logo wandert beim Scrollen hierher (siehe main.js).
+   Der Slogan erscheint erst, wenn das Logo in der Endposition angekommen ist. */
+.page--home .site-header__logo,
+.page--home .site-header__tagline {
   opacity: 0;
 }
+.page--home .site-header__tagline {
+  translate: -0.5rem 0;
+}
 .page--home.logo-docked .site-header__logo,
-.page--home .site-header__brand:focus-visible .site-header__logo {
+.page--home .site-header__brand:focus-visible .site-header__logo,
+.page--home.logo-docked .site-header__tagline,
+.page--home .site-header__brand:focus-visible .site-header__tagline {
   opacity: 1;
+  translate: 0 0;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .page--home .site-header__tagline {
+    transition: opacity 0.45s var(--ease-out), translate 0.45s var(--ease-out);
+  }
 }
 
 .nav {

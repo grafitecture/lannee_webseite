@@ -193,16 +193,15 @@ function initPlan() {
       badge.textContent = mine ? (status.state === 'open' ? strings.open : strings.next) : '';
     });
 
-    // Live-Anzeige im Hero
+    // Live-Kachel über „Ein Wochenende, drei Orte“: Jetzt geöffnet / Als Nächstes
     if (live) {
-      live.hidden = false;
+      live.classList.add('is-live');
       live.classList.toggle('is-open', status.state === 'open');
       live.style.setProperty('--live', LOC_COLOR[parts.key]);
-      const text = live.querySelector('.live__text');
-      text.innerHTML = '';
-      const a = el('a', '', parts.name);
-      a.href = parts.url;
-      text.append(document.createTextNode(`${parts.state}: `), a, document.createTextNode(`, ${parts.detail}`));
+      live.href = parts.url;
+      live.querySelector('[data-live-state]').textContent = parts.state;
+      live.querySelector('[data-live-name]').textContent = parts.name;
+      live.querySelector('[data-live-detail]').textContent = parts.detail;
     }
   };
 
@@ -370,6 +369,11 @@ function initLogoMorph() {
     return;
   }
 
+  // Das wandernde Logo liegt direkt im <body>: So schiebt es sich beim Schrumpfen über alles,
+  // auch über die Kopfzeile, statt im Stapelkontext des Heros zu bleiben. Der Platzhalter
+  // (.hero__mark) behält seine Größe über aspect-ratio.
+  document.body.append(logo);
+
   let geo;
   const measure = () => {
     const from = mark.getBoundingClientRect(); // Platzhalter im Fluss
@@ -381,9 +385,9 @@ function initLogoMorph() {
       scale: to.width / from.width,
       distance: Math.max(from.height, 96), // so viel Scrollweg braucht der Übergang
     };
-    mark.style.setProperty('--morph-top', `${top}px`);
-    mark.style.setProperty('--morph-left', `${from.left}px`);
-    mark.style.setProperty('--morph-width', `${from.width}px`);
+    logo.style.setProperty('--morph-top', `${top}px`);
+    logo.style.setProperty('--morph-left', `${from.left}px`);
+    logo.style.setProperty('--morph-width', `${from.width}px`);
   };
   const update = () => {
     const p = Math.min(Math.max(window.scrollY / geo.distance, 0), 1);
@@ -406,7 +410,69 @@ function initLogoMorph() {
   window.addEventListener('resize', () => (measure(), update()));
 }
 
+/* ------------------------------------------------------------------ */
+/* Startseite: Filmsequenz im Hero                                     */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Der Film lädt erst per Skript (preload="none" im HTML): Hochformat auf Handys, sonst Querformat.
+ * Reduzierte Bewegung oder Datensparmodus: Es bleibt beim Standbild, der Knopf startet den Film auf Wunsch.
+ * Außerhalb des Bildschirms pausiert der Film.
+ */
+function initFilm() {
+  const film = document.querySelector('[data-film]');
+  const video = film?.querySelector('video');
+  const toggle = document.querySelector('[data-film-toggle]');
+  if (!film || !video) return;
+  const saveData = navigator.connection?.saveData === true;
+  let loaded = false;
+  let wanted = !reduceMotion && !saveData; // Wunsch der Besucherin, des Besuchers
+  let visible = true;
+
+  const load = () => {
+    if (loaded) return;
+    loaded = true;
+    const base = window.matchMedia('(orientation: portrait)').matches ? film.dataset.tall : film.dataset.wide;
+    for (const [ext, type] of [
+      ['webm', 'video/webm'],
+      ['mp4', 'video/mp4'],
+    ]) {
+      const source = document.createElement('source');
+      source.src = `${base}.${ext}`;
+      source.type = type;
+      video.append(source);
+    }
+    video.load();
+  };
+  const sync = () => {
+    if (wanted && visible) {
+      load();
+      video.play().catch(() => {});
+    } else video.pause();
+    if (toggle) {
+      toggle.hidden = false;
+      toggle.setAttribute('aria-pressed', String(!wanted));
+      toggle.setAttribute('aria-label', wanted ? toggle.dataset.labelPause : toggle.dataset.labelPlay);
+      toggle.classList.toggle('is-paused', !wanted);
+    }
+  };
+
+  video.addEventListener('playing', () => film.classList.add('is-playing'));
+  toggle?.addEventListener('click', () => {
+    wanted = !wanted;
+    sync();
+  });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      sync();
+    }).observe(film);
+  }
+  sync();
+}
+
 initLogoMorph();
+initFilm();
 initExpiry();
 initMenu();
 initPlan();

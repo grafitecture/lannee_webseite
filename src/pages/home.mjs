@@ -1,3 +1,4 @@
+import fs from 'node:fs';
 import { html, raw, rich } from '../lib/html.mjs';
 import { DICT, url } from '../lib/i18n.mjs';
 import { LOCATIONS, LOCATION_ORDER, SITE } from '../content/site.mjs';
@@ -8,8 +9,21 @@ import { menuExcerpt } from '../lib/menu-render.mjs';
 import { placeText } from '../lib/layout.mjs';
 
 const PLACE_PHOTOS = { garage: 'garage-hof', kiosque: 'kiosque-visualisierung', marche: 'marche-wagen' };
-/** Stimmungsbild im Hero (Higgsfield AI): Austern, Champagner, Freunde, warmes Licht, viel Unschärfe */
-const HERO_IMAGE = 'hero-austern-hof'; // Übergang: früheres KI-Stimmungsbild, bis das neue Higgsfield-Bild eingebaut ist
+/**
+ * Hero: Filmsequenz im Stil eines Heimkino-Films der 50er/60er (Higgsfield AI, Kling 3.0; Nachbearbeitung mit ffmpeg).
+ * Fischerei, Austern und die drei Orte; unscharf, verwackelt, verblasst, ohne Ton, in Schleife.
+ * Querformat 960×540 und Hochformat 432×768 (für Handys), jeweils WebM und MP4 in /public/film.
+ * Standbild davor (und bei reduzierter Bewegung): `hero-film`. Fehlen die Filmdateien, bleibt das frühere Stimmungsbild.
+ */
+const FILM_DIR = new URL('../../public/film/', import.meta.url);
+const FILM = { wide: '/film/lannee-film-quer', tall: '/film/lannee-film-hoch' };
+const FILM_READY = ['lannee-film-quer.mp4', 'lannee-film-hoch.mp4'].every((f) => fs.existsSync(new URL(f, FILM_DIR)));
+const HERO_IMAGE = FILM_READY && fs.existsSync(new URL('../../public/images/hero-film-1080.webp', import.meta.url)) ? 'hero-film' : 'hero-austern-hof';
+const FILM_TOGGLE = {
+  de: { pause: 'Film anhalten', play: 'Film abspielen' },
+  fr: { pause: 'Mettre le film en pause', play: 'Lire le film' },
+  en: { pause: 'Pause film', play: 'Play film' },
+};
 const HERO_PLACES_LABEL = { de: 'Drei Orte', fr: 'Trois adresses', en: 'Three places' };
 const GALLERY = ['garage-austernbar', 'garage-boot', 'schweppes', 'huitres-glace', 'garage-eingang', 'baguettes', 'garage-wand', 'austern-oeffnen', 'garage-merci'];
 
@@ -59,9 +73,15 @@ export function render(ctx) {
   });
 
   return html`
-<section class="hero" aria-labelledby="hero-title">
+<section class="hero${FILM_READY ? ' hero--film' : ''}" aria-labelledby="hero-title">
   <h1 class="visually-hidden" id="hero-title">${rich(p.h1, locale)}</h1>
-  ${picture(HERO_IMAGE, locale, { sizes: '100vw', cls: 'hero__bg', eager: true })}
+  ${picture(HERO_IMAGE, locale, { sizes: '100vw', cls: 'hero__bg', eager: true, alt: FILM_READY ? '' : undefined })}
+  ${
+    FILM_READY
+      ? html`<div class="hero__film" data-film data-wide="${FILM.wide}" data-tall="${FILM.tall}" aria-hidden="true"><video class="hero__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback></video></div>
+  <button class="hero__toggle" type="button" data-film-toggle data-label-pause="${FILM_TOGGLE[locale].pause}" data-label-play="${FILM_TOGGLE[locale].play}" aria-label="${FILM_TOGGLE[locale].play}" hidden><span class="hero__toggle-icon" aria-hidden="true"></span></button>`
+      : ''
+  }
   <div class="hero__inner">
     <div class="hero__brand">
       <div class="hero__mark" data-logo-morph style="--logo-ratio: ${LOGO_W} / ${LOGO_H}">${logo({ cls: 'hero__logo', decorative: true })}</div>
@@ -69,17 +89,40 @@ export function render(ctx) {
     </div>
     <div class="hero__text">
       <p class="hero__lead">${rich(p.lead, locale)}</p>
-      <p class="live" data-live hidden><span class="live__dot" aria-hidden="true"></span><span class="live__text"></span></p>
-      <div class="hero__actions">
-        ${arrowLink(url('carte', locale), p.ctaMenu, { cls: 'btn btn--solid' })}
-        <a class="btn btn--line" href="#wochenende"><span>${p.ctaWhere}</span></a>
-      </div>
     </div>
   </div>
   <ul class="hero__places" role="list" aria-label="${HERO_PLACES_LABEL[locale]}">${heroPlaces}</ul>
 </section>
 
 <section class="weekend" id="wochenende" aria-labelledby="weekend-title">
+  <nav class="wayfinder" aria-label="${p.wayfinder.label}">
+    <ul class="wayfinder__list" role="list">
+      <li class="wayfinder__item">
+        <a class="wayfinder__card" href="#weekend-title" data-live>
+          <span class="wayfinder__eyebrow"><span class="wayfinder__dot" aria-hidden="true"></span><span data-live-state>${p.wayfinder.planEyebrow}</span></span>
+          <span class="wayfinder__title" data-live-name>${p.wayfinder.planTitle}</span>
+          <span class="wayfinder__text" data-live-detail>${p.wayfinder.planText}</span>
+          ${icon('arrow', { cls: 'icon wayfinder__arrow' })}
+        </a>
+      </li>
+      <li class="wayfinder__item">
+        <a class="wayfinder__card" href="${url('carte', locale)}">
+          <span class="wayfinder__eyebrow">${p.wayfinder.menuEyebrow}</span>
+          <span class="wayfinder__title">${p.ctaMenu}</span>
+          <span class="wayfinder__text">${p.wayfinder.menuText}</span>
+          ${icon('arrow', { cls: 'icon wayfinder__arrow' })}
+        </a>
+      </li>
+      <li class="wayfinder__item">
+        <a class="wayfinder__card" href="#orte">
+          <span class="wayfinder__eyebrow">${p.wayfinder.whereEyebrow}</span>
+          <span class="wayfinder__title">${p.ctaWhere}</span>
+          <span class="wayfinder__text">${p.wayfinder.whereText}</span>
+          ${icon('arrow', { cls: 'icon wayfinder__arrow' })}
+        </a>
+      </li>
+    </ul>
+  </nav>
   <div class="weekend__intro">
     <h2 class="t-h3" id="weekend-title">${p.weekend.heading}</h2>
     <p class="lead">${rich(p.weekend.lead, locale)}</p>
@@ -88,7 +131,7 @@ export function render(ctx) {
   ${closureNotes(locale, LOCATION_ORDER)}
 </section>
 
-<div class="places">${places}</div>
+<div class="places" id="orte">${places}</div>
 
 <section class="teaser-menu" aria-labelledby="menu-title">
   <div class="teaser-menu__head">

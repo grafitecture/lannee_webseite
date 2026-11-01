@@ -208,34 +208,20 @@ export function weekPlan(locale) {
     }</span></a></li>`;
   };
 
-  // Tage 1–7; aufeinanderfolgende Tage ohne Öffnung werden zu einer Zeile zusammengefasst
+  // Nur die Tage, an denen wir geöffnet haben (Vorgabe 01.11.2026: keine Zeile „Mo – Do geschlossen“)
   const rows = [];
   for (let day = 1; day <= 7; day++) {
     const slots = SCHEDULE.map((s, i) => [s, i]).filter(([s]) => s.day === day);
-    const last = rows.at(-1);
-    if (!slots.length && last?.rest) last.days.push(day);
-    else rows.push({ days: [day], rest: !slots.length, slots });
+    if (slots.length) rows.push({ day, slots });
   }
 
-  const head = (r) => {
-    const name =
-      r.days.length > 1
-        ? html`<span aria-hidden="true">${cap(t.daysShort[r.days[0] - 1])} – ${t.daysShort[r.days.at(-1) - 1]}</span><span class="visually-hidden">${fill(
-            t.time.range,
-            { a: t.days[r.days[0] - 1], b: t.days[r.days.at(-1) - 1] }
-          )}</span>`
-        : cap(t.days[r.days[0] - 1]);
-    return html`<div class="plan__head"><h3 class="plan__dayname">${name}</h3><p class="plan__date"></p></div>`;
-  };
+  const head = (r) => html`<div class="plan__head"><h3 class="plan__dayname">${cap(t.days[r.day - 1])}</h3><p class="plan__date"></p></div>`;
 
-  const days = rows.map((r) =>
-    r.rest
-      ? html`<li class="plan__day plan__day--rest" data-days="${r.days.join(',')}">${head(r)}<div class="plan__track plan__track--rest"><p class="plan__closed">${
-          t.live.closed
-        }</p></div></li>`
-      : html`<li class="plan__day" data-days="${r.days.join(',')}">${head(r)}<div class="plan__track"><ul class="plan__slots" role="list">${r.slots.map(([s, i]) =>
-          slot(s, i)
-        )}</ul><span class="plan__now" aria-hidden="true" hidden></span></div></li>`
+  const days = rows.map(
+    (r) =>
+      html`<li class="plan__day" data-days="${r.day}">${head(r)}<div class="plan__track"><ul class="plan__slots" role="list">${r.slots.map(([s, i]) =>
+        slot(s, i)
+      )}</ul><span class="plan__now" aria-hidden="true" hidden></span></div></li>`
   );
 
   // Daten für die Live-Anzeige (main.js)
