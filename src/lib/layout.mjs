@@ -85,7 +85,7 @@ function header(ctx) {
     <a class="site-header__brand" href="${url('home', locale)}" aria-label="L’ANNÉE – ${t.home}">${logo({ cls: 'site-header__logo', decorative: true, eager: true, sizes: '7rem' })}<span class="site-header__rule" aria-hidden="true"></span><span class="site-header__tagline" aria-hidden="true">${SITE.taglines[locale]}</span></a>
     <nav class="nav" aria-label="${t.mainNav}"><ul class="nav__list">${links}</ul></nav>
     ${langSwitch(ctx, 'lang--header')}
-    <a class="menu-toggle" href="#menu" aria-controls="menu" aria-expanded="false" data-menu-toggle><span class="menu-toggle__label">${t.menu}</span><span class="menu-toggle__bars" aria-hidden="true"></span></a>
+    <a class="menu-toggle" href="#menu" aria-controls="menu" aria-expanded="false" data-menu-toggle><span class="visually-hidden">${t.menu}</span><span class="menu-toggle__bars" aria-hidden="true"></span></a>
   </div>
   <nav class="drawer" id="menu" aria-label="${t.mainNav}" data-menu>
     <div class="drawer__inner">
