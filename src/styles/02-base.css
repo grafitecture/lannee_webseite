@@ -6,8 +6,8 @@
   --font-display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
   --font-text: 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --phi: 1.618;
-  --line: color-mix(in srgb, var(--palm) 50%, transparent);
-  --line-strong: var(--palm);
+  --line: color-mix(in srgb, var(--embrun) 50%, transparent);
+  --line-strong: var(--embrun);
   --header-h: 4.5rem;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.7, 0, 0.2, 1);
@@ -123,7 +123,7 @@ button {
 }
 
 ::selection {
-  background: var(--lime);
+  background: var(--ecume);
   color: var(--ink);
 }
 
@@ -194,18 +194,18 @@ main:focus {
   background: var(--bg);
   color: var(--fg);
 }
-.theme-garage { --bg: var(--garage); --fg: var(--blanc); --loc: var(--blanc); --soft: var(--lime); }
-.theme-kiosque { --bg: var(--kiosque); --fg: var(--blanc); --loc: var(--blanc); --soft: var(--lime); }
-.theme-marche { --bg: var(--marche); --fg: var(--blanc); --loc: var(--blanc); --soft: var(--lime); }
-.theme-ink { --bg: var(--ink); --fg: var(--blanc); --loc: var(--lime); }
+.theme-garage { --bg: var(--garage); --fg: var(--blanc); --loc: var(--blanc); --soft: var(--ecume); }
+.theme-kiosque { --bg: var(--kiosque); --fg: var(--blanc); --loc: var(--blanc); --soft: var(--ecume); }
+.theme-marche { --bg: var(--marche); --fg: var(--blanc); --loc: var(--blanc); --soft: var(--ecume); }
+.theme-ink { --bg: var(--ink); --fg: var(--blanc); --loc: var(--ecume); }
 
-.theme-garage-text { --loc: var(--garage); --loc-pale: var(--lime); }
-.theme-kiosque-text { --loc: var(--kiosque); --loc-pale: var(--lime); }
-.theme-marche-text { --loc: var(--marche); --loc-pale: var(--lime); }
+.theme-garage-text { --loc: var(--garage); --loc-pale: var(--ecume); }
+.theme-kiosque-text { --loc: var(--kiosque); --loc-pale: var(--ecume); }
+.theme-marche-text { --loc: var(--marche); --loc-pale: var(--ecume); }
 
-.page--garage { --loc: var(--garage); --loc-pale: var(--lime); --loc-text: var(--garage); }
-.page--kiosque { --loc: var(--kiosque); --loc-pale: var(--lime); --loc-text: var(--kiosque); }
-.page--marche { --loc: var(--marche); --loc-pale: var(--lime); --loc-text: var(--marche); }
+.page--garage { --loc: var(--garage); --loc-pale: var(--ecume); --loc-text: var(--garage); }
+.page--kiosque { --loc: var(--kiosque); --loc-pale: var(--ecume); --loc-text: var(--kiosque); }
+.page--marche { --loc: var(--marche); --loc-pale: var(--ecume); --loc-text: var(--marche); }
 
 /* Seitenübergänge (Chrome, Edge, Safari 18.2+) ----------------------------- */
 

@@ -41,15 +41,15 @@ export function render() {
 
 <section class="sg" aria-labelledby="sg-brand">
   <h2 class="t-h4" id="sg-brand">Dachmarke und Subbrands</h2>
-  <p class="lead">Eine Dachmarke, drei Orte. Die Farben sind nur Grün, ihre Helligkeit folgt dem Tageslicht: Fern am Morgen (Marché), Hunter Green am Sonntag (Kiosque), Evergreen am Abend (Garage). Uhren (Signets) gibt es nicht mehr (Vorgabe 03.11.2026).</p>
-  <p class="sg__note">Logo: weiße, gestrichene Holzbuchstaben L’ANNÉE (wie ein Schild aus Brettern). Weiß gehört auf Grün: Das Logo steht immer auf einer grünen Fläche – Kopfzeile, Film im Hero, Fußzeile und die Farbflächen der Orte –, nie auf Weiß. Auf der Startseite wandern Logo und Slogan beim Scrollen vom Hero in die Kopfzeile.</p>
+  <p class="lead">Eine Dachmarke, drei Orte. Die Farben sind nur Blau (seit 03.11.2026, vorher Grün), ihre Helligkeit folgt dem Tageslicht: Marée am Morgen (Marché), Océan am Sonntag (Kiosque), Bleu nuit am Abend (Garage). Uhren (Signets) gibt es nicht mehr (Vorgabe 03.11.2026).</p>
+  <p class="sg__note">Logo: weiße, gestrichene Holzbuchstaben L’ANNÉE (wie ein Schild aus Brettern). Weiß gehört auf Blau: Das Logo steht immer auf einer blauen Fläche – Kopfzeile, Film im Hero, Fußzeile und die Farbflächen der Orte –, nie auf Weiß. Auf der Startseite wandern Logo und Slogan beim Scrollen vom Hero in die Kopfzeile.</p>
   <div class="sg__logos">
     <div class="sg__logo theme-ink">${logo({ cls: 'sg__logo-img', decorative: true, sizes: '30rem' })}</div>
     <div class="sg__logo theme-kiosque">${logo({ cls: 'sg__logo-img', decorative: true, sizes: '30rem' })}</div>
     <div class="sg__logo theme-marche">${logo({ cls: 'sg__logo-img', decorative: true, sizes: '30rem' })}</div>
   </div>
   <p class="sg__note">Lockup: Das L’ANNÉE-Logo steht so hoch wie der Zweizeiler aus Ortsname (mit Linie) und „Austern &amp; Bulles“, immer auf der Farbe des Ortes, Schrift weiß.</p>
-  <p class="sg__note">Über den Lockups (Startseite „drei Orte“, Ortsseiten) stehen die drei Orte als Strichzeichnungen: Garage mit Toren und Lichterkette, Kiosque mit Markise und Hängelampen, Marché als Anhänger mit Vitrine unterm Marktschirm. Feine Linie, weiß auf der Farbe des Ortes. Hat der Ort geöffnet, geht das Licht an: Fenster in Lime Cream, ein Schein darum und ein Lichtkegel auf die Straße (Vorschau: <code>?licht=an</code>).</p>
+  <p class="sg__note">Über den Lockups (Startseite „drei Orte“, Ortsseiten) stehen die drei Orte als Strichzeichnungen: Garage mit Toren und Lichterkette, Kiosque mit Markise und Hängelampen, Marché als Anhänger mit Vitrine unterm Marktschirm. Feine Linie, weiß auf der Farbe des Ortes. Hat der Ort geöffnet, geht das Licht an: Fenster in Écume, ein Schein darum und ein Lichtkegel auf die Straße (Vorschau: <code>?licht=an</code>).</p>
   <div class="sg__venues">
     ${LOCATION_ORDER.map((k) => html`<div class="sg__venue theme-${LOCATIONS[k].color}">${venueArt(k, { cls: 'sg__venue-art', lit: true })}${lockup(k, { cls: 'sg__venue-lockup' })}</div>`)}
   </div>
@@ -58,7 +58,7 @@ export function render() {
 
 <section class="sg" aria-labelledby="sg-colors">
   <h2 class="t-h4" id="sg-colors">Farben</h2>
-  <p class="lead">Auf der Seite gibt es nur Grün: fünf Töne und Weiß. Entweder grüne Fläche mit weißer Schrift oder weiße Fläche mit grüner Schrift. Nichts ist schwarz oder grau; wo sonst Schwarz stünde, steht Evergreen. Palm Leaf ist für Schrift zu hell und trägt Linien und Zeichnungen (das Logo ist weißes Holz auf Grün); Lime Cream setzt kleine Akzente (Markierungen).</p>
+  <p class="lead">Auf der Seite gibt es nur Blau: fünf frische Töne vom Meer und Weiß. Entweder blaue Fläche mit weißer Schrift oder weiße Fläche mit blauer Schrift. Nichts ist schwarz oder grau; wo sonst Schwarz stünde, steht Bleu nuit. Die drei Orte haben je ein eigenes Blau: Garage Bleu nuit (der Abend), Kiosque Océan (der Sonntag), Marché Marée (der Morgen). Embrun ist für Schrift zu hell und trägt Linien und Zeichnungen (das Logo ist weißes Holz auf Blau); Écume setzt kleine Akzente (Markierungen, Licht).</p>
   <ul class="swatches" role="list">${COLORS.map(
     (c) => html`<li class="swatch" style="--sw:${c.hex}">
       <span class="swatch__chip"></span>
@@ -66,7 +66,7 @@ export function render() {
       <code>${c.hex}</code>
       <code>${c.oklch}</code>
       <span class="swatch__role">${c.role}</span>
-      <span class="swatch__contrast">Weiß ${contrast(c.hex, '#FFFFFF').toFixed(2)} : 1, Evergreen ${contrast(c.hex, tokenHex('evergreen')).toFixed(2)} : 1</span>
+      <span class="swatch__contrast">Weiß ${contrast(c.hex, '#FFFFFF').toFixed(2)} : 1, Bleu nuit ${contrast(c.hex, tokenHex('nuit')).toFixed(2)} : 1</span>
     </li>`
   )}</ul>
   <ul class="shades" role="list">${ROLES.map(

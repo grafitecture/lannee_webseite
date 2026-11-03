@@ -7,27 +7,28 @@
 export const FLUID = { minVw: 360, maxVw: 1920, root: 16 };
 
 /*
- * Palette: nur Grün (Vorgabe 30.10.2026) – fünf Töne plus Weiß.
- * Regel: grüne Fläche mit weißer Schrift oder weiße Fläche mit grüner Schrift.
- * Nichts Schwarzes, nichts Graues: Das dunkelste Grün (Evergreen) ersetzt Schwarz.
+ * Palette: nur Blau (Vorgabe 03.11.2026, vorher Grün) – fünf Töne plus Weiß. Frisch, nach Meer und Eis.
+ * Regel: blaue Fläche mit weißer Schrift oder weiße Fläche mit blauer Schrift.
+ * Nichts Schwarzes, nichts Graues: Das dunkelste Blau (Bleu nuit) ersetzt Schwarz.
+ * Die drei Orte bleiben klar getrennt: hell → dunkel und von Türkis-Blau zu Nachtblau.
  */
 export const COLORS = [
-  { token: 'evergreen', name: 'Evergreen', hex: '#132A13', oklch: 'oklch(25.9% 0.051 143.9)', role: 'Dunkelstes Grün, ersetzt Schwarz: Text, Fußzeile. Garage, der Abend', text: 'blanc' },
-  { token: 'hunter', name: 'Hunter Green', hex: '#31572C', oklch: 'oklch(41.7% 0.081 141.5)', role: 'Kiosque, der Sonntag', text: 'blanc' },
-  { token: 'fern', name: 'Fern', hex: '#4F772D', oklch: 'oklch(52.2% 0.113 132.9)', role: 'Marché, der Morgen. Auch Nebentext auf Weiß', text: 'blanc' },
-  { token: 'palm', name: 'Palm Leaf', hex: '#90A955', oklch: 'oklch(69.7% 0.114 123)', role: 'Linien, Zeichnungen (für Schrift zu hell)', text: 'evergreen' },
-  { token: 'lime', name: 'Lime Cream', hex: '#ECF39E', oklch: 'oklch(94% 0.107 112.3)', role: 'Akzent: Markierungen, Licht in den Strichzeichnungen', text: 'evergreen' },
-  { token: 'blanc', name: 'Weiß', hex: '#FFFFFF', oklch: 'oklch(100% 0 0)', role: 'Flächen und Schrift auf Grün', text: 'evergreen' },
+  { token: 'nuit', name: 'Bleu nuit', hex: '#082246', oklch: 'oklch(25.5% 0.075 258)', role: 'Dunkelstes Blau, ersetzt Schwarz: Text, Kopf- und Fußzeile. Garage, der Abend', text: 'blanc' },
+  { token: 'ocean', name: 'Océan', hex: '#0C528C', oklch: 'oklch(43% 0.115 250)', role: 'Kiosque, der Sonntag', text: 'blanc' },
+  { token: 'maree', name: 'Marée', hex: '#167AA2', oklch: 'oklch(54.5% 0.105 232)', role: 'Marché, der Morgen. Auch Nebentext auf Weiß', text: 'blanc' },
+  { token: 'embrun', name: 'Embrun', hex: '#6BBADA', oklch: 'oklch(75% 0.09 226)', role: 'Linien, Zeichnungen (für Schrift zu hell)', text: 'nuit' },
+  { token: 'ecume', name: 'Écume', hex: '#D1F6FE', oklch: 'oklch(95% 0.04 212)', role: 'Akzent: Markierungen, Licht in den Strichzeichnungen', text: 'nuit' },
+  { token: 'blanc', name: 'Weiß', hex: '#FFFFFF', oklch: 'oklch(100% 0 0)', role: 'Flächen und Schrift auf Blau', text: 'nuit' },
 ];
 
 /** Rollen: welcher Ton wofür steht (werden zu CSS-Variablen, die auf die Palette zeigen). */
 export const ROLES = [
-  { token: 'ink', ref: 'evergreen', role: 'Text, Buttons, Fußzeile' },
-  { token: 'garage', ref: 'evergreen', role: 'Garage' },
-  { token: 'kiosque', ref: 'hunter', role: 'Kiosque' },
-  { token: 'marche', ref: 'fern', role: 'Marché' },
-  { token: 'brand', ref: 'palm', role: 'Linien, Zeichnungen' },
-  { token: 'muted', ref: 'fern', role: 'Nebentext auf Weiß' },
+  { token: 'ink', ref: 'nuit', role: 'Text, Buttons, Kopf- und Fußzeile' },
+  { token: 'garage', ref: 'nuit', role: 'Garage' },
+  { token: 'kiosque', ref: 'ocean', role: 'Kiosque' },
+  { token: 'marche', ref: 'maree', role: 'Marché' },
+  { token: 'brand', ref: 'embrun', role: 'Linien, Zeichnungen' },
+  { token: 'muted', ref: 'maree', role: 'Nebentext auf Weiß' },
 ];
 
 /** Hex-Wert einer Farbe oder Rolle (für Meta-Tags, Manifest, Share-Bilder). */

@@ -175,7 +175,7 @@
 
 /* Die drei Orte als Strichzeichnungen (über den Lockups) ------------------------
  * Linie in currentColor; ist der Ort geöffnet (.is-lit), leuchten die Fenster in
- * Lime Cream, und ein Lichtkegel fällt vor dem Haus auf die Straße.
+ * Écume, und ein Lichtkegel fällt vor dem Haus auf die Straße.
  * Breite = Breite des Logos im Lockup bei gleicher Schriftgröße.
  */
 .venue-art {
@@ -201,9 +201,9 @@
 .venue-art__glass,
 .venue-art__halo,
 .venue-art__soft {
-  fill: var(--lime);
+  fill: var(--ecume);
 }
-.venue-art__stop { stop-color: var(--lime); stop-opacity: 0.55; }
+.venue-art__stop { stop-color: var(--ecume); stop-opacity: 0.55; }
 .venue-art__stop--end { stop-opacity: 0; }
 .venue-art__glass,
 .venue-art__halo,
@@ -220,7 +220,7 @@
 .venue-art.is-lit .venue-art__halo { opacity: 0.8; }
 .venue-art.is-lit .venue-art__soft { opacity: 0.28; }
 .venue-art.is-lit .venue-art__pool { opacity: 1; }
-.venue-art.is-lit .venue-art__bulbs > * { fill: var(--lime); }
+.venue-art.is-lit .venue-art__bulbs > * { fill: var(--ecume); }
 @media (prefers-reduced-motion: no-preference) {
   /* Licht geht an wie eine alte Leuchtröhre: kurz flackern, dann ruhig */
   .venue-art.is-lit .venue-art__glass,
@@ -237,7 +237,7 @@
 /* Bilder -------------------------------------------------------------------- */
 
 .pic {
-  background: var(--palm); /* Platzhalter, bis das Foto geladen ist */
+  background: var(--embrun); /* Platzhalter, bis das Foto geladen ist */
   overflow: hidden;
 }
 .pic img {
@@ -269,7 +269,7 @@
   line-height: 1.1;
   letter-spacing: 0.02em;
 }
-/* Grüne Fläche, weiße Schrift */
+/* Blaue Fläche, weiße Schrift */
 .tag--garage { background: var(--garage); color: var(--blanc); }
 .tag--kiosque { background: var(--kiosque); color: var(--blanc); }
 .tag--marche { background: var(--marche); color: var(--blanc); }
@@ -355,7 +355,7 @@
   margin: 0;
   padding: 0.6em 1.15em 0.6em 0.95em;
   border-radius: 1.4em;
-  background: var(--lime);
+  background: var(--ecume);
   color: var(--ink);
   font-size: 0.9375rem;
   line-height: 1.35;

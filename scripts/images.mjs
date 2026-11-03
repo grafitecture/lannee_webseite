@@ -67,7 +67,7 @@ const SOURCES = {
 
 /**
  * Freisteller aufbereiten: Die Buchstaben im PNG sind zu 90–99 % deckend (Alpha 229–254),
- * auf Grün schimmert der Grund dann leicht durch. Alpha / 0,9 macht sie voll deckend und lässt
+ * auf Blau schimmert der Grund dann leicht durch. Alpha / 0,9 macht sie voll deckend und lässt
  * die weiche Kante fast unverändert. Danach auf die Buchstaben zuschneiden (Alpha > 32).
  */
 async function prepareLogo(input) {

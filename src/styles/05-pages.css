@@ -6,8 +6,8 @@
 /*
  * Ein Dach, drei Orte: Das Stimmungsbild füllt den ersten Bildschirm. Darauf steht
  * L’ANNÉE in Weiß mit „Austern & Bulles“, unten die drei Orte als Farbbänder
- * (Garage Evergreen, Kiosque Hunter Green, Marché Fern) – jedes ein Link mit
- * Name, Zusatz, Zeit und Ort (ohne Uhren). Beim Scrollen schrumpft das weiße Logo in die grüne
+ * (Garage Bleu nuit, Kiosque Océan, Marché Marée) – jedes ein Link mit
+ * Name, Zusatz, Zeit und Ort (ohne Uhren). Beim Scrollen schrumpft das weiße Logo in die blaue
  * Kopfzeile.
  */
 
@@ -64,7 +64,7 @@
 .hero__bg img {
   object-position: var(--hero-focus, 62% 50%);
 }
-/* Evergreen-Schleier: links oben für Logo und Text, unten als Übergang in die Bänder */
+/* Schleier in Bleu nuit: links oben für Logo und Text, unten als Übergang in die Bänder */
 .hero__stage::before {
   content: '';
   position: absolute;
@@ -244,7 +244,7 @@
 }
 .hero-place__link:hover,
 .hero-place__link:focus-visible {
-  box-shadow: inset 0 0.3rem 0 var(--lime);
+  box-shadow: inset 0 0.3rem 0 var(--ecume);
 }
 .hero-place__arrow {
   grid-area: arrow;
@@ -320,7 +320,7 @@
 /*
  * Jetzt geöffnet / Als Nächstes (live, aus denselben Daten wie der Wochenplan),
  * Zur Karte, Wo wir sind. Gleich gebaut: Kopfzeile in gesperrten Versalien,
- * großer Titel, eine Zeile Text, Pfeil. Weiß mit grüner Linie; beim Darüberfahren Lime Cream.
+ * großer Titel, eine Zeile Text, Pfeil. Weiß mit blauer Linie; beim Darüberfahren Écume.
  */
 .wayfinder {
   margin-bottom: var(--space-xl);
@@ -354,7 +354,7 @@
 }
 .wayfinder__card:hover,
 .wayfinder__card:focus-visible {
-  background: var(--lime);
+  background: var(--ecume);
 }
 .wayfinder__eyebrow {
   grid-area: eyebrow;
@@ -523,7 +523,7 @@
   inset: 0 0 auto;
   height: var(--mini-h);
   border-radius: 1rem;
-  background: var(--lime);
+  background: var(--ecume);
 }
 .plan__slots {
   list-style: none;
@@ -963,7 +963,7 @@
 
 /* Ortsseiten ---------------------------------------------------------------- */
 
-/* Kopf auf der Farbe des Ortes (seit 03.11.2026): Das weiße Holz-Logo im Lockup gehört auf Grün.
+/* Kopf auf der Farbe des Ortes (seit 03.11.2026): Das weiße Holz-Logo im Lockup gehört auf Blau.
    Schrift, Strichzeichnung und Linien sind weiß (theme-garage/-kiosque/-marche). */
 .loc-hero {
   container-type: inline-size;
@@ -1833,7 +1833,7 @@
   display: block;
   width: 4.5rem;
   height: 3.5rem;
-  color: var(--palm);
+  color: var(--embrun);
 }
 .oyster__svg {
   display: block;

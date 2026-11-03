@@ -2,8 +2,8 @@
  * Die drei Orte als Strichzeichnungen: Garage, Kiosque, Marché-Wagen.
  * ---------------------------------------------------------------------------
  * Stehen über den Subbrand-Lockups (Startseite „drei Orte“, Ortsseiten).
- * Feine Linie in currentColor (auf Grün weiß, auf Weiß im Grün des Ortes).
- * Hat der Ort gerade geöffnet, geht das Licht an: Fenster in Lime Cream,
+ * Feine Linie in currentColor (auf Blau weiß, auf Weiß im Blau des Ortes).
+ * Hat der Ort gerade geöffnet, geht das Licht an: Fenster in Écume,
  * ein weicher Schein darum und ein Lichtkegel, der vor dem Haus auf die
  * Straße fällt (unterhalb der Bodenlinie). Live-Teil: initVenueLights() in main.js,
  * Vorschau mit ?licht=an.

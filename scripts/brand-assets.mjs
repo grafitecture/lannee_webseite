@@ -10,7 +10,7 @@ import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 import { tokenHex } from '../src/content/tokens.mjs';
 
-const C = { lime: tokenHex('lime'), brand: tokenHex('brand'), garage: tokenHex('garage'), kiosque: tokenHex('kiosque'), marche: tokenHex('marche'), ink: tokenHex('ink'), blanc: tokenHex('blanc') };
+const C = { ecume: tokenHex('ecume'), brand: tokenHex('brand'), garage: tokenHex('garage'), kiosque: tokenHex('kiosque'), marche: tokenHex('marche'), ink: tokenHex('ink'), blanc: tokenHex('blanc') };
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const require = createRequire(import.meta.url);
 
@@ -31,7 +31,7 @@ const LOGO_VB = logoSvg.match(/viewBox="([^"]+)"/)[1];
 const LOGO_D = logoSvg.match(/ d="([^"]+)"/)[1];
 const subs = LOGO_D.split('Z').filter((s) => s.trim()).map((s) => s.trim() + 'Z');
 
-/* ---------- Favicon: „L’“ aus dem Logo, weiß auf Hunter Green ---------- */
+/* ---------- Favicon: „L’“ aus dem Logo, weiß auf Océan ---------- */
 // Teilpfade: L (x 23–202) und Apostroph (x 183–272), siehe Logo-Analyse
 const pick = (minX, maxX) =>
   subs.filter((d) => {
@@ -67,7 +67,7 @@ const fontCss = `
 *{margin:0;box-sizing:border-box}
 body{width:1200px;height:630px;overflow:hidden;font-family:'Instrument Sans',sans-serif;}
 `;
-// Holz-Logo (weiße Buchstaben, freigestellt) – steht immer auf Grün
+// Holz-Logo (weiße Buchstaben, freigestellt) – steht immer auf Blau
 const LOGO_IMG = `file://${ROOT}/public/images/logo-lannee-1563.webp`;
 const logo = () => `<img src="${LOGO_IMG}" alt="" style="display:block;width:100%;height:auto">`;
 

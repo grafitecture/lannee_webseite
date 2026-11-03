@@ -20,7 +20,7 @@ Stand: Oktober 2026 · Grundlage: Briefing, PDF „LANNEE_Garage_Kiosque_Marche�
 
 - Die Woche zeigt ein klarer Wochenplan mit Zeitachse; die Strichzeichnungen der Orte machen das Licht an, wenn geöffnet ist.
 - Uhren (Signets mit dem Akzent als Zeiger) gibt es seit 03.11.2026 nicht mehr, auch keine Jahresuhr.
-- Es gibt **nur Grün**; die Helligkeit der Ortsfarben folgt dem **Tageslicht**: Morgen (Fern), Sonntag (Hunter Green), Abend (Evergreen).
+- Es gibt **nur Blau** (seit 03.11.2026, vorher Grün): frische Töne von Meer, Gischt und Eis. Die Helligkeit der Ortsfarben folgt dem **Tageslicht**: Morgen (Marée), Sonntag (Océan), Abend (Bleu nuit).
 
 ## 3. Gliederung
 
@@ -41,7 +41,7 @@ Sprachen: Deutsch (ohne Präfix), Französisch (`/fr/…`), Englisch (`/en/…`)
 
 ## 4. Subbrands
 
-Logo (seit 03.11.2026): **weiße, gestrichene Holzbuchstaben L’ANNÉE**, freigestelltes Bild. Weiß gehört auf Grün – das Logo steht in Kopfzeile, Hero, Fußzeile und in allen Lockups auf einer grünen Fläche, nie auf Weiß. Auf der Startseite wandert es mit dem Slogan beim Scrollen vom Hero in die Kopfzeile.
+Logo (seit 03.11.2026): **weiße, gestrichene Holzbuchstaben L’ANNÉE**, freigestelltes Bild. Weiß gehört auf Blau – das Logo steht in Kopfzeile, Hero, Fußzeile und in allen Lockups auf einer blauen Fläche, nie auf Weiß. Auf der Startseite wandert es mit dem Slogan beim Scrollen vom Hero in die Kopfzeile.
 
 Lockup jeder Subbrand = **L’ANNÉE-Logo + Zweizeiler (NAME, Linie, Austern & Bulles)**. Die Buchstaben des Logos sind genau so hoch wie der Zweizeiler: von der Versalhöhe des Namens bis zur Grundlinie von „Austern & Bulles“; die Akzente ragen darüber hinaus. Der Lockup steht immer auf der Farbe des Ortes, die Schrift ist weiß (Startseite „drei Orte“ und Köpfe der Ortsseiten).
 
@@ -49,10 +49,10 @@ Uhren (Signets) gibt es nirgends mehr (Vorgabe 03.11.2026). Die Orte unterscheid
 
 | Subbrand | Farbe |
 | --- | --- |
-| Marché | Fern |
-| Kiosque | Hunter Green |
-| Garage | Evergreen |
-| L’ANNÉE | Holz-Logo weiß auf Grün |
+| Marché | Marée |
+| Kiosque | Océan |
+| Garage | Bleu nuit |
+| L’ANNÉE | Holz-Logo weiß auf Blau |
 
 Der Name steht in gesperrten Versalien (Instrument Sans, schmal) über einer Linie, wie bereits auf dem Marché-Anhänger.
 
@@ -60,15 +60,15 @@ Der Name steht in gesperrten Versalien (Instrument Sans, schmal) über einer Lin
 
 | Name | HEX | OKLCH | Rolle |
 | --- | --- | --- | --- |
-| Evergreen | #132A13 | 25.9 % 0.051 143.9 | dunkelstes Grün, ersetzt Schwarz: Text, Fußzeile; Garage, der Abend |
-| Hunter Green | #31572C | 41.7 % 0.081 141.5 | Kiosque, der Sonntag |
-| Fern | #4F772D | 52.2 % 0.113 132.9 | Marché, der Morgen; Nebentext auf Weiß |
-| Palm Leaf | #90A955 | 69.7 % 0.114 123 | Linien, Zeichnungen (für Schrift zu hell) |
-| Lime Cream | #ECF39E | 94 % 0.107 112.3 | Akzent: Markierungen, Licht in den Strichzeichnungen |
-| Weiß | #FFFFFF | 100 % 0 0 | Flächen, Schrift auf Grün |
+| Bleu nuit | #082246 | 25.5 % 0.075 258 | dunkelstes Blau, ersetzt Schwarz: Text, Kopf- und Fußzeile; Garage, der Abend |
+| Océan | #0C528C | 43 % 0.115 250 | Kiosque, der Sonntag |
+| Marée | #167AA2 | 54.5 % 0.105 232 | Marché, der Morgen; Nebentext auf Weiß |
+| Embrun | #6BBADA | 75 % 0.09 226 | Linien, Zeichnungen (für Schrift zu hell) |
+| Écume | #D1F6FE | 95 % 0.04 212 | Akzent: Markierungen, Licht in den Strichzeichnungen |
+| Weiß | #FFFFFF | 100 % 0 0 | Flächen, Schrift auf Blau |
 
-Vorgabe seit 30.10.2026: **nur Grün.** Entweder grüne Fläche mit weißer Schrift oder weiße Fläche mit grüner Schrift; nichts Schwarzes, nichts Graues. Rollen im Code: `--ink` und `--garage` = Evergreen, `--kiosque` = Hunter Green, `--marche` und `--muted` = Fern, `--brand` = Palm Leaf.
-Kontraste: Weiß auf Evergreen 15,4 : 1, auf Hunter Green 8,3 : 1, auf Fern 5,2 : 1 (alle für Fließtext geeignet); auf Palm Leaf nur 2,6 : 1, deshalb trägt Palm Leaf keine Schrift und keinen Ort.
+Vorgabe seit 03.11.2026: **nur Blau** (ersetzt „nur Grün“ vom 30.10.2026). Entweder blaue Fläche mit weißer Schrift oder weiße Fläche mit blauer Schrift; nichts Schwarzes, nichts Graues. Rollen im Code: `--ink` und `--garage` = Bleu nuit, `--kiosque` = Océan, `--marche` und `--muted` = Marée, `--brand` = Embrun. Die drei Orte unterscheiden sich in Helligkeit und Ton (von Türkis-Blau am Morgen zu Nachtblau am Abend).
+Kontraste: Weiß auf Bleu nuit 15,8 : 1, auf Océan 8,1 : 1, auf Marée 4,8 : 1 (alle für Fließtext geeignet); auf Embrun nur 2,2 : 1, deshalb trägt Embrun keine Schrift und keinen Ort. Bleu nuit auf Écume 13,8 : 1.
 
 ## 6. Typografie
 

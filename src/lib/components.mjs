@@ -22,7 +22,7 @@ export const IMAGES = JSON.parse(read('src/content/images.json'));
 /**
  * Logo (seit 03.11.2026): weiße, gestrichene Holzbuchstaben L’ANNÉE, freigestelltes Rasterbild
  * (Quelle assets-src/logo-lannee-holz.png, AVIF/WebP aus scripts/images.mjs).
- * Weiß gehört auf Grün: Das Logo steht immer auf einer grünen Fläche.
+ * Weiß gehört auf Blau: Das Logo steht immer auf einer blauen Fläche.
  * Das frühere Vektor-Logo (src/icons/logo-raw.svg) liefert nur noch das Favicon („L’“).
  */
 export const LOGO = IMAGES['logo-lannee'];

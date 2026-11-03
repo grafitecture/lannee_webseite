@@ -5,7 +5,7 @@
 
 /* Kopfzeile ------------------------------------------------------------------ */
 
-/* Grüne Kopfzeile (Evergreen) mit weißem Logo und weißer Schrift */
+/* Blaue Kopfzeile (Bleu nuit) mit weißem Logo und weißer Schrift */
 .site-header {
   position: sticky;
   top: 0;
@@ -107,10 +107,10 @@
   color: var(--blanc);
 }
 .nav__link:hover {
-  color: var(--lime);
+  color: var(--ecume);
 }
 .nav__link[aria-current='page'] {
-  color: var(--lime);
+  color: var(--ecume);
   border-bottom-color: currentColor;
 }
 
@@ -136,7 +136,7 @@
 }
 .lang a:hover {
   color: var(--ink);
-  background: var(--lime);
+  background: var(--ecume);
 }
 .lang a[aria-current='true'] {
   color: var(--blanc);
@@ -162,7 +162,7 @@
   transition: color 0.2s;
 }
 .menu-toggle:hover {
-  color: var(--lime);
+  color: var(--ecume);
 }
 .menu-toggle__bars {
   position: relative;
@@ -271,7 +271,7 @@
   display: block;
   margin: 0 0 var(--space-l);
 }
-/* Das Holz-Logo groß über die volle Breite, weiß auf Evergreen */
+/* Das Holz-Logo groß über die volle Breite, weiß auf Bleu nuit */
 .site-footer__logo {
   width: 100%;
   height: auto;

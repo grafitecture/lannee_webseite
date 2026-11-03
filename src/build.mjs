@@ -91,7 +91,7 @@ async function build() {
   for (const f of (await fs.readdir(styleDir)).filter((f) => f.endsWith('.css')).sort()) {
     parts.push(await fs.readFile(path.join(styleDir, f), 'utf8'));
   }
-  // Grafitecture-Feld (Impressum, Datenschutz): eigene Farben der Agentur, bewusste Ausnahme von „nur Grün“
+  // Grafitecture-Feld (Impressum, Datenschutz): eigene Farben der Agentur, bewusste Ausnahme von „nur Blau“
   parts.push(await fs.readFile(path.join(ROOT, 'kit', 'grafitecture-credit', 'grafitecture-credit.css'), 'utf8'));
   const css = minifyCss(parts.join('\n'));
   const cssFile = `assets/site.${hash(css)}.css`;
