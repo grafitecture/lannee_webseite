@@ -27,6 +27,9 @@ export const IMAGES = JSON.parse(read('src/content/images.json'));
  */
 export const LOGO = IMAGES['logo-lannee'];
 export const LOGO_RATIO = `${LOGO.width} / ${LOGO.height}`;
+/** Breite ÷ Höhe als Zahl: Wo die Höhe vorgegeben ist (Kopfzeile, Lockup), rechnet das CSS die Breite
+ *  damit aus. Nur über aspect-ratio bleibt das Logo in Safari in Flex-Zeilen sonst 0 px breit. */
+export const LOGO_ASPECT = (LOGO.width / LOGO.height).toFixed(4);
 
 /**
  * Der Zeiger ist der Akzent aus dem É des Logos: Spitze nach außen,
@@ -46,7 +49,7 @@ export const HAND_D = 'M' + handPts.map(([x, y]) => `${x.toFixed(1)} ${y.toFixed
 export function logo({ cls = 'logo', label = 'L’ANNÉE', decorative = false, sizes = '12rem', eager = false } = {}) {
   const srcset = (fmt) => LOGO.widths.map((w) => `/images/logo-lannee-${w}.${fmt} ${w}w`).join(', ');
   const fallback = LOGO.widths.find((w) => w >= 480) ?? LOGO.widths.at(-1);
-  return html`<picture class="brand-logo ${cls}" style="--logo-ratio: ${LOGO_RATIO}"${decorative ? raw(' aria-hidden="true"') : ''}><source type="image/avif" srcset="${srcset(
+  return html`<picture class="brand-logo ${cls}" style="--logo-ratio: ${LOGO_RATIO}; --logo-aspect: ${LOGO_ASPECT}"${decorative ? raw(' aria-hidden="true"') : ''}><source type="image/avif" srcset="${srcset(
     'avif'
   )}" sizes="${sizes}"><source type="image/webp" srcset="${srcset('webp')}" sizes="${sizes}"><img src="/images/logo-lannee-${fallback}.webp" width="${
     LOGO.width

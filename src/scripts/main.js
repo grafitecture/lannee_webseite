@@ -394,10 +394,13 @@ function initLogoMorph() {
     const from = mark.getBoundingClientRect(); // Platzhalter im Fluss
     const to = target.getBoundingClientRect(); // kleines Logo in der Kopfzeile (sticky)
     const top = startTop(from);
+    // Sicherheitsnetz: Hätte das kleine Logo (noch) keine Breite, aus seiner Höhe rechnen –
+    // sonst schrumpft das wandernde Logo auf null und die Endposition bliebe leer.
+    const toWidth = to.width || (to.height * from.width) / from.height;
     geo = {
       dx: to.left - from.left,
       dy: to.top - top,
-      scale: to.width / from.width,
+      scale: toWidth / from.width,
       distance: Math.max(from.height, 96), // so viel Scrollweg braucht der Übergang
     };
     logo.style.setProperty('--morph-top', `${top}px`);

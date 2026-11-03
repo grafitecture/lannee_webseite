@@ -33,7 +33,8 @@
 }
 .site-header__logo {
   height: var(--logo-h);
-  width: auto;
+  /* Breite ausdrücklich aus der Höhe (Safari: nur mit aspect-ratio bliebe das Logo hier 0 px breit) */
+  width: calc(var(--logo-h) * var(--logo-aspect));
   flex: none;
 }
 /* Slogan neben dem Logo (je Sprache), abgesetzt durch eine feine Linie (wie im Lockup) */

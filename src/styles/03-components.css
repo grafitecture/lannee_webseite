@@ -172,6 +172,7 @@
 .lockup__logo {
   flex: none;
   height: calc(var(--lk-cap) * 1.154);
+  width: calc(var(--lk-cap) * 1.154 * var(--logo-aspect));
   margin-top: calc(0.14em - var(--lk-cap) * 0.1394);
 }
 .lockup__words {
