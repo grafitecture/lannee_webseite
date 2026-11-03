@@ -19,9 +19,14 @@ export const IMAGES = JSON.parse(read('src/content/images.json'));
 /* Logo & Zeiger                                                       */
 /* ------------------------------------------------------------------ */
 
-const logoSvg = read('src/icons/logo-raw.svg');
-export const LOGO_VIEWBOX = logoSvg.match(/viewBox="([^"]+)"/)[1];
-export const LOGO_D = logoSvg.match(/ d="([^"]+)"/)[1];
+/**
+ * Logo (seit 03.11.2026): weiße, gestrichene Holzbuchstaben L’ANNÉE, freigestelltes Rasterbild
+ * (Quelle assets-src/logo-lannee-holz.png, AVIF/WebP aus scripts/images.mjs).
+ * Weiß gehört auf Grün: Das Logo steht immer auf einer grünen Fläche.
+ * Das frühere Vektor-Logo (src/icons/logo-raw.svg) liefert nur noch das Favicon („L’“).
+ */
+export const LOGO = IMAGES['logo-lannee'];
+export const LOGO_RATIO = `${LOGO.width} / ${LOGO.height}`;
 
 /**
  * Der Zeiger ist der Akzent aus dem É des Logos: Spitze nach außen,
@@ -34,9 +39,18 @@ const handPts = [];
 for (let i = 0; i < accentPts.length; i += 2) handPts.push([accentPts[i] * 0.8, -accentPts[i + 1] - 76]);
 export const HAND_D = 'M' + handPts.map(([x, y]) => `${x.toFixed(1)} ${y.toFixed(1)}`).join('L') + 'Z';
 
-export function logo({ cls = 'logo', label = 'L’ANNÉE', decorative = false } = {}) {
-  const a11y = decorative ? raw('aria-hidden="true" focusable="false"') : raw(`role="img" aria-label="${esc(label)}"`);
-  return html`<svg class="${cls}" viewBox="${LOGO_VIEWBOX}" ${a11y}><path fill="currentColor" fill-rule="evenodd" d="${LOGO_D}"/></svg>`;
+/**
+ * Logo als <picture> (AVIF, WebP). Die Box hält das Seitenverhältnis (.brand-logo in 03-components.css),
+ * Größe kommt über die Klasse (Höhe oder Breite). sizes = angezeigte Breite für die Bildauswahl.
+ */
+export function logo({ cls = 'logo', label = 'L’ANNÉE', decorative = false, sizes = '12rem', eager = false } = {}) {
+  const srcset = (fmt) => LOGO.widths.map((w) => `/images/logo-lannee-${w}.${fmt} ${w}w`).join(', ');
+  const fallback = LOGO.widths.find((w) => w >= 480) ?? LOGO.widths.at(-1);
+  return html`<picture class="brand-logo ${cls}" style="--logo-ratio: ${LOGO_RATIO}"${decorative ? raw(' aria-hidden="true"') : ''}><source type="image/avif" srcset="${srcset(
+    'avif'
+  )}" sizes="${sizes}"><source type="image/webp" srcset="${srcset('webp')}" sizes="${sizes}"><img src="/images/logo-lannee-${fallback}.webp" width="${
+    LOGO.width
+  }" height="${LOGO.height}" alt="${decorative ? '' : label}" loading="${eager ? 'eager' : 'lazy'}" decoding="async"></picture>`;
 }
 
 /* ------------------------------------------------------------------ */
@@ -62,9 +76,9 @@ export function signet(key, { cls = '' } = {}) {
 }
 
 /** Subbrand-Lockup: Signet · L'ANNÉE · NAME · Austern & Bulles */
-export function lockup(key, { cls = '', tagline = true, as = 'div', locale = 'de' } = {}) {
+export function lockup(key, { cls = '', tagline = true, as = 'div', locale = 'de', sizes = '18rem' } = {}) {
   const L = LOCATIONS[key];
-  const inner = html`${logo({ cls: 'lockup__logo', decorative: true })}<span class="lockup__words"><span class="lockup__name"><span class="visually-hidden">L’ANNÉE </span>${
+  const inner = html`${logo({ cls: 'lockup__logo', decorative: true, sizes })}<span class="lockup__words"><span class="lockup__name"><span class="visually-hidden">L’ANNÉE </span>${
     L.name
   }</span>${tagline ? html`<span class="lockup__tagline">${SITE.taglines[locale] ?? SITE.tagline}</span>` : ''}</span>`;
   return as === 'span'

@@ -82,7 +82,7 @@ function header(ctx) {
   return html`<header class="site-header">
   <a class="skip-link" href="#inhalt">${t.skip}</a>
   <div class="site-header__inner">
-    <a class="site-header__brand" href="${url('home', locale)}" aria-label="L’ANNÉE – ${t.home}">${logo({ cls: 'site-header__logo', decorative: true })}<span class="site-header__rule" aria-hidden="true"></span><span class="site-header__tagline" aria-hidden="true">${SITE.taglines[locale]}</span></a>
+    <a class="site-header__brand" href="${url('home', locale)}" aria-label="L’ANNÉE – ${t.home}">${logo({ cls: 'site-header__logo', decorative: true, eager: true, sizes: '7rem' })}<span class="site-header__rule" aria-hidden="true"></span><span class="site-header__tagline" aria-hidden="true">${SITE.taglines[locale]}</span></a>
     <nav class="nav" aria-label="${t.mainNav}"><ul class="nav__list">${links}</ul></nav>
     ${langSwitch(ctx, 'lang--header')}
     <a class="menu-toggle" href="#menu" aria-controls="menu" aria-expanded="false" data-menu-toggle><span class="menu-toggle__label">${t.menu}</span><span class="menu-toggle__bars" aria-hidden="true"></span></a>
@@ -131,7 +131,7 @@ function footer(ctx) {
   });
   return html`<footer class="site-footer">
   ${ctx.page.compactFooter ? '' : html`<div class="site-footer__places">${places}</div>`}
-  <a class="site-footer__mark" href="${url('home', locale)}" aria-label="L’ANNÉE – ${t.ui.home}">${logo({ cls: 'site-footer__logo', decorative: true })}</a>
+  <a class="site-footer__mark" href="${url('home', locale)}" aria-label="L’ANNÉE – ${t.ui.home}">${logo({ cls: 'site-footer__logo', decorative: true, sizes: '100vw' })}</a>
   <div class="site-footer__bottom">
     <p class="site-footer__tagline">${t.ui.footer.tagline}</p>
     <ul class="site-footer__links">

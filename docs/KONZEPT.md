@@ -41,7 +41,9 @@ Sprachen: Deutsch (ohne Präfix), Französisch (`/fr/…`), Englisch (`/en/…`)
 
 ## 4. Subbrands
 
-Lockup jeder Subbrand = **L’ANNÉE-Logo + Zweizeiler (NAME, Linie, Austern & Bulles)**. Die Buchstaben des Logos sind genau so hoch wie der Zweizeiler: von der Versalhöhe des Namens bis zur Grundlinie von „Austern & Bulles“; die Akzente ragen darüber hinaus. Auf den Farbflächen ist die Schrift bei allen drei Orten weiß.
+Logo (seit 03.11.2026): **weiße, gestrichene Holzbuchstaben L’ANNÉE**, freigestelltes Bild. Weiß gehört auf Grün – das Logo steht in Kopfzeile, Hero, Fußzeile und in allen Lockups auf einer grünen Fläche, nie auf Weiß. Auf der Startseite wandert es mit dem Slogan beim Scrollen vom Hero in die Kopfzeile.
+
+Lockup jeder Subbrand = **L’ANNÉE-Logo + Zweizeiler (NAME, Linie, Austern & Bulles)**. Die Buchstaben des Logos sind genau so hoch wie der Zweizeiler: von der Versalhöhe des Namens bis zur Grundlinie von „Austern & Bulles“; die Akzente ragen darüber hinaus. Der Lockup steht immer auf der Farbe des Ortes, die Schrift ist weiß (Startseite „drei Orte“ und Köpfe der Ortsseiten).
 
 Die Signets (Kreis mit dem Akzent als Zeiger auf die Öffnungsstunde) bleiben als kleine Wegweiser in Zitaten, Karte und Fußzeile, nicht in der Navigation (Vorgabe 31.10.2026):
 
@@ -50,7 +52,7 @@ Die Signets (Kreis mit dem Akzent als Zeiger auf die Öffnungsstunde) bleiben al
 | Marché | 8 Uhr | Fern |
 | Kiosque | 10 Uhr | Hunter Green |
 | Garage | 6 Uhr (18 Uhr) | Evergreen |
-| L’ANNÉE | alle drei | Logo in Palm Leaf |
+| L’ANNÉE | alle drei | Holz-Logo weiß auf Grün |
 
 Der Name steht in gesperrten Versalien (Instrument Sans, schmal) über einer Linie, wie bereits auf dem Marché-Anhänger.
 
@@ -61,7 +63,7 @@ Der Name steht in gesperrten Versalien (Instrument Sans, schmal) über einer Lin
 | Evergreen | #132A13 | 25.9 % 0.051 143.9 | dunkelstes Grün, ersetzt Schwarz: Text, Fußzeile; Garage, der Abend |
 | Hunter Green | #31572C | 41.7 % 0.081 141.5 | Kiosque, der Sonntag |
 | Fern | #4F772D | 52.2 % 0.113 132.9 | Marché, der Morgen; Nebentext auf Weiß |
-| Palm Leaf | #90A955 | 69.7 % 0.114 123 | Logo, Linien, Zeichnungen (für Schrift zu hell) |
+| Palm Leaf | #90A955 | 69.7 % 0.114 123 | Linien, Zeichnungen (für Schrift zu hell) |
 | Lime Cream | #ECF39E | 94 % 0.107 112.3 | Akzent: Störer, Markierungen, Signets auf Dunkelgrün |
 | Weiß | #FFFFFF | 100 % 0 0 | Flächen, Schrift auf Grün |
 

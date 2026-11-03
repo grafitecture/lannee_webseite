@@ -79,8 +79,8 @@ export function render(ctx) {
       : '';
 
   return html`
-<section class="loc-hero theme-${L.color}-text" aria-labelledby="loc-title">
-  ${venueArt(key, { cls: 'loc-hero__art venue-art--on-white' })}
+<section class="loc-hero theme-${L.color}" aria-labelledby="loc-title">
+  ${venueArt(key, { cls: 'loc-hero__art' })}
   ${lockup(key, { cls: 'loc-hero__lockup', locale })}
   <h1 class="loc-hero__title" id="loc-title">${p.h1}</h1>
   <p class="loc-hero__subtitle">${rich(p.subtitle, locale)}</p>

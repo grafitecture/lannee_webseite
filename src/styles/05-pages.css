@@ -82,9 +82,10 @@
   padding: var(--space-m) var(--gutter) max(var(--space-l), 4.25rem);
 }
 
-/* Logo: weiß auf dem Film, so hoch, dass Headline und die drei Bänder im ersten Bildschirm bleiben */
+/* Logo (Holzbuchstaben, 1563 × 472 px): weiß auf dem Film, so hoch, dass Headline und die drei
+   Bänder im ersten Bildschirm bleiben (Faktor 3,311 = Seitenverhältnis des Logos) */
 .hero__mark {
-  width: min(100%, 56rem, max(18rem, (100svh - 41rem) * 2.749));
+  width: min(100%, 56rem, max(18rem, (100svh - 41rem) * 3.311));
   aspect-ratio: var(--logo-ratio, auto);
   color: var(--blanc);
 }
@@ -903,9 +904,12 @@ body:has(.stoerer) .hero__toggle {
   align-items: center;
   overflow: hidden;
 }
+.place__text {
+  container-type: inline-size;
+}
 .place__lockup,
 .place__art {
-  font-size: clamp(1.05rem, 0.9rem + 0.55vw, 1.6rem);
+  font-size: min(clamp(1.05rem, 0.9rem + 0.55vw, 1.6rem), 4.7cqi);
 }
 .place__art {
   margin-bottom: var(--space-2xs);
@@ -1055,12 +1059,21 @@ body:has(.stoerer) .hero__toggle {
 
 /* Ortsseiten ---------------------------------------------------------------- */
 
+/* Kopf auf der Farbe des Ortes (seit 03.11.2026): Das weiße Holz-Logo im Lockup gehört auf Grün.
+   Schrift, Strichzeichnung und Linien sind weiß (theme-garage/-kiosque/-marche). */
 .loc-hero {
+  container-type: inline-size;
   padding: var(--space-l) var(--gutter) var(--space-xl);
+}
+.loc-hero .facts dt {
+  color: var(--fg);
+}
+.loc-hero a {
+  color: var(--fg);
 }
 .loc-hero__lockup,
 .loc-hero__art {
-  font-size: clamp(1.05rem, 0.9rem + 0.6vw, 1.7rem);
+  font-size: min(clamp(1.05rem, 0.9rem + 0.6vw, 1.7rem), 4.7cqi);
 }
 .loc-hero__art {
   margin-bottom: var(--space-2xs);
@@ -1722,24 +1735,21 @@ body:has(.stoerer) .hero__toggle {
   height: auto;
   aspect-ratio: 1;
 }
-.sg__lockups {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-l);
-}
-.sg__lockup {
-  font-size: clamp(1.05rem, 0.75rem + 1.3vw, 1.6rem);
-}
 .sg__venues {
   display: grid;
   gap: var(--space-s);
 }
 .sg__venue {
+  container-type: inline-size;
   display: grid;
   gap: var(--space-2xs);
   justify-items: start;
   padding: var(--space-l) var(--space-m);
   font-size: clamp(0.9rem, 0.8rem + 0.4vw, 1.15rem);
+}
+.sg__venue-art,
+.sg__venue-lockup {
+  font-size: min(1em, 4.7cqi);
 }
 @media (min-width: 1024px) {
   .sg__venues {
@@ -1761,13 +1771,10 @@ body:has(.stoerer) .hero__toggle {
   aspect-ratio: 1.618 / 1;
   padding: 12%;
 }
-.sg__logo-svg {
+.sg__logo-img {
   width: 100%;
   height: auto;
 }
-.sg__logo--white { background: var(--blanc); color: var(--brand); outline: 1px solid var(--line); }
-.sg__logo--ink { background: var(--ink); color: var(--brand); }
-.sg__logo--green { background: var(--marche); color: var(--blanc); }
 .sg__note {
   font-size: var(--fs-text-small);
   color: var(--muted);

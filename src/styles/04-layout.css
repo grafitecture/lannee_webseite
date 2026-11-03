@@ -56,6 +56,13 @@
   text-transform: uppercase;
   white-space: nowrap;
 }
+/* Sehr schmale Handys (unter 350 px): Holz-Logo und Menü-Knopf brauchen den Platz */
+@media (max-width: 349.98px) {
+  .site-header__rule,
+  .site-header__tagline {
+    display: none;
+  }
+}
 /* Desktop mit voller Navigation: erst ab xl genug Platz für den Slogan */
 @media (min-width: 1024px) and (max-width: 1279.98px) {
   .site-header__rule,
@@ -307,8 +314,8 @@
 .site-footer .site-footer__mark {
   display: block;
   margin: var(--space-2xl) 0 var(--space-l);
-  color: var(--brand);
 }
+/* Das Holz-Logo groß über die volle Breite, weiß auf Evergreen */
 .site-footer__logo {
   width: 100%;
   height: auto;

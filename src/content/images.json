@@ -196,6 +196,16 @@
     ],
     "color": "#af9278"
   },
+  "hero-film": {
+    "width": 960,
+    "height": 540,
+    "widths": [
+      480,
+      768,
+      960
+    ],
+    "color": "#5d4e36"
+  },
   "hero-austern-hof": {
     "width": 2528,
     "height": 1696,
@@ -209,14 +219,17 @@
     ],
     "color": "#595742"
   },
-  "hero-film": {
-    "width": 960,
-    "height": 540,
+  "logo-lannee": {
+    "width": 1563,
+    "height": 472,
     "widths": [
+      240,
+      360,
       480,
       768,
-      960
+      1080,
+      1563
     ],
-    "color": "#5d4e36"
+    "color": "#e2dfdb"
   }
 }

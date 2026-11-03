@@ -3,9 +3,8 @@ import { createHash } from 'node:crypto';
 import { html, raw, rich } from '../lib/html.mjs';
 import { DICT, url } from '../lib/i18n.mjs';
 import { LOCATIONS, LOCATION_ORDER, SITE } from '../content/site.mjs';
-import { logo, lockup, picture, weekPlan, arrowLink, icon, closureNotes, LOGO_VIEWBOX } from '../lib/components.mjs';
+import { logo, lockup, picture, weekPlan, arrowLink, icon, closureNotes, LOGO_RATIO } from '../lib/components.mjs';
 
-const [, , LOGO_W, LOGO_H] = LOGO_VIEWBOX.split(/\s+/);
 import { menuExcerpt } from '../lib/menu-render.mjs';
 import { venueArt } from '../lib/venue-art.mjs';
 import { placeText } from '../lib/layout.mjs';
@@ -93,7 +92,7 @@ export function render(ctx) {
     }
     <div class="hero__inner">
       <div class="hero__brand">
-        <div class="hero__mark" data-logo-morph style="--logo-ratio: ${LOGO_W} / ${LOGO_H}">${logo({ cls: 'hero__logo', decorative: true })}</div>
+        <div class="hero__mark" data-logo-morph style="--logo-ratio: ${LOGO_RATIO}">${logo({ cls: 'hero__logo', decorative: true, eager: true, sizes: 'min(100vw, 56rem)' })}</div>
         <p class="hero__tagline" data-tagline-morph>${SITE.taglines[locale]}</p>
       </div>
       <div class="hero__text">

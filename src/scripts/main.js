@@ -348,7 +348,7 @@ function initExpiry() {
 function initLogoMorph() {
   const mark = document.querySelector('[data-logo-morph]');
   const target = document.querySelector('.site-header__logo');
-  const logo = mark?.querySelector('svg');
+  const logo = mark?.querySelector('.hero__logo');
   if (!mark || !target || !logo) return;
   const body = document.body;
   const dock = (docked) => body.classList.toggle('logo-docked', docked);

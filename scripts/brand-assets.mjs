@@ -10,7 +10,7 @@ import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
 import { tokenHex } from '../src/content/tokens.mjs';
 
-const C = { brand: tokenHex('brand'), garage: tokenHex('garage'), kiosque: tokenHex('kiosque'), marche: tokenHex('marche'), ink: tokenHex('ink'), blanc: tokenHex('blanc') };
+const C = { lime: tokenHex('lime'), brand: tokenHex('brand'), garage: tokenHex('garage'), kiosque: tokenHex('kiosque'), marche: tokenHex('marche'), ink: tokenHex('ink'), blanc: tokenHex('blanc') };
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const require = createRequire(import.meta.url);
 
@@ -25,6 +25,7 @@ async function load(name) {
 const sharp = await load('sharp');
 const { chromium } = await load('playwright');
 
+// Das Vektor-Logo liefert nur noch das Favicon („L’“); auf den Share-Bildern steht das Holz-Logo.
 const logoSvg = await fs.readFile(path.join(ROOT, 'src/icons/logo-raw.svg'), 'utf8');
 const LOGO_VB = logoSvg.match(/viewBox="([^"]+)"/)[1];
 const LOGO_D = logoSvg.match(/ d="([^"]+)"/)[1];
@@ -66,7 +67,9 @@ const fontCss = `
 *{margin:0;box-sizing:border-box}
 body{width:1200px;height:630px;overflow:hidden;font-family:'Instrument Sans',sans-serif;}
 `;
-const logo = (color) => `<svg viewBox="${LOGO_VB}" style="display:block;width:100%;height:auto;color:${color}"><path fill="currentColor" fill-rule="evenodd" d="${LOGO_D}"/></svg>`;
+// Holz-Logo (weiße Buchstaben, freigestellt) – steht immer auf Grün
+const LOGO_IMG = `file://${ROOT}/public/images/logo-lannee-1563.webp`;
+const logo = () => `<img src="${LOGO_IMG}" alt="" style="display:block;width:100%;height:auto">`;
 const accent = await fs.readFile(path.join(ROOT, 'src/icons/accent-hand.txt'), 'utf8');
 const pts = accent.match(/-?\d+(?:\.\d+)?/g).map(Number);
 let hand = 'M';
@@ -78,19 +81,19 @@ const signet = (hours, colors, ring) =>
 
 const img = (name) => `file://${ROOT}/public/images/${name}-1080.webp`;
 /** Lockup wie auf der Website: Logo so hoch wie der Zweizeiler NAME / Linie / Austern & Bulles (siehe 03-components.css). */
-const lockupHtml = (name, fg, size = 30) => `<div style="--cap:calc(2.625em + 1.5px);display:inline-flex;align-items:flex-start;gap:.8em;font-size:${size}px;padding-top:calc(var(--cap) * .2078 - .14em);color:${fg}">
-  <svg viewBox="${LOGO_VB}" style="display:block;flex:none;width:auto;height:calc(var(--cap) * 1.2141);margin-top:calc(.14em - var(--cap) * .2078)"><path fill="currentColor" fill-rule="evenodd" d="${LOGO_D}"/></svg>
+const lockupHtml = (name, fg, size = 30) => `<div style="--cap:calc(2.625em + 1.5px);display:inline-flex;align-items:flex-start;gap:.8em;font-size:${size}px;padding-top:calc(var(--cap) * .1394 - .14em);color:${fg}">
+  <img src="${LOGO_IMG}" alt="" style="display:block;flex:none;width:auto;height:calc(var(--cap) * 1.154);margin-top:calc(.14em - var(--cap) * .1394)">
   <div style="display:grid;gap:.42em">
     <div style="font-family:'Instrument Sans';font-stretch:75%;font-weight:600;font-size:1em;line-height:1;letter-spacing:.34em;text-transform:uppercase;padding-bottom:.38em;border-bottom:1.5px solid currentColor">${name}</div>
     <div style="font-family:Fraunces;font-style:italic;font-size:1.12em;line-height:1;white-space:nowrap">Austern &amp; Bulles</div>
   </div>
 </div>`;
 const OG = {
-  lannee: `<div style="width:1200px;height:630px;background:${C.blanc};display:grid;grid-template-rows:auto 1fr;padding:64px 80px 60px">
-      <div style="width:820px">${logo(C.brand)}</div>
+  lannee: `<div style="width:1200px;height:630px;background:${C.ink};display:grid;grid-template-rows:auto 1fr;padding:64px 80px 60px">
+      <div style="width:820px">${logo()}</div>
       <div style="display:flex;align-items:flex-end;justify-content:space-between">
-        <div style="font-family:Fraunces;font-style:italic;font-weight:330;font-size:76px;line-height:1;color:${C.ink}">Austern &amp; Bulles<br><span style="font-style:normal;font-size:34px;font-family:'Instrument Sans';font-weight:500">Garage, Kiosque &amp; Marché in Mannheim</span></div>
-        <div style="width:150px;height:150px">${signet([18, 8, 10], [C.garage, C.marche, C.kiosque], C.ink)}</div>
+        <div style="font-family:Fraunces;font-style:italic;font-weight:330;font-size:76px;line-height:1;color:${C.blanc}">Austern &amp; Bulles<br><span style="font-style:normal;font-size:34px;font-family:'Instrument Sans';font-weight:500">Garage, Kiosque &amp; Marché in Mannheim</span></div>
+        <div style="width:150px;height:150px">${signet([18, 8, 10], [C.lime, C.lime, C.lime], C.blanc)}</div>
       </div></div>`,
 };
 const LOC = {

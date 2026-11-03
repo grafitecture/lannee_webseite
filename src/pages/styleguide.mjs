@@ -56,25 +56,23 @@ export function render() {
       ${LOCATION_ORDER.map((k) => signet(k, { cls: `sg__signet theme-${LOCATIONS[k].color}-text` }))}
     </div>
   </div>
-  <p class="sg__note">Lockup: Das L’ANNÉE-Logo steht so hoch wie der Zweizeiler aus Ortsname (mit Linie) und „Austern &amp; Bulles“. Auf den Farbflächen aller drei Orte ist die Schrift weiß. Die Signets bleiben als kleine Wegweiser in Fahrplan, Zitaten und Fußzeile, nicht in der Navigation.</p>
-  <div class="sg__lockups">
-    ${LOCATION_ORDER.map((k) => html`<div class="sg__lockup">${lockup(k)}</div>`)}
+  <p class="sg__note">Logo: weiße, gestrichene Holzbuchstaben L’ANNÉE (wie ein Schild aus Brettern). Weiß gehört auf Grün: Das Logo steht immer auf einer grünen Fläche – Kopfzeile, Film im Hero, Fußzeile und die Farbflächen der Orte –, nie auf Weiß. Auf der Startseite wandern Logo und Slogan beim Scrollen vom Hero in die Kopfzeile.</p>
+  <div class="sg__logos">
+    <div class="sg__logo theme-ink">${logo({ cls: 'sg__logo-img', decorative: true, sizes: '30rem' })}</div>
+    <div class="sg__logo theme-kiosque">${logo({ cls: 'sg__logo-img', decorative: true, sizes: '30rem' })}</div>
+    <div class="sg__logo theme-marche">${logo({ cls: 'sg__logo-img', decorative: true, sizes: '30rem' })}</div>
   </div>
-  <p class="sg__note">Über den Lockups (Startseite „drei Orte“, Ortsseiten) stehen die drei Orte als Strichzeichnungen: Garage mit Toren und Lichterkette, Kiosque mit Markise und Hängelampen, Marché als Anhänger mit Vitrine unterm Marktschirm. Feine Linie, auf Grün weiß, auf Weiß im Grün des Ortes. Hat der Ort geöffnet, geht das Licht an: Fenster in Lime Cream, ein Schein darum und ein Lichtkegel auf die Straße (Vorschau: <code>?licht=an</code>).</p>
+  <p class="sg__note">Lockup: Das L’ANNÉE-Logo steht so hoch wie der Zweizeiler aus Ortsname (mit Linie) und „Austern &amp; Bulles“, immer auf der Farbe des Ortes, Schrift weiß. Die Signets bleiben als kleine Wegweiser in Fahrplan, Zitaten und Fußzeile, nicht in der Navigation.</p>
+  <p class="sg__note">Über den Lockups (Startseite „drei Orte“, Ortsseiten) stehen die drei Orte als Strichzeichnungen: Garage mit Toren und Lichterkette, Kiosque mit Markise und Hängelampen, Marché als Anhänger mit Vitrine unterm Marktschirm. Feine Linie, weiß auf der Farbe des Ortes. Hat der Ort geöffnet, geht das Licht an: Fenster in Lime Cream, ein Schein darum und ein Lichtkegel auf die Straße (Vorschau: <code>?licht=an</code>).</p>
   <div class="sg__venues">
     ${LOCATION_ORDER.map((k) => html`<div class="sg__venue theme-${LOCATIONS[k].color}">${venueArt(k, { cls: 'sg__venue-art', lit: true })}${lockup(k, { cls: 'sg__venue-lockup' })}</div>`)}
-  </div>
-  <div class="sg__logos">
-    <div class="sg__logo sg__logo--white">${logo({ cls: 'sg__logo-svg', decorative: true })}</div>
-    <div class="sg__logo sg__logo--ink">${logo({ cls: 'sg__logo-svg', decorative: true })}</div>
-    <div class="sg__logo sg__logo--green">${logo({ cls: 'sg__logo-svg', decorative: true })}</div>
   </div>
   <p class="sg__note">Schutzzone: mindestens die Höhe des Akzents rund um das Logo. Mindestbreite digital: 96 px.</p>
 </section>
 
 <section class="sg" aria-labelledby="sg-colors">
   <h2 class="t-h4" id="sg-colors">Farben</h2>
-  <p class="lead">Auf der Seite gibt es nur Grün: fünf Töne und Weiß. Entweder grüne Fläche mit weißer Schrift oder weiße Fläche mit grüner Schrift. Nichts ist schwarz oder grau; wo sonst Schwarz stünde, steht Evergreen. Palm Leaf ist für Schrift zu hell und trägt das Logo, Linien und Zeichnungen; Lime Cream setzt kleine Akzente (Störer, Markierungen).</p>
+  <p class="lead">Auf der Seite gibt es nur Grün: fünf Töne und Weiß. Entweder grüne Fläche mit weißer Schrift oder weiße Fläche mit grüner Schrift. Nichts ist schwarz oder grau; wo sonst Schwarz stünde, steht Evergreen. Palm Leaf ist für Schrift zu hell und trägt Linien und Zeichnungen (das Logo ist weißes Holz auf Grün); Lime Cream setzt kleine Akzente (Störer, Markierungen).</p>
   <ul class="swatches" role="list">${COLORS.map(
     (c) => html`<li class="swatch" style="--sw:${c.hex}">
       <span class="swatch__chip"></span>
