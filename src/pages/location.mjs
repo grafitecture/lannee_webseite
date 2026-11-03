@@ -6,6 +6,7 @@ import { DICT, url, pick, fill, formatTime } from '../lib/i18n.mjs';
 import { LOCATIONS, LOCATION_ORDER, MARCHE_DATES, SITE } from '../content/site.mjs';
 import { lockup, signet, picture, arrowLink, mapLinks, icon, closureNotes, berlinToday } from '../lib/components.mjs';
 import { menuExcerpt } from '../lib/menu-render.mjs';
+import { venueArt } from '../lib/venue-art.mjs';
 import { placeText } from '../lib/layout.mjs';
 
 const CONFIG = {
@@ -79,6 +80,7 @@ export function render(ctx) {
 
   return html`
 <section class="loc-hero theme-${L.color}-text" aria-labelledby="loc-title">
+  ${venueArt(key, { cls: 'loc-hero__art venue-art--on-white' })}
   ${lockup(key, { cls: 'loc-hero__lockup', locale })}
   <h1 class="loc-hero__title" id="loc-title">${p.h1}</h1>
   <p class="loc-hero__subtitle">${rich(p.subtitle, locale)}</p>

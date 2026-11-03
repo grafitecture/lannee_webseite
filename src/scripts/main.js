@@ -209,6 +209,31 @@ function initPlan() {
   setInterval(update, 60_000);
 }
 
+/* ------------------------------------------------------------------ */
+/* Orte als Strichzeichnungen: Licht an, solange der Ort geöffnet hat  */
+/* ------------------------------------------------------------------ */
+
+function initVenueLights() {
+  const arts = [...document.querySelectorAll('[data-venue-light]')].map((node) => ({
+    node,
+    hours: JSON.parse(node.dataset.hours || '[]'),
+    closures: JSON.parse(node.dataset.closures || '[]'),
+  }));
+  if (!arts.length) return;
+  // Vorschau ohne Öffnungszeit: ?licht=an
+  const preview = new URLSearchParams(window.location.search).get('licht') === 'an';
+  const update = () => {
+    const now = berlinNow();
+    arts.forEach(({ node, hours, closures }) => {
+      const paused = closures.some((c) => now.ymd >= c.from && now.ymd <= c.to);
+      const open = hours.some((s) => s.day === now.iso && now.hour >= toHours(s.start) && now.hour < toHours(s.end));
+      node.classList.toggle('is-lit', preview || (open && !paused));
+    });
+  };
+  update();
+  setInterval(update, 60_000);
+}
+
 function el(tag, cls, text) {
   const n = document.createElement(tag);
   if (cls) n.className = cls;
@@ -538,4 +563,5 @@ initFilm();
 initExpiry();
 initMenu();
 initPlan();
+initVenueLights();
 initMenuFilter();

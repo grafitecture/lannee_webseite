@@ -7,6 +7,7 @@ import { logo, lockup, picture, weekPlan, arrowLink, icon, closureNotes, LOGO_VI
 
 const [, , LOGO_W, LOGO_H] = LOGO_VIEWBOX.split(/\s+/);
 import { menuExcerpt } from '../lib/menu-render.mjs';
+import { venueArt } from '../lib/venue-art.mjs';
 import { placeText } from '../lib/layout.mjs';
 
 const PLACE_PHOTOS = { garage: 'garage-hof', kiosque: 'kiosque-visualisierung', marche: 'marche-wagen' };
@@ -46,6 +47,7 @@ export function render(ctx) {
     const c = p.places[key];
     return html`<section class="place theme-${L.color}${i % 2 ? ' place--flip' : ''}" aria-labelledby="place-${key}">
       <div class="place__text">
+        ${venueArt(key, { cls: 'place__art' })}
         ${lockup(key, { cls: 'place__lockup', locale })}
         <h2 class="place__heading t-h3" id="place-${key}">${c.heading}</h2>
         <p class="place__body">${rich(c.body, locale)}</p>

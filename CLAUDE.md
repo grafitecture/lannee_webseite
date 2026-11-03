@@ -17,6 +17,7 @@ Website der Dachmarke L’ANNÉE (Austern & Bulles, Mannheim) mit Garage, Kiosqu
 - **Fußzeile ohne „Gestaltung: Grafitecture“** (Vorgabe 01.11.2026); die Agentur steht nur im Grafitecture-Feld in Impressum und Datenschutz.
 - **Wochenplan** zeigt nur Tage mit Öffnung, keine Zeile „Mo – Do geschlossen“ (Vorgabe 01.11.2026).
 - **Hero = Filmsequenz** (Higgsfield AI, Heimkino-Look 50er/60er, ruhig, Zeitlupe) aus `public/film/lannee-film-{quer,hoch}.{webm,mp4}`, Standbild `hero-film`; darauf Logo, Slogan und die Headline groß und linksbündig, unten die drei Ortsbänder leicht transparent und ohne Uhren. Scroll-Inszenierung: Die Bühne bleibt stehen, alle Inhalte blenden aus, der Film steht eine Weile voll im Bild, dann scrollt er weg (`initHeroScroll()`). Live-Anzeige, „Zur Karte“ und „Wo wir sind“ stehen als drei gleiche Kacheln über „Ein Wochenende, drei Orte“.
+- **Orte als Strichzeichnungen über den Lockups** (Vorgabe 03.11.2026): Startseite „drei Orte“ und Ortsseiten zeigen über dem Subbrand-Lockup Garage (Tore, Lichterkette), Kiosque (Markise, Hängelampen) und Marché-Wagen (Vitrine unterm Marktschirm) als feine Linie in `currentColor` (auf Grün weiß, auf Weiß im Grün des Ortes). Hat der Ort geöffnet, geht das Licht an: Fenster in Lime Cream, Schein darum, Lichtkegel auf die Straße. Vorschau ohne Öffnungszeit: `?licht=an`.
 - „Grafitecture“ immer verlinken: `https://www.grafitecture.de/` (mit www), öffnet in neuem Fenster. Im Mini-Markup `[Grafitecture](https://www.grafitecture.de/)`, sonst `SITE.agency`.
 - **Grafitecture-Feld** (Lime-Fläche mit Logo, „Marken mit KI.“, Link auf grafitecture.de): steht immer ganz unten in Impressum und Datenschutz (DE/FR/EN), eingebunden in `src/pages/legal.mjs`. Quelle ist das Kit `kit/grafitecture-credit/` (README dort), der Build hängt dessen CSS an `site.css` an. Die Farben des Feldes (#dafd55, #435960, Weiß) gehören der Agentur und sind die **einzige Ausnahme** von „nur Grün“ und „nur Token-Variablen“. Am Feld nichts an L’ANNÉE anpassen; Änderungen im Kit machen (gilt für alle Grafitecture-Websites).
 
@@ -26,6 +27,7 @@ Website der Dachmarke L’ANNÉE (Austern & Bulles, Mannheim) mit Garage, Kiosqu
 - Grafitecture-Feld (Impressum, Datenschutz): `kit/grafitecture-credit/`
 - Karte: `src/content/menu.mjs` · Rechtstexte: `src/content/legal.mjs` (die Unterseite „Das Jahr“ wurde am 01.11.2026 gelöscht; alte Adressen leiten auf die Startseite)
 - Austernatlas (eigene Seite `/austernatlas/`, Menüpunkt): Texte `src/content/oysters.mjs`, Strichzeichnungen `src/lib/oyster-art.mjs` (eigenes Sprite, nur auf der Atlas-Seite), Vorlage `src/pages/atlas.mjs`
+- Strichzeichnungen der Orte: `src/lib/venue-art.mjs` (`venueArt(key)`), Live-Licht `initVenueLights()` in `main.js` (liest Öffnungszeiten und Pausen aus `data-hours`/`data-closures`)
 - Farben, Typo-Skala (Goldener Schnitt, `clamp()`), Breakpoints: `src/content/tokens.mjs`
 - Templates: `src/pages/*.mjs`, Bausteine: `src/lib/components.mjs`, Layout/JSON-LD: `src/lib/layout.mjs`
 - CSS: `src/styles/01–05`, Skript: `src/scripts/main.js` (nur progressive Verbesserung)

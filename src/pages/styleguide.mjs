@@ -8,6 +8,7 @@ import { html, raw } from '../lib/html.mjs';
 import { LOCATIONS, LOCATION_ORDER } from '../content/site.mjs';
 import { COLORS, ROLES, TYPE_SCALE, SPACE, BREAKPOINTS, clampRem, tokenHex } from '../content/tokens.mjs';
 import { logo, signet, lockup, icon } from '../lib/components.mjs';
+import { venueArt } from '../lib/venue-art.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const ICON_NAMES = fs
@@ -58,6 +59,10 @@ export function render() {
   <p class="sg__note">Lockup: Das L’ANNÉE-Logo steht so hoch wie der Zweizeiler aus Ortsname (mit Linie) und „Austern &amp; Bulles“. Auf den Farbflächen aller drei Orte ist die Schrift weiß. Die Signets bleiben als kleine Wegweiser in Fahrplan, Zitaten und Fußzeile, nicht in der Navigation.</p>
   <div class="sg__lockups">
     ${LOCATION_ORDER.map((k) => html`<div class="sg__lockup">${lockup(k)}</div>`)}
+  </div>
+  <p class="sg__note">Über den Lockups (Startseite „drei Orte“, Ortsseiten) stehen die drei Orte als Strichzeichnungen: Garage mit Toren und Lichterkette, Kiosque mit Markise und Hängelampen, Marché als Anhänger mit Vitrine unterm Marktschirm. Feine Linie, auf Grün weiß, auf Weiß im Grün des Ortes. Hat der Ort geöffnet, geht das Licht an: Fenster in Lime Cream, ein Schein darum und ein Lichtkegel auf die Straße (Vorschau: <code>?licht=an</code>).</p>
+  <div class="sg__venues">
+    ${LOCATION_ORDER.map((k) => html`<div class="sg__venue theme-${LOCATIONS[k].color}">${venueArt(k, { cls: 'sg__venue-art', lit: true })}${lockup(k, { cls: 'sg__venue-lockup' })}</div>`)}
   </div>
   <div class="sg__logos">
     <div class="sg__logo sg__logo--white">${logo({ cls: 'sg__logo-svg', decorative: true })}</div>

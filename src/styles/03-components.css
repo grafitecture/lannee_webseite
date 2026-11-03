@@ -196,6 +196,69 @@
   color: var(--fg);
 }
 
+/* Die drei Orte als Strichzeichnungen (über den Lockups) ------------------------
+ * Linie in currentColor; ist der Ort geöffnet (.is-lit), leuchten die Fenster in
+ * Lime Cream, und ein Lichtkegel fällt vor dem Haus auf die Straße.
+ * Breite = Breite des Logos im Lockup bei gleicher Schriftgröße.
+ */
+.venue-art {
+  display: block;
+  width: calc((2.625em + 1.5px) * 3.3376);
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 160 / 84;
+  overflow: visible;
+}
+.venue-art__line,
+.venue-art__bulbs {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.venue-art__line > *,
+.venue-art__bulbs > * {
+  vector-effect: non-scaling-stroke;
+}
+.venue-art__glass,
+.venue-art__halo,
+.venue-art__soft {
+  fill: var(--lime);
+}
+.venue-art__stop { stop-color: var(--lime); stop-opacity: 0.55; }
+.venue-art__stop--end { stop-opacity: 0; }
+.venue-art__glass,
+.venue-art__halo,
+.venue-art__soft,
+.venue-art__pool {
+  opacity: 0;
+  transition: opacity 0.8s var(--ease-out);
+}
+.venue-art__bulbs > * {
+  fill: transparent;
+  transition: fill 0.8s var(--ease-out);
+}
+.venue-art.is-lit .venue-art__glass { opacity: 0.92; }
+.venue-art.is-lit .venue-art__halo { opacity: 0.8; }
+.venue-art.is-lit .venue-art__soft { opacity: 0.28; }
+.venue-art.is-lit .venue-art__pool { opacity: 1; }
+.venue-art.is-lit .venue-art__bulbs > * { fill: var(--lime); }
+/* Auf Weiß ist Lime Cream sehr hell: Lichtkegel kräftiger */
+.venue-art--on-white .venue-art__stop { stop-opacity: 0.75; }
+@media (prefers-reduced-motion: no-preference) {
+  /* Licht geht an wie eine alte Leuchtröhre: kurz flackern, dann ruhig */
+  .venue-art.is-lit .venue-art__glass,
+  .venue-art.is-lit .venue-art__halo,
+  .venue-art.is-lit .venue-art__pool {
+    animation: venue-flicker 1.2s linear both;
+  }
+  @keyframes venue-flicker {
+    0%, 7%, 19%, 31% { opacity: 0; }
+    10%, 16%, 36% { opacity: 1; }
+  }
+}
+
 /* Bilder -------------------------------------------------------------------- */
 
 .pic {
