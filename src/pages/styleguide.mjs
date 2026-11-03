@@ -58,7 +58,7 @@ export function render() {
 
 <section class="sg" aria-labelledby="sg-colors">
   <h2 class="t-h4" id="sg-colors">Farben</h2>
-  <p class="lead">Auf der Seite gibt es nur Grün: fünf Töne und Weiß. Entweder grüne Fläche mit weißer Schrift oder weiße Fläche mit grüner Schrift. Nichts ist schwarz oder grau; wo sonst Schwarz stünde, steht Evergreen. Palm Leaf ist für Schrift zu hell und trägt Linien und Zeichnungen (das Logo ist weißes Holz auf Grün); Lime Cream setzt kleine Akzente (Störer, Markierungen).</p>
+  <p class="lead">Auf der Seite gibt es nur Grün: fünf Töne und Weiß. Entweder grüne Fläche mit weißer Schrift oder weiße Fläche mit grüner Schrift. Nichts ist schwarz oder grau; wo sonst Schwarz stünde, steht Evergreen. Palm Leaf ist für Schrift zu hell und trägt Linien und Zeichnungen (das Logo ist weißes Holz auf Grün); Lime Cream setzt kleine Akzente (Markierungen).</p>
   <ul class="swatches" role="list">${COLORS.map(
     (c) => html`<li class="swatch" style="--sw:${c.hex}">
       <span class="swatch__chip"></span>

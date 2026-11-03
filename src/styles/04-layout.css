@@ -342,6 +342,14 @@
 .site-footer__legal {
   color: var(--blanc);
 }
+/* Hinweis, dass die Seite fiktiv ist (SITE.demoNotice): schlichte Zeile ganz unten */
+.site-footer__demo {
+  margin: var(--space-m) 0 0;
+  padding-top: var(--space-s);
+  border-top: 1px solid rgb(255 255 255 / 0.16);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
 .site-footer .lang a,
 .lang--header a {
   color: var(--blanc);
@@ -355,84 +363,6 @@
 .lang--header a[aria-current='true'] {
   background: var(--blanc);
   color: var(--ink);
-}
-
-/* Störer: Hinweis, dass die Seite fiktiv ist (SITE.demoNotice) --------------- */
-/*
- * Lime Cream #ECF39E (hellster Ton der Palette, damit der Hinweis heraussticht):
- * Evergreen darauf 13 : 1, fette, schmale Schrift.
- * Fixiert unten rechts, wandert also beim Scrollen mit. Der Schatten liegt als
- * eigene, unscharfe Scheibe darunter; beim Schweben hebt sich die Scheibe,
- * der Schatten wird kleiner und heller (nur transform/opacity).
- */
-.stoerer {
-  --stoerer: var(--lime);
-  --size: clamp(5.25rem, 4.1rem + 4.6vw, 9.5rem);
-  position: fixed;
-  right: max(var(--gutter), env(safe-area-inset-right));
-  bottom: max(1rem, calc(env(safe-area-inset-bottom) + 0.75rem));
-  z-index: 50;
-  width: var(--size);
-  height: var(--size);
-  pointer-events: none; /* verdeckt nichts Klickbares */
-}
-/* Am Seitenende Platz lassen, damit der Störer nicht über der Fußzeile liegt */
-body:has(.stoerer) .site-footer {
-  padding-bottom: calc(clamp(5.25rem, 4.1rem + 4.6vw, 9.5rem) + 2rem);
-}
-.stoerer::before {
-  content: '';
-  position: absolute;
-  inset: 8%;
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--ink) 34%, transparent);
-  filter: blur(calc(var(--size) * 0.07));
-  translate: 0 10%;
-}
-.stoerer__disc {
-  position: relative;
-  display: grid;
-  place-items: center;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0 13%;
-  border-radius: 50%;
-  background: radial-gradient(circle at 32% 28%, color-mix(in oklab, var(--stoerer) 72%, white), var(--stoerer) 58%);
-  color: var(--ink);
-  font-family: var(--font-text);
-  font-stretch: 80%;
-  font-weight: 650;
-  font-size: calc(var(--size) * 0.102);
-  line-height: 1.12;
-  text-align: center;
-  text-wrap: balance;
-  text-shadow: 0 1px 0 rgb(255 255 255 / 0.35);
-  rotate: -9deg;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .stoerer__disc {
-    animation: stoerer-float 6.5s ease-in-out infinite;
-  }
-  .stoerer::before {
-    animation: stoerer-shadow 6.5s ease-in-out infinite;
-  }
-}
-@keyframes stoerer-float {
-  50% { translate: 0 -5%; }
-}
-@keyframes stoerer-shadow {
-  50% { translate: 0 15%; scale: 0.9; opacity: 0.7; }
-}
-.menu-open .stoerer {
-  display: none;
-}
-@media print {
-  .stoerer {
-    position: absolute;
-    top: 1cm;
-    bottom: auto;
-  }
 }
 
 /* Seitenköpfe (Karte, Kontakt, Rechtliches) ------------------------- */

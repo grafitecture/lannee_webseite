@@ -90,7 +90,7 @@
   color: var(--blanc);
 }
 /* Übergang: Das Logo schrumpft beim Scrollen an die Stelle des kleinen Logos.
-   Es liegt dabei im Vordergrund und überdeckt alles (Kopfzeile, Störer); nur das offene Menü liegt darüber. */
+   Es liegt dabei im Vordergrund und überdeckt alles (Kopfzeile); nur das offene Menü liegt darüber. */
 .logo-morph .hero__logo {
   position: fixed;
   top: var(--morph-top);

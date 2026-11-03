@@ -16,7 +16,7 @@ export const COLORS = [
   { token: 'hunter', name: 'Hunter Green', hex: '#31572C', oklch: 'oklch(41.7% 0.081 141.5)', role: 'Kiosque, der Sonntag', text: 'blanc' },
   { token: 'fern', name: 'Fern', hex: '#4F772D', oklch: 'oklch(52.2% 0.113 132.9)', role: 'Marché, der Morgen. Auch Nebentext auf Weiß', text: 'blanc' },
   { token: 'palm', name: 'Palm Leaf', hex: '#90A955', oklch: 'oklch(69.7% 0.114 123)', role: 'Linien, Zeichnungen (für Schrift zu hell)', text: 'evergreen' },
-  { token: 'lime', name: 'Lime Cream', hex: '#ECF39E', oklch: 'oklch(94% 0.107 112.3)', role: 'Akzent: Störer, Markierungen, Licht in den Strichzeichnungen', text: 'evergreen' },
+  { token: 'lime', name: 'Lime Cream', hex: '#ECF39E', oklch: 'oklch(94% 0.107 112.3)', role: 'Akzent: Markierungen, Licht in den Strichzeichnungen', text: 'evergreen' },
   { token: 'blanc', name: 'Weiß', hex: '#FFFFFF', oklch: 'oklch(100% 0 0)', role: 'Flächen und Schrift auf Grün', text: 'evergreen' },
 ];
 

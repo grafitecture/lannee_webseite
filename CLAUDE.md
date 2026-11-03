@@ -16,6 +16,7 @@ Website der Dachmarke L’ANNÉE (Austern & Bulles, Mannheim) mit Garage, Kiosqu
 - **Kopfzeile grün** (Evergreen) mit **weißem Logo** und weißer Navigation (aktiv/hover Lime Cream); auch das große Logo im Hero ist weiß (Vorgabe 31.10.2026). Das mobile Menü bleibt weiß mit grüner Schrift.
 - **Kopfzeile:** Neben dem Logo steht der Slogan (feine Linie dazwischen) – auf allen Bildschirmbreiten. Auf der Startseite wandern großes Logo und Slogan beim Scrollen skaliert in ihre Endposition in der Kopfzeile (Logo · Linie · Slogan), im Vordergrund über allem; angekommen blendet die Trennlinie ein (Vorgabe 01.11.2026, bestätigt 03.11.2026).
 - **Menü-Schalter mobil = nur Hamburger** (drei Striche, weiß, ohne Text „Menü“ und ohne Rahmen; Vorgabe 03.11.2026). „Menü“ steht nur unsichtbar für Screenreader im Link.
+- **Hinweis „Diese Webseite dient zur reinen Darstellung und ist fiktiv.“ = schlichte Textzeile ganz unten in der Fußzeile** (unter einer feinen Linie; Vorgabe 03.11.2026). Kein Kreis/Störer, nichts Fixiertes, das über dem Inhalt schwebt.
 - **Fußzeile ohne „Gestaltung: Grafitecture“** (Vorgabe 01.11.2026); die Agentur steht nur im Grafitecture-Feld in Impressum und Datenschutz.
 - **Wochenplan** zeigt nur Tage mit Öffnung, keine Zeile „Mo – Do geschlossen“ (Vorgabe 01.11.2026).
 - **Hero = Filmsequenz** (Higgsfield AI, Heimkino-Look 50er/60er, ruhig, Zeitlupe) aus `public/film/lannee-film-{quer,hoch}.{webm,mp4}`, Standbild `hero-film`; darauf Logo, Slogan und die Headline groß und linksbündig, unten die drei Ortsbänder leicht transparent und ohne Uhren. Scroll-Inszenierung: Die Bühne bleibt stehen, alle Inhalte blenden aus, der Film steht eine Weile voll im Bild, dann scrollt er weg (`initHeroScroll()`). **Kein Pause-/Play-Knopf auf dem Film** (Vorgabe 03.11.2026); **kein Live-Schild („Als Nächstes“/„Jetzt geöffnet“) auf den Ortsbändern im Hero** (Vorgabe 03.11.2026), der Live-Status steht nur in der Kachel darunter; bei reduzierter Bewegung oder Datensparmodus bleibt das Standbild. Live-Anzeige, „Zur Karte“ und „Wo wir sind“ stehen als drei gleiche Kacheln über „Ein Wochenende, drei Orte“.
@@ -25,7 +26,7 @@ Website der Dachmarke L’ANNÉE (Austern & Bulles, Mannheim) mit Garage, Kiosqu
 
 ## Wo was liegt
 
-- Stammdaten, Öffnungszeiten, Pausen, Marché-Termine: `src/content/site.mjs` (dort auch `SITE.demoNotice` für den Störer)
+- Stammdaten, Öffnungszeiten, Pausen, Marché-Termine: `src/content/site.mjs` (dort auch `SITE.demoNotice` für die Hinweiszeile „Diese Webseite … ist fiktiv“)
 - Grafitecture-Feld (Impressum, Datenschutz): `kit/grafitecture-credit/`
 - Karte: `src/content/menu.mjs` · Rechtstexte: `src/content/legal.mjs` (die Unterseite „Das Jahr“ wurde am 01.11.2026 gelöscht; alte Adressen leiten auf die Startseite)
 - Austernatlas (eigene Seite `/austernatlas/`, Menüpunkt): Texte `src/content/oysters.mjs`, Strichzeichnungen `src/lib/oyster-art.mjs` (eigenes Sprite, nur auf der Atlas-Seite), Vorlage `src/pages/atlas.mjs`

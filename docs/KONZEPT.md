@@ -64,7 +64,7 @@ Der Name steht in gesperrten Versalien (Instrument Sans, schmal) über einer Lin
 | Hunter Green | #31572C | 41.7 % 0.081 141.5 | Kiosque, der Sonntag |
 | Fern | #4F772D | 52.2 % 0.113 132.9 | Marché, der Morgen; Nebentext auf Weiß |
 | Palm Leaf | #90A955 | 69.7 % 0.114 123 | Linien, Zeichnungen (für Schrift zu hell) |
-| Lime Cream | #ECF39E | 94 % 0.107 112.3 | Akzent: Störer, Markierungen, Licht in den Strichzeichnungen |
+| Lime Cream | #ECF39E | 94 % 0.107 112.3 | Akzent: Markierungen, Licht in den Strichzeichnungen |
 | Weiß | #FFFFFF | 100 % 0 0 | Flächen, Schrift auf Grün |
 
 Vorgabe seit 30.10.2026: **nur Grün.** Entweder grüne Fläche mit weißer Schrift oder weiße Fläche mit grüner Schrift; nichts Schwarzes, nichts Graues. Rollen im Code: `--ink` und `--garage` = Evergreen, `--kiosque` = Hunter Green, `--marche` und `--muted` = Fern, `--brand` = Palm Leaf.

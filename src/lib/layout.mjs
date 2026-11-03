@@ -143,6 +143,7 @@ function footer(ctx) {
     <p class="site-footer__legal">© ${year} ${SITE.company.name}, ${SITE.company.city}.</p>
     ${langSwitch(ctx, 'lang--footer')}
   </div>
+  ${SITE.demoNotice ? html`<p class="site-footer__demo" role="note">${typo(t.ui.demoNotice, locale)}</p>` : ''}
 </footer>`;
 }
 
@@ -235,7 +236,6 @@ export function layout(ctx, main) {
     html`<html lang="${locale}" dir="ltr">
 ${head(ctx)}
 <body class="page page--${page.key}${theme}">
-${SITE.demoNotice ? html`<div class="stoerer" role="note"><p class="stoerer__disc">${typo(DICT[locale].ui.demoNotice, locale)}</p></div>` : ''}
 ${header(ctx)}
 <main id="inhalt" tabindex="-1">
 ${main}
