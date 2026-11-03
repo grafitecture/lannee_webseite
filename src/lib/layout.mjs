@@ -9,11 +9,6 @@ import { tokenHex } from '../content/tokens.mjs';
 
 const NAV = ['garage', 'kiosque', 'marche', 'carte', 'atlas', 'contact'];
 
-/** Öffnungszeit-Text eines Ortes, z. B. „Freitag & Samstag ab 18 Uhr“ */
-export function whenText(key, locale) {
-  return DICT[locale].pages[key].when;
-}
-
 export function placeText(key, locale) {
   const L = LOCATIONS[key];
   if (L.street) return `${L.street}, ${L.zip} ${L.city}-${L.district}`;
@@ -120,17 +115,7 @@ function footer(ctx) {
   const { locale } = ctx;
   const t = DICT[locale];
   const year = new Date().getFullYear();
-  const places = LOCATION_ORDER.map((key) => {
-    const L = LOCATIONS[key];
-    return html`<div class="footer-place footer-place--${key}">
-      <a class="footer-place__name" href="${url(key, locale)}"><span>${L.name}</span></a>
-      <p class="footer-place__when">${whenText(key, locale)}</p>
-      <p class="footer-place__where">${placeText(key, locale)}</p>
-      <p><a class="footer-place__mail" href="mailto:${L.email}">${L.email}</a></p>
-    </div>`;
-  });
   return html`<footer class="site-footer">
-  ${ctx.page.compactFooter ? '' : html`<div class="site-footer__places">${places}</div>`}
   <a class="site-footer__mark" href="${url('home', locale)}" aria-label="L’ANNÉE – ${t.ui.home}">${logo({ cls: 'site-footer__logo', decorative: true, sizes: '100vw' })}</a>
   <div class="site-footer__bottom">
     <p class="site-footer__tagline">${t.ui.footer.tagline}</p>

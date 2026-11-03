@@ -65,7 +65,7 @@ const PAGES = {
   marche: { module: location, og: 'marche' },
   carte: { module: carte, og: 'lannee' },
   atlas: { module: atlas, og: 'lannee' },
-  contact: { module: contact, og: 'lannee', compactFooter: true },
+  contact: { module: contact, og: 'lannee' },
   impressum: { module: legal, og: 'lannee', noindex: false },
   datenschutz: { module: legal, og: 'lannee', noindex: false },
 };
@@ -108,7 +108,7 @@ async function build() {
   // Seiten in allen Sprachen
   for (const locale of LOCALES) {
     for (const [key, cfg] of Object.entries(PAGES)) {
-      const page = { key, og: cfg.og, noindex: cfg.noindex, compactFooter: cfg.compactFooter };
+      const page = { key, og: cfg.og, noindex: cfg.noindex };
       const ctx = { locale, page, assets };
       const main = cfg.module.render(ctx);
       const out = layout(ctx, main);
