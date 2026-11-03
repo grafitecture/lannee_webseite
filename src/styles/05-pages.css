@@ -6,8 +6,8 @@
 /*
  * Ein Dach, drei Orte: Das Stimmungsbild füllt den ersten Bildschirm. Darauf steht
  * L’ANNÉE in Weiß mit „Austern & Bulles“, unten die drei Orte als Farbbänder
- * (Garage Evergreen, Kiosque Hunter Green, Marché Fern) – jedes ein Link mit Signet,
- * Name, Zusatz, Zeit und Ort. Beim Scrollen schrumpft das weiße Logo in die grüne
+ * (Garage Evergreen, Kiosque Hunter Green, Marché Fern) – jedes ein Link mit
+ * Name, Zusatz, Zeit und Ort (ohne Uhren). Beim Scrollen schrumpft das weiße Logo in die grüne
  * Kopfzeile.
  */
 
@@ -1150,11 +1150,6 @@ body:has(.stoerer) .hero__toggle {
   padding: var(--space-2xl) var(--gutter);
   align-items: center;
 }
-.quote__signet {
-  width: clamp(4.5rem, 3rem + 7vw, 11rem);
-  height: auto;
-  aspect-ratio: 1;
-}
 .quote__text {
   font-family: var(--font-display);
   font-style: italic;
@@ -1169,12 +1164,6 @@ body:has(.stoerer) .hero__toggle {
 }
 .quote__text p::after {
   content: close-quote;
-}
-@media (min-width: 1024px) {
-  .quote {
-    grid-template-columns: auto minmax(0, 1fr);
-    gap: var(--space-xl);
-  }
 }
 
 .intro {
@@ -1399,20 +1388,14 @@ body:has(.stoerer) .hero__toggle {
 .other {
   position: relative;
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   grid-template-areas:
-    'signet name arrow'
-    'signet when arrow';
+    'name arrow'
+    'when arrow';
   column-gap: var(--space-m);
   align-items: center;
   padding: var(--space-xl) var(--gutter);
   text-decoration: none;
-}
-.other__signet {
-  grid-area: signet;
-  width: clamp(3rem, 2rem + 3vw, 5.5rem);
-  height: auto;
-  aspect-ratio: 1;
 }
 .other__name {
   grid-area: name;
@@ -1577,12 +1560,6 @@ body:has(.stoerer) .hero__toggle {
   align-content: start;
   padding: var(--space-xl) var(--gutter);
 }
-.contact-card__signet {
-  width: clamp(3rem, 2rem + 3vw, 5rem);
-  height: auto;
-  aspect-ratio: 1;
-  margin-bottom: var(--space-s);
-}
 .contact-card__name {
   font-size: var(--fs-h3);
   font-weight: 330;
@@ -1719,21 +1696,6 @@ body:has(.stoerer) .hero__toggle {
   .sg__cols {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-}
-.sg__rules {
-  margin-top: var(--space-s);
-  padding-left: 1.2em;
-}
-.sg__signets {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-m);
-  align-items: center;
-}
-.sg__signet {
-  width: clamp(4.5rem, 3rem + 5vw, 9rem);
-  height: auto;
-  aspect-ratio: 1;
 }
 .sg__venues {
   display: grid;

@@ -18,8 +18,8 @@ Stand: Oktober 2026 · Grundlage: Briefing, PDF „LANNEE_Garage_Kiosque_Marche�
 
 *L’ANNÉE* heißt „das Jahr“. Austern folgen dem Kalender (Monate mit R) und den Gezeiten, und die drei Orte teilen sich ein Wochenende. Deshalb ist **Zeit** das verbindende Motiv:
 
-- Der **Akzent aus dem É** des Logos wird zum **Uhrzeiger**.
-- Kreise stehen für Zyklen: Jahr (Jahresuhr), Zifferblatt (Signets). Die Woche zeigt ein klarer Wochenplan mit Zeitachse.
+- Die Woche zeigt ein klarer Wochenplan mit Zeitachse; die Strichzeichnungen der Orte machen das Licht an, wenn geöffnet ist.
+- Uhren (Signets mit dem Akzent als Zeiger) gibt es seit 03.11.2026 nicht mehr, auch keine Jahresuhr.
 - Es gibt **nur Grün**; die Helligkeit der Ortsfarben folgt dem **Tageslicht**: Morgen (Fern), Sonntag (Hunter Green), Abend (Evergreen).
 
 ## 3. Gliederung
@@ -45,14 +45,14 @@ Logo (seit 03.11.2026): **weiße, gestrichene Holzbuchstaben L’ANNÉE**, freig
 
 Lockup jeder Subbrand = **L’ANNÉE-Logo + Zweizeiler (NAME, Linie, Austern & Bulles)**. Die Buchstaben des Logos sind genau so hoch wie der Zweizeiler: von der Versalhöhe des Namens bis zur Grundlinie von „Austern & Bulles“; die Akzente ragen darüber hinaus. Der Lockup steht immer auf der Farbe des Ortes, die Schrift ist weiß (Startseite „drei Orte“ und Köpfe der Ortsseiten).
 
-Die Signets (Kreis mit dem Akzent als Zeiger auf die Öffnungsstunde) bleiben als kleine Wegweiser in Zitaten, Karte und Fußzeile, nicht in der Navigation (Vorgabe 31.10.2026):
+Uhren (Signets) gibt es nirgends mehr (Vorgabe 03.11.2026). Die Orte unterscheiden sich über ihre Farbe:
 
-| Subbrand | Zeiger | Farbe |
-| --- | --- | --- |
-| Marché | 8 Uhr | Fern |
-| Kiosque | 10 Uhr | Hunter Green |
-| Garage | 6 Uhr (18 Uhr) | Evergreen |
-| L’ANNÉE | alle drei | Holz-Logo weiß auf Grün |
+| Subbrand | Farbe |
+| --- | --- |
+| Marché | Fern |
+| Kiosque | Hunter Green |
+| Garage | Evergreen |
+| L’ANNÉE | Holz-Logo weiß auf Grün |
 
 Der Name steht in gesperrten Versalien (Instrument Sans, schmal) über einer Linie, wie bereits auf dem Marché-Anhänger.
 
@@ -64,7 +64,7 @@ Der Name steht in gesperrten Versalien (Instrument Sans, schmal) über einer Lin
 | Hunter Green | #31572C | 41.7 % 0.081 141.5 | Kiosque, der Sonntag |
 | Fern | #4F772D | 52.2 % 0.113 132.9 | Marché, der Morgen; Nebentext auf Weiß |
 | Palm Leaf | #90A955 | 69.7 % 0.114 123 | Linien, Zeichnungen (für Schrift zu hell) |
-| Lime Cream | #ECF39E | 94 % 0.107 112.3 | Akzent: Störer, Markierungen, Signets auf Dunkelgrün |
+| Lime Cream | #ECF39E | 94 % 0.107 112.3 | Akzent: Störer, Markierungen, Licht in den Strichzeichnungen |
 | Weiß | #FFFFFF | 100 % 0 0 | Flächen, Schrift auf Grün |
 
 Vorgabe seit 30.10.2026: **nur Grün.** Entweder grüne Fläche mit weißer Schrift oder weiße Fläche mit grüner Schrift; nichts Schwarzes, nichts Graues. Rollen im Code: `--ink` und `--garage` = Evergreen, `--kiosque` = Hunter Green, `--marche` und `--muted` = Fern, `--brand` = Palm Leaf.
@@ -114,7 +114,7 @@ Seiten sind auf dem Desktop immer volle Breite. Begrenzt wird nur die Zeilenlän
 1. **Ein mutiger Moment pro Seite:** Logo in voller Breite, riesige Ortsnamen. Alles andere ist ruhig, Informationen wie die Öffnungszeiten sauber und übersichtlich.
 2. **Große Flächen, viel Weiß:** Farbflächen nur für die drei Orte und die Fußzeile, sonst Weiß.
 3. **Goldener Schnitt im Raster:** Spalten 1 : 1,618, Bildformate 1,618 : 1.
-4. **Bewegung nur mit Sinn:** Logo-Auftakt, Zeiger dreht zur aktuellen Zeit. `prefers-reduced-motion` wird respektiert.
+4. **Bewegung nur mit Sinn:** Logo-Auftakt und Wanderung in die Kopfzeile, Licht in den Strichzeichnungen. `prefers-reduced-motion` wird respektiert.
 5. **Datenschutz durch Technik:** keine Cookies, kein Tracking, keine Einbettungen, Kartenlinks statt Karten.
 
 ## 9. Eigene Inhalte

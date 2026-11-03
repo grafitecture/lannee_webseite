@@ -5,7 +5,7 @@ import { html, raw, rich } from './html.mjs';
 import { DICT, pick, formatPrice, formatEuro } from './i18n.mjs';
 import { LOCATIONS } from '../content/site.mjs';
 import { MENU } from '../content/menu.mjs';
-import { icon, signet } from './components.mjs';
+import { icon } from './components.mjs';
 
 const ALL = ['garage', 'kiosque', 'marche'];
 
@@ -29,7 +29,7 @@ function whereTags(where, locale) {
   if (where.length === ALL.length) return '';
   const t = DICT[locale].pages.carte;
   return html`<span class="dish__where"><span class="visually-hidden">${t.onlyAt} </span>${where.map(
-    (k) => html`<span class="tag tag--${k}">${signet(k, { cls: 'tag__signet' })}${LOCATIONS[k].name}</span>`
+    (k) => html`<span class="tag tag--${k}">${LOCATIONS[k].name}</span>`
   )}</span>`;
 }
 

@@ -70,14 +70,6 @@ body{width:1200px;height:630px;overflow:hidden;font-family:'Instrument Sans',san
 // Holz-Logo (weiße Buchstaben, freigestellt) – steht immer auf Grün
 const LOGO_IMG = `file://${ROOT}/public/images/logo-lannee-1563.webp`;
 const logo = () => `<img src="${LOGO_IMG}" alt="" style="display:block;width:100%;height:auto">`;
-const accent = await fs.readFile(path.join(ROOT, 'src/icons/accent-hand.txt'), 'utf8');
-const pts = accent.match(/-?\d+(?:\.\d+)?/g).map(Number);
-let hand = 'M';
-for (let i = 0; i < pts.length; i += 2) hand += `${(pts[i] * 0.8).toFixed(1)} ${(-pts[i + 1] - 76).toFixed(1)}${i + 2 < pts.length ? 'L' : 'Z'}`;
-const signet = (hours, colors, ring) =>
-  `<svg viewBox="-120 -120 240 240" style="display:block;width:100%;height:100%;overflow:visible"><circle r="104" fill="none" stroke="${ring}" stroke-width="13"/>${hours
-    .map((h, i) => `<path d="${hand}" fill="${colors[i]}" transform="rotate(${((h % 12) / 12) * 360})"/>`)
-    .join('')}<circle r="9" fill="#fff" stroke="${ring}" stroke-width="7"/></svg>`;
 
 const img = (name) => `file://${ROOT}/public/images/${name}-1080.webp`;
 /** Lockup wie auf der Website: Logo so hoch wie der Zweizeiler NAME / Linie / Austern & Bulles (siehe 03-components.css). */
@@ -93,13 +85,12 @@ const OG = {
       <div style="width:820px">${logo()}</div>
       <div style="display:flex;align-items:flex-end;justify-content:space-between">
         <div style="font-family:Fraunces;font-style:italic;font-weight:330;font-size:76px;line-height:1;color:${C.blanc}">Austern &amp; Bulles<br><span style="font-style:normal;font-size:34px;font-family:'Instrument Sans';font-weight:500">Garage, Kiosque &amp; Marché in Mannheim</span></div>
-        <div style="width:150px;height:150px">${signet([18, 8, 10], [C.lime, C.lime, C.lime], C.blanc)}</div>
       </div></div>`,
 };
 const LOC = {
-  garage: { bg: C.garage, fg: C.blanc, name: 'Garage', sub: 'Garage à huîtres &amp; vins', when: 'Fr &amp; Sa ab 18 Uhr, Jungbusch', hour: 18, photo: 'garage-hof' },
-  kiosque: { bg: C.kiosque, fg: C.blanc, name: 'Kiosque', sub: 'Kiosque à huîtres &amp; vins', when: 'Sonntag ab 10 Uhr, Lindenhof', hour: 10, photo: 'kiosque-visualisierung' },
-  marche: { bg: C.marche, fg: C.blanc, name: 'Marché', sub: 'Austern &amp; Bulles auf Rädern', when: 'Samstag 8–13 Uhr, Wochenmarkt Lindenhof', hour: 8, photo: 'marche-wagen' },
+  garage: { bg: C.garage, fg: C.blanc, name: 'Garage', sub: 'Garage à huîtres &amp; vins', when: 'Fr &amp; Sa ab 18 Uhr, Jungbusch', photo: 'garage-hof' },
+  kiosque: { bg: C.kiosque, fg: C.blanc, name: 'Kiosque', sub: 'Kiosque à huîtres &amp; vins', when: 'Sonntag ab 10 Uhr, Lindenhof', photo: 'kiosque-visualisierung' },
+  marche: { bg: C.marche, fg: C.blanc, name: 'Marché', sub: 'Austern &amp; Bulles auf Rädern', when: 'Samstag 8–13 Uhr, Wochenmarkt Lindenhof', photo: 'marche-wagen' },
 };
 for (const [key, L] of Object.entries(LOC)) {
   OG[key] = `<div style="width:1200px;height:630px;display:grid;grid-template-columns:1fr 520px;background:${L.bg};color:${L.fg}">

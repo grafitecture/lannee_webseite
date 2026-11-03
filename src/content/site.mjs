@@ -34,8 +34,7 @@ export const SITE = {
 };
 
 /**
- * Die drei Orte. `color` verweist auf die Design-Tokens,
- * `hour` ist die Stunde, auf die der Zeiger im Signet zeigt.
+ * Die drei Orte. `color` verweist auf die Design-Tokens.
  */
 export const LOCATIONS = {
   marche: {
@@ -43,7 +42,6 @@ export const LOCATIONS = {
     name: 'Marché',
     color: 'marche',
     hex: '#4F772D',
-    hour: 8,
     domain: null,
     email: 'bonjour@lannee.de',
     place: 'Wochenmarkt Lindenhof',
@@ -59,7 +57,6 @@ export const LOCATIONS = {
     name: 'Kiosque',
     color: 'kiosque',
     hex: '#31572C',
-    hour: 10,
     domain: 'kiosque.ma',
     email: 'bonjour@kiosque.ma',
     place: null,
@@ -75,7 +72,6 @@ export const LOCATIONS = {
     name: 'Garage',
     color: 'garage',
     hex: '#132A13',
-    hour: 18,
     domain: 'garage.ma',
     email: 'bonsoir@garage.ma',
     place: null,

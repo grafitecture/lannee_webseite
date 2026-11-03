@@ -90,45 +90,6 @@
   height: 1em;
 }
 
-/* Signets ----------------------------------------------------------------- */
-
-.signet {
-  width: 1em;
-  height: 1em;
-  overflow: visible;
-  flex: none;
-}
-.signet__ring {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 13;
-}
-.signet__hand {
-  fill: currentColor;
-}
-.signet__pivot {
-  fill: var(--signet-pivot, var(--blanc));
-  stroke: currentColor;
-  stroke-width: 7;
-}
-.signet--garage { color: var(--garage); }
-.signet--kiosque { color: var(--kiosque); }
-.signet--marche { color: var(--marche); }
-.signet--all { color: var(--ink); }
-.signet--all .signet__hand--garage { fill: var(--garage); }
-.signet--all .signet__hand--kiosque { fill: var(--kiosque); }
-.signet--all .signet__hand--marche { fill: var(--marche); }
-
-.theme-garage .signet,
-.theme-kiosque .signet,
-.theme-marche .signet {
-  color: var(--blanc);
-  --signet-pivot: var(--bg);
-}
-.theme-ink .signet--garage { color: var(--lime); --signet-pivot: var(--ink); }
-.theme-ink .signet--kiosque { color: var(--lime); --signet-pivot: var(--ink); }
-.theme-ink .signet--marche { color: var(--lime); --signet-pivot: var(--ink); }
-
 /* Logo: weiße Holzbuchstaben als Bild (siehe logo() in components.mjs) -------- */
 /* Die Box hält das Seitenverhältnis des Bildes (--logo-ratio kommt aus dem Markup);
    gesetzt wird entweder die Höhe (Kopfzeile, Lockup) oder die Breite (Hero, Fußzeile). */
@@ -301,22 +262,17 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35em;
-  padding: 0.28em 0.7em 0.28em 0.4em;
+  padding: 0.28em 0.7em;
   border-radius: 999px;
   font-size: 0.75rem;
   font-weight: 600;
   line-height: 1.1;
   letter-spacing: 0.02em;
 }
-.tag__signet {
-  width: 1.15em;
-  height: 1.15em;
-}
 /* Grüne Fläche, weiße Schrift */
 .tag--garage { background: var(--garage); color: var(--blanc); }
 .tag--kiosque { background: var(--kiosque); color: var(--blanc); }
 .tag--marche { background: var(--marche); color: var(--blanc); }
-.tag .signet { color: var(--blanc); --signet-pivot: transparent; }
 
 .chip {
   display: inline-flex;
@@ -333,10 +289,6 @@
   cursor: pointer;
   transition: background-color 0.2s, color 0.2s, border-color 0.2s;
 }
-.chip__signet {
-  width: 1.2em;
-  height: 1.2em;
-}
 .chip:hover {
   background: var(--blanc);
 }
@@ -347,7 +299,6 @@
 .chip--garage[aria-pressed='true'] { background: var(--garage); border-color: var(--garage); }
 .chip--kiosque[aria-pressed='true'] { background: var(--kiosque); border-color: var(--kiosque); }
 .chip--marche[aria-pressed='true'] { background: var(--marche); border-color: var(--marche); color: var(--blanc); }
-.chip[aria-pressed='true'] .signet { color: currentColor; --signet-pivot: transparent; }
 
 /* Live-Anzeige ------------------------------------------------------------- */
 

@@ -4,7 +4,7 @@
 import { html, raw, esc, plain, typo } from './html.mjs';
 import { DICT, LOCALES, ROUTES, url, pick, fill, formatTime } from './i18n.mjs';
 import { SITE, LOCATIONS, LOCATION_ORDER, SCHEDULE } from '../content/site.mjs';
-import { logo, signet, icon, arrowLink, upcomingClosures } from './components.mjs';
+import { logo, icon, arrowLink, upcomingClosures } from './components.mjs';
 import { tokenHex } from '../content/tokens.mjs';
 
 const NAV = ['garage', 'kiosque', 'marche', 'carte', 'atlas', 'contact'];
@@ -123,7 +123,7 @@ function footer(ctx) {
   const places = LOCATION_ORDER.map((key) => {
     const L = LOCATIONS[key];
     return html`<div class="footer-place footer-place--${key}">
-      <a class="footer-place__name" href="${url(key, locale)}">${signet(key, { cls: 'footer-place__signet' })}<span>${L.name}</span></a>
+      <a class="footer-place__name" href="${url(key, locale)}"><span>${L.name}</span></a>
       <p class="footer-place__when">${whenText(key, locale)}</p>
       <p class="footer-place__where">${placeText(key, locale)}</p>
       <p><a class="footer-place__mail" href="mailto:${L.email}">${L.email}</a></p>

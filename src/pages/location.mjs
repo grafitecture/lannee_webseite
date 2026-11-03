@@ -4,7 +4,7 @@
 import { html, raw, rich } from '../lib/html.mjs';
 import { DICT, url, pick, fill, formatTime } from '../lib/i18n.mjs';
 import { LOCATIONS, LOCATION_ORDER, MARCHE_DATES, SITE } from '../content/site.mjs';
-import { lockup, signet, picture, arrowLink, mapLinks, icon, closureNotes, berlinToday } from '../lib/components.mjs';
+import { lockup, picture, arrowLink, mapLinks, icon, closureNotes, berlinToday } from '../lib/components.mjs';
 import { menuExcerpt } from '../lib/menu-render.mjs';
 import { venueArt } from '../lib/venue-art.mjs';
 import { placeText } from '../lib/layout.mjs';
@@ -93,7 +93,6 @@ export function render(ctx) {
 </div>
 
 <section class="quote theme-${L.color}" aria-label="${L.name}">
-  ${signet(key, { cls: 'quote__signet' })}
   <blockquote class="quote__text"><p>${rich(p.quote, locale)}</p></blockquote>
 </section>
 
@@ -144,7 +143,6 @@ ${p.quarter
   ${others.map((k) => {
     const O = LOCATIONS[k];
     return html`<a class="other theme-${O.color}" href="${url(k, locale)}">
-      ${signet(k, { cls: 'other__signet' })}
       <span class="other__name">${O.name}</span>
       <span class="other__when">${t.pages[k].when}</span>
       ${icon('arrow', { cls: 'icon other__arrow' })}

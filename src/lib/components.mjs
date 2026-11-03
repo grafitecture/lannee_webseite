@@ -1,5 +1,5 @@
 /**
- * Bausteine: Logo, Signets, Lockups, Icons, Bilder, Wochenplan, Jahresuhr.
+ * Bausteine: Logo, Lockups, Icons, Bilder, Wochenplan.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -32,17 +32,6 @@ export const LOGO_RATIO = `${LOGO.width} / ${LOGO.height}`;
 export const LOGO_ASPECT = (LOGO.width / LOGO.height).toFixed(4);
 
 /**
- * Der Zeiger ist der Akzent aus dem É des Logos: Spitze nach außen,
- * breites Ende am Drehpunkt. Länge 100 Einheiten, Drehpunkt (0,0), zeigt nach oben.
- */
-const accentPts = read('src/icons/accent-hand.txt')
-  .match(/-?\d+(?:\.\d+)?/g)
-  .map(Number);
-const handPts = [];
-for (let i = 0; i < accentPts.length; i += 2) handPts.push([accentPts[i] * 0.8, -accentPts[i + 1] - 76]);
-export const HAND_D = 'M' + handPts.map(([x, y]) => `${x.toFixed(1)} ${y.toFixed(1)}`).join('L') + 'Z';
-
-/**
  * Logo als <picture> (AVIF, WebP). Die Box hält das Seitenverhältnis (.brand-logo in 03-components.css),
  * Größe kommt über die Klasse (Höhe oder Breite). sizes = angezeigte Breite für die Bildauswahl.
  */
@@ -57,28 +46,10 @@ export function logo({ cls = 'logo', label = 'L’ANNÉE', decorative = false, s
 }
 
 /* ------------------------------------------------------------------ */
-/* Signets & Lockups                                                   */
+/* Lockups (Uhren/Signets gibt es seit 03.11.2026 nicht mehr)          */
 /* ------------------------------------------------------------------ */
 
-/** Winkel eines 12-Stunden-Zifferblatts (0° = 12 Uhr, im Uhrzeigersinn). */
-const hourAngle = (h) => ((h % 12) / 12) * 360;
-
-/**
- * Signet = Kreis + Akzent-Zeiger, der auf die Öffnungsstunde zeigt.
- * key: 'garage' | 'kiosque' | 'marche' | 'all'
- */
-export function signet(key, { cls = '' } = {}) {
-  const keys = key === 'all' ? ['garage', 'marche', 'kiosque'] : [key];
-  const hands = keys
-    .map(
-      (k) =>
-        `<path class="signet__hand signet__hand--${k}" d="${HAND_D}" transform="rotate(${hourAngle(LOCATIONS[k].hour)})"/>`
-    )
-    .join('');
-  return html`<svg class="signet signet--${key} ${cls}" viewBox="-120 -120 240 240" aria-hidden="true" focusable="false"><circle class="signet__ring" r="104"/>${raw(hands)}<circle class="signet__pivot" r="9"/></svg>`;
-}
-
-/** Subbrand-Lockup: Signet · L'ANNÉE · NAME · Austern & Bulles */
+/** Subbrand-Lockup: L'ANNÉE · NAME · Austern & Bulles */
 export function lockup(key, { cls = '', tagline = true, as = 'div', locale = 'de', sizes = '18rem' } = {}) {
   const L = LOCATIONS[key];
   const inner = html`${logo({ cls: 'lockup__logo', decorative: true, sizes })}<span class="lockup__words"><span class="lockup__name"><span class="visually-hidden">L’ANNÉE </span>${

@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { html, raw } from '../lib/html.mjs';
 import { LOCATIONS, LOCATION_ORDER } from '../content/site.mjs';
 import { COLORS, ROLES, TYPE_SCALE, SPACE, BREAKPOINTS, clampRem, tokenHex } from '../content/tokens.mjs';
-import { logo, signet, lockup, icon } from '../lib/components.mjs';
+import { logo, lockup, icon } from '../lib/components.mjs';
 import { venueArt } from '../lib/venue-art.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
@@ -36,33 +36,19 @@ export function render() {
   return html`
 <section class="page-hero page-hero--sg">
   <h1 class="page-hero__title">Styleguide</h1>
-  <p class="page-hero__lead lead">Das Markensystem von L’ANNÉE: eine Dachmarke, drei Orte, eine gemeinsame Uhr. Diese Seite ist nicht für Gäste gedacht und wird nicht von Suchmaschinen erfasst.</p>
+  <p class="page-hero__lead lead">Das Markensystem von L’ANNÉE: eine Dachmarke, drei Orte. Diese Seite ist nicht für Gäste gedacht und wird nicht von Suchmaschinen erfasst.</p>
 </section>
 
 <section class="sg" aria-labelledby="sg-brand">
   <h2 class="t-h4" id="sg-brand">Dachmarke und Subbrands</h2>
-  <div class="sg__cols">
-    <div>
-      <p class="lead">Der Akzent aus dem É von L’ANNÉE wird zum Uhrzeiger. Jedes Signet zeigt auf die Stunde, zu der der Ort öffnet. Die Farben sind nur Grün, ihre Helligkeit folgt dem Tageslicht: Fern am Morgen, Hunter Green am Sonntag, Evergreen am Abend.</p>
-      <ul class="sg__rules">
-        <li><strong>Marché</strong>: Zeiger auf 8 Uhr, Fern</li>
-        <li><strong>Kiosque</strong>: Zeiger auf 10 Uhr, Hunter Green</li>
-        <li><strong>Garage</strong>: Zeiger auf 6, also 18 Uhr, Evergreen</li>
-        <li><strong>L’ANNÉE</strong>: alle drei Zeiger zusammen</li>
-      </ul>
-    </div>
-    <div class="sg__signets">
-      ${signet('all', { cls: 'sg__signet sg__signet--all' })}
-      ${LOCATION_ORDER.map((k) => signet(k, { cls: `sg__signet theme-${LOCATIONS[k].color}-text` }))}
-    </div>
-  </div>
+  <p class="lead">Eine Dachmarke, drei Orte. Die Farben sind nur Grün, ihre Helligkeit folgt dem Tageslicht: Fern am Morgen (Marché), Hunter Green am Sonntag (Kiosque), Evergreen am Abend (Garage). Uhren (Signets) gibt es nicht mehr (Vorgabe 03.11.2026).</p>
   <p class="sg__note">Logo: weiße, gestrichene Holzbuchstaben L’ANNÉE (wie ein Schild aus Brettern). Weiß gehört auf Grün: Das Logo steht immer auf einer grünen Fläche – Kopfzeile, Film im Hero, Fußzeile und die Farbflächen der Orte –, nie auf Weiß. Auf der Startseite wandern Logo und Slogan beim Scrollen vom Hero in die Kopfzeile.</p>
   <div class="sg__logos">
     <div class="sg__logo theme-ink">${logo({ cls: 'sg__logo-img', decorative: true, sizes: '30rem' })}</div>
     <div class="sg__logo theme-kiosque">${logo({ cls: 'sg__logo-img', decorative: true, sizes: '30rem' })}</div>
     <div class="sg__logo theme-marche">${logo({ cls: 'sg__logo-img', decorative: true, sizes: '30rem' })}</div>
   </div>
-  <p class="sg__note">Lockup: Das L’ANNÉE-Logo steht so hoch wie der Zweizeiler aus Ortsname (mit Linie) und „Austern &amp; Bulles“, immer auf der Farbe des Ortes, Schrift weiß. Die Signets bleiben als kleine Wegweiser in Fahrplan, Zitaten und Fußzeile, nicht in der Navigation.</p>
+  <p class="sg__note">Lockup: Das L’ANNÉE-Logo steht so hoch wie der Zweizeiler aus Ortsname (mit Linie) und „Austern &amp; Bulles“, immer auf der Farbe des Ortes, Schrift weiß.</p>
   <p class="sg__note">Über den Lockups (Startseite „drei Orte“, Ortsseiten) stehen die drei Orte als Strichzeichnungen: Garage mit Toren und Lichterkette, Kiosque mit Markise und Hängelampen, Marché als Anhänger mit Vitrine unterm Marktschirm. Feine Linie, weiß auf der Farbe des Ortes. Hat der Ort geöffnet, geht das Licht an: Fenster in Lime Cream, ein Schein darum und ein Lichtkegel auf die Straße (Vorschau: <code>?licht=an</code>).</p>
   <div class="sg__venues">
     ${LOCATION_ORDER.map((k) => html`<div class="sg__venue theme-${LOCATIONS[k].color}">${venueArt(k, { cls: 'sg__venue-art', lit: true })}${lockup(k, { cls: 'sg__venue-lockup' })}</div>`)}
@@ -140,7 +126,7 @@ export function render() {
   <div class="sg__ui">
     <a class="btn btn--solid" href="#sg-ui"><span>Zur Karte</span></a>
     <a class="btn btn--line" href="#sg-ui"><span>Wo wir sind</span></a>
-    ${LOCATION_ORDER.map((k) => html`<span class="tag tag--${k}">${signet(k, { cls: 'tag__signet' })}${LOCATIONS[k].name}</span>`)}
+    ${LOCATION_ORDER.map((k) => html`<span class="tag tag--${k}">${LOCATIONS[k].name}</span>`)}
   </div>
   <p class="sg__note">Pausen-Hinweis: erscheint automatisch auf der Startseite und der jeweiligen Ortsseite, sobald in <code>CLOSURES</code> (site.mjs) ein Eintrag steht. Der Wochenplan schraffiert betroffene Termine („Diesmal Pause“), die Live-Anzeige springt zum nächsten geöffneten Ort.</p>
   <p class="closure"><span class="closure__icon" aria-hidden="true"></span><span><strong>Garage und Kiosque machen Pause:</strong> 24.–26. Dezember (Weihnachtspause)</span></p>

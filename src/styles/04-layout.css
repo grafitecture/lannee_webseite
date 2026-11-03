@@ -293,14 +293,6 @@
   line-height: 1;
   text-decoration: none;
 }
-.footer-place__signet {
-  width: 0.85em;
-  height: 0.85em;
-  --signet-pivot: var(--ink);
-}
-.site-footer .signet--garage { color: var(--lime); }
-.site-footer .signet--kiosque { color: var(--lime); }
-.site-footer .signet--marche { color: var(--lime); }
 .footer-place__when {
   font-weight: 600;
 }

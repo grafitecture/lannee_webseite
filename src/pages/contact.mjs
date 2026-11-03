@@ -1,7 +1,7 @@
 import { html, rich } from '../lib/html.mjs';
 import { DICT, url } from '../lib/i18n.mjs';
 import { LOCATIONS, LOCATION_ORDER, SITE } from '../content/site.mjs';
-import { signet, arrowLink, icon } from '../lib/components.mjs';
+import { arrowLink, icon } from '../lib/components.mjs';
 import { placeText } from '../lib/layout.mjs';
 
 export function render(ctx) {
@@ -20,7 +20,6 @@ export function render(ctx) {
   ${LOCATION_ORDER.map((k) => {
     const L = LOCATIONS[k];
     return html`<article class="contact-card theme-${L.color}">
-      ${signet(k, { cls: 'contact-card__signet' })}
       <h2 class="contact-card__name"><a href="${url(k, locale)}">${L.name}</a></h2>
       <p class="contact-card__when">${t.pages[k].when}</p>
       <p class="contact-card__where">${placeText(k, locale)}</p>
