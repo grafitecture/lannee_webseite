@@ -152,6 +152,7 @@ export default {
       subtitle: 'Austern & Bulles auf Rädern',
       when: 'Samstag, 8 bis 13 Uhr',
       whereText: 'Wochenmarkt Lindenhof, Mannheim',
+      whereShort: 'Wochenmarkt Lindenhof', // Hero-Band, ohne Stadt
       more: 'Weitere Standorte und Termine nach Ankündigung.',
       quote: 'Zwischen Gemüse und Blumen: ein Dutzend, bitte.',
       intro: {

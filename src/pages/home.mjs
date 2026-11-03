@@ -62,7 +62,7 @@ export function render(ctx) {
   const heroPlaces = LOCATION_ORDER.map((key) => {
     const L = LOCATIONS[key];
     const P = t.pages[key];
-    const where = L.street ? `${L.street}, ${L.district}` : P.whereText;
+    const where = L.street ? `${L.street}, ${L.district}` : P.whereShort ?? P.whereText;
     return html`<li class="hero-place theme-${L.color}">
       <a class="hero-place__link" href="${url(key, locale)}">
         ${icon('arrow', { cls: 'icon hero-place__arrow' })}

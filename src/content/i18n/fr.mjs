@@ -152,6 +152,7 @@ export default {
       subtitle: 'Austern & Bulles sur roues',
       when: 'Samedi, de 8 h à 13 h',
       whereText: 'Marché du Lindenhof, Mannheim',
+      whereShort: 'Marché du Lindenhof', // Hero-Band, ohne Stadt
       more: 'Autres lieux et dates annoncés au fur et à mesure.',
       quote: 'Entre les légumes et les fleurs : une douzaine, s’il vous plaît.',
       intro: {

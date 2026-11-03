@@ -152,6 +152,7 @@ export default {
       subtitle: 'Austern & Bulles on wheels',
       when: 'Saturday, 8 am to 1 pm',
       whereText: 'Lindenhof farmers’ market, Mannheim',
+      whereShort: 'Lindenhof farmers’ market', // Hero-Band, ohne Stadt
       more: 'More places and dates announced as we go.',
       quote: 'Between the vegetables and the flowers: a dozen, please.',
       intro: {
