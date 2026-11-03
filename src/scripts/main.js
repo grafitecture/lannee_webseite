@@ -468,7 +468,6 @@ function initHeroScroll() {
     // offsetHeight ohne transform (Einblendungen verschieben die Bänder kurz nach unten)
     on = inner.offsetHeight + (places?.offsetHeight ?? 0) <= stage.clientHeight + 1;
     hero.classList.toggle('hero--scrolly', on);
-    stage.style.setProperty('--places-h', `${places?.offsetHeight ?? 0}px`);
     if (!on) {
       hero.style.removeProperty('--reveal');
       hero.classList.remove('is-revealed');
@@ -505,18 +504,15 @@ function initHeroScroll() {
 
 /**
  * Der Film lädt erst per Skript (preload="none" im HTML): Hochformat auf Handys, sonst Querformat.
- * Reduzierte Bewegung oder Datensparmodus: Es bleibt beim Standbild, der Knopf startet den Film auf Wunsch.
- * Außerhalb des Bildschirms pausiert der Film.
+ * Reduzierte Bewegung oder Datensparmodus: Es bleibt beim Standbild.
+ * Außerhalb des Bildschirms pausiert der Film. Keinen Knopf zum Anhalten (Vorgabe 03.11.2026).
  */
 function initFilm() {
   const film = document.querySelector('[data-film]');
   const video = film?.querySelector('video');
-  const toggle = document.querySelector('[data-film-toggle]');
   if (!film || !video) return;
-  const saveData = navigator.connection?.saveData === true;
+  if (reduceMotion || navigator.connection?.saveData === true) return;
   let loaded = false;
-  let wanted = !reduceMotion && !saveData; // Wunsch der Besucherin, des Besuchers
-  let visible = true;
 
   const load = () => {
     if (loaded) return;
@@ -533,31 +529,17 @@ function initFilm() {
     }
     video.load();
   };
-  const sync = () => {
-    if (wanted && visible) {
+  const sync = (visible) => {
+    if (visible) {
       load();
       video.play().catch(() => {});
     } else video.pause();
-    if (toggle) {
-      toggle.hidden = false;
-      toggle.setAttribute('aria-pressed', String(!wanted));
-      toggle.setAttribute('aria-label', wanted ? toggle.dataset.labelPause : toggle.dataset.labelPlay);
-      toggle.classList.toggle('is-paused', !wanted);
-    }
   };
 
   video.addEventListener('playing', () => film.classList.add('is-playing'));
-  toggle?.addEventListener('click', () => {
-    wanted = !wanted;
-    sync();
-  });
   if ('IntersectionObserver' in window) {
-    new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting;
-      sync();
-    }).observe(film);
-  }
-  sync();
+    new IntersectionObserver(([entry]) => sync(entry.isIntersecting)).observe(film);
+  } else sync(true);
 }
 
 initHeroScroll();

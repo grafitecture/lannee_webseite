@@ -174,51 +174,6 @@
 .hero--film .hero__bg img {
   object-position: 50% 50%;
 }
-/* Film anhalten / abspielen: kleiner runder Knopf unten rechts, über den Ortsbändern.
-   Gehen die Bänder weg, rutscht er mit nach unten (bleibt aber über dem Störer). */
-.hero__toggle {
-  --clear: 0rem;
-  position: absolute;
-  bottom: calc(0.9rem + var(--places-h, 0px) * (1 - var(--reveal, 0)) + var(--clear) * var(--reveal, 0));
-  right: var(--gutter);
-  z-index: 1;
-  display: grid;
-  place-items: center;
-  width: 2.75rem;
-  height: 2.75rem;
-  padding: 0;
-  border: 1.5px solid color-mix(in srgb, var(--blanc) 70%, transparent);
-  border-radius: 50%;
-  background: color-mix(in srgb, var(--ink) 35%, transparent);
-  color: var(--blanc);
-  cursor: pointer;
-  transition: background-color 0.25s, color 0.25s, border-color 0.25s;
-}
-body:has(.stoerer) .hero__toggle {
-  --clear: 7.5rem;
-}
-.hero__toggle[hidden] {
-  display: none;
-}
-.hero__toggle:hover {
-  background: var(--lime);
-  border-color: var(--lime);
-  color: var(--ink);
-}
-.hero__toggle-icon {
-  width: 0.8rem;
-  height: 0.9rem;
-  border-inline: 0.26rem solid currentColor;
-}
-.hero__toggle.is-paused .hero__toggle-icon {
-  width: 0.85rem;
-  height: 0.95rem;
-  margin-left: 0.2rem;
-  border: 0;
-  background: currentColor;
-  clip-path: polygon(0 0, 100% 50%, 0 100%);
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .hero__logo {
     clip-path: inset(0 100% 0 0);

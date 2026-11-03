@@ -27,11 +27,6 @@ const FILM_VERSION = FILM_READY
       .slice(0, 8)
   : '';
 const HERO_IMAGE = FILM_READY && fs.existsSync(new URL('../../public/images/hero-film-480.webp', import.meta.url)) ? 'hero-film' : 'hero-austern-hof';
-const FILM_TOGGLE = {
-  de: { pause: 'Film anhalten', play: 'Film abspielen' },
-  fr: { pause: 'Mettre le film en pause', play: 'Lire le film' },
-  en: { pause: 'Pause film', play: 'Play film' },
-};
 const HERO_PLACES_LABEL = { de: 'Drei Orte', fr: 'Trois adresses', en: 'Three places' };
 const GALLERY = ['garage-austernbar', 'garage-boot', 'schweppes', 'huitres-glace', 'garage-eingang', 'baguettes', 'garage-wand', 'austern-oeffnen', 'garage-merci'];
 
@@ -86,8 +81,7 @@ export function render(ctx) {
     ${picture(HERO_IMAGE, locale, { sizes: '100vw', cls: 'hero__bg', eager: true, alt: FILM_READY ? '' : undefined })}
     ${
       FILM_READY
-        ? html`<div class="hero__film" data-film data-wide="${FILM.wide}" data-tall="${FILM.tall}" data-version="${FILM_VERSION}" aria-hidden="true"><video class="hero__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback></video></div>
-    <button class="hero__toggle" type="button" data-film-toggle data-label-pause="${FILM_TOGGLE[locale].pause}" data-label-play="${FILM_TOGGLE[locale].play}" aria-label="${FILM_TOGGLE[locale].play}" hidden><span class="hero__toggle-icon" aria-hidden="true"></span></button>`
+        ? html`<div class="hero__film" data-film data-wide="${FILM.wide}" data-tall="${FILM.tall}" data-version="${FILM_VERSION}" aria-hidden="true"><video class="hero__video" muted loop playsinline preload="none" disablepictureinpicture disableremoteplayback></video></div>`
         : ''
     }
     <div class="hero__inner">
