@@ -1,7 +1,6 @@
 import { html, rich } from '../lib/html.mjs';
 import { DICT } from '../lib/i18n.mjs';
 import { LOCATIONS, LOCATION_ORDER } from '../content/site.mjs';
-import { icon } from '../lib/components.mjs';
 import { fullMenu } from '../lib/menu-render.mjs';
 
 export function render(ctx) {
@@ -21,7 +20,6 @@ export function render(ctx) {
   <h1 class="page-hero__title" id="carte-title" lang="fr">${p.h1}</h1>
   <p class="page-hero__lead lead">${rich(p.lead, locale)}</p>
   ${filter}
-  <div class="page-hero__icons" aria-hidden="true">${['oyster-open', 'flute', 'shrimp', 'wine', 'lemon'].map((n) => icon(n, { cls: 'icon' }))}</div>
 </section>
 
 <div class="carte" data-menu-root data-filter="all">

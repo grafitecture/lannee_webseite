@@ -5,7 +5,6 @@ import { html, raw, rich } from './html.mjs';
 import { DICT, pick, formatPrice, formatEuro } from './i18n.mjs';
 import { LOCATIONS } from '../content/site.mjs';
 import { MENU } from '../content/menu.mjs';
-import { icon } from './components.mjs';
 
 const ALL = ['garage', 'kiosque', 'marche'];
 
@@ -84,7 +83,6 @@ export function fullMenu(locale) {
       <div class="chapter__sections">${chapter.sections.map(
         (section) => html`<section class="menu-section" id="${section.id}" aria-labelledby="${section.id}-h">
           <header class="menu-section__head">
-            ${icon(section.icon, { cls: 'icon menu-section__icon' })}
             <h3 class="menu-section__title" id="${section.id}-h">${pick(section.title, locale)}</h3>
             ${section.intro ? html`<p class="menu-section__intro">${rich(pick(section.intro, locale), locale)}</p>` : ''}
           </header>

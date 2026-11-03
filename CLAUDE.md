@@ -17,6 +17,7 @@ Website der Dachmarke L’ANNÉE (Austern & Bulles, Mannheim) mit Garage, Kiosqu
 - **Kopfzeile:** Neben dem Logo steht der Slogan (feine Linie dazwischen) – auf allen Bildschirmbreiten. Auf der Startseite wandern großes Logo und Slogan beim Scrollen skaliert in ihre Endposition in der Kopfzeile (Logo · Linie · Slogan), im Vordergrund über allem; angekommen blendet die Trennlinie ein (Vorgabe 01.11.2026, bestätigt 03.11.2026).
 - **Menü-Schalter mobil = nur Hamburger** (drei Striche, weiß, ohne Text „Menü“ und ohne Rahmen; Vorgabe 03.11.2026). „Menü“ steht nur unsichtbar für Screenreader im Link.
 - **Hinweis „Diese Webseite dient zur reinen Darstellung und ist fiktiv.“ = schlichte Textzeile ganz unten in der Fußzeile** (unter einer feinen Linie; Vorgabe 03.11.2026). Kein Kreis/Störer, nichts Fixiertes, das über dem Inhalt schwebt.
+- **Keine Speisen-/Getränke-Zeichnungen** (Zitrone, Glas, Crevette, Auster usw.; Vorgabe 03.11.2026): weder als Reihe im Karten-Teaser der Startseite noch im Kopf der Karte noch vor den Abschnitten der Karte. Die Austern-Zeichnungen im Austernatlas bleiben.
 - **Fußzeile ohne die drei Orte** (Vorgabe 03.11.2026): keine Spalten Garage/Kiosque/Marché mit Zeiten, Adressen und Mails; die Fußzeile beginnt mit dem großen Holz-Logo.
 - **Fußzeile ohne „Gestaltung: Grafitecture“** (Vorgabe 01.11.2026); die Agentur steht nur im Grafitecture-Feld in Impressum und Datenschutz.
 - **Wochenplan** zeigt nur Tage mit Öffnung, keine Zeile „Mo – Do geschlossen“ (Vorgabe 01.11.2026).

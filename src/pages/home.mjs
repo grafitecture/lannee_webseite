@@ -145,7 +145,6 @@ export function render(ctx) {
   <div class="teaser-menu__list">
     ${menuExcerpt(locale, { signatureOnly: true, limit: 6 })}
   </div>
-  <div class="teaser-menu__icons" aria-hidden="true">${['oyster', 'flute', 'shrimp', 'lemon', 'sardines', 'wine'].map((n) => icon(n, { cls: 'icon icon--float' }))}</div>
 </section>
 
 <section class="gallery" aria-label="${{ de: 'Fotos', fr: 'Photos', en: 'Photos' }[locale]}">
