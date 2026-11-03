@@ -246,9 +246,6 @@
 .hero-place__link:focus-visible {
   box-shadow: inset 0 0.3rem 0 var(--lime);
 }
-.hero-place__top {
-  display: contents;
-}
 .hero-place__arrow {
   grid-area: arrow;
   width: 1.4rem;
@@ -257,30 +254,6 @@
 }
 .hero-place__link:hover .hero-place__arrow {
   transform: translateX(0.3rem);
-}
-.hero-place__badge {
-  position: absolute;
-  top: 0;
-  right: var(--gutter);
-  translate: 0 -50%;
-  padding: 0.3em 0.8em;
-  border-radius: 999px;
-  background: var(--lime);
-  color: var(--ink);
-  font-size: 0.8125rem;
-  font-weight: 600;
-  line-height: 1.2;
-  white-space: nowrap;
-}
-.hero-place.is-open .hero-place__badge::before {
-  content: '';
-  display: inline-block;
-  width: 0.55em;
-  height: 0.55em;
-  margin-right: 0.45em;
-  border-radius: 50%;
-  background: var(--bg);
-  vertical-align: 0.05em;
 }
 .hero-place__name {
   grid-area: name;
@@ -340,13 +313,6 @@
   .hero-place__when {
     margin-top: var(--space-s);
     font-size: 1rem;
-  }
-  .hero-place__badge {
-    right: auto;
-    left: var(--space-m);
-  }
-  .hero-place:first-child .hero-place__badge {
-    left: var(--gutter);
   }
 }
 

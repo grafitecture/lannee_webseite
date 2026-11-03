@@ -63,9 +63,9 @@ export function render(ctx) {
     const L = LOCATIONS[key];
     const P = t.pages[key];
     const where = L.street ? `${L.street}, ${L.district}` : P.whereText;
-    return html`<li class="hero-place theme-${L.color}" data-place-live="${key}">
+    return html`<li class="hero-place theme-${L.color}">
       <a class="hero-place__link" href="${url(key, locale)}">
-        <span class="hero-place__top"><span class="hero-place__badge" hidden></span>${icon('arrow', { cls: 'icon hero-place__arrow' })}</span>
+        ${icon('arrow', { cls: 'icon hero-place__arrow' })}
         <span class="hero-place__name">${L.name}</span>
         <span class="hero-place__sub">${rich(P.subtitle, locale)}</span>
         <span class="hero-place__when">${P.when}</span>

@@ -182,17 +182,6 @@ function initPlan() {
       }
     });
 
-    // Hero: Band des Ortes, der gerade geöffnet hat oder als Nächstes öffnet, markieren
-    document.querySelectorAll('[data-place-live]').forEach((node) => {
-      const mine = (status.state === 'open' || status.state === 'next') && status.slot.loc === node.dataset.placeLive;
-      node.classList.toggle('is-open', mine && status.state === 'open');
-      node.classList.toggle('is-next', mine && status.state === 'next');
-      const badge = node.querySelector('.hero-place__badge');
-      if (!badge) return;
-      badge.hidden = !mine;
-      badge.textContent = mine ? (status.state === 'open' ? strings.open : strings.next) : '';
-    });
-
     // Live-Kachel über „Ein Wochenende, drei Orte“: Jetzt geöffnet / Als Nächstes
     if (live) {
       live.classList.add('is-live');
