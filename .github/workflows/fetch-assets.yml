@@ -1,0 +1,31 @@
+# Hilfs-Workflow (nur auf dem Zweig tools/fetch-assets): lädt Dateien aus
+# assets-src/scribbles/urls.txt herunter und legt sie in assets-src/scribbles/raw/ ab.
+# Grund: Die Arbeitsumgebung von Claude kann die Higgsfield-Adressen nicht laden.
+name: fetch-assets
+on:
+  push:
+    branches: [tools/fetch-assets]
+    paths: [assets-src/scribbles/urls.txt]
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download
+        run: |
+          mkdir -p assets-src/scribbles/raw
+          while read -r name url; do
+            [ -z "$name" ] && continue
+            case "$name" in \#*) continue;; esac
+            curl -fsSL --retry 3 -o "assets-src/scribbles/raw/$name" "$url"
+            ls -la "assets-src/scribbles/raw/$name"
+          done < assets-src/scribbles/urls.txt
+      - name: Commit
+        run: |
+          git config user.name "fetch-assets"
+          git config user.email "actions@users.noreply.github.com"
+          git add assets-src/scribbles/raw
+          git commit -m "Rohdateien geladen" || echo "nichts Neues"
+          git push
