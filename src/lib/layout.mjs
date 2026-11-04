@@ -6,6 +6,7 @@ import { DICT, LOCALES, ROUTES, url, pick, fill, formatTime } from './i18n.mjs';
 import { SITE, LOCATIONS, LOCATION_ORDER, SCHEDULE } from '../content/site.mjs';
 import { logo, icon, arrowLink, upcomingClosures } from './components.mjs';
 import { tokenHex } from '../content/tokens.mjs';
+import { scribbles } from './scribbles.mjs';
 
 const NAV = ['garage', 'kiosque', 'marche', 'carte', 'atlas', 'contact'];
 
@@ -115,7 +116,11 @@ function footer(ctx) {
   const { locale } = ctx;
   const t = DICT[locale];
   const year = new Date().getFullYear();
-  return html`<footer class="site-footer">
+  return html`<footer class="site-footer has-scribbles">
+  ${scribbles(ctx, [
+    { at: 't', x: '74%', s: 'm', bleed: 0.4 },
+    { at: 'l', yb: '18%', s: 's', kind: 'claim', bleed: 0.12, wide: true },
+  ])}
   <a class="site-footer__mark" href="${url('home', locale)}" aria-label="L’ANNÉE – ${t.ui.home}">${logo({ cls: 'site-footer__logo', decorative: true, sizes: '100vw' })}</a>
   <div class="site-footer__bottom">
     <p class="site-footer__tagline">${t.ui.footer.tagline}</p>

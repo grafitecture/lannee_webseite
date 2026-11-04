@@ -8,6 +8,7 @@ import { logo, lockup, picture, weekPlan, arrowLink, icon, closureNotes, LOGO_RA
 import { menuExcerpt } from '../lib/menu-render.mjs';
 import { venueArt } from '../lib/venue-art.mjs';
 import { placeText } from '../lib/layout.mjs';
+import { scribbles } from '../lib/scribbles.mjs';
 
 const PLACE_PHOTOS = { garage: 'garage-hof', kiosque: 'kiosque-visualisierung', marche: 'marche-wagen' };
 /**
@@ -36,10 +37,16 @@ export function render(ctx) {
   const p = t.pages.home;
 
   /* Drei Orte als große Farbflächen */
+  const PLACE_SCRIBBLES = [
+    [{ at: 'r', yb: '2%', s: 'l', bleed: 0.28 }, { at: 't', x: '44%', s: 's', kind: 'claim', bleed: 0.3, wide: true }],
+    [{ at: 'l', y: '7%', s: 'm', bleed: 0.3 }, { at: 'b', x: '8%', s: 's', kind: 'claim', bleed: 0.3, wide: true }],
+    [{ at: 'r', yb: '4%', s: 'l', bleed: 0.3 }, { at: 'l', y: '3%', s: 's', bleed: 0.42, wide: true }],
+  ];
   const places = LOCATION_ORDER.map((key, i) => {
     const L = LOCATIONS[key];
     const c = p.places[key];
-    return html`<section class="place theme-${L.color}${i % 2 ? ' place--flip' : ''}" aria-labelledby="place-${key}">
+    return html`<section class="place theme-${L.color}${i % 2 ? ' place--flip' : ''} has-scribbles" aria-labelledby="place-${key}">
+      ${scribbles(ctx, PLACE_SCRIBBLES[i % PLACE_SCRIBBLES.length])}
       <div class="place__text">
         ${venueArt(key, { cls: 'place__art' })}
         ${lockup(key, { cls: 'place__lockup', locale })}
@@ -97,7 +104,11 @@ export function render(ctx) {
   </div>
 </section>
 
-<section class="weekend" id="wochenende" aria-labelledby="weekend-title">
+<section class="weekend has-scribbles" id="wochenende" aria-labelledby="weekend-title">
+  ${scribbles(ctx, [
+    { at: 'r', y: '31%', s: 's', kind: 'claim', bleed: 0.18, wide: true },
+    { at: 'b', x: '60%', s: 'm', bleed: 0.32 },
+  ])}
   <nav class="wayfinder" aria-label="${p.wayfinder.label}">
     <ul class="wayfinder__list" role="list">
       <li class="wayfinder__item">
@@ -136,7 +147,11 @@ export function render(ctx) {
 
 <div class="places" id="orte">${places}</div>
 
-<section class="teaser-menu" aria-labelledby="menu-title">
+<section class="teaser-menu has-scribbles" aria-labelledby="menu-title">
+  ${scribbles(ctx, [
+    { at: 'r', yb: '7%', s: 'm', bleed: 0.3, wide: true },
+    { at: 't', x: '30%', s: 's', kind: 'claim', bleed: 0.15, wide: true },
+  ])}
   <div class="teaser-menu__head">
     <h2 class="t-h2" id="menu-title">${p.carte.heading}</h2>
     <p class="lead">${rich(p.carte.lead, locale)}</p>
@@ -153,7 +168,8 @@ export function render(ctx) {
   )}</ul>
 </section>
 
-<section class="insta">
+<section class="insta has-scribbles">
+  ${scribbles(ctx, [{ at: 'b', x: '46%', s: 'm', kind: 'claim', bleed: 0.42 }])}
   <p class="insta__text">${rich(p.insta, locale)}</p>
   ${arrowLink(SITE.instagram.url, SITE.instagram.handle, { cls: 'link-arrow insta__link', external: true, locale })}
 </section>

@@ -9,6 +9,7 @@ import { LOCATIONS, LOCATION_ORDER } from '../content/site.mjs';
 import { COLORS, ROLES, TYPE_SCALE, SPACE, BREAKPOINTS, clampRem, tokenHex } from '../content/tokens.mjs';
 import { logo, lockup, icon } from '../lib/components.mjs';
 import { venueArt } from '../lib/venue-art.mjs';
+import { scribbles, SCRIBBLES } from '../lib/scribbles.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const ICON_NAMES = fs
@@ -30,11 +31,12 @@ function contrast(a, b) {
 
 const HUE_LABEL = { h1: 'Seitentitel', h2: 'Ortsname, große Aussage', h3: 'Kapitel', h4: 'Abschnitt', h5: 'Zwischentitel', h6: 'Lead, Untertitel', p: 'Fließtext', small: 'Kleintext', xs: 'Detail' };
 
-export function render() {
+export function render(ctx) {
   const sample = { h1: 'Garage', h2: 'Kiosque', h3: 'Austern & Bulles', h4: 'Ein Hof, ein Tor, ein Boot.', h5: 'Heute Abend in der Garage', h6: 'Austern, Bulles und ein Plätzchen in der Sonne.', p: 'Freitags und samstags ab 18 Uhr öffnen wir das Tor in der Beilstraße.', small: 'Alle Preise in Euro inklusive Mehrwertsteuer.', xs: '' };
 
   return html`
-<section class="page-hero page-hero--sg">
+<section class="page-hero page-hero--sg has-scribbles">
+  ${scribbles(ctx, [{ at: 'r', y: '10%', s: 'l', bleed: 0.2 }])}
   <h1 class="page-hero__title">Styleguide</h1>
   <p class="page-hero__lead lead">Das Markensystem von L’ANNÉE: eine Dachmarke, drei Orte. Diese Seite ist nicht für Gäste gedacht und wird nicht von Suchmaschinen erfasst.</p>
 </section>
@@ -119,6 +121,15 @@ export function render() {
   <h2 class="t-h4" id="sg-icons">Icons</h2>
   <p class="lead">27 Icons, generiert mit Higgsfield AI (Recraft V4.1, Vektor-Modus), als SVG-Sprite eingebunden und über currentColor einfärbbar.</p>
   <ul class="icon-grid" role="list">${ICON_NAMES.map((n) => html`<li>${icon(n, { cls: 'icon icon-grid__icon' })}<code>${n}</code></li>`)}</ul>
+</section>
+
+<section class="sg" aria-labelledby="sg-scribbles">
+  <h2 class="t-h4" id="sg-scribbles">Bleistift-Scribbles</h2>
+  <p class="lead">${SCRIBBLES.length} kleine Zeichnungen und Sprüche rund um Austern, Fisch und Bulles – alles Bleistift, aber jede Zeichnung von einer anderen Hand. Erzeugt mit Higgsfield AI (GPT Image 2) auf vier Bögen, ausgeschnitten mit <code>python3 scripts/scribbles.py</code>.</p>
+  <p class="sg__note">Sie liegen als Hintergrund angeschnitten an den Rändern der Flächen, immer hinter dem Inhalt: auf Weiß in Embrun, auf Blau weiß und blass. Wenige je Fläche, auf dem Handy noch weniger. Jede Seite hat ihre feste Auswahl ohne Wiederholung; Sprüche auf Deutsch oder Englisch erscheinen nur auf ihren Sprachseiten, französische überall. Plätze werden in den Vorlagen mit <code>scribbles(ctx, [...])</code> gesetzt (<code>src/lib/scribbles.mjs</code>).</p>
+  <ul class="sg__scribbles" role="list">${SCRIBBLES.map(
+    (it, i) => html`<li class="sg__scribble${i % 6 === 5 ? ' theme-ink' : ''}"><img src="/scribbles/${it.name}.webp" alt="" width="${it.w}" height="${it.h}" loading="lazy" decoding="async"><code>${it.name}${it.langs ? ` · ${it.langs.join('/')}` : ''}</code></li>`
+  )}</ul>
 </section>
 
 <section class="sg" aria-labelledby="sg-ui">

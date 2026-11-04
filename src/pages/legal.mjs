@@ -1,6 +1,7 @@
 import { html, raw, rich } from '../lib/html.mjs';
 import { DICT } from '../lib/i18n.mjs';
 import { impressum, datenschutz } from '../content/legal.mjs';
+import { scribbles } from '../lib/scribbles.mjs';
 // Grafitecture-Feld: immer ganz unten in Impressum und Datenschutz (Kit in kit/grafitecture-credit/)
 import { grafitectureCredit } from '../../kit/grafitecture-credit/grafitecture-credit.mjs';
 
@@ -23,7 +24,8 @@ export function render(ctx) {
   const p = DICT[locale].pages[page.key];
   const content = page.key === 'impressum' ? impressum(locale) : datenschutz(locale);
   return html`
-<section class="page-hero page-hero--legal" aria-labelledby="legal-title">
+<section class="page-hero page-hero--legal has-scribbles" aria-labelledby="legal-title">
+  ${scribbles(ctx, [{ at: 'r', y: '18%', s: 'm', kind: 'claim', bleed: 0.12 }])}
   <h1 class="page-hero__title page-hero__title--legal" id="legal-title">${p.h1}</h1>
 </section>
 <article class="legal">${blocks(content, locale)}${raw(grafitectureCredit(locale))}</article>

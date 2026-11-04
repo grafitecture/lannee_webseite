@@ -506,3 +506,63 @@
   white-space: nowrap;
 }
 
+
+/* Bleistift-Scribbles -------------------------------------------------------- */
+/* Kleine Zeichnungen und Sprüche (src/lib/scribbles.mjs), angeschnitten an den Rändern
+   der Flächen und immer hinter dem Inhalt. Strich auf Weiß = Embrun (in der Datei),
+   auf Blau macht der Filter ihn weiß. Ruhig halten: wenige je Fläche, blass. */
+
+:where(.has-scribbles) {
+  position: relative;
+}
+.has-scribbles {
+  isolation: isolate;
+}
+.scribbles {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: clip;
+  pointer-events: none;
+  user-select: none;
+}
+.scribbles--gutter {
+  left: calc(-1 * var(--gutter));
+  right: calc(-1 * var(--gutter));
+}
+.scribble {
+  --unit: clamp(6.5rem, 4rem + 9vw, 13rem);
+  --w: calc(var(--f) * var(--unit));
+  position: absolute;
+  width: var(--w);
+  opacity: var(--scribble-opacity, 0.62);
+  transform: rotate(var(--r, 0deg));
+}
+.scribble img {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: var(--scribble-filter, none);
+}
+.theme-garage,
+.theme-kiosque,
+.theme-marche,
+.theme-ink,
+.site-footer {
+  --scribble-filter: brightness(0) invert(1);
+  --scribble-opacity: 0.17;
+}
+@media (max-width: 767.98px) {
+  .scribble {
+    --unit: clamp(5.5rem, 3rem + 12vw, 7.5rem);
+    opacity: calc(var(--scribble-opacity, 0.62) * 0.7);
+  }
+  .scribble--wide {
+    display: none;
+  }
+}
+@media print {
+  .scribbles {
+    display: none;
+  }
+}

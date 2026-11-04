@@ -1,13 +1,18 @@
 import { html, rich } from '../lib/html.mjs';
 import { DICT, url } from '../lib/i18n.mjs';
 import { icon } from '../lib/components.mjs';
+import { scribbles } from '../lib/scribbles.mjs';
 
 export function render(ctx) {
   const { locale } = ctx;
   const t = DICT[locale];
   const p = t.pages.notFound;
   return html`
-<section class="page-hero page-hero--404" aria-labelledby="nf-title">
+<section class="page-hero page-hero--404 has-scribbles" aria-labelledby="nf-title">
+  ${scribbles(ctx, [
+    { at: 'r', y: '12%', s: 'l', bleed: 0.2, pick: 'fischgraete' },
+    { at: 'r', yb: '8%', s: 'm', kind: 'claim', bleed: 0.15, pick: 'aw-shucks', wide: true },
+  ])}
   ${icon('oyster-open', { cls: 'icon nf__icon' })}
   <h1 class="page-hero__title" id="nf-title">${p.h1}</h1>
   <p class="page-hero__lead lead">${rich(p.body, locale)}</p>

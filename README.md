@@ -58,6 +58,8 @@ Nur einzelne Bilder neu erzeugen: `npm run images -- name1 name2` (Namen wie in 
 
 Favicons und Open-Graph-Bilder: `npm install --no-save sharp playwright && npm run brand-assets`.
 
+Bleistift-Scribbles (48 Zeichnungen und Sprüche im Hintergrund): Die vier Bögen liegen in `assets-src/scribbles/`. Ausschneiden und freistellen mit `npm run scribbles` (= `python3 scripts/scribbles.py`, braucht numpy, Pillow und opencv-python). Ergebnis: `public/scribbles/*.webp` und `src/content/scribbles.json`. Plätze auf den Seiten: `scribbles(ctx, [...])` in den Vorlagen (`src/lib/scribbles.mjs`).
+
 ## Deployment: GitHub → Vercel
 
 1. Repository auf GitHub anlegen und diesen Ordner pushen.

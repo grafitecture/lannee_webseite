@@ -1,0 +1,321 @@
+[
+  {
+    "name": "anker",
+    "kind": "object",
+    "w": 500,
+    "h": 640
+  },
+  {
+    "name": "herz",
+    "kind": "object",
+    "w": 640,
+    "h": 603
+  },
+  {
+    "name": "austernmesser",
+    "kind": "object",
+    "w": 640,
+    "h": 382
+  },
+  {
+    "name": "auster",
+    "kind": "object",
+    "w": 640,
+    "h": 483
+  },
+  {
+    "name": "handschuh",
+    "kind": "object",
+    "w": 629,
+    "h": 640
+  },
+  {
+    "name": "flasche",
+    "kind": "object",
+    "w": 282,
+    "h": 640
+  },
+  {
+    "name": "korken",
+    "kind": "object",
+    "w": 640,
+    "h": 497
+  },
+  {
+    "name": "coupes",
+    "kind": "object",
+    "w": 640,
+    "h": 535
+  },
+  {
+    "name": "fischerboot",
+    "kind": "object",
+    "w": 640,
+    "h": 494
+  },
+  {
+    "name": "segelboot",
+    "kind": "object",
+    "w": 640,
+    "h": 549
+  },
+  {
+    "name": "fischgraete",
+    "kind": "object",
+    "w": 640,
+    "h": 301
+  },
+  {
+    "name": "makrele",
+    "kind": "object",
+    "w": 640,
+    "h": 224
+  },
+  {
+    "name": "hummer",
+    "kind": "object",
+    "w": 640,
+    "h": 634
+  },
+  {
+    "name": "leuchtturm",
+    "kind": "object",
+    "w": 640,
+    "h": 629
+  },
+  {
+    "name": "moewe",
+    "kind": "object",
+    "w": 640,
+    "h": 335
+  },
+  {
+    "name": "gabel-messer",
+    "kind": "object",
+    "w": 510,
+    "h": 591
+  },
+  {
+    "name": "jakobsmuschel",
+    "kind": "object",
+    "w": 588,
+    "h": 528
+  },
+  {
+    "name": "austernplatte",
+    "kind": "object",
+    "w": 640,
+    "h": 417
+  },
+  {
+    "name": "sardinen",
+    "kind": "object",
+    "w": 624,
+    "h": 527
+  },
+  {
+    "name": "knoten",
+    "kind": "object",
+    "w": 640,
+    "h": 293
+  },
+  {
+    "name": "krake",
+    "kind": "object",
+    "w": 640,
+    "h": 604
+  },
+  {
+    "name": "rettungsring",
+    "kind": "object",
+    "w": 640,
+    "h": 594
+  },
+  {
+    "name": "perle",
+    "kind": "object",
+    "w": 640,
+    "h": 535
+  },
+  {
+    "name": "krabbe",
+    "kind": "object",
+    "w": 640,
+    "h": 502
+  },
+  {
+    "name": "meer-geht-immer",
+    "kind": "claim",
+    "w": 629,
+    "h": 509,
+    "langs": [
+      "de"
+    ]
+  },
+  {
+    "name": "sante",
+    "kind": "claim",
+    "w": 640,
+    "h": 468
+  },
+  {
+    "name": "encore-une",
+    "kind": "claim",
+    "w": 640,
+    "h": 419
+  },
+  {
+    "name": "shuck-it",
+    "kind": "claim",
+    "w": 624,
+    "h": 504,
+    "langs": [
+      "en"
+    ]
+  },
+  {
+    "name": "bulles-first",
+    "kind": "claim",
+    "w": 640,
+    "h": 228,
+    "langs": [
+      "de",
+      "en"
+    ]
+  },
+  {
+    "name": "monate-mit-r",
+    "kind": "claim",
+    "w": 640,
+    "h": 209,
+    "langs": [
+      "de"
+    ]
+  },
+  {
+    "name": "life-is-short",
+    "kind": "claim",
+    "w": 640,
+    "h": 392,
+    "langs": [
+      "en"
+    ]
+  },
+  {
+    "name": "aw-shucks",
+    "kind": "claim",
+    "w": 640,
+    "h": 385,
+    "langs": [
+      "en"
+    ]
+  },
+  {
+    "name": "huitres-bulles",
+    "kind": "claim",
+    "w": 640,
+    "h": 460
+  },
+  {
+    "name": "a-la-votre",
+    "kind": "claim",
+    "w": 640,
+    "h": 305
+  },
+  {
+    "name": "ein-dutzend",
+    "kind": "claim",
+    "w": 640,
+    "h": 333,
+    "langs": [
+      "de"
+    ]
+  },
+  {
+    "name": "schluerfen",
+    "kind": "claim",
+    "w": 596,
+    "h": 434,
+    "langs": [
+      "de"
+    ]
+  },
+  {
+    "name": "les-mois-en-r",
+    "kind": "claim",
+    "w": 640,
+    "h": 541
+  },
+  {
+    "name": "pop",
+    "kind": "object",
+    "w": 640,
+    "h": 560
+  },
+  {
+    "name": "glueck-salzig",
+    "kind": "claim",
+    "w": 640,
+    "h": 163,
+    "langs": [
+      "de"
+    ]
+  },
+  {
+    "name": "shell-yeah",
+    "kind": "claim",
+    "w": 514,
+    "h": 539,
+    "langs": [
+      "en"
+    ]
+  },
+  {
+    "name": "mariniere",
+    "kind": "object",
+    "w": 571,
+    "h": 589
+  },
+  {
+    "name": "ruderboot",
+    "kind": "object",
+    "w": 640,
+    "h": 372
+  },
+  {
+    "name": "seestern",
+    "kind": "object",
+    "w": 578,
+    "h": 527
+  },
+  {
+    "name": "kellnermesser",
+    "kind": "object",
+    "w": 640,
+    "h": 453
+  },
+  {
+    "name": "salut-les-huitres",
+    "kind": "claim",
+    "w": 604,
+    "h": 381
+  },
+  {
+    "name": "fischernetz",
+    "kind": "object",
+    "w": 640,
+    "h": 597
+  },
+  {
+    "name": "seepferdchen",
+    "kind": "object",
+    "w": 329,
+    "h": 640
+  },
+  {
+    "name": "bon-appetit",
+    "kind": "claim",
+    "w": 640,
+    "h": 314
+  }
+]

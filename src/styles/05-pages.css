@@ -1608,6 +1608,37 @@
   width: 100%;
   height: auto;
 }
+.sg__scribbles {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--space-m);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+  gap: var(--space-s);
+}
+.sg__scribble {
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 0.5rem;
+  padding: var(--space-s);
+  border: 1px solid var(--ecume);
+  aspect-ratio: 1;
+  --scribble-opacity: 1;
+}
+.sg__scribble img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  min-height: 0;
+  filter: var(--scribble-filter, none);
+}
+.sg__scribble code {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+.sg__scribble.theme-ink code {
+  color: var(--ecume);
+}
 .sg__note {
   font-size: var(--fs-text-small);
   color: var(--muted);

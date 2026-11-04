@@ -3,6 +3,7 @@ import { DICT, url } from '../lib/i18n.mjs';
 import { LOCATIONS, LOCATION_ORDER, SITE } from '../content/site.mjs';
 import { arrowLink, icon } from '../lib/components.mjs';
 import { placeText } from '../lib/layout.mjs';
+import { scribbles } from '../lib/scribbles.mjs';
 
 export function render(ctx) {
   const { locale } = ctx;
@@ -11,7 +12,11 @@ export function render(ctx) {
   const c = SITE.company;
 
   return html`
-<section class="page-hero page-hero--contact" aria-labelledby="contact-title">
+<section class="page-hero page-hero--contact has-scribbles" aria-labelledby="contact-title">
+  ${scribbles(ctx, [
+    { at: 'r', y: '8%', s: 'l', bleed: 0.2 },
+    { at: 'b', x: '50%', s: 's', kind: 'claim', bleed: 0.1, wide: true },
+  ])}
   <h1 class="page-hero__title" id="contact-title">${p.h1}</h1>
   <p class="page-hero__lead lead">${rich(p.lead, locale)}</p>
 </section>
@@ -28,7 +33,8 @@ export function render(ctx) {
   })}
 </section>
 
-<section class="contact-more">
+<section class="contact-more has-scribbles">
+  ${scribbles(ctx, [{ at: 'b', x: '14%', s: 'm', bleed: 0.32, wide: true }])}
   <div class="contact-more__block">
     <h2 class="t-h5">${p.reservations.heading}</h2>
     <p class="lead">${rich(p.reservations.body, locale)}</p>
