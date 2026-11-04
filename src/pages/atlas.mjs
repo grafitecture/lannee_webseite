@@ -38,7 +38,7 @@ export function render(ctx) {
   return html`
 <section class="page-hero page-hero--atlas has-scribbles" aria-labelledby="atlas-title">
   ${scribbles(ctx, [
-    { at: 'r', y: '6%', s: 'l', bleed: 0.2 },
+    { at: 'r', y: '6%', s: 'l', bleed: 0.2, prefer: ['auster', 'perle', 'jakobsmuschel'] },
   ])}
   <h1 class="page-hero__title page-hero__title--atlas" id="atlas-title">${pick(ATLAS.title, locale)}</h1>
   <p class="page-hero__lead lead">${rich(pick(ATLAS.lead, locale), locale)}</p>

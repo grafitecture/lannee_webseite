@@ -25,7 +25,7 @@ export function render(ctx) {
   const content = page.key === 'impressum' ? impressum(locale) : datenschutz(locale);
   return html`
 <section class="page-hero page-hero--legal has-scribbles" aria-labelledby="legal-title">
-  ${scribbles(ctx, [{ at: 'r', y: '18%', s: 'm', kind: 'claim', bleed: 0.12 }])}
+  ${scribbles(ctx, [{ at: 'r', y: '18%', s: 'm', kind: 'claim', bleed: 0.12, prefer: page.key === 'impressum' ? ['schluerfen', 'shuck-it', 'encore-une'] : ['monate-mit-r', 'life-is-short', 'les-mois-en-r'] }])}
   <h1 class="page-hero__title page-hero__title--legal" id="legal-title">${p.h1}</h1>
 </section>
 <article class="legal">${blocks(content, locale)}${raw(grafitectureCredit(locale))}</article>

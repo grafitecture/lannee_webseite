@@ -18,7 +18,7 @@ export function render(ctx) {
 
   return html`
 <section class="page-hero page-hero--carte has-scribbles" aria-labelledby="carte-title">
-  ${scribbles(ctx, [{ at: 'r', y: '10%', s: 'l', bleed: 0.2 }])}
+  ${scribbles(ctx, [{ at: 'r', y: '10%', s: 'l', bleed: 0.2, prefer: ['kellnermesser'] }])}
   <h1 class="page-hero__title" id="carte-title" lang="fr">${p.h1}</h1>
   <p class="page-hero__lead lead">${rich(p.lead, locale)}</p>
   ${filter}

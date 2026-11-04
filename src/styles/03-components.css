@@ -535,7 +535,9 @@
   --w: calc(var(--f) * var(--unit));
   position: absolute;
   width: var(--w);
-  opacity: var(--scribble-opacity, 0.62);
+  /* auf Blau setzt die Fläche --scribble-opacity, auf Weiß gilt --scribble-opacity-white */
+  --scribble-opacity-white: 0.62;
+  opacity: var(--scribble-opacity, var(--scribble-opacity-white));
   transform: rotate(var(--r, 0deg));
 }
 .scribble img {
@@ -543,6 +545,10 @@
   width: 100%;
   height: auto;
   filter: var(--scribble-filter, none);
+  transition: opacity 0.9s ease-out;
+}
+.scribble img.is-loading {
+  opacity: 0;
 }
 .theme-garage,
 .theme-kiosque,
@@ -555,7 +561,7 @@
 @media (max-width: 767.98px) {
   .scribble {
     --unit: clamp(5.5rem, 3rem + 12vw, 7.5rem);
-    opacity: calc(var(--scribble-opacity, 0.62) * 0.7);
+    --scribble-opacity-white: 0.45; /* auf dem Handy liegt mehr Text darüber */
   }
   .scribble--wide {
     display: none;

@@ -14,8 +14,8 @@ export function render(ctx) {
   return html`
 <section class="page-hero page-hero--contact has-scribbles" aria-labelledby="contact-title">
   ${scribbles(ctx, [
-    { at: 'r', y: '8%', s: 'l', bleed: 0.2 },
-    { at: 'b', x: '50%', s: 's', kind: 'claim', bleed: 0.1, wide: true },
+    { at: 'r', y: '8%', s: 'l', bleed: 0.2, prefer: ['rettungsring'] },
+    { at: 'b', x: '50%', s: 's', kind: 'claim', bleed: 0.1, prefer: ['salut-les-huitres'], wide: true },
   ])}
   <h1 class="page-hero__title" id="contact-title">${p.h1}</h1>
   <p class="page-hero__lead lead">${rich(p.lead, locale)}</p>
@@ -34,7 +34,7 @@ export function render(ctx) {
 </section>
 
 <section class="contact-more has-scribbles">
-  ${scribbles(ctx, [{ at: 'b', x: '14%', s: 'm', bleed: 0.32, wide: true }])}
+  ${scribbles(ctx, [{ at: 'b', x: '14%', s: 'm', bleed: 0.32, prefer: ['knoten'], wide: true }])}
   <div class="contact-more__block">
     <h2 class="t-h5">${p.reservations.heading}</h2>
     <p class="lead">${rich(p.reservations.body, locale)}</p>

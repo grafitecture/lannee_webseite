@@ -531,6 +531,22 @@ function initFilm() {
   } else sync(true);
 }
 
+/* ------------------------------------------------------------------ */
+/* Bleistift-Scribbles: weich einblenden, sobald sie geladen sind      */
+/* ------------------------------------------------------------------ */
+
+function initScribbles() {
+  if (reduceMotion) return;
+  document.querySelectorAll('.scribble img').forEach((img) => {
+    if (img.complete) return;
+    img.classList.add('is-loading');
+    const done = () => img.classList.remove('is-loading');
+    img.addEventListener('load', done, { once: true });
+    img.addEventListener('error', done, { once: true });
+  });
+}
+
+initScribbles();
 initHeroScroll();
 initLogoMorph();
 initFilm();

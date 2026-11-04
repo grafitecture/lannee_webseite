@@ -16,7 +16,9 @@
  *   bleed  Anteil, der hinter dem Rand verschwindet (Standard 0,3)
  *   kind   'object' (Standard) oder 'claim' (Spruch)
  *   wide   true → erst ab 768 px (auf dem Handy weniger Zeichnungen)
- *   pick   fester Name statt Zufall
+ *   prefer Wunschliste (Namen, in dieser Reihenfolge): das erste passende, noch freie Motiv in der
+ *          Sprache der Seite; sonst Zufall. So passen die Motive zum Ort (Garage: Coupes, Marché: Boot …).
+ *   pick   fester Name, auch über die Sprachregel hinweg (z. B. 404)
  *
  * Auswahl je Seite und Sprache fest (Zufall mit Startwert aus Seite + Sprache), auf einer Seite keine
  * Wiederholung. Sprüche mit `langs` erscheinen nur auf diesen Sprachseiten.
@@ -58,7 +60,9 @@ function createState(ctx) {
         return it;
       }
       const kind = slot.kind ?? 'object';
-      let it = pool.find((x) => x.kind === kind && !used.has(x.name));
+      const fits = (x) => x && x.kind === kind && !used.has(x.name);
+      let it = (slot.prefer ?? []).map((name) => pool.find((x) => x.name === name)).find(fits);
+      it ??= pool.find(fits);
       if (!it) {
         // alle schon benutzt: wieder von vorn (kommt bei 48 Motiven praktisch nicht vor)
         for (const x of pool) if (x.kind === kind) used.delete(x.name);

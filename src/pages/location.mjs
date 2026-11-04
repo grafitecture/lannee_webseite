@@ -8,6 +8,22 @@ import { lockup, picture, arrowLink, mapLinks, icon, closureNotes, berlinToday }
 import { menuExcerpt } from '../lib/menu-render.mjs';
 import { venueArt } from '../lib/venue-art.mjs';
 import { scribbles } from '../lib/scribbles.mjs';
+
+/* Scribbles passend zum Ort (Wunschlisten, der Reihe nach vergeben; Sprüche je Sprache) */
+const SCRIBBLE_THEMES = {
+  garage: {
+    objects: ['coupes', 'flasche', 'rettungsring', 'hummer', 'leuchtturm', 'ruderboot', 'makrele'],
+    claims: ['bulles-first', 'a-la-votre', 'shell-yeah', 'sante', 'huitres-bulles'],
+  },
+  kiosque: {
+    objects: ['sardinen', 'pop', 'kellnermesser', 'mariniere', 'perle', 'seestern', 'krabbe'],
+    claims: ['glueck-salzig', 'aw-shucks', 'encore-une', 'salut-les-huitres'],
+  },
+  marche: {
+    objects: ['handschuh', 'austernmesser', 'fischernetz', 'auster', 'moewe', 'jakobsmuschel', 'knoten'],
+    claims: ['ein-dutzend', 'shuck-it', 'monate-mit-r', 'les-mois-en-r', 'salut-les-huitres'],
+  },
+};
 import { placeText } from '../lib/layout.mjs';
 
 const CONFIG = {
@@ -34,6 +50,7 @@ export function render(ctx) {
   const { locale, page } = ctx;
   const key = page.key;
   const L = LOCATIONS[key];
+  const theme = SCRIBBLE_THEMES[key] ?? { objects: [], claims: [] };
   const cfg = CONFIG[key];
   const t = DICT[locale];
   const p = t.pages[key];
@@ -70,7 +87,7 @@ export function render(ctx) {
           <p class="dates__empty" data-expiry-empty${dates.length ? raw(' hidden') : ''}>${p.dates.empty}</p>
         </section>
         <section class="invite theme-marche has-scribbles" aria-labelledby="invite-h">
-          ${scribbles(ctx, [{ at: 'r', y: '6%', s: 'm', bleed: 0.3 }])}
+          ${scribbles(ctx, [{ at: 'r', y: '6%', s: 'm', bleed: 0.3, prefer: theme.objects }])}
           ${icon('marche', { cls: 'icon invite__icon' })}
           <div class="invite__text">
             <h2 class="t-h3" id="invite-h">${p.invite.heading}</h2>
@@ -83,8 +100,8 @@ export function render(ctx) {
   return html`
 <section class="loc-hero theme-${L.color} has-scribbles" aria-labelledby="loc-title">
   ${scribbles(ctx, [
-    { at: 'r', y: '9%', s: 'l', bleed: 0.22 },
-    { at: 'b', x: '58%', s: 'm', kind: 'claim', bleed: 0.3, wide: true },
+    { at: 'r', y: '9%', s: 'l', bleed: 0.22, prefer: theme.objects },
+    { at: 'b', x: '58%', s: 'm', kind: 'claim', bleed: 0.3, wide: true, prefer: theme.claims },
   ])}
   ${venueArt(key, { cls: 'loc-hero__art' })}
   ${lockup(key, { cls: 'loc-hero__lockup', locale })}
@@ -99,18 +116,18 @@ export function render(ctx) {
 </div>
 
 <section class="quote theme-${L.color} has-scribbles" aria-label="${L.name}">
-  ${scribbles(ctx, [{ at: 'r', yb: '-6%', s: 'm', bleed: 0.25 }])}
+  ${scribbles(ctx, [{ at: 'r', yb: '-6%', s: 'm', bleed: 0.25, prefer: theme.objects }])}
   <blockquote class="quote__text"><p>${rich(p.quote, locale)}</p></blockquote>
 </section>
 
 <section class="intro has-scribbles" aria-labelledby="intro-h">
-  ${scribbles(ctx, [{ at: 'l', yb: '6%', s: 'm', bleed: 0.32, wide: true }])}
+  ${scribbles(ctx, [{ at: 'l', yb: '6%', s: 'm', bleed: 0.32, wide: true, prefer: theme.objects }])}
   <h2 class="intro__heading t-h3" id="intro-h">${p.intro.heading}</h2>
   <div class="intro__body">${p.intro.body.map((para, i) => html`<p class="${i === 0 ? 'lead' : ''}">${rich(para, locale)}</p>`)}</div>
 </section>
 
 <section class="loc-menu${key === 'marche' ? ' loc-menu--board' : ''} has-scribbles" aria-labelledby="locmenu-h">
-  ${scribbles(ctx, [{ at: 'l', yb: '10%', s: 'm', bleed: 0.1, kind: 'claim', wide: true }])}
+  ${scribbles(ctx, [{ at: 'l', yb: '10%', s: 'm', bleed: 0.1, kind: 'claim', wide: true, prefer: theme.claims }])}
   <div class="loc-menu__head">
     <h2 class="t-h4" id="locmenu-h">${p.menu.heading}</h2>
     ${arrowLink(`${url('carte', locale)}?ort=${key}`, t.ui.toMenu, { cls: 'link-arrow' })}
@@ -128,7 +145,7 @@ ${marche}
 
 ${p.quarter
   ? html`<section class="quarter has-scribbles" aria-labelledby="quarter-h">
-      ${scribbles(ctx, [{ at: 'r', y: '8%', s: 'm', bleed: 0.3, wide: true }])}
+      ${scribbles(ctx, [{ at: 'r', y: '8%', s: 'm', bleed: 0.3, wide: true, prefer: theme.objects }])}
       ${icon(cfg.quarterIcon, { cls: `icon quarter__emblem quarter__emblem--${cfg.quarterIcon}` })}
       <div class="quarter__text">
         <h2 class="t-h3" id="quarter-h">${p.quarter.heading}</h2>
@@ -138,7 +155,7 @@ ${p.quarter
   : ''}
 
 <section class="directions has-scribbles" aria-labelledby="dir-h">
-  ${scribbles(ctx, [{ at: 'b', x: '44%', s: 'm', bleed: 0.3, wide: true }])}
+  ${scribbles(ctx, [{ at: 'b', x: '44%', s: 'm', bleed: 0.3, wide: true, prefer: theme.objects }])}
   <div class="directions__text">
     <h2 class="t-h4" id="dir-h">${p.directions ? p.directions.heading : t.ui.map.title}</h2>
     <p class="directions__address">${placeText(key, locale)}</p>
