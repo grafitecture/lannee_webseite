@@ -13,7 +13,8 @@ import { scribbles } from '../lib/scribbles.mjs';
 const PLACE_PHOTOS = { garage: 'garage-hof', kiosque: 'kiosque-visualisierung', marche: 'marche-wagen' };
 /**
  * Hero: Filmsequenz im Stil eines Heimkino-Films der 50er/60er (Higgsfield AI, Kling 3.0; Nachbearbeitung mit ffmpeg).
- * Fischerei, Austern und die drei Orte; unscharf, verwackelt, verblasst, ohne Ton, in Schleife.
+ * Nur frei erfundene Szenen rund um Meer, Fischerei und Austern – keine Animationen aus Fotos der Orte
+ * (Vorgabe 05.11.2026); unscharf, verwackelt, verblasst, ohne Ton, in Schleife.
  * Querformat 960×540 und Hochformat 432×768 (für Handys), jeweils WebM und MP4 in /public/film.
  * Standbild davor (und bei reduzierter Bewegung): `hero-film`. Fehlen die Filmdateien, bleibt das frühere Stimmungsbild.
  */
