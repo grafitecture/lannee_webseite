@@ -1,0 +1,43 @@
+# Hilfs-Workflow (nur auf dem Zweig tools/fetch-assets): lädt Bilder aus assets-src/fetch/full.txt
+# und legt Bilder in voller Auflösung (JPEG, max. 4096 px) in assets-src/fetch/full/ ab, um Kandidaten zu sichten.
+# Vollauflösung danach wie gewohnt über assets-src/scribbles/urls.txt (fetch-assets.yml).
+name: fetch-full
+on:
+  push:
+    branches: [tools/fetch-assets]
+    paths: [assets-src/fetch/full.txt]
+permissions:
+  contents: write
+jobs:
+  thumbs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download + verkleinern
+        run: |
+          pip install --quiet pillow
+          mkdir -p /tmp/full assets-src/fetch/full
+          while read -r name url; do
+            [ -z "$name" ] && continue
+            case "$name" in \#*) continue;; esac
+            curl -fsSL --retry 3 -o "/tmp/full/$name" "$url" || { echo "FEHLT $name"; continue; }
+          done < assets-src/fetch/full.txt
+          python3 - <<'PY'
+          import os
+          from PIL import Image
+          for f in sorted(os.listdir('/tmp/full')):
+              im = Image.open(os.path.join('/tmp/full', f))
+              w, h = im.size
+              im = im.convert('RGB')
+              im.thumbnail((4096, 4096), Image.LANCZOS)
+              out = os.path.join('assets-src/fetch/full', f.rsplit('.', 1)[0] + f'_{w}x{h}.jpg')
+              im.save(out, quality=93)
+              print(out)
+          PY
+      - name: Commit
+        run: |
+          git config user.name "fetch-assets"
+          git config user.email "actions@users.noreply.github.com"
+          git add assets-src/fetch/full
+          git commit -m "Vollbilder geladen" || echo "nichts Neues"
+          git push
