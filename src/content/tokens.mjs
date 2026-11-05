@@ -7,18 +7,18 @@
 export const FLUID = { minVw: 360, maxVw: 1920, root: 16 };
 
 /*
- * Palette: Blau mit Zug ins Grün – Petrol bis Lagune (Vorgabe 05.11.2026; davor 03.11.2026 frische Blautöne,
- * noch davor Grün). Fünf Töne plus Weiß, nach Meer, Watt und Eis.
+ * Palette: Blau mit Zug ins Grün – Petrol bis Türkis (Vorgabe 05.11.2026, zweimal Richtung Grün geschoben;
+ * davor 03.11.2026 Kobalt-Blautöne, noch davor Grün). Fünf Töne plus Weiß, nach Meer, Watt und Eis.
  * Regel: blaue Fläche mit weißer Schrift oder weiße Fläche mit blauer Schrift.
  * Nichts Schwarzes, nichts Graues: Das dunkelste Blau (Bleu nuit) ersetzt Schwarz.
  * Die drei Orte bleiben klar getrennt: hell → dunkel und von Lagune zu Nacht-Petrol.
  */
 export const COLORS = [
-  { token: 'nuit', name: 'Bleu nuit', hex: '#00273F', oklch: 'oklch(26.1% 0.061 242)', role: 'Dunkelstes Blau, ersetzt Schwarz: Text, Kopf- und Fußzeile. Garage, der Abend', text: 'blanc' },
-  { token: 'ocean', name: 'Océan', hex: '#00597B', oklch: 'oklch(43.7% 0.090 233)', role: 'Kiosque, der Sonntag', text: 'blanc' },
-  { token: 'maree', name: 'Marée', hex: '#007E92', oklch: 'oklch(54.5% 0.096 214)', role: 'Marché, der Morgen. Auch Nebentext auf Weiß', text: 'blanc' },
-  { token: 'embrun', name: 'Embrun', hex: '#67C1CD', oklch: 'oklch(76% 0.088 207)', role: 'Linien, Zeichnungen (für Schrift zu hell)', text: 'nuit' },
-  { token: 'ecume', name: 'Écume', hex: '#CFFAFC', oklch: 'oklch(95.6% 0.044 200)', role: 'Akzent: Markierungen, Licht in den Strichzeichnungen', text: 'nuit' },
+  { token: 'nuit', name: 'Bleu nuit', hex: '#002938', oklch: 'oklch(26.2% 0.051 228)', role: 'Dunkelstes Blau, ersetzt Schwarz: Text, Kopf- und Fußzeile. Garage, der Abend', text: 'blanc' },
+  { token: 'ocean', name: 'Océan', hex: '#005C6E', oklch: 'oklch(43.8% 0.078 217)', role: 'Kiosque, der Sonntag', text: 'blanc' },
+  { token: 'maree', name: 'Marée', hex: '#058082', oklch: 'oklch(54.4% 0.092 197)', role: 'Marché, der Morgen. Auch Nebentext auf Weiß', text: 'blanc' },
+  { token: 'embrun', name: 'Embrun', hex: '#67C5BF', oklch: 'oklch(76.4% 0.090 190)', role: 'Linien, Zeichnungen (für Schrift zu hell)', text: 'nuit' },
+  { token: 'ecume', name: 'Écume', hex: '#CCFCF3', oklch: 'oklch(95.5% 0.050 183)', role: 'Akzent: Markierungen, Licht in den Strichzeichnungen', text: 'nuit' },
   { token: 'blanc', name: 'Weiß', hex: '#FFFFFF', oklch: 'oklch(100% 0 0)', role: 'Flächen und Schrift auf Blau', text: 'nuit' },
 ];
 
