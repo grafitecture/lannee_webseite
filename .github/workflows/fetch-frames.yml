@@ -1,0 +1,38 @@
+# Hilfs-Workflow (nur auf dem Zweig tools/fetch-assets): lädt Videos aus assets-src/fetch/videos.txt
+# und legt je vier Standbilder in voller Auflösung (JPEG) in assets-src/fetch/frames/ ab.
+name: fetch-frames
+on:
+  push:
+    branches: [tools/fetch-assets]
+    paths: [assets-src/fetch/videos.txt]
+permissions:
+  contents: write
+jobs:
+  frames:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: ffmpeg
+        run: which ffmpeg || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
+      - name: Download + Standbilder
+        run: |
+          mkdir -p /tmp/vid assets-src/fetch/frames
+          while read -r name url; do
+            [ -z "$name" ] && continue
+            case "$name" in \#*) continue;; esac
+            curl -fsSL --retry 3 -o "/tmp/vid/$name" "$url" || { echo "FEHLT $name"; continue; }
+            dur=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "/tmp/vid/$name")
+            size=$(ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=s=x:p=0 "/tmp/vid/$name")
+            for pct in 12 38 62 88; do
+              t=$(python3 -c "print(round($dur*$pct/100,2))")
+              ffmpeg -v error -ss "$t" -i "/tmp/vid/$name" -frames:v 1 -q:v 2 "assets-src/fetch/frames/${name%.mp4}_${size}_${pct}.jpg"
+            done
+            echo "$name $dur $size"
+          done < assets-src/fetch/videos.txt
+      - name: Commit
+        run: |
+          git config user.name "fetch-assets"
+          git config user.email "actions@users.noreply.github.com"
+          git add assets-src/fetch/frames
+          git commit -m "Standbilder geladen" || echo "nichts Neues"
+          git push
