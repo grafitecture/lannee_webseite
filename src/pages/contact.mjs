@@ -15,7 +15,7 @@ export function render(ctx) {
 <section class="page-hero page-hero--contact has-scribbles" aria-labelledby="contact-title">
   ${scribbles(ctx, [
     { at: 'r', y: '8%', s: 'l', bleed: 0.2, prefer: ['rettungsring'] },
-    { at: 'b', x: '50%', s: 's', kind: 'claim', bleed: 0.1, prefer: ['salut-les-huitres'], wide: true },
+    { at: 'free', x: '72%', y: '82%', s: 's', kind: 'claim', prefer: ['salut-les-huitres'], wide: true },
   ])}
   <h1 class="page-hero__title" id="contact-title">${p.h1}</h1>
   <p class="page-hero__lead lead">${rich(p.lead, locale)}</p>

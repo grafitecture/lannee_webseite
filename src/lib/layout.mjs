@@ -119,7 +119,7 @@ function footer(ctx) {
   return html`<footer class="site-footer has-scribbles">
   ${scribbles(ctx, [
     { at: 't', x: '74%', s: 'm', bleed: 0.4, prefer: ctx.page?.key === 'home' ? ['herz'] : [] },
-    { at: 'l', yb: '18%', s: 's', kind: 'claim', bleed: 0.12, wide: true },
+    { at: 'free', x: '22%', y: '9%', s: 's', kind: 'claim', wide: true },
   ])}
   <a class="site-footer__mark" href="${url('home', locale)}" aria-label="L’ANNÉE – ${t.ui.home}">${logo({ cls: 'site-footer__logo', decorative: true, sizes: '100vw' })}</a>
   <div class="site-footer__bottom">

@@ -43,16 +43,17 @@ export function render(ctx) {
     [
       { at: 'r', yb: '2%', s: 'l', bleed: 0.28, prefer: ['anker'] },
       { at: 'r', y: '5%', s: 'm', bleed: 0.22, prefer: ['coupes'], wide: true },
-      { at: 't', x: '44%', s: 's', kind: 'claim', bleed: 0.3, prefer: ['a-la-votre'], wide: true },
+      { at: 'free', x: '66%', y: '15%', s: 's', kind: 'claim', prefer: ['a-la-votre'], wide: true },
     ],
     [
       { at: 'l', y: '7%', s: 'm', bleed: 0.3, prefer: ['korken'] },
-      { at: 'b', x: '8%', s: 's', kind: 'claim', bleed: 0.3, prefer: ['huitres-bulles'], wide: true },
+      { at: 'free', x: '28%', y: '86%', s: 's', kind: 'claim', prefer: ['huitres-bulles'], wide: true },
     ],
     [
       { at: 'r', yb: '4%', s: 'l', bleed: 0.3, prefer: ['fischerboot'] },
       { at: 'r', y: '6%', s: 's', bleed: 0.2, prefer: ['austernmesser'], wide: true },
       { at: 'l', y: '3%', s: 's', bleed: 0.38, prefer: ['handschuh'], wide: true },
+      { at: 'free', x: '62%', y: '15%', s: 's', prefer: ['moewe'], wide: true },
     ],
   ];
   const places = LOCATION_ORDER.map((key, i) => {
@@ -119,7 +120,7 @@ export function render(ctx) {
 
 <section class="weekend has-scribbles" id="wochenende" aria-labelledby="weekend-title">
   ${scribbles(ctx, [
-    { at: 'r', y: '31%', s: 's', kind: 'claim', bleed: 0.18, prefer: ['meer-geht-immer', 'life-is-short', 'les-mois-en-r'], wide: true },
+    { at: 'free', x: '78%', y: '5.5%', s: 's', kind: 'claim', prefer: ['meer-geht-immer', 'life-is-short', 'les-mois-en-r'], wide: true },
     { at: 'b', x: '60%', s: 'm', bleed: 0.32, prefer: ['fischgraete'] },
   ])}
   <nav class="wayfinder" aria-label="${p.wayfinder.label}">
@@ -162,8 +163,9 @@ export function render(ctx) {
 
 <section class="teaser-menu has-scribbles" aria-labelledby="menu-title">
   ${scribbles(ctx, [
-    { at: 'r', yb: '7%', s: 'm', bleed: 0.3, prefer: ['gabel-messer'], wide: true },
-    { at: 't', x: '30%', s: 's', kind: 'claim', bleed: 0.15, prefer: ['ein-dutzend', 'shuck-it', 'encore-une'], wide: true },
+    { at: 'free', x: '89%', y: '86%', s: 's', prefer: ['gabel-messer'], wide: true },
+    { at: 'free', x: '30%', y: '8%', s: 's', kind: 'claim', prefer: ['ein-dutzend', 'shuck-it', 'encore-une'], wide: true },
+    { at: 'free', x: '32%', y: '90%', s: 's', prefer: ['auster'], wide: true },
   ])}
   <div class="teaser-menu__head">
     <h2 class="t-h2" id="menu-title">${p.carte.heading}</h2>
@@ -182,7 +184,7 @@ export function render(ctx) {
 </section>
 
 <section class="insta has-scribbles">
-  ${scribbles(ctx, [{ at: 'b', x: '46%', s: 'm', kind: 'claim', bleed: 0.42, prefer: ['schluerfen', 'aw-shucks', 'salut-les-huitres'] }])}
+  ${scribbles(ctx, [{ at: 'free', x: '74%', y: '64%', s: 's', kind: 'claim', prefer: ['schluerfen', 'aw-shucks', 'salut-les-huitres'], wide: true }])}
   <p class="insta__text">${rich(p.insta, locale)}</p>
   ${arrowLink(SITE.instagram.url, SITE.instagram.handle, { cls: 'link-arrow insta__link', external: true, locale })}
 </section>

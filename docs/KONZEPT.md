@@ -20,7 +20,7 @@ Stand: Oktober 2026 · Grundlage: Briefing, PDF „LANNEE_Garage_Kiosque_Marche�
 
 - Die Woche zeigt ein klarer Wochenplan mit Zeitachse; die Strichzeichnungen der Orte machen das Licht an, wenn geöffnet ist.
 - Uhren (Signets mit dem Akzent als Zeiger) gibt es seit 03.11.2026 nicht mehr, auch keine Jahresuhr.
-- Es gibt **nur Blau** (seit 03.11.2026, vorher Grün): frische Töne von Meer, Gischt und Eis. Die Helligkeit der Ortsfarben folgt dem **Tageslicht**: Morgen (Marée), Sonntag (Océan), Abend (Bleu nuit).
+- Es gibt **nur Blau, mit Zug ins Grün** (Petrol bis Lagune, seit 05.11.2026; davor 03.11.2026 Kobaltblau, noch davor Grün): Töne von Meer, Watt, Gischt und Eis. Die Helligkeit der Ortsfarben folgt dem **Tageslicht**: Morgen (Marée), Sonntag (Océan), Abend (Bleu nuit).
 
 ## 3. Gliederung
 
@@ -60,15 +60,15 @@ Der Name steht in gesperrten Versalien (Instrument Sans, schmal) über einer Lin
 
 | Name | HEX | OKLCH | Rolle |
 | --- | --- | --- | --- |
-| Bleu nuit | #082246 | 25.5 % 0.075 258 | dunkelstes Blau, ersetzt Schwarz: Text, Kopf- und Fußzeile; Garage, der Abend |
-| Océan | #0C528C | 43 % 0.115 250 | Kiosque, der Sonntag |
-| Marée | #167AA2 | 54.5 % 0.105 232 | Marché, der Morgen; Nebentext auf Weiß |
-| Embrun | #6BBADA | 75 % 0.09 226 | Linien, Zeichnungen (für Schrift zu hell) |
-| Écume | #D1F6FE | 95 % 0.04 212 | Akzent: Markierungen, Licht in den Strichzeichnungen |
+| Bleu nuit | #00273F | 26.1 % 0.061 242 | dunkelstes Blau (Nacht-Petrol), ersetzt Schwarz: Text, Kopf- und Fußzeile; Garage, der Abend |
+| Océan | #00597B | 43.7 % 0.090 233 | Kiosque, der Sonntag |
+| Marée | #007E92 | 54.5 % 0.096 214 | Marché, der Morgen; Nebentext auf Weiß |
+| Embrun | #67C1CD | 76 % 0.088 207 | Linien, Zeichnungen, Scribbles (für Schrift zu hell) |
+| Écume | #CFFAFC | 95.6 % 0.044 200 | Akzent: Markierungen, Licht in den Strichzeichnungen |
 | Weiß | #FFFFFF | 100 % 0 0 | Flächen, Schrift auf Blau |
 
-Vorgabe seit 03.11.2026: **nur Blau** (ersetzt „nur Grün“ vom 30.10.2026). Entweder blaue Fläche mit weißer Schrift oder weiße Fläche mit blauer Schrift; nichts Schwarzes, nichts Graues. Rollen im Code: `--ink` und `--garage` = Bleu nuit, `--kiosque` = Océan, `--marche` und `--muted` = Marée, `--brand` = Embrun. Die drei Orte unterscheiden sich in Helligkeit und Ton (von Türkis-Blau am Morgen zu Nachtblau am Abend).
-Kontraste: Weiß auf Bleu nuit 15,8 : 1, auf Océan 8,1 : 1, auf Marée 4,8 : 1 (alle für Fließtext geeignet); auf Embrun nur 2,2 : 1, deshalb trägt Embrun keine Schrift und keinen Ort. Bleu nuit auf Écume 13,8 : 1.
+Vorgabe seit 05.11.2026: **Blau mit Zug ins Grün** (Petrol/Lagune; ersetzt die Kobalt-Blautöne vom 03.11.2026, die wiederum „nur Grün“ vom 30.10.2026 ersetzt hatten). Entweder blaue Fläche mit weißer Schrift oder weiße Fläche mit blauer Schrift; nichts Schwarzes, nichts Graues. Rollen im Code: `--ink` und `--garage` = Bleu nuit, `--kiosque` = Océan, `--marche` und `--muted` = Marée, `--brand` = Embrun. Die drei Orte unterscheiden sich in Helligkeit und Ton (von Lagune am Morgen zu Nacht-Petrol am Abend).
+Kontraste: Weiß auf Bleu nuit 15,4 : 1, auf Océan 7,7 : 1, auf Marée 4,8 : 1 (alle für Fließtext geeignet); auf Embrun nur 2,1 : 1, deshalb trägt Embrun keine Schrift und keinen Ort. Bleu nuit auf Écume 13,8 : 1.
 
 ## 6. Typografie
 

@@ -125,8 +125,8 @@ export function render(ctx) {
 
 <section class="sg" aria-labelledby="sg-scribbles">
   <h2 class="t-h4" id="sg-scribbles">Bleistift-Scribbles</h2>
-  <p class="lead">${SCRIBBLES.length} kleine Zeichnungen und Sprüche rund um Austern, Fisch und Bulles – alles Bleistift, aber jede Zeichnung von einer anderen Hand. Erzeugt mit Higgsfield AI (GPT Image 2) auf vier Bögen, ausgeschnitten mit <code>python3 scripts/scribbles.py</code>.</p>
-  <p class="sg__note">Sie liegen als Hintergrund angeschnitten an den Rändern der Flächen, immer hinter dem Inhalt: auf Weiß in Embrun, auf Blau weiß und blass. Wenige je Fläche, auf dem Handy noch weniger. Jede Seite hat ihre feste Auswahl ohne Wiederholung; Sprüche auf Deutsch oder Englisch erscheinen nur auf ihren Sprachseiten, französische überall. Plätze werden in den Vorlagen mit <code>scribbles(ctx, [...])</code> gesetzt (<code>src/lib/scribbles.mjs</code>).</p>
+  <p class="lead">${SCRIBBLES.length} kleine Zeichnungen und Sprüche rund um Austern, Fisch und Bulles – wie von Kinderhand: einfach, krakelig, dicker weicher 4B-Strich, Sprüche in Kinder-Großbuchstaben. Gezeichnet von <code>npm run scribbles</code> (<code>scripts/scribbles.py</code>, Motive in <code>scripts/kritzel/</code>).</p>
+  <p class="sg__note">Sie liegen als Hintergrund angeschnitten an den Rändern der Flächen oder frei auf leeren Stellen, immer hinter dem Inhalt: auf Weiß in Embrun, auf Blau weiß und blass. Sprüche werden nicht angeschnitten. Wenige je Fläche, auf dem Handy noch weniger. Jede Seite hat ihre feste Auswahl ohne Wiederholung; Sprüche auf Deutsch oder Englisch erscheinen nur auf ihren Sprachseiten, französische überall. Plätze werden in den Vorlagen mit <code>scribbles(ctx, [...])</code> gesetzt (<code>src/lib/scribbles.mjs</code>).</p>
   <ul class="sg__scribbles" role="list">${SCRIBBLES.map(
     (it, i) => html`<li class="sg__scribble${i % 6 === 5 ? ' theme-ink' : ''}"><img src="/scribbles/${it.name}.webp" alt="" width="${it.w}" height="${it.h}" loading="lazy" decoding="async"><code>${it.name}${it.langs ? ` · ${it.langs.join('/')}` : ''}</code></li>`
   )}</ul>

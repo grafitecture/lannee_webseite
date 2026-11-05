@@ -101,7 +101,7 @@ export function render(ctx) {
 <section class="loc-hero theme-${L.color} has-scribbles" aria-labelledby="loc-title">
   ${scribbles(ctx, [
     { at: 'r', y: '9%', s: 'l', bleed: 0.22, prefer: theme.objects },
-    { at: 'b', x: '58%', s: 'm', kind: 'claim', bleed: 0.3, wide: true, prefer: theme.claims },
+    { at: 'free', x: '74%', y: '47%', s: 'm', kind: 'claim', wide: true, prefer: theme.claims },
   ])}
   ${venueArt(key, { cls: 'loc-hero__art' })}
   ${lockup(key, { cls: 'loc-hero__lockup', locale })}
@@ -121,13 +121,16 @@ export function render(ctx) {
 </section>
 
 <section class="intro has-scribbles" aria-labelledby="intro-h">
-  ${scribbles(ctx, [{ at: 'l', yb: '6%', s: 'm', bleed: 0.32, wide: true, prefer: theme.objects }])}
+  ${scribbles(ctx, [{ at: 'free', x: '84%', y: '86%', s: 's', wide: true, prefer: theme.objects }])}
   <h2 class="intro__heading t-h3" id="intro-h">${p.intro.heading}</h2>
   <div class="intro__body">${p.intro.body.map((para, i) => html`<p class="${i === 0 ? 'lead' : ''}">${rich(para, locale)}</p>`)}</div>
 </section>
 
 <section class="loc-menu${key === 'marche' ? ' loc-menu--board' : ''} has-scribbles" aria-labelledby="locmenu-h">
-  ${scribbles(ctx, [{ at: 'l', yb: '10%', s: 'm', bleed: 0.1, kind: 'claim', wide: true, prefer: theme.claims }])}
+  ${scribbles(ctx, [
+    { at: 'free', x: '20%', y: '40%', s: 'm', kind: 'claim', wide: true, prefer: theme.claims },
+    { at: 'free', x: '21%', y: '72%', s: 'm', wide: true, prefer: theme.objects },
+  ])}
   <div class="loc-menu__head">
     <h2 class="t-h4" id="locmenu-h">${p.menu.heading}</h2>
     ${arrowLink(`${url('carte', locale)}?ort=${key}`, t.ui.toMenu, { cls: 'link-arrow' })}
