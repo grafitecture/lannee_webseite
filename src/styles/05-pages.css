@@ -168,28 +168,28 @@
   line-height: 1.2;
 }
 .offer__badge {
-  padding: 0.45rem 0.9rem 0.42rem;
+  padding: 0.5rem 1rem 0.46rem;
   border-radius: var(--r-pill);
   background: var(--blanc);
   color: var(--offer);
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 .offer__dates {
   font-family: var(--font-display);
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-style: italic;
   font-weight: 400;
 }
 .offer__title {
   margin-top: 0.15rem;
-  font-size: clamp(2.9rem, 2.1rem + 3.4vw, 4.75rem);
+  font-size: clamp(3.4rem, 2.4rem + 4.5vw, 5.75rem);
   font-style: italic;
   font-weight: 400;
-  line-height: 0.92;
-  letter-spacing: -0.03em;
+  line-height: 0.88;
+  letter-spacing: -0.035em;
   text-wrap: balance;
 }
 .offer__text {
@@ -214,10 +214,10 @@
 }
 .offer__amount {
   font-family: var(--font-display);
-  font-size: clamp(4rem, 3rem + 4vw, 6rem);
+  font-size: clamp(5rem, 3.5rem + 6vw, 8rem);
   font-weight: 400;
-  line-height: 0.8;
-  letter-spacing: -0.04em;
+  line-height: 0.78;
+  letter-spacing: -0.045em;
   font-variant-numeric: lining-nums;
 }
 .offer__side {
@@ -227,7 +227,7 @@
 }
 .offer__per {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: 1.875rem;
   font-style: italic;
   font-weight: 400;
   line-height: 1;
@@ -253,7 +253,7 @@
 }
 .offer__alt-price {
   font-family: var(--font-display);
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: 400;
   line-height: 1;
   letter-spacing: -0.02em;
@@ -311,15 +311,26 @@
 /* Desktop ab 1280 px: Angebot rechts neben der Headline (darunter steht es unter Headline und Lead) */
 @media (min-width: 1280px) {
   .hero--offer .hero__inner {
-    grid-template-columns: minmax(0, 1fr) minmax(22rem, 31rem);
+    grid-template-columns: minmax(0, 1fr) minmax(26rem, 38rem);
     align-items: center;
     column-gap: clamp(2.5rem, 1rem + 3vw, 5rem);
   }
   .hero--offer .hero__title {
-    font-size: clamp(2.4rem, min(6.9vw, 13svh), 9.5rem);
+    font-size: clamp(2.4rem, min(6vw, 12svh), 8.5rem);
   }
   .hero--offer .hero__inner {
-    padding-top: var(--space-l);
+    padding-top: var(--space-m);
+    padding-bottom: var(--space-m);
+  }
+  /* plakativ, aber so kompakt, dass die drei Orts-Kacheln im ersten Bildschirm anschneiden */
+  .hero--offer .offer__title {
+    font-size: clamp(3.4rem, 1.5rem + 3.6vw, 5.25rem);
+  }
+  .hero--offer .offer__amount {
+    font-size: clamp(5rem, 2.5rem + 3.6vw, 7rem);
+  }
+  .hero--offer .offer__alt-label {
+    flex-basis: auto;
   }
   .hero--offer .offer {
     max-width: none;
@@ -327,7 +338,8 @@
     padding: clamp(1.5rem, 0.75rem + 1.4vw, 2.25rem);
   }
   .hero--offer .offer__text {
-    font-size: 1rem;
+    font-size: 0.9375rem;
+    line-height: 1.45;
   }
   .hero--offer .offer__link {
     min-height: 2.5rem;
