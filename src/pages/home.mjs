@@ -1,7 +1,6 @@
 /**
- * Startseite (Umbau 05.11.2026, seit 06.11.2026 hell): Vollbild-Hero mit echtem Foto (Gläser und L’ANNÉE-
- * Buchstaben in der Garage) unter weißem Schleier, Mega-Headline in Bleu nuit und die drei Orte als helle
- * Kacheln; darunter viel Weiß und große runde Bildkarten.
+ * Startseite (Umbau 05.11.2026, seit 06.11.2026 hell): Hero ohne Bild – nur Weiß, Mega-Headline in Bleu nuit
+ * und die drei Orte als helle Kacheln; darunter viel Weiß und große runde Bildkarten.
  * Kein Film, keine Zeichnungen, keine Logo-Wanderung. Nur echte Fotos, keine generierten Bilder (06.11.2026).
  */
 import { html, rich } from '../lib/html.mjs';
@@ -17,10 +16,10 @@ const PLACE_PHOTOS = {
   kiosque: { real: 'bulles', past: 'austern-postkarte' },
   marche: { real: 'marche-wagen', past: 'marche-auslage' },
 };
-const HERO_IMAGE = 'garage-glaeser';
 const HERO_PLACES_LABEL = { de: 'Drei Orte', fr: 'Trois adresses', en: 'Three places' };
 /** Bilderreihe: echte Fotos, keine Wiederholung der Bilder darüber. */
 const GALLERY = [
+  'garage-glaeser',
   'garage-hof',
   'garage-eingang',
   'garage-bar',
@@ -75,7 +74,6 @@ export function render(ctx) {
 
   return html`
 <section class="hero" aria-labelledby="hero-title">
-  ${picture(HERO_IMAGE, locale, { sizes: '100vw', cls: 'hero__bg', eager: true })}
   <div class="hero__inner">
     <h1 class="hero__title" id="hero-title">${p.headline.map((line) => html`<span class="hero__line">${line}</span> `)}</h1>
     <p class="hero__lead">${rich(p.lead, locale)}</p>

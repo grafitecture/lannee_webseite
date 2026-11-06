@@ -5,58 +5,17 @@
 
 /* Startseite: Vollbild-Hero ----------------------------------------------------- */
 
-/* Hell seit 06.11.2026: Foto der Gläser und L’ANNÉE-Buchstaben (garage-glaeser), weißer Schleier links,
-   Schrift Bleu nuit, Kacheln hell. Die Kopfzeile steht auf der Startseite fest darüber (nicht durchsichtig). */
+/* Seit 06.11.2026 ohne Bild: nur Weiß, Mega-Headline in Bleu nuit, darunter die drei hellen Kacheln.
+   Die Kopfzeile steht auf der Startseite fest darüber; Höhe = erster Bildschirm minus Kopfzeile. */
 .hero {
-  position: relative;
-  isolation: isolate;
   display: grid;
   grid-template-rows: 1fr auto;
   min-height: calc(100svh - var(--header-h));
-  overflow: hidden;
-  background: var(--tint);
+  background: var(--blanc);
   color: var(--ink);
 }
-.hero__bg {
-  position: absolute;
-  inset: 0;
-  z-index: -2;
-}
-.hero__bg img {
-  object-position: 50% 30%;
-}
-@media (min-width: 768px) {
-  .hero__bg img {
-    object-position: 50% 36%;
-  }
-}
-/* Weißer Schleier: mobil von unten (dort stehen Headline und Kacheln), ab Tablet von links */
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(
-    0deg,
-    color-mix(in srgb, var(--blanc) 92%, transparent) 0%,
-    color-mix(in srgb, var(--blanc) 82%, transparent) 55%,
-    color-mix(in srgb, var(--blanc) 0%, transparent) 88%
-  );
-}
-@media (min-width: 768px) {
-  .hero::before {
-    background:
-      linear-gradient(
-        90deg,
-        color-mix(in srgb, var(--blanc) 90%, transparent) 0%,
-        color-mix(in srgb, var(--blanc) 78%, transparent) 40%,
-        color-mix(in srgb, var(--blanc) 0%, transparent) 78%
-      ),
-      linear-gradient(0deg, color-mix(in srgb, var(--blanc) 60%, transparent), transparent 38%);
-  }
-}
 .hero__inner {
-  align-self: end;
+  align-self: center;
   display: grid;
   justify-items: start;
   gap: var(--space-m);
@@ -114,9 +73,6 @@
 }
 .hero-place:hover {
   background: color-mix(in oklch, var(--c) 13%, var(--tint));
-}
-.hero .hero-place {
-  box-shadow: 0 0.6rem 2rem -0.8rem color-mix(in srgb, var(--ink) 35%, transparent);
 }
 .hero-place--garage { --c: var(--garage); }
 .hero-place--kiosque { --c: var(--kiosque); }
