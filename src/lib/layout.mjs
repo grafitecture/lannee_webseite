@@ -6,9 +6,11 @@ import { DICT, LOCALES, ROUTES, url, pick, fill, formatTime } from './i18n.mjs';
 import { SITE, LOCATIONS, LOCATION_ORDER, SCHEDULE } from '../content/site.mjs';
 import { logo, icon, arrowLink, upcomingClosures } from './components.mjs';
 import { tokenHex } from '../content/tokens.mjs';
-import { scribbles } from './scribbles.mjs';
 
 const NAV = ['garage', 'kiosque', 'marche', 'carte', 'atlas', 'contact'];
+
+/** Seiten mit Vollbild-Foto oben: Dort liegt die Kopfzeile durchsichtig über dem Bild (Umbau 05.11.2026). */
+export const OVERLAY_HEADER = new Set(['home', 'garage', 'kiosque', 'marche']);
 
 export function placeText(key, locale) {
   const L = LOCATIONS[key];
@@ -60,7 +62,6 @@ ${LOCALES.filter((l) => l !== locale).map((l) => html`<meta property="og:locale:
 <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="${assets.css}">
-${page.key === 'home' ? raw('<noscript><style>.page--home .site-header__logo,.page--home .site-header__rule,.page--home .site-header__tagline{opacity:1}</style></noscript>') : ''}
 <script type="module" src="${assets.js}"></script>
 ${jsonLd(ctx)}
 </head>`;
@@ -71,26 +72,33 @@ ${jsonLd(ctx)}
 function header(ctx) {
   const { locale, page } = ctx;
   const t = DICT[locale].ui;
+  const overlay = OVERLAY_HEADER.has(page.key);
   const links = NAV.map((key) => {
     const current = page.key === key ? raw(' aria-current="page"') : '';
-    return html`<li><a class="nav__link nav__link--${key}" href="${url(key, locale)}"${current}><span>${t.nav[key]}</span></a></li>`;
+    return html`<li><a class="nav__link nav__link--${key}" href="${url(key, locale)}"${current}>${t.nav[key]}</a></li>`;
   });
-  return html`<header class="site-header">
+  // Logo fest in der Kopfzeile (Vorgabe 05.11.2026, ersetzt die Wander-Animation): Logo · Linie · Slogan
+  return html`<header class="site-header${overlay ? ' site-header--overlay' : ''}" data-header>
   <a class="skip-link" href="#inhalt">${t.skip}</a>
   <div class="site-header__inner">
-    <a class="site-header__brand" href="${url('home', locale)}" aria-label="L’ANNÉE – ${t.home}">${logo({ cls: 'site-header__logo', decorative: true, eager: true, sizes: '7rem' })}<span class="site-header__rule" aria-hidden="true"></span><span class="site-header__tagline" aria-hidden="true">${SITE.taglines[locale]}</span></a>
-    <nav class="nav" aria-label="${t.mainNav}"><ul class="nav__list">${links}</ul></nav>
+    <a class="site-header__brand" href="${url('home', locale)}" aria-label="L’ANNÉE – ${t.home}">${logo({
+      cls: 'site-header__logo',
+      decorative: true,
+      eager: true,
+      sizes: '9rem',
+    })}<span class="site-header__rule" aria-hidden="true"></span><span class="site-header__tagline" aria-hidden="true">${SITE.taglines[locale]}</span></a>
+    <nav class="nav" aria-label="${t.mainNav}"><ul class="nav__list" role="list">${links}</ul></nav>
     ${langSwitch(ctx, 'lang--header')}
     <a class="menu-toggle" href="#menu" aria-controls="menu" aria-expanded="false" data-menu-toggle><span class="visually-hidden">${t.menu}</span><span class="menu-toggle__bars" aria-hidden="true"></span></a>
   </div>
   <nav class="drawer" id="menu" aria-label="${t.mainNav}" data-menu>
     <div class="drawer__inner">
       <a class="drawer__close" href="#" data-menu-close>${t.close}</a>
-      <ul class="drawer__list">${NAV.map(
+      <ul class="drawer__list" role="list">${NAV.map(
         (key) =>
           html`<li><a class="drawer__link drawer__link--${key}" href="${url(key, locale)}"${
             page.key === key ? raw(' aria-current="page"') : ''
-          }><span>${t.nav[key]}</span></a></li>`
+          }>${t.nav[key]}</a></li>`
       )}</ul>
       ${langSwitch(ctx, 'lang--menu')}
     </div>
@@ -116,24 +124,23 @@ function footer(ctx) {
   const { locale } = ctx;
   const t = DICT[locale];
   const year = new Date().getFullYear();
-  return html`<footer class="site-footer has-scribbles">
-  ${scribbles(ctx, [
-    { at: 't', x: '74%', s: 'm', bleed: 0.4, prefer: ctx.page?.key === 'home' ? ['herz'] : [] },
-    { at: 'free', x: '22%', y: '9%', s: 's', kind: 'claim', wide: true },
-  ])}
-  <a class="site-footer__mark" href="${url('home', locale)}" aria-label="L’ANNÉE – ${t.ui.home}">${logo({ cls: 'site-footer__logo', decorative: true, sizes: '100vw' })}</a>
-  <div class="site-footer__bottom">
-    <p class="site-footer__tagline">${t.ui.footer.tagline}</p>
-    <ul class="site-footer__links">
-      <li><a href="${url('impressum', locale)}">${t.ui.footer.impressum}</a></li>
-      <li><a href="${url('datenschutz', locale)}">${t.ui.footer.datenschutz}</a></li>
-      <li>${arrowLink(SITE.instagram.url, 'Instagram', { external: true, locale })}</li>
-      <li><a href="mailto:${SITE.company.email}">${SITE.company.email}</a></li>
-    </ul>
+  // Fußzeile (Umbau 05.11.2026): Bleu nuit mit großen runden Ecken oben, großes Holz-Logo, Links in Pillenform
+  return html`<footer class="site-footer">
+  <div class="site-footer__inner">
+    <a class="site-footer__mark" href="${url('home', locale)}" aria-label="L’ANNÉE – ${t.ui.home}">${logo({ cls: 'site-footer__logo', decorative: true, sizes: '90vw' })}</a>
+    <div class="site-footer__bottom">
+      <p class="site-footer__tagline">${t.ui.footer.tagline}</p>
+      <ul class="site-footer__links" role="list">
+        <li><a href="${url('impressum', locale)}">${t.ui.footer.impressum}</a></li>
+        <li><a href="${url('datenschutz', locale)}">${t.ui.footer.datenschutz}</a></li>
+        <li>${arrowLink(SITE.instagram.url, 'Instagram', { external: true, locale })}</li>
+        <li><a href="mailto:${SITE.company.email}">${SITE.company.email}</a></li>
+      </ul>
+      ${langSwitch(ctx, 'lang--footer')}
+    </div>
     <p class="site-footer__legal">© ${year} ${SITE.company.name}, ${SITE.company.city}.</p>
-    ${langSwitch(ctx, 'lang--footer')}
+    ${SITE.demoNotice ? html`<p class="site-footer__demo" role="note">${typo(t.ui.demoNotice, locale)}</p>` : ''}
   </div>
-  ${SITE.demoNotice ? html`<p class="site-footer__demo" role="note">${typo(t.ui.demoNotice, locale)}</p>` : ''}
 </footer>`;
 }
 

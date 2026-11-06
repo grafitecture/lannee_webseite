@@ -67,13 +67,13 @@ function impressumDe() {
     {
       h: 'Urheberrecht',
       p: [
-        'Texte, Fotos, Logos, Icons und die Gestaltung dieser Website sind urheberrechtlich geschützt. Jede Verwendung außerhalb der Grenzen des Urheberrechts bedarf unserer vorherigen schriftlichen Zustimmung.',
+        'Texte, Fotos, Logos und die Gestaltung dieser Website sind urheberrechtlich geschützt. Jede Verwendung außerhalb der Grenzen des Urheberrechts bedarf unserer vorherigen schriftlichen Zustimmung.',
       ],
     },
     {
       h: 'Bildnachweise und Schriften',
       p: [
-        'Fotos: L’ANNÉE. Die Abbildung des Kiosque ist eine Visualisierung, der Film auf der Startseite ist mit KI erzeugt (Higgsfield AI), teils auf Grundlage dieser Fotos. Icons: generiert mit Higgsfield AI, vektorisiert und überarbeitet. Schriften: Fraunces und Instrument Sans (SIL Open Font License).',
+        'Fotos: L’ANNÉE. Die Abbildung des Kiosque ist eine Visualisierung. Die historischen Bilder in Schwarzweiß und in den Farben der 50er Jahre sind mit KI erzeugt (Higgsfield AI) und nachbearbeitet, ebenso das Foto der Austernplatte. Schriften: Fraunces und Instrument Sans (SIL Open Font License).',
       ],
     }
   );
@@ -111,13 +111,13 @@ function impressumFr() {
     {
       h: 'Droits d’auteur',
       p: [
-        'Les textes, photos, logos, icônes et la conception graphique de ce site sont protégés par le droit d’auteur. Toute utilisation au-delà des limites légales nécessite notre accord écrit préalable.',
+        'Les textes, photos, logos et la conception graphique de ce site sont protégés par le droit d’auteur. Toute utilisation au-delà des limites légales nécessite notre accord écrit préalable.',
       ],
     },
     {
       h: 'Crédits',
       p: [
-        'Photos : L’ANNÉE. L’image du Kiosque est une visualisation, le film de la page d’accueil a été généré par IA (Higgsfield AI), en partie à partir de ces photos. Icônes : générées avec Higgsfield AI, vectorisées et retravaillées. Polices : Fraunces et Instrument Sans (SIL Open Font License).',
+        'Photos : L’ANNÉE. L’image du Kiosque est une visualisation. Les images d’époque en noir et blanc et aux couleurs des années 50 ont été générées par IA (Higgsfield AI) puis retravaillées, tout comme la photo du plateau d’huîtres. Polices : Fraunces et Instrument Sans (SIL Open Font License).',
       ],
     }
   );
@@ -155,13 +155,13 @@ function impressumEn() {
     {
       h: 'Copyright',
       p: [
-        'The texts, photos, logos, icons and design of this website are protected by copyright. Any use beyond the limits of copyright law requires our prior written consent.',
+        'The texts, photos, logos and design of this website are protected by copyright. Any use beyond the limits of copyright law requires our prior written consent.',
       ],
     },
     {
       h: 'Credits',
       p: [
-        'Photos: L’ANNÉE. The image of the Kiosque is a visualisation; the film on the home page was generated with AI (Higgsfield AI), partly based on these photos. Icons: generated with Higgsfield AI, vectorised and refined. Typefaces: Fraunces and Instrument Sans (SIL Open Font License).',
+        'Photos: L’ANNÉE. The image of the Kiosque is a visualisation. The vintage images in black and white and in 1950s colours were generated with AI (Higgsfield AI) and edited, as was the photo of the oyster platter. Typefaces: Fraunces and Instrument Sans (SIL Open Font License).',
       ],
     }
   );

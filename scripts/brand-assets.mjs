@@ -72,37 +72,34 @@ const LOGO_IMG = `file://${ROOT}/public/images/logo-lannee-1563.webp`;
 const logo = () => `<img src="${LOGO_IMG}" alt="" style="display:block;width:100%;height:auto">`;
 
 const img = (name) => `file://${ROOT}/public/images/${name}-1080.webp`;
-/** Lockup wie auf der Website: Logo so hoch wie der Zweizeiler NAME / Linie / Austern & Bulles (siehe 03-components.css). */
-const lockupHtml = (name, fg, size = 30) => `<div style="--cap:calc(2.625em + 1.5px);display:inline-flex;align-items:flex-start;gap:.8em;font-size:${size}px;padding-top:calc(var(--cap) * .1394 - .14em);color:${fg}">
-  <img src="${LOGO_IMG}" alt="" style="display:block;flex:none;width:auto;height:calc(var(--cap) * 1.154);margin-top:calc(.14em - var(--cap) * .1394)">
-  <div style="display:grid;gap:.42em">
-    <div style="font-family:'Instrument Sans';font-stretch:75%;font-weight:600;font-size:1em;line-height:1;letter-spacing:.34em;text-transform:uppercase;padding-bottom:.38em;border-bottom:1.5px solid currentColor">${name}</div>
-    <div style="font-family:Fraunces;font-style:italic;font-size:1.12em;line-height:1;white-space:nowrap">Austern &amp; Bulles</div>
-  </div>
-</div>`;
+const pill = (name, bg) =>
+  `<span style="display:inline-block;padding:14px 24px;border-radius:999px;background:${bg};color:${C.blanc};font-family:Fraunces;font-weight:540;font-size:30px;line-height:1">${name}</span>`;
+/* Share-Bilder im Stil des Umbaus vom 05.11.2026: historisches Bild, Mega-Headline, die drei Orte als Pillen */
 const OG = {
-  lannee: `<div style="width:1200px;height:630px;background:${C.ink};display:grid;grid-template-rows:auto 1fr;padding:64px 80px 60px">
-      <div style="width:820px">${logo()}</div>
-      <div style="display:flex;align-items:flex-end;justify-content:space-between">
-        <div style="font-family:Fraunces;font-style:italic;font-weight:330;font-size:76px;line-height:1;color:${C.blanc}">Austern &amp; Bulles<br><span style="font-style:normal;font-size:34px;font-family:'Instrument Sans';font-weight:500">Garage, Kiosque &amp; Marché in Mannheim</span></div>
+  lannee: `<div style="position:relative;width:1200px;height:630px;background:${C.ink} url('${img('historisch-abend')}') 70% center/cover no-repeat;color:${C.blanc}">
+      <div style="position:absolute;inset:0;background:linear-gradient(90deg,${C.ink}e6 0%,${C.ink}99 45%,${C.ink}00 80%)"></div>
+      <div style="position:relative;height:100%;display:grid;grid-template-rows:auto 1fr auto;padding:56px 64px">
+        <div style="width:300px">${logo()}</div>
+        <div style="align-self:end;font-family:Fraunces;font-weight:560;font-size:92px;line-height:.92;letter-spacing:-.045em">Drei Orte.<br>Ein Wochenende.<br>Komm vorbei!</div>
+        <div style="display:flex;gap:12px;margin-top:34px">${pill('Garage', C.garage)}${pill('Kiosque', C.kiosque)}${pill('Marché', C.marche)}</div>
       </div></div>`,
 };
 const LOC = {
-  garage: { bg: C.garage, fg: C.blanc, name: 'Garage', sub: 'Garage à huîtres &amp; vins', when: 'Fr &amp; Sa ab 18 Uhr, Jungbusch', photo: 'garage-hof' },
-  kiosque: { bg: C.kiosque, fg: C.blanc, name: 'Kiosque', sub: 'Kiosque à huîtres &amp; vins', when: 'Sonntag ab 10 Uhr, Lindenhof', photo: 'kiosque-visualisierung' },
-  marche: { bg: C.marche, fg: C.blanc, name: 'Marché', sub: 'Austern &amp; Bulles auf Rädern', when: 'Samstag 8–13 Uhr, Wochenmarkt Lindenhof', photo: 'marche-wagen' },
+  garage: { bg: C.garage, name: 'Garage', sub: 'Garage à huîtres &amp; vins', when: 'Fr &amp; Sa ab 18 Uhr, Jungbusch', photo: 'garage-hof' },
+  kiosque: { bg: C.kiosque, name: 'Kiosque', sub: 'Kiosque à huîtres &amp; vins', when: 'Sonntag ab 10 Uhr, Lindenhof', photo: 'kiosque-visualisierung' },
+  marche: { bg: C.marche, name: 'Marché', sub: 'Austern &amp; Bulles auf Rädern', when: 'Samstag 8–13 Uhr, Wochenmarkt Lindenhof', photo: 'marche-wagen' },
 };
 for (const [key, L] of Object.entries(LOC)) {
-  OG[key] = `<div style="width:1200px;height:630px;display:grid;grid-template-columns:1fr 520px;background:${L.bg};color:${L.fg}">
-    <div style="padding:64px 70px;display:grid;align-content:space-between">
-      <div>${lockupHtml(L.name, L.fg)}</div>
+  OG[key] = `<div style="width:1200px;height:630px;display:grid;grid-template-columns:1fr 500px;gap:28px;padding:28px;background:${L.bg};color:${C.blanc}">
+    <div style="padding:30px 10px 26px 36px;display:grid;align-content:space-between">
+      <div style="width:250px">${logo()}</div>
       <div>
-        <div style="font-family:Fraunces;font-weight:330;font-size:150px;line-height:.82;letter-spacing:-.035em">${L.name}</div>
-        <div style="font-family:Fraunces;font-style:italic;font-size:40px;margin-top:22px">${L.sub}</div>
-        <div style="font-size:26px;font-weight:600;margin-top:18px;opacity:.9">${L.when}</div>
+        <div style="font-family:Fraunces;font-weight:560;font-size:140px;line-height:.84;letter-spacing:-.05em">${L.name}</div>
+        <div style="font-family:Fraunces;font-style:italic;font-size:38px;margin-top:22px">${L.sub}</div>
+        <div style="display:inline-block;margin-top:24px;padding:12px 22px;border-radius:999px;background:${C.blanc};color:${C.ink};font-size:24px;font-weight:700">${L.when}</div>
       </div>
     </div>
-    <div style="background:url('${img(L.photo)}') center/cover no-repeat"></div>
+    <div style="border-radius:44px;background:url('${img(L.photo)}') center/cover no-repeat"></div>
   </div>`;
 }
 

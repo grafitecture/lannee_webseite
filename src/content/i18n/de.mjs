@@ -50,6 +50,8 @@ export default {
       description:
         'Austern, Crémant und Champagner an drei Orten in Mannheim: in der Garage im Jungbusch, am Kiosque auf dem Lindenhofplatz und mit dem Marché auf dem Wochenmarkt Lindenhof.',
       h1: 'L’ANNÉE – Austern & Bulles in Mannheim',
+      // Mega-Headline im Vollbild-Hero (Vorgabe 05.11.2026), drei Zeilen
+      headline: ['Drei Orte.', 'Ein Wochenende.', 'Komm vorbei!'],
       lead: 'Austern, Bulles und ein Plätzchen in der Sonne. An drei Orten in Mannheim, jedes Wochenende.',
       ctaMenu: 'Zur Karte',
       ctaWhere: 'Wo wir sind',

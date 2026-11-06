@@ -9,8 +9,7 @@
     "dev": "node src/build.mjs && node scripts/serve.mjs",
     "preview": "node scripts/serve.mjs",
     "images": "node scripts/images.mjs",
-    "brand-assets": "node scripts/brand-assets.mjs",
-    "scribbles": "python3 scripts/scribbles.py"
+    "brand-assets": "node scripts/brand-assets.mjs"
   },
   "engines": {
     "node": ">=20"

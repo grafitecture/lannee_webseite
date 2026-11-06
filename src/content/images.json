@@ -196,16 +196,6 @@
     ],
     "color": "#af9278"
   },
-  "hero-film": {
-    "width": 960,
-    "height": 540,
-    "widths": [
-      480,
-      768,
-      960
-    ],
-    "color": "#4d3927"
-  },
   "hero-austern-hof": {
     "width": 2528,
     "height": 1696,
@@ -218,6 +208,119 @@
       2528
     ],
     "color": "#595742"
+  },
+  "historisch-abend": {
+    "width": 2560,
+    "height": 1429,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1920,
+      2560
+    ],
+    "color": "#795f4a"
+  },
+  "historisch-anstossen": {
+    "width": 2400,
+    "height": 2178,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1920,
+      2400
+    ],
+    "color": "#5c5a57"
+  },
+  "historisch-tafel": {
+    "width": 2400,
+    "height": 2045,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1920,
+      2400
+    ],
+    "color": "#7c6a57"
+  },
+  "historisch-coupes": {
+    "width": 2560,
+    "height": 1368,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1920,
+      2560
+    ],
+    "color": "#605f5b"
+  },
+  "historisch-austernbauer": {
+    "width": 1920,
+    "height": 1080,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1920
+    ],
+    "color": "#898883"
+  },
+  "historisch-junge": {
+    "width": 1920,
+    "height": 1080,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1920
+    ],
+    "color": "#7d7b78"
+  },
+  "historisch-boot": {
+    "width": 1920,
+    "height": 1080,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1920
+    ],
+    "color": "#756555"
+  },
+  "historisch-haende": {
+    "width": 1920,
+    "height": 1080,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1920
+    ],
+    "color": "#72716d"
+  },
+  "austernplatte": {
+    "width": 2400,
+    "height": 1792,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1920,
+      2400
+    ],
+    "color": "#5a6368"
   },
   "logo-lannee": {
     "width": 1563,

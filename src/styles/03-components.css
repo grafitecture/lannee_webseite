@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Komponenten
+   Komponenten (Umbau 05.11.2026: Pillen-Buttons, runde Karten, viel Weiß)
    ========================================================================== */
 
 /* Icons ------------------------------------------------------------------- */
@@ -16,58 +16,63 @@
   transition: transform 0.25s var(--ease-out);
 }
 
-/* Links & Buttons --------------------------------------------------------- */
+/* Buttons in Pillenform ------------------------------------------------------ */
 
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.65em;
-  min-height: 3.125rem;
-  padding: 0 1.6em;
-  border-radius: 999px;
+  justify-content: center;
+  gap: 0.6em;
+  min-height: 3.25rem;
+  padding: 0.8em 1.75em;
+  border-radius: var(--r-pill);
   border: 1.5px solid transparent;
   font-family: var(--font-text);
-  font-size: 1rem;
+  font-size: 1.0625rem;
   font-weight: 600;
-  line-height: 1;
+  line-height: 1.15;
+  text-align: center;
   text-decoration: none;
-  white-space: nowrap;
   transition: background-color 0.25s, color 0.25s, border-color 0.25s;
+}
+.btn:hover {
+  text-decoration: none;
 }
 .btn--solid {
   background: var(--ink);
   color: var(--blanc);
 }
 .btn--solid:hover {
-  background: var(--marche);
+  background: var(--kiosque);
+}
+.btn--light {
+  background: var(--blanc);
+  color: var(--ink);
+}
+.btn--light:hover {
+  background: var(--ecume);
 }
 .btn--line {
   border-color: currentColor;
 }
 .btn--line:hover {
-  background: color-mix(in oklab, currentColor 10%, transparent);
+  background: color-mix(in srgb, currentColor 8%, transparent);
 }
+.btn--garage { background: var(--garage); color: var(--blanc); }
+.btn--kiosque { background: var(--kiosque); color: var(--blanc); }
+.btn--marche { background: var(--marche); color: var(--blanc); }
+.btn--garage:hover { background: var(--kiosque); }
+.btn--kiosque:hover,
+.btn--marche:hover { background: var(--ink); }
 .btn:hover .icon--arrow,
 .link-arrow:hover .icon--arrow {
-  transform: translateX(0.22em);
-}
-.btn:hover .icon--arrow[aria-hidden] use[href$='arrow-out'],
-.link-arrow:hover .icon use[href$='arrow-out'] {
-  transform: translate(0.1em, -0.1em);
-}
-
-.theme-garage .btn--solid,
-.theme-kiosque .btn--solid,
-.theme-marche .btn--solid,
-.theme-ink .btn--solid {
-  background: var(--blanc);
-  color: var(--ink);
+  transform: translateX(0.2em);
 }
 
 .link-arrow {
   display: inline-flex;
   align-items: center;
-  gap: 0.45em;
+  gap: 0.4em;
   font-weight: 600;
   text-decoration: none;
   white-space: nowrap;
@@ -80,7 +85,7 @@
 .link-arrow:hover span {
   text-decoration-thickness: 2px;
 }
-/* leise Variante im Fließtext, z. B. Agentur-Credit in der Fußzeile */
+/* leise Variante im Fließtext */
 .link-arrow--quiet {
   gap: 0.3em;
   font-weight: inherit;
@@ -91,8 +96,7 @@
 }
 
 /* Logo: weiße Holzbuchstaben als Bild (siehe logo() in components.mjs) -------- */
-/* Die Box hält das Seitenverhältnis des Bildes (--logo-ratio kommt aus dem Markup);
-   gesetzt wird entweder die Höhe (Kopfzeile, Lockup) oder die Breite (Hero, Fußzeile). */
+/* Die Box hält das Seitenverhältnis des Bildes; gesetzt wird Höhe oder Breite. */
 .brand-logo {
   display: block;
   aspect-ratio: var(--logo-ratio);
@@ -103,141 +107,25 @@
   height: 100%;
 }
 
-/* Lockup: L'ANNÉE + Zweizeiler (NAME, Linie, Austern & Bulles) -------------- */
-/*
- * Ein Lockup ist rund 20 em breit (Logo 3,82 × Buchstabenhöhe, Abstand, Zweizeiler).
- * Damit er in schmale Spalten passt, nimmt die Schriftgröße höchstens 4,7 % der Breite
- * des umgebenden Containers (.place__text, .loc-hero, .sg__venue: container-type inline-size).
- */
-/*
- * Die Buchstaben des Logos sind genau so hoch wie der Zweizeiler: von der
- * Versalhöhe des Ortsnamens bis zur Grundlinie von „Austern & Bulles“.
- * Werte aus den Schriftmetriken (line-height 1):
- *   Instrument Sans: Versal-Oberkante 0,14 em unter der Zeilenoberkante
- *   Fraunces Italic: Grundlinie 0,1385 em über der Zeilenunterkante
- * Zweizeiler = 1 em + 0,38 em + 1,5 px + 0,42 em + 1,12 em
- * Buchstabenhöhe (--lk-cap) = Zweizeiler − 0,14 em − 0,155 em
- * Logo (Holzbuchstaben, 1563 × 472 px): Versalhöhe 409 px (y 57–466), die Akzente ragen
- * 57 px darüber, unten 6 px Schatten. Bildhöhe = 472 / 409 = 1,1540 × Buchstabenhöhe,
- * Oberkante der Buchstaben 57 / 409 = 0,1394 × Buchstabenhöhe unter der Bildkante.
- */
-.lockup {
-  --lk-cap: calc(2.625em + 1.5px);
-  display: inline-flex;
-  align-items: flex-start;
-  gap: 0.8em;
-  padding-top: calc(var(--lk-cap) * 0.1394 - 0.14em);
-  font-size: 1em;
-  color: var(--ink);
-}
-.lockup__logo {
-  flex: none;
-  height: calc(var(--lk-cap) * 1.154);
-  width: calc(var(--lk-cap) * 1.154 * var(--logo-aspect));
-  margin-top: calc(0.14em - var(--lk-cap) * 0.1394);
-}
-.lockup__words {
-  display: grid;
-  gap: 0.42em;
-  justify-items: stretch; /* Linie über die ganze Breite des Zweizeilers */
-}
-.lockup__name {
-  font-family: var(--font-text);
-  font-stretch: 75%;
-  font-weight: 600;
-  font-size: 1em;
-  line-height: 1;
-  letter-spacing: 0.34em;
-  text-transform: uppercase;
-  padding-bottom: 0.38em;
-  border-bottom: 1.5px solid currentColor;
-}
-.lockup__tagline {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1.12em;
-  line-height: 1;
-  white-space: nowrap;
-}
-.lockup--garage .lockup__name { color: var(--garage); }
-.lockup--kiosque .lockup__name { color: var(--kiosque); }
-.lockup--marche .lockup__name { color: var(--marche); }
-.theme-garage .lockup,
-.theme-kiosque .lockup,
-.theme-marche .lockup {
-  color: var(--fg);
-}
-.theme-garage .lockup__name,
-.theme-kiosque .lockup__name,
-.theme-marche .lockup__name {
-  color: var(--fg);
-}
+/* Farbpunkt eines Ortes ------------------------------------------------------- */
 
-/* Die drei Orte als Strichzeichnungen (über den Lockups) ------------------------
- * Linie in currentColor; ist der Ort geöffnet (.is-lit), leuchten die Fenster in
- * Écume, und ein Lichtkegel fällt vor dem Haus auf die Straße.
- * Breite = Breite des Logos im Lockup bei gleicher Schriftgröße.
- */
-.venue-art {
-  display: block;
-  width: calc((2.625em + 1.5px) * 3.8214);
-  max-width: 100%;
-  height: auto;
-  aspect-ratio: 160 / 84;
-  overflow: visible;
+.dot {
+  display: inline-block;
+  flex: none;
+  width: 0.62em;
+  height: 0.62em;
+  border-radius: 50%;
+  background: var(--ink);
 }
-.venue-art__line,
-.venue-art__bulbs {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.5px;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-.venue-art__line > *,
-.venue-art__bulbs > * {
-  vector-effect: non-scaling-stroke;
-}
-.venue-art__glass,
-.venue-art__halo,
-.venue-art__soft {
-  fill: var(--ecume);
-}
-.venue-art__stop { stop-color: var(--ecume); stop-opacity: 0.55; }
-.venue-art__stop--end { stop-opacity: 0; }
-.venue-art__glass,
-.venue-art__halo,
-.venue-art__soft,
-.venue-art__pool {
-  opacity: 0;
-  transition: opacity 0.8s var(--ease-out);
-}
-.venue-art__bulbs > * {
-  fill: transparent;
-  transition: fill 0.8s var(--ease-out);
-}
-.venue-art.is-lit .venue-art__glass { opacity: 0.92; }
-.venue-art.is-lit .venue-art__halo { opacity: 0.8; }
-.venue-art.is-lit .venue-art__soft { opacity: 0.28; }
-.venue-art.is-lit .venue-art__pool { opacity: 1; }
-.venue-art.is-lit .venue-art__bulbs > * { fill: var(--ecume); }
-@media (prefers-reduced-motion: no-preference) {
-  /* Licht geht an wie eine alte Leuchtröhre: kurz flackern, dann ruhig */
-  .venue-art.is-lit .venue-art__glass,
-  .venue-art.is-lit .venue-art__halo,
-  .venue-art.is-lit .venue-art__pool {
-    animation: venue-flicker 1.2s linear both;
-  }
-  @keyframes venue-flicker {
-    0%, 7%, 19%, 31% { opacity: 0; }
-    10%, 16%, 36% { opacity: 1; }
-  }
-}
+.dot--garage { background: var(--garage); }
+.dot--kiosque { background: var(--kiosque); }
+.dot--marche { background: var(--marche); }
 
 /* Bilder -------------------------------------------------------------------- */
 
 .pic {
-  background: var(--embrun); /* Platzhalter, bis das Foto geladen ist */
+  display: block;
+  background: var(--tint); /* Platzhalter, bis das Foto geladen ist */
   overflow: hidden;
 }
 .pic img {
@@ -245,31 +133,36 @@
   height: 100%;
   object-fit: cover;
 }
-.figure figcaption {
-  margin-top: 0.5rem;
-  font-size: var(--fs-text-small);
-  color: var(--muted);
+/* Bildunterschrift (z. B. „Visualisierung“) als kleine Pille auf dem Bild */
+.figure {
+  position: relative;
 }
-.theme-garage .figure figcaption,
-.theme-kiosque .figure figcaption,
-.theme-marche .figure figcaption {
-  color: inherit;
+.figure figcaption {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  z-index: 2;
+  padding: 0.35em 0.85em;
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--ink) 72%, transparent);
+  color: var(--blanc);
+  font-size: 0.8125rem;
+  line-height: 1.2;
 }
 
-/* Tags & Chips ------------------------------------------------------------- */
+/* Tags & Filter ------------------------------------------------------------- */
 
 .tag {
   display: inline-flex;
   align-items: center;
   gap: 0.35em;
-  padding: 0.28em 0.7em;
-  border-radius: 999px;
+  padding: 0.3em 0.75em;
+  border-radius: var(--r-pill);
   font-size: 0.75rem;
   font-weight: 600;
   line-height: 1.1;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
 }
-/* Blaue Fläche, weiße Schrift */
 .tag--garage { background: var(--garage); color: var(--blanc); }
 .tag--kiosque { background: var(--kiosque); color: var(--blanc); }
 .tag--marche { background: var(--marche); color: var(--blanc); }
@@ -277,55 +170,63 @@
 .chip {
   display: inline-flex;
   align-items: center;
-  gap: 0.5em;
+  gap: 0.55em;
   min-height: 2.75rem;
-  padding: 0 1.15em;
-  border-radius: 999px;
-  border: 1.5px solid var(--ink);
-  background: var(--blanc);
+  padding: 0 1.2em;
+  border-radius: var(--r-pill);
+  border: 0;
+  background: transparent;
   color: var(--ink);
   font-size: 0.9375rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+  transition: background-color 0.2s, color 0.2s;
 }
 .chip:hover {
-  background: var(--blanc);
+  background: var(--tint);
 }
 .chip[aria-pressed='true'] {
   background: var(--ink);
   color: var(--blanc);
 }
-.chip--garage[aria-pressed='true'] { background: var(--garage); border-color: var(--garage); }
-.chip--kiosque[aria-pressed='true'] { background: var(--kiosque); border-color: var(--kiosque); }
-.chip--marche[aria-pressed='true'] { background: var(--marche); border-color: var(--marche); color: var(--blanc); }
+.chip--garage[aria-pressed='true'] { background: var(--garage); }
+.chip--kiosque[aria-pressed='true'] { background: var(--kiosque); }
+.chip--marche[aria-pressed='true'] { background: var(--marche); }
+.chip[aria-pressed='true'] .dot {
+  background: var(--blanc);
+}
 
-/* Live-Anzeige ------------------------------------------------------------- */
+/* Live-Hinweis: Jetzt geöffnet / Als Nächstes -------------------------------- */
 
 .live {
   display: inline-flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.7em;
-  margin-top: var(--space-s);
-  padding: 0.55em 1.1em 0.55em 0.9em;
-  border-radius: 999px;
-  background: var(--blanc);
-  font-size: 0.9375rem;
+  gap: 0.3em 0.7em;
+  padding: 0.75em 1.4em 0.75em 1.1em;
+  border-radius: var(--r-pill);
+  background: var(--tint);
+  color: var(--ink);
+  font-size: 1rem;
   line-height: 1.3;
+  text-decoration: none;
 }
-.live[hidden] {
-  display: none;
-}
-.live a {
-  font-weight: 600;
+.live:hover {
+  background: var(--ecume);
 }
 .live__dot {
   position: relative;
-  width: 0.62em;
-  height: 0.62em;
+  width: 0.7em;
+  height: 0.7em;
   border-radius: 50%;
-  background: var(--live, var(--muted));
+  background: var(--live, var(--marche));
   flex: none;
+}
+.live__state {
+  color: var(--muted);
+}
+.live__name {
+  font-weight: 700;
 }
 .live.is-open .live__dot::after {
   content: '';
@@ -345,31 +246,136 @@
 .closures {
   display: grid;
   justify-items: start;
-  gap: var(--space-2xs);
+  gap: 0.5rem;
   margin-top: var(--space-m);
 }
 .closure {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 0.75em;
   margin: 0;
-  padding: 0.6em 1.15em 0.6em 0.95em;
-  border-radius: 1.4em;
+  padding: 0.7em 1.3em;
+  border-radius: var(--r-pill);
   background: var(--ecume);
   color: var(--ink);
   font-size: 0.9375rem;
   line-height: 1.35;
 }
 .closure strong {
-  font-weight: 600;
+  font-weight: 700;
 }
-/* Pausenzeichen ‖ aus zwei Balken */
-.closure__icon {
-  flex: none;
-  width: 0.62em;
-  height: 0.72em;
-  translate: 0 0.06em;
-  background: linear-gradient(90deg, var(--garage) 0 34%, transparent 34% 66%, var(--garage) 66%);
+
+/* Wochenplan: je Tag eine runde Karte ----------------------------------------- */
+
+.plan {
+  margin-top: var(--space-l);
+}
+.plan__days {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+@media (min-width: 768px) {
+  .plan__days {
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  }
+}
+.plan__day {
+  display: grid;
+  align-content: start;
+  gap: 1.1rem;
+  padding: clamp(1.1rem, 0.8rem + 1vw, 1.75rem);
+  border-radius: var(--r-xl);
+  background: var(--tint);
+}
+.plan__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.plan__dayname {
+  font-size: var(--fs-h5);
+}
+.plan__date {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+.plan__date:empty {
+  display: none;
+}
+.plan__day.is-today .plan__date {
+  padding: 0.25em 0.75em;
+  border-radius: var(--r-pill);
+  background: var(--ink);
+  color: var(--blanc);
+}
+.plan__slots {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+.plan__slot {
+  --c: var(--ink);
+  display: grid;
+  gap: 0.2rem;
+  padding: 1rem 1.2rem 1.1rem;
+  border-radius: var(--r-l);
+  background: var(--c);
+  color: var(--blanc);
+  text-decoration: none;
+}
+.plan__slot--garage { --c: var(--garage); }
+.plan__slot--kiosque { --c: var(--kiosque); }
+.plan__slot--marche { --c: var(--marche); }
+.plan__name {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+}
+.plan__time {
+  font-weight: 700;
+}
+.plan__place {
+  font-size: 0.875rem;
+}
+.plan__badge,
+.plan__pause {
+  justify-self: start;
+  margin-bottom: 0.35rem;
+  padding: 0.25em 0.7em;
+  border-radius: var(--r-pill);
+  background: var(--blanc);
+  color: var(--c);
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.plan__slot.is-open .plan__badge {
+  background: var(--ecume);
+  color: var(--ink);
+}
+.plan__pause {
+  display: none;
+}
+.plan__slot.is-paused .plan__pause {
+  display: inline-block;
+}
+.plan__slot.is-paused .plan__time {
+  text-decoration: line-through;
+}
+.plan__slot.is-paused {
+  background: var(--blanc);
+  color: var(--c);
+  box-shadow: inset 0 0 0 1.5px var(--c);
+}
+.plan__slot.is-paused .plan__pause {
+  background: var(--c);
+  color: var(--blanc);
 }
 
 /* Karte: Gerichte ---------------------------------------------------------- */
@@ -390,9 +396,9 @@
 .dish__name {
   font-family: var(--font-display);
   font-size: var(--fs-h6);
-  font-weight: 420;
+  font-weight: 500;
   line-height: 1.15;
-  letter-spacing: -0.005em;
+  letter-spacing: -0.01em;
 }
 .dish__veg {
   display: inline-grid;
@@ -444,8 +450,13 @@
 .dish__price-value {
   font-family: var(--font-display);
   font-size: 1.1875rem;
-  font-weight: 450;
+  font-weight: 500;
   line-height: 1.1;
+  white-space: nowrap;
+}
+.dish__price-unit {
+  font-size: 0.75rem;
+  color: var(--muted);
   white-space: nowrap;
 }
 .dish__from {
@@ -458,6 +469,26 @@
 }
 .dish--compact .dish__price-label {
   display: none;
+}
+/* Auf Farbflächen: alles weiß */
+.theme-garage .dish,
+.theme-kiosque .dish,
+.theme-marche .dish,
+.theme-ink .dish {
+  border-top-color: color-mix(in srgb, var(--blanc) 22%, transparent);
+}
+.theme-garage :is(.dish__origin, .dish__price-unit, .dish__from, .dish__price-label),
+.theme-kiosque :is(.dish__origin, .dish__price-unit, .dish__from, .dish__price-label),
+.theme-marche :is(.dish__origin, .dish__price-unit, .dish__from, .dish__price-label),
+.theme-ink :is(.dish__origin, .dish__price-unit, .dish__from, .dish__price-label) {
+  color: color-mix(in srgb, var(--blanc) 78%, transparent);
+}
+.theme-garage .dish__veg,
+.theme-kiosque .dish__veg,
+.theme-marche .dish__veg,
+.theme-ink .dish__veg {
+  border-color: currentColor;
+  color: inherit;
 }
 
 .taste {
@@ -490,88 +521,27 @@
   background: var(--kiosque);
 }
 
-/* Kartenlinks ---------------------------------------------------------------- */
+/* Kartenlinks als Pillen ------------------------------------------------------ */
 
 .maplinks {
   list-style: none;
+  margin: 0;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.6em 1.6em;
+  gap: 0.5rem;
 }
-
-.dish__price-unit {
-  font-size: 0.75rem;
-  color: var(--muted);
-  white-space: nowrap;
+.maplinks .link-arrow {
+  min-height: 2.75rem;
+  padding: 0 1.2em;
+  border-radius: var(--r-pill);
+  background: var(--blanc);
+  color: var(--ink);
 }
-
-
-/* Bleistift-Scribbles -------------------------------------------------------- */
-/* Kleine Kinderzeichnungen und Sprüche (src/lib/scribbles.mjs), angeschnitten an den Rändern
-   der Flächen oder frei auf leeren Stellen, immer hinter dem Inhalt. Strich auf Weiß = Embrun
-   (in der Datei), auf Blau macht der Filter ihn weiß. Ruhig halten: wenige je Fläche, blass. */
-
-:where(.has-scribbles) {
-  position: relative;
+.maplinks .link-arrow span {
+  text-decoration: none;
 }
-.has-scribbles {
-  isolation: isolate;
-}
-.scribbles {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  overflow: clip;
-  pointer-events: none;
-  user-select: none;
-}
-.scribbles--gutter {
-  left: calc(-1 * var(--gutter));
-  right: calc(-1 * var(--gutter));
-}
-.scribble {
-  --unit: clamp(6.5rem, 4rem + 9vw, 13rem);
-  --w: calc(var(--f) * var(--unit));
-  position: absolute;
-  width: var(--w);
-  /* auf Blau setzt die Fläche --scribble-opacity, auf Weiß gilt --scribble-opacity-white */
-  --scribble-opacity-white: 0.62;
-  opacity: var(--scribble-opacity, var(--scribble-opacity-white));
-  transform: rotate(var(--r, 0deg));
-}
-.scribble--free {
-  translate: -50% -50%; /* x / y = Mitte der Zeichnung */
-}
-.scribble img {
-  display: block;
-  width: 100%;
-  height: auto;
-  filter: var(--scribble-filter, none);
-  transition: opacity 0.9s ease-out;
-}
-.scribble img.is-loading {
-  opacity: 0;
-}
-.theme-garage,
-.theme-kiosque,
-.theme-marche,
-.theme-ink,
-.site-footer {
-  --scribble-filter: brightness(0) invert(1);
-  --scribble-opacity: 0.2;
-}
-@media (max-width: 767.98px) {
-  .scribble {
-    --unit: clamp(5.5rem, 3rem + 12vw, 7.5rem);
-    --scribble-opacity-white: 0.45; /* auf dem Handy liegt mehr Text darüber */
-  }
-  .scribble--wide {
-    display: none;
-  }
-}
-@media print {
-  .scribbles {
-    display: none;
-  }
+.maplinks .link-arrow:hover {
+  background: var(--ink);
+  color: var(--blanc);
 }

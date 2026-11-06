@@ -18,21 +18,20 @@ Stand: Oktober 2026 · Grundlage: Briefing, PDF „LANNEE_Garage_Kiosque_Marche�
 
 *L’ANNÉE* heißt „das Jahr“. Austern folgen dem Kalender (Monate mit R) und den Gezeiten, und die drei Orte teilen sich ein Wochenende. Deshalb ist **Zeit** das verbindende Motiv:
 
-- Die Woche zeigt ein klarer Wochenplan mit Zeitachse; die Strichzeichnungen der Orte machen das Licht an, wenn geöffnet ist.
+- Die Woche zeigt ein klarer Wochenplan (je Öffnungstag eine runde Karte) mit Live-Hinweis „Jetzt geöffnet“ / „Als Nächstes“.
 - Uhren (Signets mit dem Akzent als Zeiger) gibt es seit 03.11.2026 nicht mehr, auch keine Jahresuhr.
-- Es gibt **nur Blau, mit Zug ins Grün** (Petrol bis Türkis, seit 05.11.2026; davor 03.11.2026 Kobaltblau, noch davor Grün): Töne von Meer, Watt, Gischt und Eis. Die Helligkeit der Ortsfarben folgt dem **Tageslicht**: Morgen (Marée), Sonntag (Océan), Abend (Bleu nuit).
+- Es gibt **nur Blau, mit Zug ins Grün** (Petrol bis Meergrün, seit 05.11.2026; davor 03.11.2026 Kobaltblau, noch davor Grün): Töne von Meer, Watt, Gischt und Eis. Die Helligkeit der Ortsfarben folgt dem **Tageslicht**: Morgen (Marée), Sonntag (Océan), Abend (Bleu nuit).
 
 ## 3. Gliederung
 
 ```
 L’ANNÉE (1898.ma)
-├── Start: Wochenplan (live), drei Orte, Karte, Galerie
+├── Start: Vollbild-Hero mit Mega-Headline und den drei Orten, Wochenplan (live), drei Orte im Detail, Bilderreihe, Karte, Instagram
 ├── Garage   (garage.ma → /garage/)
 ├── Kiosque  (kiosque.ma → /kiosque/)
 ├── Marché   (/marche/: Termine, Einladung für Feste)
 ├── La Carte (/karte/: Filter nach Ort)
-├── Das Jahr (/das-jahr/: Austernkalender, R-Regel, Größen, Anleitung, Weine)
-├── Austernatlas (/austernatlas/: 24 Arten und Herkünfte als Strichzeichnungen)
+├── Austernatlas (/austernatlas/: 24 Arten und Herkünfte als runde Karten)
 ├── Kontakt
 └── Impressum, Datenschutz
 ```
@@ -41,11 +40,9 @@ Sprachen: Deutsch (ohne Präfix), Französisch (`/fr/…`), Englisch (`/en/…`)
 
 ## 4. Subbrands
 
-Logo (seit 03.11.2026): **weiße, gestrichene Holzbuchstaben L’ANNÉE**, freigestelltes Bild. Weiß gehört auf Blau – das Logo steht in Kopfzeile, Hero, Fußzeile und in allen Lockups auf einer blauen Fläche, nie auf Weiß. Auf der Startseite wandert es mit dem Slogan beim Scrollen vom Hero in die Kopfzeile.
+Logo (seit 03.11.2026): **weiße, gestrichene Holzbuchstaben L’ANNÉE**, freigestelltes Bild. Weiß gehört auf Blau – das Logo steht in der Kopfzeile (über dem Vollbild-Foto oder auf Bleu nuit) und groß in der Fußzeile, nie auf Weiß. Seit dem Umbau am 05.11.2026 sitzt es fest in der Kopfzeile (keine Wanderung mehr), daneben Linie und Slogan in der Seitensprache.
 
-Lockup jeder Subbrand = **L’ANNÉE-Logo + Zweizeiler (NAME, Linie, Austern & Bulles)**. Die Buchstaben des Logos sind genau so hoch wie der Zweizeiler: von der Versalhöhe des Namens bis zur Grundlinie von „Austern & Bulles“; die Akzente ragen darüber hinaus. Der Lockup steht immer auf der Farbe des Ortes, die Schrift ist weiß (Startseite „drei Orte“ und Köpfe der Ortsseiten).
-
-Uhren (Signets) gibt es nirgends mehr (Vorgabe 03.11.2026). Die Orte unterscheiden sich über ihre Farbe:
+Die Orte unterscheiden sich über ihre Farbe (keine Uhren, keine Zeichnungen, keine Lockups mehr auf den Seiten):
 
 | Subbrand | Farbe |
 | --- | --- |
@@ -54,21 +51,21 @@ Uhren (Signets) gibt es nirgends mehr (Vorgabe 03.11.2026). Die Orte unterscheid
 | Garage | Bleu nuit |
 | L’ANNÉE | Holz-Logo weiß auf Blau |
 
-Der Name steht in gesperrten Versalien (Instrument Sans, schmal) über einer Linie, wie bereits auf dem Marché-Anhänger.
+Auf der Startseite stehen die drei Orte als Farbkacheln im Hero, im Wochenplan als Farbflächen und im Detail mit einem Farbpunkt am Namen; die Ortsseiten färben Zitat, Karte und Buttons in der Farbe des Ortes.
 
 ## 5. Farben
 
 | Name | HEX | OKLCH | Rolle |
 | --- | --- | --- | --- |
-| Bleu nuit | #002938 | 26.2 % 0.051 228 | dunkelstes Blau (Nacht-Petrol), ersetzt Schwarz: Text, Kopf- und Fußzeile; Garage, der Abend |
-| Océan | #005C6E | 43.8 % 0.078 217 | Kiosque, der Sonntag |
-| Marée | #058082 | 54.4 % 0.092 197 | Marché, der Morgen; Nebentext auf Weiß |
-| Embrun | #67C5BF | 76.4 % 0.090 190 | Linien, Zeichnungen, Scribbles (für Schrift zu hell) |
-| Écume | #CCFCF3 | 95.5 % 0.050 183 | Akzent: Markierungen, Licht in den Strichzeichnungen |
+| Bleu nuit | #002B32 | 26.2 % 0.051 210 | dunkelstes Blau (Nacht-Petrol), ersetzt Schwarz: Text, Kopf- und Fußzeile; Garage, der Abend |
+| Océan | #005F62 | 43.8 % 0.078 199 | Kiosque, der Sonntag |
+| Marée | #1C8171 | 54.4 % 0.092 179 | Marché, der Morgen; Nebentext auf Weiß |
+| Embrun | #72C5AC | 76.4 % 0.090 172 | Linien (für Schrift zu hell) |
+| Écume | #D2FBE8 | 95.5 % 0.050 165 | Akzent: aktiv, hover, Hinweise; als Hauch (`--tint`) die hellen Karten auf Weiß |
 | Weiß | #FFFFFF | 100 % 0 0 | Flächen, Schrift auf Blau |
 
-Vorgabe seit 05.11.2026: **Blau mit Zug ins Grün** (Petrol/Türkis, am 05.11.2026 zweimal Richtung Grün geschoben; ersetzt die Kobalt-Blautöne vom 03.11.2026, die wiederum „nur Grün“ vom 30.10.2026 ersetzt hatten). Entweder blaue Fläche mit weißer Schrift oder weiße Fläche mit blauer Schrift; nichts Schwarzes, nichts Graues. Rollen im Code: `--ink` und `--garage` = Bleu nuit, `--kiosque` = Océan, `--marche` und `--muted` = Marée, `--brand` = Embrun. Die drei Orte unterscheiden sich in Helligkeit und Ton (von Türkis am Morgen zu Nacht-Petrol am Abend).
-Kontraste: Weiß auf Bleu nuit 15,3 : 1, auf Océan 7,6 : 1, auf Marée 4,8 : 1 (alle für Fließtext geeignet); auf Embrun nur 2,0 : 1, deshalb trägt Embrun keine Schrift und keinen Ort. Bleu nuit auf Écume 13,7 : 1.
+Vorgabe seit 05.11.2026: **Blau mit Zug ins Grün**, beim Umbau am Abend noch einmal um 18° im OKLCH-Farbkreis Richtung Grün geschoben (Petrol bis Meergrün, kein reines Grün; davor Petrol/Türkis, davor Kobalt vom 03.11.2026, davor „nur Grün“ vom 30.10.2026). Entweder blaue Fläche mit weißer Schrift oder weiße Fläche mit blauer Schrift; nichts Schwarzes, nichts Graues. Rollen im Code: `--ink` und `--garage` = Bleu nuit, `--kiosque` = Océan, `--marche` und `--muted` = Marée, `--brand` = Embrun.
+Kontraste: Weiß auf Bleu nuit 15,1 : 1, auf Océan 7,5 : 1, auf Marée 4,7 : 1 (alle für Fließtext geeignet); auf Embrun nur 2,0 : 1, deshalb trägt Embrun keine Schrift und keinen Ort.
 
 ## 6. Typografie
 
@@ -107,21 +104,21 @@ Abgeleitet aus StatCounter Deutschland, September 2026 (mobil 360–430 px; Tabl
 | 3xl | 1920 | Full HD |
 | 4xl | 2560 | QHD |
 
-Seiten sind auf dem Desktop immer volle Breite. Begrenzt wird nur die Zeilenlänge von Fließtext. Wochenplan und Jahresuhr nutzen Container Queries.
+Seiten sind auf dem Desktop immer volle Breite. Begrenzt wird nur die Zeilenlänge von Fließtext.
 
-## 8. Gestaltungsprinzipien
+## 8. Gestaltungsprinzipien (Umbau 05.11.2026)
 
-1. **Ein mutiger Moment pro Seite:** Logo in voller Breite, riesige Ortsnamen. Alles andere ist ruhig, Informationen wie die Öffnungszeiten sauber und übersichtlich.
-2. **Große Flächen, viel Weiß:** Farbflächen nur für die drei Orte und die Fußzeile, sonst Weiß.
-3. **Goldener Schnitt im Raster:** Spalten 1 : 1,618, Bildformate 1,618 : 1.
-4. **Bewegung nur mit Sinn:** Logo-Auftakt und Wanderung in die Kopfzeile, Licht in den Strichzeichnungen. `prefers-reduced-motion` wird respektiert.
+1. **Aufgeräumt und großflächig:** viel Weiß, sehr viel Luft zwischen den Abschnitten, je Abschnitt eine Aussage. Große Bildkarten und Farbflächen mit runden Ecken (Radien nach Größe gestaffelt), Buttons als Pillen.
+2. **Ein mutiger Moment:** der Vollbild-Hero mit der Mega-Headline „Drei Orte. Ein Wochenende. Komm vorbei!“ und den drei Orten als Farbkacheln – man sieht sofort, dass es drei Orte gibt. Auf den Ortsseiten der riesige Name über dem Vollbild-Foto.
+3. **Historisch gepaart mit echt:** historische Bilder in Schwarzweiß oder in den Farben der 50er stehen immer neben den echten Fotos der Orte (auf der Startseite als Abzug mit weißem Rand über dem echten Foto, in den Bilderreihen im Wechsel).
+4. **Keine Zeichnungen, kein Film, keine Uhren.** Bewegung nur, wo sie etwas zeigt (Kopfzeile wird beim Scrollen blau, Live-Punkt pulsiert, wenn geöffnet). `prefers-reduced-motion` wird respektiert.
 5. **Datenschutz durch Technik:** keine Cookies, kein Tracking, keine Einbettungen, Kartenlinks statt Karten.
 
 ## 9. Eigene Inhalte
 
-- Wochenplan: Tage als Zeilen, Öffnungszeiten als farbige Balken auf einer Stundenskala (mobil als Liste mit Mini-Balken); live mit „Jetzt geöffnet“ / „Als Nächstes“, Jetzt-Linie, Datum und Pausen
-- Das Jahr: 12 Monate (Galette des Rois, Saint-Jacques, Schwetzinger Spargel, Nachtwandel, Beaujolais Nouveau, Réveillon …), Regel mit dem R, Austerngrößen Nº 0–5, Austern essen in vier Schritten, Weinbegleitung
+- Wochenplan: je Öffnungstag eine runde Karte, darin die Orte als Farbflächen; live mit „Jetzt geöffnet“ / „Als Nächstes“, Datum und Pausen
 - La Carte (fiktiv): Struktur „Hunger / Durst“ nach dem Vorbild De Blauwe Kiosk (Gent), Inhalte aus der L’ANNÉE-Karte, Geschmacksprofile der Austern (jodig, fleischig, nussig), Filter nach Ort
+- Austernatlas: Arten und Herkünfte als runde Karten
 
 ## 10. Offene Punkte
 

@@ -1,46 +1,33 @@
 /**
- * Ortsseiten: Garage, Kiosque, Marché – gleicher Aufbau, eigene Farbe, eigenes Signet.
+ * Ortsseiten: Garage, Kiosque, Marché – gleicher Aufbau, eigene Farbe (Umbau 05.11.2026):
+ * Vollbild-Foto mit großem Namen, Fakten als runde Karten, Zitat, Intro mit historischem Bild,
+ * Karte als Farbfläche, Bilderreihe, Viertel, Anfahrt, die beiden anderen Orte. Keine Zeichnungen.
  */
 import { html, raw, rich } from '../lib/html.mjs';
-import { DICT, url, pick, fill, formatTime } from '../lib/i18n.mjs';
+import { DICT, url, pick, formatTime } from '../lib/i18n.mjs';
 import { LOCATIONS, LOCATION_ORDER, MARCHE_DATES, SITE } from '../content/site.mjs';
-import { lockup, picture, arrowLink, mapLinks, icon, closureNotes, berlinToday } from '../lib/components.mjs';
+import { picture, button, mapLinks, icon, closureNotes, berlinToday } from '../lib/components.mjs';
 import { menuExcerpt } from '../lib/menu-render.mjs';
-import { venueArt } from '../lib/venue-art.mjs';
-import { scribbles } from '../lib/scribbles.mjs';
-
-/* Scribbles passend zum Ort (Wunschlisten, der Reihe nach vergeben; Sprüche je Sprache) */
-const SCRIBBLE_THEMES = {
-  garage: {
-    objects: ['coupes', 'flasche', 'rettungsring', 'hummer', 'leuchtturm', 'ruderboot', 'makrele'],
-    claims: ['bulles-first', 'a-la-votre', 'shell-yeah', 'sante', 'huitres-bulles'],
-  },
-  kiosque: {
-    objects: ['sardinen', 'pop', 'kellnermesser', 'mariniere', 'perle', 'seestern', 'krabbe'],
-    claims: ['glueck-salzig', 'aw-shucks', 'encore-une', 'salut-les-huitres'],
-  },
-  marche: {
-    objects: ['handschuh', 'austernmesser', 'fischernetz', 'auster', 'moewe', 'jakobsmuschel', 'knoten'],
-    claims: ['ein-dutzend', 'shuck-it', 'monate-mit-r', 'les-mois-en-r', 'salut-les-huitres'],
-  },
-};
 import { placeText } from '../lib/layout.mjs';
 
 const CONFIG = {
   garage: {
     hero: 'garage-hof',
-    gallery: ['garage-bar', 'garage-austernbar', 'garage-boot', 'garage-wand', 'garage-fenster', 'schweppes', 'garage-eingang', 'garage-weinlaub', 'garage-merci'],
-    quarterIcon: 'jungbusch',
+    past: 'historisch-anstossen',
+    quarter: 'historisch-boot',
+    gallery: ['garage-bar', 'historisch-coupes', 'garage-austernbar', 'garage-boot', 'garage-wand', 'garage-fenster', 'schweppes', 'garage-eingang', 'garage-weinlaub', 'garage-merci'],
   },
   kiosque: {
     hero: 'kiosque-visualisierung',
-    gallery: ['huitres-glace', 'bulles', 'austern-postkarte', 'wein-eis', 'baguettes'],
-    quarterIcon: 'sun',
+    past: 'historisch-tafel',
+    quarter: null,
+    gallery: ['huitres-glace', 'historisch-junge', 'bulles', 'austern-postkarte', 'wein-eis', 'baguettes'],
   },
   marche: {
     hero: 'marche-wagen',
-    gallery: ['marche-auslage', 'austern-oeffnen', 'austern-postkarte', 'baguettes', 'wein-eis'],
-    quarterIcon: 'marche',
+    past: 'historisch-haende',
+    quarter: null,
+    gallery: ['marche-auslage', 'historisch-austernbauer', 'austern-oeffnen', 'austern-postkarte', 'baguettes', 'wein-eis'],
   },
 };
 
@@ -50,7 +37,6 @@ export function render(ctx) {
   const { locale, page } = ctx;
   const key = page.key;
   const L = LOCATIONS[key];
-  const theme = SCRIBBLE_THEMES[key] ?? { objects: [], claims: [] };
   const cfg = CONFIG[key];
   const t = DICT[locale];
   const p = t.pages[key];
@@ -60,7 +46,7 @@ export function render(ctx) {
     <div class="facts__item"><dt>${t.ui.facts.when}</dt><dd>${p.when}</dd></div>
     <div class="facts__item"><dt>${t.ui.facts.where}</dt><dd>${placeText(key, locale)}</dd></div>
     <div class="facts__item"><dt>${t.ui.facts.mail}</dt><dd><a href="mailto:${L.email}">${L.email}</a></dd></div>
-    ${p.more ? html`<div class="facts__item facts__item--wide"><dt>${t.ui.facts.more}</dt><dd>${p.more}</dd></div>` : ''}
+    ${p.more ? html`<div class="facts__item"><dt>${t.ui.facts.more}</dt><dd>${p.more}</dd></div>` : ''}
   </dl>`;
 
   /* Marché: Termine & Einladung (vergangene Termine fallen weg bzw. blendet das Skript aus) */
@@ -68,8 +54,8 @@ export function render(ctx) {
   const dates = MARCHE_DATES.filter((d) => d.date >= today).sort((a, b) => (a.date + a.start).localeCompare(b.date + b.start));
   const marche =
     key === 'marche'
-      ? html`<section class="dates" aria-labelledby="dates-h" data-expiry-group>
-          <h2 class="t-h4" id="dates-h">${p.dates.heading}</h2>
+      ? html`<section class="section dates" aria-labelledby="dates-h" data-expiry-group>
+          <h2 class="section__title section__title--small" id="dates-h">${p.dates.heading}</h2>
           <ul class="dates__list" role="list">
             <li class="dates__item dates__item--regular">
               <span class="dates__when">${p.dates.regular}</span>
@@ -86,99 +72,94 @@ export function render(ctx) {
           </ul>
           <p class="dates__empty" data-expiry-empty${dates.length ? raw(' hidden') : ''}>${p.dates.empty}</p>
         </section>
-        <section class="invite theme-marche has-scribbles" aria-labelledby="invite-h">
-          ${scribbles(ctx, [{ at: 'r', y: '6%', s: 'm', bleed: 0.3, prefer: theme.objects }])}
-          ${icon('marche', { cls: 'icon invite__icon' })}
-          <div class="invite__text">
-            <h2 class="t-h3" id="invite-h">${p.invite.heading}</h2>
+        <section class="invite" aria-labelledby="invite-h">
+          <div class="invite__inner theme-marche">
+            <h2 class="section__title" id="invite-h">${p.invite.heading}</h2>
             <p class="lead">${rich(p.invite.body, locale)}</p>
-            ${arrowLink(`mailto:${SITE.company.email}?subject=${encodeURIComponent(p.invite.subject)}`, p.invite.cta, { cls: 'btn btn--line' })}
+            ${button(`mailto:${SITE.company.email}?subject=${encodeURIComponent(p.invite.subject)}`, p.invite.cta, { cls: 'btn btn--light' })}
           </div>
         </section>`
       : '';
 
   return html`
-<section class="loc-hero theme-${L.color} has-scribbles" aria-labelledby="loc-title">
-  ${scribbles(ctx, [
-    { at: 'r', y: '9%', s: 'l', bleed: 0.22, prefer: theme.objects },
-    { at: 'free', x: '74%', y: '47%', s: 'm', kind: 'claim', wide: true, prefer: theme.claims },
-  ])}
-  ${venueArt(key, { cls: 'loc-hero__art' })}
-  ${lockup(key, { cls: 'loc-hero__lockup', locale })}
-  <h1 class="loc-hero__title" id="loc-title">${p.h1}</h1>
-  <p class="loc-hero__subtitle">${rich(p.subtitle, locale)}</p>
+<section class="loc-hero loc-hero--${key}" aria-labelledby="loc-title">
+  ${picture(cfg.hero, locale, { sizes: '100vw', cls: 'loc-hero__bg', eager: true })}
+  <div class="loc-hero__inner">
+    <p class="loc-hero__when"><span class="dot dot--${key}" aria-hidden="true"></span>${p.when}</p>
+    <h1 class="loc-hero__title" id="loc-title">${p.h1}</h1>
+    <p class="loc-hero__subtitle">${rich(p.subtitle, locale)}</p>
+  </div>
+</section>
+
+<section class="section loc-facts" aria-label="${L.name}">
   ${facts}
   ${closureNotes(locale, [key])}
 </section>
 
-<div class="loc-photo">
-  ${picture(cfg.hero, locale, { sizes: '100vw', cls: 'loc-photo__img', eager: true })}
-</div>
-
-<section class="quote theme-${L.color} has-scribbles" aria-label="${L.name}">
-  ${scribbles(ctx, [{ at: 'r', yb: '-6%', s: 'm', bleed: 0.25, prefer: theme.objects }])}
+<section class="quote quote--${key}" aria-label="${L.name}">
   <blockquote class="quote__text"><p>${rich(p.quote, locale)}</p></blockquote>
 </section>
 
-<section class="intro has-scribbles" aria-labelledby="intro-h">
-  ${scribbles(ctx, [{ at: 'free', x: '84%', y: '86%', s: 's', wide: true, prefer: theme.objects }])}
-  <h2 class="intro__heading t-h3" id="intro-h">${p.intro.heading}</h2>
-  <div class="intro__body">${p.intro.body.map((para, i) => html`<p class="${i === 0 ? 'lead' : ''}">${rich(para, locale)}</p>`)}</div>
+<section class="section intro" aria-labelledby="intro-h">
+  <div class="intro__text">
+    <h2 class="section__title" id="intro-h">${p.intro.heading}</h2>
+    <div class="intro__body">${p.intro.body.map((para, i) => html`<p class="${i === 0 ? 'lead' : ''}">${rich(para, locale)}</p>`)}</div>
+  </div>
+  ${picture(cfg.past, locale, { sizes: '(min-width: 1024px) 45vw, 100vw', cls: 'intro__photo' })}
 </section>
 
-<section class="loc-menu${key === 'marche' ? ' loc-menu--board' : ''} has-scribbles" aria-labelledby="locmenu-h">
-  ${scribbles(ctx, [
-    { at: 'free', x: '20%', y: '40%', s: 'm', kind: 'claim', wide: true, prefer: theme.claims },
-    { at: 'free', x: '21%', y: '72%', s: 'm', wide: true, prefer: theme.objects },
-  ])}
-  <div class="loc-menu__head">
-    <h2 class="t-h4" id="locmenu-h">${p.menu.heading}</h2>
-    ${arrowLink(`${url('carte', locale)}?ort=${key}`, t.ui.toMenu, { cls: 'link-arrow' })}
+<section class="loc-menu" aria-labelledby="locmenu-h">
+  <div class="loc-menu__inner theme-${L.color}">
+    <div class="loc-menu__head">
+      <h2 class="section__title" id="locmenu-h">${p.menu.heading}</h2>
+      ${button(`${url('carte', locale)}?ort=${key}`, t.ui.toMenu, { cls: 'btn btn--light' })}
+    </div>
+    ${menuExcerpt(locale, { location: key, limit: key === 'marche' ? 10 : 9 })}
   </div>
-  ${menuExcerpt(locale, { location: key, limit: key === 'marche' ? 10 : 9 })}
 </section>
 
 ${marche}
 
-<section class="mosaic" aria-label="${L.name}">
-  <ul class="mosaic__grid mosaic__grid--${cfg.gallery.length}" role="list">${cfg.gallery.map(
-    (name, i) => html`<li class="mosaic__item mosaic__item--${i + 1}">${picture(name, locale, { sizes: '(min-width: 1024px) 33vw, 50vw' })}</li>`
+<section class="photo-row" aria-label="${L.name}">
+  <ul class="photo-row__track" role="list">${cfg.gallery.map(
+    (name) => html`<li class="photo-row__item">${picture(name, locale, { sizes: '(min-width: 1024px) 30vw, 78vw' })}</li>`
   )}</ul>
 </section>
 
 ${p.quarter
-  ? html`<section class="quarter has-scribbles" aria-labelledby="quarter-h">
-      ${scribbles(ctx, [{ at: 'r', y: '8%', s: 'm', bleed: 0.3, wide: true, prefer: theme.objects }])}
-      ${icon(cfg.quarterIcon, { cls: `icon quarter__emblem quarter__emblem--${cfg.quarterIcon}` })}
+  ? html`<section class="section quarter${cfg.quarter ? ' quarter--photo' : ''}" aria-labelledby="quarter-h">
       <div class="quarter__text">
-        <h2 class="t-h3" id="quarter-h">${p.quarter.heading}</h2>
+        <h2 class="section__title" id="quarter-h">${p.quarter.heading}</h2>
         <p class="lead">${rich(p.quarter.body, locale)}</p>
       </div>
+      ${cfg.quarter ? picture(cfg.quarter, locale, { sizes: '(min-width: 1024px) 45vw, 100vw', cls: 'quarter__photo' }) : ''}
     </section>`
   : ''}
 
-<section class="directions has-scribbles" aria-labelledby="dir-h">
-  ${scribbles(ctx, [{ at: 'b', x: '44%', s: 'm', bleed: 0.3, wide: true, prefer: theme.objects }])}
-  <div class="directions__text">
-    <h2 class="t-h4" id="dir-h">${p.directions ? p.directions.heading : t.ui.map.title}</h2>
-    <p class="directions__address">${placeText(key, locale)}</p>
-    ${p.directions ? html`<p>${rich(p.directions.body, locale)}</p>` : ''}
-  </div>
-  <div class="directions__links">
-    <p class="directions__label">${t.ui.map.title}</p>
-    ${mapLinks(L.mapQuery, locale)}
+<section class="directions" aria-labelledby="dir-h">
+  <div class="directions__inner">
+    <div class="directions__text">
+      <h2 class="section__title section__title--small" id="dir-h">${p.directions ? p.directions.heading : t.ui.map.title}</h2>
+      <p class="directions__address">${placeText(key, locale)}</p>
+      ${p.directions ? html`<p>${rich(p.directions.body, locale)}</p>` : ''}
+    </div>
+    <div class="directions__links">
+      <p class="directions__label">${t.ui.map.title}</p>
+      ${mapLinks(L.mapQuery, locale)}
+    </div>
   </div>
 </section>
 
 <nav class="others" aria-label="${{ de: 'Weitere Orte', fr: 'Autres adresses', en: 'Other places' }[locale]}">
-  ${others.map((k) => {
+  <ul class="others__list" role="list">${others.map((k) => {
     const O = LOCATIONS[k];
-    return html`<a class="other theme-${O.color}" href="${url(k, locale)}">
-      <span class="other__name">${O.name}</span>
-      <span class="other__when">${t.pages[k].when}</span>
-      ${icon('arrow', { cls: 'icon other__arrow' })}
-    </a>`;
-  })}
+    return html`<li><a class="hero-place hero-place--${k}" href="${url(k, locale)}">
+      <span class="hero-place__name">${O.name}</span>
+      <span class="hero-place__when">${t.pages[k].when}</span>
+      <span class="hero-place__where">${O.street ? O.district : t.pages[k].whereShort ?? t.pages[k].whereText}</span>
+      ${icon('arrow', { cls: 'icon hero-place__arrow' })}
+    </a></li>`;
+  })}</ul>
 </nav>
 `;
 }

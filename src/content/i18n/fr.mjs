@@ -50,6 +50,8 @@ export default {
       description:
         'Huîtres, crémant et champagne en trois lieux à Mannheim : le Garage dans le Jungbusch, le Kiosque sur la Lindenhofplatz et le Marché au marché du Lindenhof.',
       h1: 'L’ANNÉE – Austern & Bulles à Mannheim',
+      // Mega-Headline im Vollbild-Hero (Vorgabe 05.11.2026), drei Zeilen
+      headline: ['Trois adresses.', 'Un week-end.', 'Passez nous voir !'],
       lead: 'Des huîtres, des bulles et une petite place au soleil. En trois lieux à Mannheim, chaque week-end.',
       ctaMenu: 'Voir la carte',
       ctaWhere: 'Où nous trouver',

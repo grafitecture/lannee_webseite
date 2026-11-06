@@ -56,10 +56,20 @@ const SOURCES = {
   'garage-eingang': { file: 'garage-eingang.jpg' },
   'schweppes': { file: 'schweppes.jpg' },
   'baguettes': { file: 'baguettes.jpg' },
-  // Standbild der Filmsequenz im Hero (Higgsfield AI, Heimkino-Look), auch bei reduzierter Bewegung
-  'hero-film': { file: 'hero-film.jpg' },
   // Früheres Startbild: KI-Komposition (Higgsfield AI, Nano Banana 2.1) – derzeit nicht eingebunden
   'hero-austern-hof': { file: 'hero-austern-hof.jpg' },
+  // Historische Bilder (Umbau 05.11.2026): KI-Motive aus dem Higgsfield-Verlauf, mit scripts/historisch.py
+  // in Schwarzweiß oder in die Farben der 50er gebracht. Immer im Wechsel mit den echten Fotos.
+  'historisch-abend': { file: 'historisch-abend.jpg' }, // 50er: Champagner im Hof am Abend (Hero Startseite)
+  'historisch-anstossen': { file: 'historisch-anstossen.jpg' }, // SW: Anstoßen unter der Lichterkette (Garage)
+  'historisch-tafel': { file: 'historisch-tafel.jpg' }, // 50er: Austern und Coupes am Steintisch (Kiosque)
+  'historisch-coupes': { file: 'historisch-coupes.jpg' }, // SW: drei Coupes über Austern (Karte)
+  'historisch-austernbauer': { file: 'historisch-austernbauer.jpg' }, // SW: Austernbauern bei Ebbe (Marché, Atlas)
+  'historisch-junge': { file: 'historisch-junge.jpg' }, // SW: Junge mit Auster im Ruderboot
+  'historisch-boot': { file: 'historisch-boot.jpg' }, // 50er: Fischerboot im Hafen (Jungbusch)
+  'historisch-haende': { file: 'historisch-haende.jpg' }, // SW: Hände öffnen eine Auster (Marché)
+  // Echtes Foto-Motiv (Higgsfield AI, ohne Bearbeitung): Austernplatte und Coupes auf blauem Tisch
+  'austernplatte': { file: 'austernplatte.jpg' },
   // Logo seit 03.11.2026: weiße Holzbuchstaben, freigestellt (PNG mit Transparenz). Wird auf die
   // Buchstaben zugeschnitten, die fast deckenden Flächen werden voll deckend (siehe prepareLogo).
   'logo-lannee': { file: 'logo-lannee-holz.png', logo: true, widths: [240, 360, 480, 768, 1080], quality: { avif: 64, webp: 86 } },

@@ -1,13 +1,11 @@
 /**
- * Austernatlas: eigene Seite (Menüpunkt), Arten und Herkünfte als
- * Strichzeichnungen mit kurzer Erklärung. Texte: src/content/oysters.mjs,
- * Zeichnungen: src/lib/oyster-art.mjs (eigenes Sprite, nur auf dieser Seite).
+ * Austernatlas (Umbau 05.11.2026): Arten und Herkünfte als runde Karten mit kurzer Erklärung,
+ * ohne Zeichnungen. Oben ein historisches Bild (Austernbauern bei Ebbe). Texte: src/content/oysters.mjs.
  */
 import { html, rich } from '../lib/html.mjs';
 import { url, pick } from '../lib/i18n.mjs';
-import { oysterDrawing, arrowLink } from '../lib/components.mjs';
+import { button, picture } from '../lib/components.mjs';
 import { ATLAS, OYSTERS } from '../content/oysters.mjs';
-import { scribbles } from '../lib/scribbles.mjs';
 
 const GROUPS = ['species', 'france', 'europe', 'world'];
 
@@ -16,9 +14,7 @@ function card(o, locale) {
   const nameLang = o.lang && o.lang !== locale ? o.lang : null;
   const where = o.where ? (typeof o.where === 'string' ? o.where : pick(o.where, locale)) : null;
   return html`<div class="oyster oyster--${o.group}">
-      <dt class="oyster__head"><span class="oyster__art">${oysterDrawing(o.art)}</span><span class="oyster__name"${
-    nameLang ? html` lang="${nameLang}"` : ''
-  }>${name}</span></dt>
+      <dt class="oyster__name"${nameLang ? html` lang="${nameLang}"` : ''}>${name}</dt>
       ${o.sci || where ? html`<dd class="oyster__meta">${o.sci ? html`<i lang="la">${o.sci}</i>` : ''}${where ? html`<span>${where}</span>` : ''}</dd>` : ''}
       <dd class="oyster__text">${rich(pick(o.text, locale), locale)}</dd>
     </div>`;
@@ -36,15 +32,15 @@ export function render(ctx) {
   });
 
   return html`
-<section class="page-hero page-hero--atlas has-scribbles" aria-labelledby="atlas-title">
-  ${scribbles(ctx, [
-    { at: 'r', y: '6%', s: 'l', bleed: 0.2, prefer: ['auster', 'perle', 'jakobsmuschel'] },
-    { at: 'free', x: '71%', y: '72%', s: 's', kind: 'claim', wide: true, prefer: ['monate-mit-r', 'life-is-short', 'les-mois-en-r'] },
-  ])}
-  <h1 class="page-hero__title page-hero__title--atlas" id="atlas-title">${pick(ATLAS.title, locale)}</h1>
-  <p class="page-hero__lead lead">${rich(pick(ATLAS.lead, locale), locale)}</p>
-  <p class="atlas__cta">${arrowLink(url('carte', locale), pick(ATLAS.cta, locale), { cls: 'link-arrow' })}</p>
+<section class="page-hero" aria-labelledby="atlas-title">
+  <h1 class="page-hero__title" id="atlas-title">${pick(ATLAS.title, locale)}</h1>
+  <p class="lead">${rich(pick(ATLAS.lead, locale), locale)}</p>
+  ${button(url('carte', locale), pick(ATLAS.cta, locale), { cls: 'btn btn--solid' })}
 </section>
+
+<div class="banner">
+  ${picture('historisch-austernbauer', locale, { sizes: '100vw', cls: 'banner__img' })}
+</div>
 
 <div class="atlas">
   ${sections}

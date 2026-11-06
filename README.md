@@ -24,8 +24,7 @@ Voraussetzung: Node.js ab Version 20. Der Build hat **keine npm-Abhängigkeiten*
 | Zusätzliche Marché-Termine | `src/content/site.mjs` → `MARCHE_DATES` |
 | Speisekarte (alle Sprachen) | `src/content/menu.mjs` |
 | Texte der Seiten | `src/content/i18n/de.mjs`, `fr.mjs`, `en.mjs` |
-| Jahreskalender | `src/content/year.mjs` |
-| Austernatlas (eigene Seite) | Texte: `src/content/oysters.mjs`, Zeichnungen: `src/lib/oyster-art.mjs` |
+| Austernatlas (eigene Seite) | Texte: `src/content/oysters.mjs` (runde Karten, ohne Zeichnungen) |
 | Impressum & Datenschutz | `src/content/legal.mjs` (Daten aus `site.mjs`) |
 | Grafitecture-Feld ganz unten in Impressum & Datenschutz | `kit/grafitecture-credit/` (wiederverwendbar für alle Grafitecture-Websites, siehe README dort) |
 | Bildtexte (alt) | `src/content/media.mjs` |
@@ -33,7 +32,7 @@ Voraussetzung: Node.js ab Version 20. Der Build hat **keine npm-Abhängigkeiten*
 
 Mini-Markup in den Texten: `_kursiv_`, `**fett**`, `{fr|Texte français}` (Sprachauszeichnung), `[Link](/pfad/)`.
 
-Der **Wochenplan** auf der Startseite liest `SCHEDULE`: Tage als Zeilen, Öffnungszeiten als Balken auf einer Stundenskala (mobil als Liste). Live (Zeitzone Europe/Berlin) markiert er, was gerade geöffnet ist bzw. als Nächstes kommt, und zeigt die aktuelle Uhrzeit als Linie. Bei „ab … Uhr“ ist das Ende nur eine Annahme (`openEnd: true`).
+Der **Wochenplan** auf der Startseite liest `SCHEDULE`: je Öffnungstag eine runde Karte, darin die Orte als Farbflächen mit Zeit und Ort. Live (Zeitzone Europe/Berlin) markiert er, was gerade geöffnet ist bzw. als Nächstes kommt; der Hinweis darüber nennt den Ort. Bei „ab … Uhr“ ist das Ende nur eine Annahme (`openEnd: true`).
 
 **Pause eintragen** (Urlaub, private Feier): einen Eintrag in `CLOSURES` ergänzen, z. B.
 
@@ -42,7 +41,7 @@ Der **Wochenplan** auf der Startseite liest `SCHEDULE`: Tage als Zeilen, Öffnun
   note: { de: 'Weihnachtspause', fr: 'Pause de Noël', en: 'Christmas break' } }
 ```
 
-Dann erscheint auf der Startseite und den betroffenen Ortsseiten ein Hinweis, der Wochenplan schraffiert die betroffenen Termine („Diesmal Pause“) und die Live-Anzeige springt zum nächsten geöffneten Ort. Vergangene Pausen und Marché-Termine blenden sich von selbst aus.
+Dann erscheint auf der Startseite und den betroffenen Ortsseiten ein Hinweis, der Wochenplan markiert die betroffenen Termine („Diesmal Pause“) und die Live-Anzeige springt zum nächsten geöffneten Ort. Vergangene Pausen und Marché-Termine blenden sich von selbst aus.
 
 ## Bilder
 
@@ -58,7 +57,9 @@ Nur einzelne Bilder neu erzeugen: `npm run images -- name1 name2` (Namen wie in 
 
 Favicons und Open-Graph-Bilder: `npm install --no-save sharp playwright && npm run brand-assets`.
 
-Bleistift-Scribbles (48 Zeichnungen und Sprüche im Hintergrund): Die vier Bögen liegen in `assets-src/scribbles/`. Ausschneiden und freistellen mit `npm run scribbles` (= `python3 scripts/scribbles.py`, braucht numpy, Pillow und opencv-python). Ergebnis: `public/scribbles/*.webp` und `src/content/scribbles.json`. Plätze auf den Seiten: `scribbles(ctx, [...])` in den Vorlagen (`src/lib/scribbles.mjs`).
+**Historische Bilder** (Schwarzweiß oder Farben der 50er, seit 05.11.2026): Vorlage (z. B. ein KI-Bild aus dem Higgsfield-Verlauf) mit `python3 scripts/historisch.py sw|50er vorlage.jpg assets-src/historisch-name.jpg [--breite 2400] [--ausschnitt x,y,b,h]` in den Look bringen (braucht numpy und Pillow), dann wie jedes Bild in `SOURCES` und `media.mjs` eintragen und `npm run images -- historisch-name`. Auf den Seiten stehen sie immer im Wechsel mit den echten Fotos.
+
+Higgsfield-Dateien ins Repo holen (die Arbeitsumgebung erreicht die Higgsfield-Adressen nicht): auf dem Zweig `tools/fetch-assets` Zeilen „Name URL“ eintragen und pushen – `assets-src/fetch/thumbs.txt` (Vorschaubilder 640 px), `assets-src/fetch/full.txt` (Vollauflösung als JPEG), `assets-src/fetch/videos.txt` (je vier Standbilder aus Videos) oder `assets-src/scribbles/urls.txt` (Rohdateien). GitHub-Workflows laden die Dateien und committen sie auf diesen Zweig.
 
 ## Deployment: GitHub → Vercel
 
@@ -85,7 +86,7 @@ Suchmaschinen: Nur `1898.ma` wird indexiert. Alle anderen Adressen (Vorschau-URL
 - Statischer Generator in `src/build.mjs` (Node, ohne Pakete), Templates in `src/pages/` und `src/lib/`
 - CSS in `src/styles/` (Tokens werden aus `tokens.mjs` erzeugt), JS in `src/scripts/main.js`
 - Schriften selbst gehostet: Fraunces (SIL OFL) und Instrument Sans (SIL OFL)
-- Icons: generiert mit Higgsfield AI (Recraft V4.1), vektorisiert, als SVG-Sprite
+- Nur funktionale Icons (Pfeile, Instagram) als kleines SVG-Sprite; keine Zeichnungen, kein Film
 - Sicherheits-Header, Caching und Weiterleitungen in `vercel.json`
 - Keine Cookies, kein localStorage, keine externen Requests → kein Cookie-Banner nötig
 

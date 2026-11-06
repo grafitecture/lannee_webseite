@@ -50,6 +50,8 @@ export default {
       description:
         'Oysters, crémant and champagne in three places in Mannheim: the Garage in Jungbusch, the Kiosque on Lindenhofplatz and the Marché at the Lindenhof farmers’ market.',
       h1: 'L’ANNÉE – Austern & Bulles in Mannheim',
+      // Mega-Headline im Vollbild-Hero (Vorgabe 05.11.2026), drei Zeilen
+      headline: ['Three places.', 'One weekend.', 'Come by!'],
       lead: 'Oysters, bubbles and a spot in the sun. In three places in Mannheim, every weekend.',
       ctaMenu: 'See the menu',
       ctaWhere: 'Where to find us',

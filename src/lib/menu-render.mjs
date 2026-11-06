@@ -75,11 +75,10 @@ export function dish(section, item, locale, { compact = false } = {}) {
   </li>`;
 }
 
-/** Komplette Karte mit Kapiteln und Sektionen. `decorate(chapter)` liefert optional eine Ebene (Scribbles). */
-export function fullMenu(locale, { decorate } = {}) {
+/** Komplette Karte mit Kapiteln und Sektionen. */
+export function fullMenu(locale) {
   return html`${MENU.map(
-    (chapter) => html`<section class="chapter${decorate ? ' has-scribbles' : ''}" id="${chapter.id}" aria-labelledby="${chapter.id}-h">
-      ${decorate ? decorate(chapter) : ''}
+    (chapter) => html`<section class="chapter" id="${chapter.id}" aria-labelledby="${chapter.id}-h">
       <h2 class="chapter__title" id="${chapter.id}-h">${pick(chapter.title, locale)}</h2>
       <div class="chapter__sections">${chapter.sections.map(
         (section) => html`<section class="menu-section" id="${section.id}" aria-labelledby="${section.id}-h">

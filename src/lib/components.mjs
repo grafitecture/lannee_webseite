@@ -8,7 +8,6 @@ import { html, raw, esc, rich, typo, setExternalLinkRenderer } from './html.mjs'
 import { DICT, url, pick, fill, formatTime, formatSpan } from './i18n.mjs';
 import { SITE, LOCATIONS, LOCATION_ORDER, SCHEDULE, CLOSURES } from '../content/site.mjs';
 import { MEDIA } from '../content/media.mjs';
-import { oysterArt } from './oyster-art.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const read = (p) => fs.readFileSync(path.join(ROOT, p), 'utf8');
@@ -46,21 +45,6 @@ export function logo({ cls = 'logo', label = 'L’ANNÉE', decorative = false, s
 }
 
 /* ------------------------------------------------------------------ */
-/* Lockups (Uhren/Signets gibt es seit 03.11.2026 nicht mehr)          */
-/* ------------------------------------------------------------------ */
-
-/** Subbrand-Lockup: L'ANNÉE · NAME · Austern & Bulles */
-export function lockup(key, { cls = '', tagline = true, as = 'div', locale = 'de', sizes = '18rem' } = {}) {
-  const L = LOCATIONS[key];
-  const inner = html`${logo({ cls: 'lockup__logo', decorative: true, sizes })}<span class="lockup__words"><span class="lockup__name"><span class="visually-hidden">L’ANNÉE </span>${
-    L.name
-  }</span>${tagline ? html`<span class="lockup__tagline">${SITE.taglines[locale] ?? SITE.tagline}</span>` : ''}</span>`;
-  return as === 'span'
-    ? html`<span class="lockup lockup--${key} ${cls}">${inner}</span>`
-    : html`<div class="lockup lockup--${key} ${cls}">${inner}</div>`;
-}
-
-/* ------------------------------------------------------------------ */
 /* Icons                                                               */
 /* ------------------------------------------------------------------ */
 
@@ -73,44 +57,16 @@ export function icon(name, { cls = 'icon', label } = {}) {
     : html`<svg class="${cls}" aria-hidden="true" focusable="false"><use href="${SPRITE_URL}#${name}"/></svg>`;
 }
 
-/*
- * Austern-Strichzeichnungen (Austernatlas): eigenes Sprite, das nur die
- * Atlas-Seite lädt (die Zeichnungen sind zusammen gut 260 KB).
+/**
+ * Sprite mit den wenigen funktionalen Icons (Pfeile, Instagram).
+ * Zeichnungen (Austern, Orte, Embleme) gibt es seit dem Umbau am 05.11.2026 nicht mehr.
  */
-let ATLAS_SPRITE_URL = '/assets/atlas.svg';
-export const setAtlasSpriteUrl = (u) => (ATLAS_SPRITE_URL = u);
-
-export function buildAtlasSprite() {
-  return `<svg xmlns="http://www.w3.org/2000/svg">${oysterArt().map((a) => a.symbol).join('')}</svg>`;
-}
-
-/** Austern-Strichzeichnung aus dem Atlas-Sprite, mit passendem Seitenverhältnis. */
-export function oysterDrawing(key, { cls = 'oyster__svg' } = {}) {
-  const art = oysterArt().find((a) => a.key === key);
-  if (!art) throw new Error(`Austern-Zeichnung fehlt: ${key}`);
-  return html`<svg class="${cls}" viewBox="0 0 ${art.width} ${art.height}" aria-hidden="true" focusable="false"><use href="${ATLAS_SPRITE_URL}#oy-${key}"/></svg>`;
-}
-
-/** Baut das Sprite aus den Higgsfield-Icons (+ Jungbusch-Emblem). */
 export function buildSprite() {
-  const lines = read('src/icons/higgsfield-icons.txt').trim().split('\n');
-  const symbols = lines.map((line) => {
-    const [name, w, h, d] = line.split('|');
-    const W = +w;
-    const H = +h;
-    const S = Math.max(W, H);
-    const vb = `${((W - S) / 2).toFixed(1)} ${((H - S) / 2).toFixed(1)} ${S} ${S}`;
-    return `<symbol id="${name}" viewBox="${vb}"><path fill="currentColor" fill-rule="evenodd" d="${d}"/></symbol>`;
-  });
-  const jb = read('src/icons/jungbusch.svg');
-  const jbVb = jb.match(/viewBox="([^"]+)"/)[1];
-  const jbD = jb.match(/ d="([^"]+)"/)[1];
-  symbols.push(`<symbol id="jungbusch" viewBox="${jbVb}"><path fill="currentColor" fill-rule="evenodd" d="${jbD}"/></symbol>`);
-  symbols.push(
+  const symbols = [
     `<symbol id="arrow" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M4 12h15M13 6l6 6-6 6"/></symbol>`,
     `<symbol id="arrow-out" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M7 17 17 7M9 7h8v8"/></symbol>`,
-    `<symbol id="instagram" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></g></symbol>`
-  );
+    `<symbol id="instagram" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6" fill="currentColor"/></g></symbol>`,
+  ];
   return `<svg xmlns="http://www.w3.org/2000/svg">${symbols.join('')}</svg>`;
 }
 
@@ -137,30 +93,10 @@ export function picture(name, locale, { sizes = '100vw', cls = '', eager = false
 }
 
 /* ------------------------------------------------------------------ */
-/* Kreis-Geometrie                                                     */
-/* ------------------------------------------------------------------ */
-
-const rad = (deg) => (deg * Math.PI) / 180;
-const pt = (r, deg) => [r * Math.sin(rad(deg)), -r * Math.cos(rad(deg))];
-const f = (n) => Number(n.toFixed(2));
-
-/** Bogen im Uhrzeigersinn von a1 nach a2 (Grad, 0 = oben). */
-function arc(r, a1, a2) {
-  let sweep = (a2 - a1 + 360) % 360;
-  if (sweep === 0) sweep = 360;
-  const [x1, y1] = pt(r, a1);
-  const [x2, y2] = pt(r, a1 + Math.min(sweep, 359.99));
-  return `M${f(x1)} ${f(y1)}A${r} ${r} 0 ${sweep > 180 ? 1 : 0} 1 ${f(x2)} ${f(y2)}`;
-}
-
-const hhmm = (s) => {
-  const [h, m] = s.split(':').map(Number);
-  return h + m / 60;
-};
-
-/* ------------------------------------------------------------------ */
-/* Wochenplan: Tage als Zeilen, Öffnungszeiten als Balken auf einer     */
-/* Stundenskala. Schmal (Handy) wird daraus eine Liste mit Mini-Balken. */
+/* Wochenplan (Umbau 05.11.2026): je Öffnungstag eine große, runde      */
+/* Karte, darin die Orte als Farbflächen mit Zeit und Ort.              */
+/* Die Live-Anzeige (main.js, initPlan) markiert „Jetzt geöffnet“ und   */
+/* „Als Nächstes“ und schreibt heute/morgen/Datum an die Tage.          */
 /* ------------------------------------------------------------------ */
 
 const cap = (s) => s.charAt(0).toLocaleUpperCase() + s.slice(1);
@@ -168,29 +104,14 @@ const cap = (s) => s.charAt(0).toLocaleUpperCase() + s.slice(1);
 export function weekPlan(locale) {
   const T = DICT[locale];
   const t = T.ui;
-
-  // Stundenskala: auf gerade Stunden gerundet, höchstens bis Mitternacht
-  const starts = SCHEDULE.map((s) => hhmm(s.start));
-  const ends = SCHEDULE.map((s) => hhmm(s.end));
-  const axisFrom = Math.floor(Math.min(...starts) / 2) * 2;
-  const axisTo = Math.min(24, Math.ceil(Math.max(...ends) / 2) * 2);
-  const span = axisTo - axisFrom;
-  const ticks = [];
-  for (let h = axisFrom; h <= axisTo; h += 2) ticks.push(h);
-  const tickLabel = (h) => (locale === 'en' ? formatTime(`${h % 24}:00`, 'en') : locale === 'fr' ? `${h} h` : String(h));
-
   const place = (L) => (L.street ? `${L.street}, ${L.district}` : T.pages.marche.whereText);
 
   const slot = (s, i) => {
     const L = LOCATIONS[s.location];
     const time = s.openEnd ? fill(t.time.from, { t: formatTime(s.start, locale) }) : formatSpan(s.start, s.end, locale);
-    return html`<li class="plan__item"><a class="plan__slot plan__slot--${L.key}${s.openEnd ? ' plan__slot--open-end' : ''}" href="${url(
-      L.key,
-      locale
-    )}" data-slot="${i}" style="--from:${hhmm(s.start)};--to:${hhmm(s.end)}"><span class="plan__name">${L.name}</span><span class="plan__time">${typo(
-      time,
-      locale
-    )}</span><span class="plan__place">${place(L)}</span><span class="plan__pause"><span class="closure__icon" aria-hidden="true"></span>${
+    return html`<li class="plan__item"><a class="plan__slot plan__slot--${L.key}" href="${url(L.key, locale)}" data-slot="${i}"><span class="plan__name">${
+      L.name
+    }</span><span class="plan__time">${typo(time, locale)}</span><span class="plan__place">${place(L)}</span><span class="plan__pause">${
       t.live.paused
     }</span></a></li>`;
   };
@@ -202,13 +123,10 @@ export function weekPlan(locale) {
     if (slots.length) rows.push({ day, slots });
   }
 
-  const head = (r) => html`<div class="plan__head"><h3 class="plan__dayname">${cap(t.days[r.day - 1])}</h3><p class="plan__date"></p></div>`;
-
   const days = rows.map(
-    (r) =>
-      html`<li class="plan__day" data-days="${r.day}">${head(r)}<div class="plan__track"><ul class="plan__slots" role="list">${r.slots.map(([s, i]) =>
-        slot(s, i)
-      )}</ul><span class="plan__now" aria-hidden="true" hidden></span></div></li>`
+    (r) => html`<li class="plan__day" data-days="${r.day}"><div class="plan__head"><h3 class="plan__dayname">${cap(
+      t.days[r.day - 1]
+    )}</h3><p class="plan__date"></p></div><ul class="plan__slots" role="list">${r.slots.map(([s, i]) => slot(s, i))}</ul></li>`
   );
 
   // Daten für die Live-Anzeige (main.js)
@@ -220,14 +138,9 @@ export function weekPlan(locale) {
     locations: Object.fromEntries(Object.values(LOCATIONS).map((L) => [L.key, { name: L.name, place: place(L), url: url(L.key, locale) }])),
   };
 
-  return html`<div class="plan" data-plan data-locale="${locale}" data-axis="${axisFrom},${axisTo}" data-schedule="${JSON.stringify(
-    data
-  )}" data-closures="${JSON.stringify(CLOSURES)}" data-strings="${JSON.stringify(strings)}" style="--axis-from:${axisFrom};--axis-span:${span};--ticks:${
-    span / 2
-  }">
-  <div class="plan__scale" aria-hidden="true"><span class="plan__unit">${t.live.unit}</span><span class="plan__ticks">${ticks.map(
-    (h) => html`<span style="--h:${h}">${tickLabel(h)}</span>`
-  )}</span></div>
+  return html`<div class="plan" data-plan data-locale="${locale}" data-schedule="${JSON.stringify(data)}" data-closures="${JSON.stringify(
+    CLOSURES
+  )}" data-strings="${JSON.stringify(strings)}">
   <ol class="plan__days" role="list">${days}</ol>
 </div>`;
 }
@@ -235,6 +148,17 @@ export function weekPlan(locale) {
 /* ------------------------------------------------------------------ */
 /* Kleinteile                                                          */
 /* ------------------------------------------------------------------ */
+
+/**
+ * Button in Pillenform (Umbau 05.11.2026). Varianten über die Klasse:
+ * btn--solid (Bleu nuit), btn--light (weiß auf Blau), btn--line, btn--garage/--kiosque/--marche.
+ */
+export function button(href, label, { cls = 'btn btn--solid', external = false, locale = 'de' } = {}) {
+  const ext = external ? raw(` target="_blank" rel="noopener"`) : '';
+  return html`<a class="${cls}" href="${href}"${ext}><span>${label}</span>${
+    external ? html`${icon('arrow-out', { cls: 'icon icon--arrow' })}<span class="visually-hidden"> ${DICT[locale].ui.external}</span>` : ''
+  }</a>`;
+}
 
 /** Link mit Pfeil – der Pfeil ist Grafik, nicht Text. */
 export function arrowLink(href, label, { cls = 'link-arrow', external = false, locale = 'de' } = {}) {
@@ -275,7 +199,7 @@ export function closureNotes(locale, keys) {
         names: names.format(locs.map((k) => LOCATIONS[k].name)),
         when,
       }) + (note ? ` (${note})` : '');
-    return html`<p class="closure" data-expires="${c.to}"><span class="closure__icon" aria-hidden="true"></span><span>${rich(
+    return html`<p class="closure" data-expires="${c.to}"><span>${rich(
       text,
       locale
     )}</span></p>`;

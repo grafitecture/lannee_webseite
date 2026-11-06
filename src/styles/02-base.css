@@ -6,13 +6,27 @@
   --font-display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
   --font-text: 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --phi: 1.618;
-  --line: color-mix(in srgb, var(--embrun) 50%, transparent);
+  --line: color-mix(in srgb, var(--embrun) 55%, transparent);
   --line-strong: var(--embrun);
-  --header-h: 4.5rem;
+  /* Helle Fläche für Karten auf Weiß: ein Hauch Écume (Umbau 05.11.2026) */
+  --tint: color-mix(in srgb, var(--ecume) 42%, var(--blanc));
+  /* Runde Ecken, nach Größe gestaffelt: je größer die Fläche, desto runder */
+  --r-xl: clamp(1.5rem, 0.9rem + 2vw, 3rem);
+  --r-l: clamp(1rem, 0.8rem + 0.7vw, 1.6rem);
+  --r-m: 0.875rem;
+  --r-pill: 999px;
+  /* Viel Luft zwischen den Abschnitten */
+  --section-y: clamp(4.5rem, 2.5rem + 7vw, 11rem);
+  --header-h: 4rem;
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.7, 0, 0.2, 1);
   --loc: var(--marche);
   color-scheme: light;
+}
+@media (min-width: 1024px) {
+  :root {
+    --header-h: 5rem;
+  }
 }
 
 *,
@@ -61,8 +75,9 @@ h5,
 h6 {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 360;
-  line-height: 1.05;
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
   text-wrap: balance;
   font-optical-sizing: auto;
 }
@@ -172,17 +187,17 @@ main:focus {
 }
 
 /* Typo-Klassen nach Goldenem Schnitt (Größe unabhängig von der Semantik) */
-.t-h1 { font-size: var(--fs-h1); line-height: 0.82; letter-spacing: -0.035em; font-weight: 330; }
-.t-h2 { font-size: var(--fs-h2); line-height: 0.86; letter-spacing: -0.03em; font-weight: 330; }
-.t-h3 { font-size: var(--fs-h3); line-height: 0.94; letter-spacing: -0.022em; font-weight: 340; }
-.t-h4 { font-size: var(--fs-h4); line-height: 1; letter-spacing: -0.015em; font-weight: 360; }
-.t-h5 { font-size: var(--fs-h5); line-height: 1.1; letter-spacing: -0.01em; font-weight: 380; }
-.t-h6 { font-size: var(--fs-h6); line-height: 1.25; font-weight: 420; }
+.t-h1 { font-size: var(--fs-h1); line-height: 0.86; letter-spacing: -0.04em; }
+.t-h2 { font-size: var(--fs-h2); line-height: 0.88; letter-spacing: -0.035em; }
+.t-h3 { font-size: var(--fs-h3); line-height: 0.94; letter-spacing: -0.03em; }
+.t-h4 { font-size: var(--fs-h4); line-height: 1; letter-spacing: -0.025em; }
+.t-h5 { font-size: var(--fs-h5); line-height: 1.1; letter-spacing: -0.015em; }
+.t-h6 { font-size: var(--fs-h6); line-height: 1.25; }
 
 .lead {
   font-size: var(--fs-h6);
   line-height: 1.45;
-  max-width: 38ch;
+  max-width: 40ch;
 }
 
 /* Themen: Farbflächen der Subbrands --------------------------------------- */

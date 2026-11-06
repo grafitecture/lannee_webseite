@@ -1,27 +1,20 @@
 import { html, rich } from '../lib/html.mjs';
 import { DICT, url } from '../lib/i18n.mjs';
-import { icon } from '../lib/components.mjs';
-import { scribbles } from '../lib/scribbles.mjs';
 
 export function render(ctx) {
   const { locale } = ctx;
   const t = DICT[locale];
   const p = t.pages.notFound;
   return html`
-<section class="page-hero page-hero--404 has-scribbles" aria-labelledby="nf-title">
-  ${scribbles(ctx, [
-    { at: 'r', y: '12%', s: 'l', bleed: 0.2, pick: 'fischgraete' },
-    { at: 'r', yb: '8%', s: 'm', kind: 'claim', bleed: 0.15, pick: 'aw-shucks', wide: true },
-  ])}
-  ${icon('oyster-open', { cls: 'icon nf__icon' })}
+<section class="page-hero page-hero--404" aria-labelledby="nf-title">
   <h1 class="page-hero__title" id="nf-title">${p.h1}</h1>
-  <p class="page-hero__lead lead">${rich(p.body, locale)}</p>
+  <p class="lead">${rich(p.body, locale)}</p>
   <ul class="nf__links" role="list">
-    <li><a href="${url('home', locale)}">${t.ui.home}</a></li>
-    <li><a href="${url('carte', locale)}">${t.ui.nav.carte}</a></li>
-    <li><a href="${url('garage', locale)}">${t.ui.nav.garage}</a></li>
-    <li><a href="${url('kiosque', locale)}">${t.ui.nav.kiosque}</a></li>
-    <li><a href="${url('marche', locale)}">${t.ui.nav.marche}</a></li>
+    <li><a class="btn btn--solid" href="${url('home', locale)}">${t.ui.home}</a></li>
+    <li><a class="btn btn--line" href="${url('carte', locale)}">${t.ui.nav.carte}</a></li>
+    <li><a class="btn btn--garage" href="${url('garage', locale)}">${t.ui.nav.garage}</a></li>
+    <li><a class="btn btn--kiosque" href="${url('kiosque', locale)}">${t.ui.nav.kiosque}</a></li>
+    <li><a class="btn btn--marche" href="${url('marche', locale)}">${t.ui.nav.marche}</a></li>
   </ul>
 </section>
 `;

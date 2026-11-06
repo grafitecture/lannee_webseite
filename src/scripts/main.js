@@ -5,7 +5,6 @@
  */
 
 const TZ = 'Europe/Berlin';
-const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* ------------------------------------------------------------------ */
 /* Zeit in Mannheim                                                    */
@@ -133,7 +132,6 @@ function initPlan() {
   const closures = JSON.parse(plan.dataset.closures || '[]');
   const strings = JSON.parse(plan.dataset.strings);
   const locale = plan.dataset.locale;
-  const [axisFrom, axisTo] = plan.dataset.axis.split(',').map(Number);
   const dateFmt = new Intl.DateTimeFormat(strings.intl, { day: 'numeric', month: 'short', timeZone: 'UTC' });
 
   const update = () => {
@@ -142,7 +140,7 @@ function initPlan() {
     const parts = statusParts(status, strings, locale);
     const paused = pausedSlots(schedule, now, closures);
 
-    // Balken: geöffnet, als Nächstes, diesmal Pause
+    // Orte im Plan: geöffnet, als Nächstes, diesmal Pause
     plan.querySelectorAll('[data-slot]').forEach((node) => {
       const i = Number(node.dataset.slot);
       const isOpen = status.state === 'open' && status.slot.i === i;
@@ -160,7 +158,7 @@ function initPlan() {
       } else if (badge) badge.remove();
     });
 
-    // Tage: heute / morgen / Datum, Jetzt-Linie
+    // Tage: heute / morgen / Datum
     plan.querySelectorAll('.plan__day').forEach((row) => {
       const days = row.dataset.days.split(',').map(Number);
       const isToday = days.includes(now.iso);
@@ -174,15 +172,9 @@ function initPlan() {
             ahead === 0 ? strings.today : ahead === 1 ? strings.tomorrow : dateFmt.format(new Date(`${addDays(now.ymd, ahead)}T00:00:00Z`));
         }
       }
-      const marker = row.querySelector('.plan__now');
-      if (marker) {
-        const show = isToday && now.hour >= axisFrom && now.hour <= axisTo;
-        marker.hidden = !show;
-        if (show) row.style.setProperty('--now', now.hour.toFixed(3));
-      }
     });
 
-    // Live-Kachel über „Ein Wochenende, drei Orte“: Jetzt geöffnet / Als Nächstes
+    // Live-Hinweis unter „Ein Wochenende, drei Orte“: Jetzt geöffnet / Als Nächstes
     if (live) {
       live.classList.add('is-live');
       live.classList.toggle('is-open', status.state === 'open');
@@ -194,31 +186,6 @@ function initPlan() {
     }
   };
 
-  update();
-  setInterval(update, 60_000);
-}
-
-/* ------------------------------------------------------------------ */
-/* Orte als Strichzeichnungen: Licht an, solange der Ort geöffnet hat  */
-/* ------------------------------------------------------------------ */
-
-function initVenueLights() {
-  const arts = [...document.querySelectorAll('[data-venue-light]')].map((node) => ({
-    node,
-    hours: JSON.parse(node.dataset.hours || '[]'),
-    closures: JSON.parse(node.dataset.closures || '[]'),
-  }));
-  if (!arts.length) return;
-  // Vorschau ohne Öffnungszeit: ?licht=an
-  const preview = new URLSearchParams(window.location.search).get('licht') === 'an';
-  const update = () => {
-    const now = berlinNow();
-    arts.forEach(({ node, hours, closures }) => {
-      const paused = closures.some((c) => now.ymd >= c.from && now.ymd <= c.to);
-      const open = hours.some((s) => s.day === now.iso && now.hour >= toHours(s.start) && now.hour < toHours(s.end));
-      node.classList.toggle('is-lit', preview || (open && !paused));
-    });
-  };
   update();
   setInterval(update, 60_000);
 }
@@ -331,227 +298,35 @@ function initExpiry() {
 }
 
 /* ------------------------------------------------------------------ */
-/* Startseite: großes Logo wird beim Scrollen zum kleinen Logo         */
+/* Kopfzeile: über dem Vollbild-Foto durchsichtig, nach dem Scrollen    */
+/* Bleu nuit (Umbau 05.11.2026). Ohne JavaScript scrollt sie einfach mit.*/
 /* ------------------------------------------------------------------ */
 
-function initLogoMorph() {
-  const mark = document.querySelector('[data-logo-morph]');
-  const target = document.querySelector('.site-header__logo');
-  const logo = mark?.querySelector('.hero__logo');
-  if (!mark || !target || !logo) return;
-  const body = document.body;
-  const dock = (docked) => body.classList.toggle('logo-docked', docked);
-
-  // Reduzierte Bewegung: kein Schrumpfen, das kleine Logo erscheint, sobald das große aus dem Blick ist
-  if (reduceMotion || !('IntersectionObserver' in window)) {
-    if (!('IntersectionObserver' in window)) return dock(true);
-    const headerHeight = document.querySelector('.site-header')?.offsetHeight ?? 0;
-    new IntersectionObserver(([entry]) => dock(!entry.isIntersecting), {
-      rootMargin: `-${headerHeight}px 0px 0px 0px`,
-    }).observe(mark);
-    return;
-  }
-
-  // Das wandernde Logo liegt direkt im <body>: So schiebt es sich beim Schrumpfen über alles,
-  // auch über die Kopfzeile, statt im Stapelkontext des Heros zu bleiben. Der Platzhalter
-  // (.hero__mark) behält seine Größe über aspect-ratio.
-  document.body.append(logo);
-
-  // Der Slogan wandert mit: eine Kopie im <body>, das Original bleibt unsichtbar als Platzhalter im Fluss.
-  const tagFrom = document.querySelector('[data-tagline-morph]');
-  const tagTo = document.querySelector('.site-header__tagline');
-  let tag = null;
-  let tagGeo = null;
-  if (tagFrom && tagTo) {
-    tag = tagFrom.cloneNode(true);
-    tag.removeAttribute('data-tagline-morph');
-    tag.classList.add('hero__tagline--morph');
-    tag.setAttribute('aria-hidden', 'true');
-    body.append(tag);
-  }
-
-  // Ausgangslage (Bildschirmkoordinaten bei Scrollposition 0). Steht die Bühne (Scroll-Inszenierung),
-  // misst man relativ zu ihr – dann stimmt es auch, wenn beim Messen schon gescrollt ist.
-  const stage = mark.closest('.hero__stage');
-  const startTop = (rect) => {
-    if (!stage || !stage.closest('.hero--scrolly')) return rect.top + window.scrollY;
-    return (parseFloat(getComputedStyle(stage).top) || 0) + rect.top - stage.getBoundingClientRect().top;
-  };
-
-  let geo;
-  const measure = () => {
-    const from = mark.getBoundingClientRect(); // Platzhalter im Fluss
-    const to = target.getBoundingClientRect(); // kleines Logo in der Kopfzeile (sticky)
-    const top = startTop(from);
-    // Sicherheitsnetz: Hätte das kleine Logo (noch) keine Breite, aus seiner Höhe rechnen –
-    // sonst schrumpft das wandernde Logo auf null und die Endposition bliebe leer.
-    const toWidth = to.width || (to.height * from.width) / from.height;
-    geo = {
-      dx: to.left - from.left,
-      dy: to.top - top,
-      scale: toWidth / from.width,
-      distance: Math.max(from.height, 96), // so viel Scrollweg braucht der Übergang
-    };
-    logo.style.setProperty('--morph-top', `${top}px`);
-    logo.style.setProperty('--morph-left', `${from.left}px`);
-    logo.style.setProperty('--morph-width', `${from.width}px`);
-
-    // Slogan: nur wenn er in der Kopfzeile sichtbar ist (zwischen lg und xl ist er dort ausgeblendet)
-    if (tag) {
-      const tf = tagFrom.getBoundingClientRect();
-      const tt = tagTo.getBoundingClientRect();
-      const ttop = startTop(tf);
-      tagGeo = tt.width && tf.width ? { dx: tt.left - tf.left, dy: tt.top - ttop, scale: tt.width / tf.width } : null;
-      body.classList.toggle('tagline-morph', !!tagGeo);
-      tag.style.setProperty('--morph-top', `${ttop}px`);
-      tag.style.setProperty('--morph-left', `${tf.left}px`);
-    }
-  };
+function initHeader() {
+  const header = document.querySelector('[data-header]');
+  if (!header) return;
+  document.documentElement.classList.add('js');
+  if (!header.classList.contains('site-header--overlay')) return;
+  let ticking = false;
   const update = () => {
-    const p = Math.min(Math.max(window.scrollY / geo.distance, 0), 1);
-    // Erst schrumpfen, dann hochgleiten: So ist das Logo schon klein, wenn es die Navigation erreicht,
-    // und kommt ohne Ruck in der Kopfzeile an.
-    const shrink = 1 - (1 - p) ** 2;
-    const move = p * p * (3 - 2 * p);
-    logo.style.transform = `translate(${geo.dx * move}px, ${geo.dy * move}px) scale(${1 + (geo.scale - 1) * shrink})`;
-    if (tagGeo) tag.style.transform = `translate(${tagGeo.dx * move}px, ${tagGeo.dy * move}px) scale(${1 + (tagGeo.scale - 1) * shrink})`;
-    dock(p >= 1);
+    ticking = false;
+    header.classList.toggle('is-solid', window.scrollY > 24);
   };
-
-  let frame = 0;
-  const schedule = () => {
-    if (!frame) frame = requestAnimationFrame(() => ((frame = 0), update()));
-  };
-  measure();
-  body.classList.add('logo-morph');
-  update();
-  window.addEventListener('scroll', schedule, { passive: true });
-  window.addEventListener('resize', () => (measure(), update()));
-  // Nachmessen, sobald Schriften geladen sind und der Slogan seine Einblendung (translateY) beendet hat
-  const remeasure = () => (measure(), update());
-  document.fonts?.ready.then(remeasure);
-  tagFrom?.addEventListener('animationend', remeasure, { once: true });
-}
-
-/* ------------------------------------------------------------------ */
-/* Startseite: Scroll-Inszenierung des Heros                           */
-/* ------------------------------------------------------------------ */
-
-/**
- * Die Bühne bleibt stehen (sticky). Auf dem ersten halben Bildschirm Scrollweg gehen Headline,
- * Schleier und Ortsbänder weg (--reveal 0 → 1), dann steht der Film eine Weile voll im Bild,
- * danach scrollt er nach oben weg. Passt die Bühne nicht in einen Bildschirm, bleibt alles normal.
- */
-function initHeroScroll() {
-  const hero = document.querySelector('[data-hero].hero--film');
-  const stage = hero?.querySelector('.hero__stage');
-  if (!hero || !stage) return;
-  const places = hero.querySelector('.hero__places');
-  const inner = hero.querySelector('.hero__inner');
-  let on = false;
-  let start = 0;
-  let range = 1;
-
-  const layout = () => {
-    hero.classList.add('hero--scrolly');
-    // offsetHeight ohne transform (Einblendungen verschieben die Bänder kurz nach unten)
-    on = inner.offsetHeight + (places?.offsetHeight ?? 0) <= stage.clientHeight + 1;
-    hero.classList.toggle('hero--scrolly', on);
-    if (!on) {
-      hero.style.removeProperty('--reveal');
-      hero.classList.remove('is-revealed');
-      return;
-    }
-    const pinTop = parseFloat(getComputedStyle(stage).top) || 0;
-    start = hero.getBoundingClientRect().top + window.scrollY - pinTop;
-    range = stage.clientHeight * 0.5;
-  };
-  const update = () => {
-    if (!on) return;
-    const r = Math.min(Math.max((window.scrollY - start) / range, 0), 1);
-    hero.style.setProperty('--reveal', r.toFixed(4));
-    hero.classList.toggle('is-revealed', r >= 1);
-  };
-
-  let frame = 0;
   window.addEventListener(
     'scroll',
     () => {
-      if (!frame) frame = requestAnimationFrame(() => ((frame = 0), update()));
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
     },
     { passive: true }
   );
-  window.addEventListener('resize', () => (layout(), update()));
-  document.fonts?.ready.then(() => (layout(), update()));
-  layout();
   update();
 }
 
-/* ------------------------------------------------------------------ */
-/* Startseite: Filmsequenz im Hero                                     */
-/* ------------------------------------------------------------------ */
-
-/**
- * Der Film lädt erst per Skript (preload="none" im HTML): Hochformat auf Handys, sonst Querformat.
- * Reduzierte Bewegung oder Datensparmodus: Es bleibt beim Standbild.
- * Außerhalb des Bildschirms pausiert der Film. Keinen Knopf zum Anhalten (Vorgabe 03.11.2026).
- */
-function initFilm() {
-  const film = document.querySelector('[data-film]');
-  const video = film?.querySelector('video');
-  if (!film || !video) return;
-  if (reduceMotion || navigator.connection?.saveData === true) return;
-  let loaded = false;
-
-  const load = () => {
-    if (loaded) return;
-    loaded = true;
-    const base = window.matchMedia('(orientation: portrait)').matches ? film.dataset.tall : film.dataset.wide;
-    for (const [ext, type] of [
-      ['webm', 'video/webm'],
-      ['mp4', 'video/mp4'],
-    ]) {
-      const source = document.createElement('source');
-      source.src = `${base}.${ext}${film.dataset.version ? `?v=${film.dataset.version}` : ''}`;
-      source.type = type;
-      video.append(source);
-    }
-    video.load();
-  };
-  const sync = (visible) => {
-    if (visible) {
-      load();
-      video.play().catch(() => {});
-    } else video.pause();
-  };
-
-  video.addEventListener('playing', () => film.classList.add('is-playing'));
-  if ('IntersectionObserver' in window) {
-    new IntersectionObserver(([entry]) => sync(entry.isIntersecting)).observe(film);
-  } else sync(true);
-}
-
-/* ------------------------------------------------------------------ */
-/* Bleistift-Scribbles: weich einblenden, sobald sie geladen sind      */
-/* ------------------------------------------------------------------ */
-
-function initScribbles() {
-  if (reduceMotion) return;
-  document.querySelectorAll('.scribble img').forEach((img) => {
-    if (img.complete) return;
-    img.classList.add('is-loading');
-    const done = () => img.classList.remove('is-loading');
-    img.addEventListener('load', done, { once: true });
-    img.addEventListener('error', done, { once: true });
-  });
-}
-
-initScribbles();
-initHeroScroll();
-initLogoMorph();
-initFilm();
+initHeader();
 initExpiry();
 initMenu();
 initPlan();
-initVenueLights();
 initMenuFilter();
