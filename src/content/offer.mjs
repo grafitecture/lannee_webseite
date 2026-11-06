@@ -30,9 +30,9 @@ export const OFFERS = [
     upgrade: { swap: 'cremant', with: { id: 'champagne', col: 1 }, price: 89 },
     title: { de: 'Le Plateau à deux', fr: 'Le Plateau à deux', en: 'Le Plateau à deux' },
     text: {
-      de: 'Zwölf Austern nur für euch zwei – sechs Fines de Claire, sechs Spéciales –, dazu knusprige Krabbenkroketten, geröstetes Brot mit gesalzener Butter und eine ganze Flasche Crémant de Loire. Rückt die Stühle zusammen, um den Rest kümmern wir uns.',
-      fr: 'Douze huîtres rien que pour vous deux – six Fines de Claire, six Spéciales –, des croquettes de crevettes grises bien croustillantes, du pain grillé au beurre demi-sel et une bouteille entière de Crémant de Loire. Rapprochez vos chaises, on s’occupe du reste.',
-      en: 'A dozen oysters just for the two of you – six Fines de Claire, six Spéciales – with crispy brown shrimp croquettes, toasted bread with salted butter and a whole bottle of Crémant de Loire. Pull your chairs together, we’ll take care of the rest.',
+      de: '**Zwölf Austern** nur für euch zwei – sechs Fines de Claire, sechs Spéciales –, dazu knusprige Krabbenkroketten, geröstetes Brot mit gesalzener Butter und **eine ganze Flasche Crémant de Loire**. Rückt die Stühle zusammen, um den Rest kümmern wir uns.',
+      fr: '**Douze huîtres** rien que pour vous deux – six Fines de Claire, six Spéciales –, des croquettes de crevettes grises bien croustillantes, du pain grillé au beurre demi-sel et **une bouteille entière de Crémant de Loire**. Rapprochez vos chaises, on s’occupe du reste.',
+      en: '**A dozen oysters** just for the two of you – six Fines de Claire, six Spéciales – with crispy brown shrimp croquettes, toasted bread with salted butter and **a whole bottle of Crémant de Loire**. Pull your chairs together, we’ll take care of the rest.',
     },
     upgradeLabel: {
       de: 'Mit Champagner statt Crémant',

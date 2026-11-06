@@ -59,9 +59,9 @@ function weekendOffer(locale) {
     <h2 class="offer__title" id="offer-title">${pick(o.title, locale)}</h2>
     <p class="offer__text">${rich(pick(o.text, locale), locale)}</p>
     <div class="offer__prices">
-      <p class="offer__price"><span class="offer__amount">${formatEuro(o.price, locale)}</span> <span class="offer__per">${pick(U.per, locale)}</span> ${was(regular.base)}</p>
+      <p class="offer__price"><span class="offer__amount">${formatEuro(o.price, locale)}</span> <span class="offer__side"><span class="offer__per">${pick(U.per, locale)}</span> ${was(regular.base)}</span></p>
       ${o.upgrade
-        ? html`<p class="offer__alt">${pick(o.upgradeLabel, locale)}: <strong>${formatEuro(o.upgrade.price, locale)}</strong> ${was(regular.upgrade)}</p>`
+        ? html`<p class="offer__alt"><span class="offer__alt-label">${pick(o.upgradeLabel, locale)}</span> <strong class="offer__alt-price">${formatEuro(o.upgrade.price, locale)}</strong> ${was(regular.upgrade)}</p>`
         : ''}
     </div>
     <ul class="offer__where" role="list">${o.where.map(
