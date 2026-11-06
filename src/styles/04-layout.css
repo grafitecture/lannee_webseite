@@ -49,9 +49,12 @@
   height: var(--header-h);
   padding: 0 var(--gutter);
 }
-/* Logo · Linie · Slogan – in Kopf- und Fußzeile genau gleich (06.11.2026, etwas größer als zuvor) */
+/* Logo · Linie · Slogan – in Kopf- und Fußzeile genau gleich (06.11.2026, etwas größer als zuvor).
+   Auf schmalen Handys (unter ~366 px CSS-Breite, auch bei vergrößerter Systemschrift/Seitenzoom)
+   wird das Lockup fließend kleiner, damit Logo, Slogan und Hamburger immer in eine Zeile passen
+   (Breite ≈ 7,4 × Höhe + 1,9 rem; Kopfzeile braucht zusätzlich Ränder, Abstand und Hamburger ≈ 8,25 rem). */
 .lockup {
-  --lockup-h: 1.95rem;
+  --lockup-h: clamp(1.2rem, calc((100vw - 8.25rem) / 7.6), 1.95rem);
   display: flex;
   align-items: center;
   gap: 0.9rem;
@@ -159,14 +162,15 @@
 }
 
 /* Menü-Schalter (bis xl, 1279 px): nur das Hamburger-Zeichen, ohne Text und Rahmen (Vorgabe 03.11.2026).
-   „Menü“ steht unsichtbar für Screenreader im Link. Tippfläche 44 × 44 px. */
+   „Menü“ steht unsichtbar für Screenreader im Link. Tippfläche 44 × 44 px.
+   Seit 06.11.2026 ohne negativen Rand: die Tippfläche schließt am Seitenrand (Gutter) ab, die Striche
+   stehen damit gut 10 px weiter innen (Vorgabe: Hamburger war zu nah am Rand). */
 .menu-toggle {
   display: inline-grid;
   place-items: center;
   flex: none;
   width: 2.75rem;
   height: 2.75rem;
-  margin-right: calc((1.5rem - 2.75rem) / 2);
   border-radius: var(--r-pill);
   color: var(--blanc);
   text-decoration: none;
@@ -212,6 +216,7 @@
   background: var(--blanc);
   color: var(--ink);
   overflow-y: auto;
+  overscroll-behavior: contain; /* im offenen Menü scrollt die Seite dahinter nicht mit */
 }
 .drawer:target,
 .menu-open .drawer {

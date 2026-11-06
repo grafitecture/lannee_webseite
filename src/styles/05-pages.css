@@ -528,6 +528,12 @@
   aspect-ratio: 4 / 3;
   border-radius: var(--r-xl);
 }
+/* Handy und Tablet: kein Austernfoto vor der Karte (Vorgabe 06.11.2026); erst ab 1024 px neben dem Text */
+@media (max-width: 1023px) {
+  .menu-panel__photo {
+    display: none;
+  }
+}
 @media (min-width: 1024px) {
   .menu-panel__inner {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
