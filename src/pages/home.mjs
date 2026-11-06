@@ -1,6 +1,7 @@
 /**
- * Startseite (Umbau 05.11.2026): Vollbild-Hero mit echtem Foto (Hof der Garage), Mega-Headline und den drei
- * Orten als Farbkacheln; darunter viel Weiß und große runde Bildkarten.
+ * Startseite (Umbau 05.11.2026, seit 06.11.2026 hell): Vollbild-Hero mit echtem Foto (Gläser und L’ANNÉE-
+ * Buchstaben in der Garage) unter weißem Schleier, Mega-Headline in Bleu nuit und die drei Orte als helle
+ * Kacheln; darunter viel Weiß und große runde Bildkarten.
  * Kein Film, keine Zeichnungen, keine Logo-Wanderung. Nur echte Fotos, keine generierten Bilder (06.11.2026).
  */
 import { html, rich } from '../lib/html.mjs';
@@ -12,15 +13,15 @@ import { placeText } from '../lib/layout.mjs';
 
 /** Jeder Ort: Foto groß + ein Detailfoto als Abzug mit weißem Rand (klein, überlappend). Nur echte Fotos. */
 const PLACE_PHOTOS = {
-  garage: { real: 'garage-glaeser', past: 'garage-austernbar' },
+  garage: { real: 'garage-tresen', past: 'garage-austernbar' },
   kiosque: { real: 'bulles', past: 'austern-postkarte' },
   marche: { real: 'marche-wagen', past: 'marche-auslage' },
 };
-const HERO_IMAGE = 'garage-hof';
+const HERO_IMAGE = 'garage-glaeser';
 const HERO_PLACES_LABEL = { de: 'Drei Orte', fr: 'Trois adresses', en: 'Three places' };
 /** Bilderreihe: echte Fotos, keine Wiederholung der Bilder darüber. */
 const GALLERY = [
-  'garage-tresen',
+  'garage-hof',
   'garage-eingang',
   'garage-bar',
   'schweppes',
@@ -101,7 +102,7 @@ export function render(ctx) {
     <div class="menu-panel__head">
       <h2 class="section__title" id="menu-title">${p.carte.heading}</h2>
       <p class="lead">${rich(p.carte.lead, locale)}</p>
-      ${button(url('carte', locale), p.carte.cta, { cls: 'btn btn--light' })}
+      ${button(url('carte', locale), p.carte.cta, { cls: 'btn btn--solid' })}
     </div>
     ${picture('huitres-glace', locale, { sizes: '(min-width: 1024px) 40vw, 100vw', cls: 'menu-panel__photo' })}
     <div class="menu-panel__list">

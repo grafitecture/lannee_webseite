@@ -10,7 +10,9 @@ import { tokenHex } from '../content/tokens.mjs';
 const NAV = ['garage', 'kiosque', 'marche', 'carte', 'atlas', 'contact'];
 
 /** Seiten mit Vollbild-Foto oben: Dort liegt die Kopfzeile durchsichtig über dem Bild (Umbau 05.11.2026). */
-export const OVERLAY_HEADER = new Set(['home', 'garage', 'kiosque', 'marche']);
+// Durchsichtige Kopfzeile über Vollbild-Fotos der Ortsseiten. Die Startseite hat seit 06.11.2026 einen hellen
+// Hero; dort steht die Kopfzeile fest in Bleu nuit darüber (das weiße Holz-Logo braucht Blau).
+export const OVERLAY_HEADER = new Set(['garage', 'kiosque', 'marche']);
 
 export function placeText(key, locale) {
   const L = LOCATIONS[key];

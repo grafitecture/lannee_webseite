@@ -374,7 +374,7 @@
 .dish__name {
   font-family: var(--font-display);
   font-size: var(--fs-h6);
-  font-weight: 500;
+  font-weight: 440;
   line-height: 1.15;
   letter-spacing: -0.01em;
 }
@@ -428,7 +428,7 @@
 .dish__price-value {
   font-family: var(--font-display);
   font-size: 1.1875rem;
-  font-weight: 500;
+  font-weight: 440;
   line-height: 1.1;
   white-space: nowrap;
 }
@@ -448,27 +448,6 @@
 .dish--compact .dish__price-label {
   display: none;
 }
-/* Auf Farbflächen: alles weiß */
-.theme-garage .dish,
-.theme-kiosque .dish,
-.theme-marche .dish,
-.theme-ink .dish {
-  border-top-color: color-mix(in srgb, var(--blanc) 22%, transparent);
-}
-.theme-garage :is(.dish__origin, .dish__price-unit, .dish__from, .dish__price-label),
-.theme-kiosque :is(.dish__origin, .dish__price-unit, .dish__from, .dish__price-label),
-.theme-marche :is(.dish__origin, .dish__price-unit, .dish__from, .dish__price-label),
-.theme-ink :is(.dish__origin, .dish__price-unit, .dish__from, .dish__price-label) {
-  color: color-mix(in srgb, var(--blanc) 78%, transparent);
-}
-.theme-garage .dish__veg,
-.theme-kiosque .dish__veg,
-.theme-marche .dish__veg,
-.theme-ink .dish__veg {
-  border-color: currentColor;
-  color: inherit;
-}
-
 .taste {
   display: flex;
   flex-wrap: wrap;

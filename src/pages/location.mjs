@@ -76,7 +76,7 @@ export function render(ctx) {
           <div class="invite__inner theme-marche">
             <h2 class="section__title" id="invite-h">${p.invite.heading}</h2>
             <p class="lead">${rich(p.invite.body, locale)}</p>
-            ${button(`mailto:${SITE.company.email}?subject=${encodeURIComponent(p.invite.subject)}`, p.invite.cta, { cls: 'btn btn--light' })}
+            ${button(`mailto:${SITE.company.email}?subject=${encodeURIComponent(p.invite.subject)}`, p.invite.cta, { cls: 'btn btn--marche' })}
           </div>
         </section>`
       : '';
@@ -112,7 +112,7 @@ export function render(ctx) {
   <div class="loc-menu__inner theme-${L.color}">
     <div class="loc-menu__head">
       <h2 class="section__title" id="locmenu-h">${p.menu.heading}</h2>
-      ${button(`${url('carte', locale)}?ort=${key}`, t.ui.toMenu, { cls: 'btn btn--light' })}
+      ${button(`${url('carte', locale)}?ort=${key}`, t.ui.toMenu, { cls: `btn btn--${key}` })}
     </div>
     ${menuExcerpt(locale, { location: key, limit: key === 'marche' ? 10 : 9 })}
   </div>

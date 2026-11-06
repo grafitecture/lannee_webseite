@@ -75,7 +75,7 @@ h5,
 h6 {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 420;
   line-height: 1.02;
   letter-spacing: -0.02em;
   text-wrap: balance;
@@ -200,19 +200,26 @@ main:focus {
   max-width: 40ch;
 }
 
-/* Themen: Farbflächen der Subbrands --------------------------------------- */
+/* Themen: Flächen der Subbrands ------------------------------------------------
+   Seit 06.11.2026 hell („leichter und heller“): ein Hauch der Ortsfarbe auf Weiß,
+   Schrift Bleu nuit, Akzente in der Ortsfarbe. Dunkle Flächen nur noch für das Logo
+   (Kopf- und Fußzeile, Styleguide). */
 
 .theme-garage,
 .theme-kiosque,
 .theme-marche,
 .theme-ink {
+  --bg: color-mix(in oklch, var(--theme-c) 6%, var(--tint));
+  --fg: var(--ink);
+  --loc: var(--theme-c);
+  --soft: var(--theme-c);
   background: var(--bg);
   color: var(--fg);
 }
-.theme-garage { --bg: var(--garage); --fg: var(--blanc); --loc: var(--blanc); --soft: var(--ecume); }
-.theme-kiosque { --bg: var(--kiosque); --fg: var(--blanc); --loc: var(--blanc); --soft: var(--ecume); }
-.theme-marche { --bg: var(--marche); --fg: var(--blanc); --loc: var(--blanc); --soft: var(--ecume); }
-.theme-ink { --bg: var(--ink); --fg: var(--blanc); --loc: var(--ecume); }
+.theme-garage { --theme-c: var(--garage); }
+.theme-kiosque { --theme-c: var(--kiosque); }
+.theme-marche { --theme-c: var(--marche); }
+.theme-ink { --theme-c: var(--ink); }
 
 .theme-garage-text { --loc: var(--garage); --loc-pale: var(--ecume); }
 .theme-kiosque-text { --loc: var(--kiosque); --loc-pale: var(--ecume); }
