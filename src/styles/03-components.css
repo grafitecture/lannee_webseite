@@ -218,26 +218,26 @@
 }
 
 /* Öffnungszeiten (06.11.2026): ganz dezent als schlichte Zeile ------------------
-   Je Öffnungstag der Name klein in Versalien, daneben die Orte mit Farbpunkt und Uhrzeit.
-   Keine Karten, keine Flächen; die Tage trennt auf breiten Schirmen eine feine Linie. */
+   Mobil je Öffnungstag eine Zeile (Tag klein in Versalien, daneben die Orte mit Farbpunkt und Uhrzeit),
+   ab 768 px drei Spalten mit feiner Linie dazwischen. Keine Karten, keine Flächen. */
 
 .plan__days {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 0.55rem;
+  gap: 0.8rem;
 }
 .plan__day {
   display: grid;
-  grid-template-columns: 6.5rem minmax(0, 1fr);
+  grid-template-columns: 7.5rem minmax(0, 1fr);
   align-items: baseline;
   gap: 0.75rem;
 }
 .plan__dayname {
   margin: 0;
   font-family: var(--font-text);
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   font-weight: 600;
   letter-spacing: 0.09em;
   line-height: 1.6;
@@ -259,7 +259,7 @@
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.2rem 1.4rem;
+  gap: 0.3rem 1.6rem;
 }
 .plan__slot {
   display: inline-flex;
@@ -267,8 +267,8 @@
   align-items: baseline;
   gap: 0 0.4em;
   color: var(--ink);
-  font-size: 0.9375rem;
-  line-height: 1.6;
+  font-size: 1.1875rem;
+  line-height: 1.5;
   text-decoration: none;
 }
 .plan__slot .dot {
@@ -286,7 +286,7 @@
   text-underline-offset: 0.2em;
 }
 .plan__state {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   color: var(--muted);
 }
 .plan__state:empty {
@@ -313,21 +313,28 @@
 .plan__slot.is-paused .plan__time {
   text-decoration: line-through;
 }
-@media (min-width: 1024px) {
+/* Ab Tablet: die Tage als Spalten nebeneinander (Tag oben, Orte darunter), feine Linie dazwischen */
+@media (min-width: 768px) {
   .plan__days {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem 0;
+    flex-wrap: nowrap;
+    gap: 0;
   }
   .plan__day {
-    display: flex;
-    gap: 1rem;
-    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-content: start;
+    gap: 0.35rem;
+    padding: 0 clamp(1.5rem, 0.5rem + 2.5vw, 3rem);
     border-left: 1px solid var(--embrun);
   }
   .plan__day:first-child {
     padding-left: 0;
     border-left: 0;
+  }
+  .plan__slots {
+    flex-direction: column;
+    gap: 0.2rem;
   }
   .plan__date {
     display: inline;
@@ -335,6 +342,17 @@
   }
   .plan__date::before {
     content: '· ';
+  }
+}
+@media (min-width: 1024px) {
+  .plan__dayname {
+    font-size: 0.9375rem;
+  }
+  .plan__slot {
+    font-size: 1.375rem;
+  }
+  .plan__state {
+    font-size: 0.9375rem;
   }
 }
 
