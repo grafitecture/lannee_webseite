@@ -8,6 +8,7 @@ import { html, raw, esc, rich, typo, setExternalLinkRenderer } from './html.mjs'
 import { DICT, url, pick, fill, formatTime, formatSpan } from './i18n.mjs';
 import { SITE, LOCATIONS, LOCATION_ORDER, SCHEDULE, CLOSURES } from '../content/site.mjs';
 import { MEDIA } from '../content/media.mjs';
+import { oysterArt } from './oyster-art.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const read = (p) => fs.readFileSync(path.join(ROOT, p), 'utf8');
@@ -47,6 +48,24 @@ export function logo({ cls = 'logo', label = 'L’ANNÉE', decorative = false, s
 /* ------------------------------------------------------------------ */
 /* Icons                                                               */
 /* ------------------------------------------------------------------ */
+
+/*
+ * Austern-Strichzeichnungen (nur Austernatlas, wieder seit 06.11.2026): eigenes Sprite,
+ * das nur die Atlas-Seite lädt (die Zeichnungen sind zusammen gut 260 KB).
+ */
+let ATLAS_SPRITE_URL = '/assets/atlas.svg';
+export const setAtlasSpriteUrl = (u) => (ATLAS_SPRITE_URL = u);
+
+export function buildAtlasSprite() {
+  return `<svg xmlns="http://www.w3.org/2000/svg">${oysterArt().map((a) => a.symbol).join('')}</svg>`;
+}
+
+/** Austern-Strichzeichnung aus dem Atlas-Sprite, links bündig im Rahmen. */
+export function oysterDrawing(key, { cls = 'oyster__svg' } = {}) {
+  const art = oysterArt().find((a) => a.key === key);
+  if (!art) throw new Error(`Austern-Zeichnung fehlt: ${key}`);
+  return html`<svg class="${cls}" viewBox="0 0 ${art.width} ${art.height}" preserveAspectRatio="xMinYMid meet" aria-hidden="true" focusable="false"><use href="${ATLAS_SPRITE_URL}#oy-${key}"/></svg>`;
+}
 
 let SPRITE_URL = '/assets/icons.svg';
 export const setSpriteUrl = (u) => (SPRITE_URL = u);

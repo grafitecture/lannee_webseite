@@ -1,10 +1,11 @@
 /**
- * Austernatlas (Umbau 05.11.2026): Arten und Herkünfte als runde Karten mit kurzer Erklärung,
- * ohne Zeichnungen und ohne Bild (das generierte Bild ist am 06.11.2026 entfallen). Texte: src/content/oysters.mjs.
+ * Austernatlas (Umbau 05.11.2026): Arten und Herkünfte als runde Karten mit kurzer Erklärung.
+ * Seit 06.11.2026 wieder mit den Austern-Strichzeichnungen (src/lib/oyster-art.mjs, eigenes Sprite) –
+ * die einzige Stelle der Website mit Zeichnungen. Kein Foto. Texte: src/content/oysters.mjs.
  */
 import { html, rich } from '../lib/html.mjs';
 import { url, pick } from '../lib/i18n.mjs';
-import { button } from '../lib/components.mjs';
+import { button, oysterDrawing } from '../lib/components.mjs';
 import { ATLAS, OYSTERS } from '../content/oysters.mjs';
 
 const GROUPS = ['species', 'france', 'europe', 'world'];
@@ -14,7 +15,9 @@ function card(o, locale) {
   const nameLang = o.lang && o.lang !== locale ? o.lang : null;
   const where = o.where ? (typeof o.where === 'string' ? o.where : pick(o.where, locale)) : null;
   return html`<div class="oyster oyster--${o.group}">
-      <dt class="oyster__name"${nameLang ? html` lang="${nameLang}"` : ''}>${name}</dt>
+      <dt class="oyster__head"><span class="oyster__art">${oysterDrawing(o.art)}</span><span class="oyster__name"${
+    nameLang ? html` lang="${nameLang}"` : ''
+  }>${name}</span></dt>
       ${o.sci || where ? html`<dd class="oyster__meta">${o.sci ? html`<i lang="la">${o.sci}</i>` : ''}${where ? html`<span>${where}</span>` : ''}</dd>` : ''}
       <dd class="oyster__text">${rich(pick(o.text, locale), locale)}</dd>
     </div>`;

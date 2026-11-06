@@ -725,7 +725,23 @@
 .oyster dd {
   margin: 0;
 }
+/* Austern-Strichzeichnungen (nur hier auf der Website, seit 06.11.2026 wieder): feine Linie in Marée */
+.oyster__head {
+  display: grid;
+  gap: 1rem;
+}
+.oyster__art {
+  display: block;
+  height: clamp(4.75rem, 4rem + 2vw, 6.25rem);
+  color: var(--muted);
+}
+.oyster__svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
 .oyster__name {
+  display: block;
   font-family: var(--font-display);
   font-size: var(--fs-h5);
   font-weight: 420;

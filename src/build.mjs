@@ -11,7 +11,7 @@ import { fileURLToPath } from 'node:url';
 
 import { LOCALES, ROUTES, DICT, url } from './lib/i18n.mjs';
 import { layout } from './lib/layout.mjs';
-import { buildSprite, setSpriteUrl } from './lib/components.mjs';
+import { buildSprite, setSpriteUrl, buildAtlasSprite, setAtlasSpriteUrl } from './lib/components.mjs';
 import { tokensCss, tokenHex } from './content/tokens.mjs';
 import { SITE } from './content/site.mjs';
 
@@ -80,6 +80,11 @@ async function build() {
   const spriteFile = `assets/icons.${hash(sprite)}.svg`;
   await write(spriteFile, sprite);
   setSpriteUrl('/' + spriteFile);
+  // Austern-Strichzeichnungen: eigenes Sprite, nur der Austernatlas lädt es
+  const atlasSprite = buildAtlasSprite();
+  const atlasSpriteFile = `assets/atlas.${hash(atlasSprite)}.svg`;
+  await write(atlasSpriteFile, atlasSprite);
+  setAtlasSpriteUrl('/' + atlasSpriteFile);
 
   // CSS
   const styleDir = path.join(ROOT, 'src', 'styles');
