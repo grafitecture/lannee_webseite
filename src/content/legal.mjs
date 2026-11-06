@@ -73,7 +73,7 @@ function impressumDe() {
     {
       h: 'Bildnachweise und Schriften',
       p: [
-        'Fotos: L’ANNÉE. Die Abbildung des Kiosque ist eine Visualisierung. Die historischen Bilder in den Farben der 50er Jahre sind mit KI erzeugt (Higgsfield AI) und nachbearbeitet, ebenso das Foto der Austernplatte. Schriften: Fraunces und Instrument Sans (SIL Open Font License).',
+        'Fotos: L’ANNÉE. Schriften: Fraunces und Instrument Sans (SIL Open Font License).',
       ],
     }
   );
@@ -117,7 +117,7 @@ function impressumFr() {
     {
       h: 'Crédits',
       p: [
-        'Photos : L’ANNÉE. L’image du Kiosque est une visualisation. Les images d’époque aux couleurs des années 50 ont été générées par IA (Higgsfield AI) puis retravaillées, tout comme la photo du plateau d’huîtres. Polices : Fraunces et Instrument Sans (SIL Open Font License).',
+        'Photos : L’ANNÉE. Polices : Fraunces et Instrument Sans (SIL Open Font License).',
       ],
     }
   );
@@ -161,7 +161,7 @@ function impressumEn() {
     {
       h: 'Credits',
       p: [
-        'Photos: L’ANNÉE. The image of the Kiosque is a visualisation. The vintage images in 1950s colours were generated with AI (Higgsfield AI) and edited, as was the photo of the oyster platter. Typefaces: Fraunces and Instrument Sans (SIL Open Font License).',
+        'Photos: L’ANNÉE. Typefaces: Fraunces and Instrument Sans (SIL Open Font License).',
       ],
     }
   );

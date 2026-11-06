@@ -74,9 +74,9 @@ const logo = () => `<img src="${LOGO_IMG}" alt="" style="display:block;width:100
 const img = (name) => `file://${ROOT}/public/images/${name}-1080.webp`;
 const pill = (name, bg) =>
   `<span style="display:inline-block;padding:14px 24px;border-radius:999px;background:${bg};color:${C.blanc};font-family:Fraunces;font-weight:540;font-size:30px;line-height:1">${name}</span>`;
-/* Share-Bilder im Stil des Umbaus vom 05.11.2026: historisches Bild, Mega-Headline, die drei Orte als Pillen */
+/* Share-Bilder im Stil des Umbaus vom 05.11.2026: echtes Foto (Hof der Garage), Mega-Headline, die drei Orte als Pillen */
 const OG = {
-  lannee: `<div style="position:relative;width:1200px;height:630px;background:${C.ink} url('${img('historisch-abend')}') 70% center/cover no-repeat;color:${C.blanc}">
+  lannee: `<div style="position:relative;width:1200px;height:630px;background:${C.ink} url('${img('garage-hof')}') 60% center/cover no-repeat;color:${C.blanc}">
       <div style="position:absolute;inset:0;background:linear-gradient(90deg,${C.ink}e6 0%,${C.ink}99 45%,${C.ink}00 80%)"></div>
       <div style="position:relative;height:100%;display:grid;grid-template-rows:auto 1fr auto;padding:56px 64px">
         <div style="width:300px">${logo()}</div>
@@ -86,7 +86,7 @@ const OG = {
 };
 const LOC = {
   garage: { bg: C.garage, name: 'Garage', sub: 'Garage à huîtres &amp; vins', when: 'Fr &amp; Sa ab 18 Uhr, Jungbusch', photo: 'garage-hof' },
-  kiosque: { bg: C.kiosque, name: 'Kiosque', sub: 'Kiosque à huîtres &amp; vins', when: 'Sonntag ab 10 Uhr, Lindenhof', photo: 'kiosque-visualisierung' },
+  kiosque: { bg: C.kiosque, name: 'Kiosque', sub: 'Kiosque à huîtres &amp; vins', when: 'Sonntag ab 10 Uhr, Lindenhof', photo: 'bulles' },
   marche: { bg: C.marche, name: 'Marché', sub: 'Austern &amp; Bulles auf Rädern', when: 'Samstag 8–13 Uhr, Wochenmarkt Lindenhof', photo: 'marche-wagen' },
 };
 for (const [key, L] of Object.entries(LOC)) {

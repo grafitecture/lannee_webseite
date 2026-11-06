@@ -1,6 +1,6 @@
 /**
- * La Carte (Umbau 05.11.2026): großer Titel auf Weiß, Filter als Pillen, die Austernplatte als
- * breite runde Bildkarte (bis 06.11.2026 ein Schwarzweiß-Bild), die Kapitel mit viel Luft. Keine Zeichnungen, keine Sprüche.
+ * La Carte (Umbau 05.11.2026): großer Titel auf Weiß, Filter als Pillen, ein echtes Foto (Bulles) als
+ * breite runde Bildkarte, die Kapitel mit viel Luft. Keine Zeichnungen, keine Sprüche.
  */
 import { html, rich } from '../lib/html.mjs';
 import { DICT } from '../lib/i18n.mjs';
@@ -27,7 +27,7 @@ export function render(ctx) {
 </section>
 
 <div class="banner">
-  ${picture('austernplatte', locale, { sizes: '100vw', cls: 'banner__img' })}
+  ${picture('bulles', locale, { sizes: '100vw', cls: 'banner__img' })}
 </div>
 
 <div class="carte-bar">${filter}</div>

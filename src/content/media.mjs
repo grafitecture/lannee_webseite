@@ -7,14 +7,6 @@ export const MEDIA = {
       en: 'The Garage courtyard in Jungbusch with vines, trellis and the L’ANNÉE sign',
     },
   },
-  'kiosque-visualisierung': {
-    alt: {
-      de: 'Visualisierung des Kiosque: ein Fenster mit Austern auf Eis, Kreidetafel und Weinflaschen',
-      fr: 'Visualisation du Kiosque : une fenêtre avec des huîtres sur glace, une ardoise et des bouteilles',
-      en: 'Visualisation of the Kiosque: a window with oysters on ice, a chalkboard and wine bottles',
-    },
-    visual: true,
-  },
   'marche-wagen': {
     alt: {
       de: 'Der weiße Marché-Anhänger mit Sonnendach und Kreidetafeln auf dem Wochenmarkt',
@@ -48,13 +40,6 @@ export const MEDIA = {
       de: 'Weinflaschen im Eiskübel',
       fr: 'Bouteilles de vin dans un seau à glace',
       en: 'Wine bottles in an ice bucket',
-    },
-  },
-  'hero-austern-hof': {
-    alt: {
-      de: 'Austern auf Eis mit Zitronen und zwei Coupes Champagner auf einem Holztisch, dahinter im berankten Hof der Schriftzug L’ANNÉE und die Neonschrift „1898“',
-      fr: 'Des huîtres sur glace avec des citrons et deux coupes de champagne sur une table en bois ; derrière, dans la cour couverte de lierre, les lettres L’ANNÉE et le néon « 1898 »',
-      en: 'Oysters on ice with lemons and two coupes of champagne on a wooden table; behind them, in the ivy-covered courtyard, the letters L’ANNÉE and the neon “1898”',
     },
   },
   bulles: {
@@ -149,33 +134,4 @@ export const MEDIA = {
     },
   },
 
-  /* Historische Bilder (Umbau 05.11.2026): KI-Motive in Kodachrome-Farben der 50er. Keine Schwarzweiß-Bilder (06.11.2026). */
-  'historisch-abend': {
-    alt: {
-      de: 'Abends im Hof: Champagner wird in Coupes geschenkt, auf dem Tisch Austern, Kerzen und eine Lichterkette, in den Farben der 50er',
-      fr: 'Le soir dans la cour : on verse du champagne dans les coupes, sur la table des huîtres, des bougies et une guirlande, aux couleurs des années 50',
-      en: 'Evening in the courtyard: champagne poured into coupes, oysters, candles and string lights on the table, in 1950s colours',
-    },
-  },
-  'historisch-tafel': {
-    alt: {
-      de: 'Freunde stoßen an einem Steintisch mit Coupes an, dazwischen Austern auf Eis mit Zitrone, in den Farben der 50er',
-      fr: 'Des amis trinquent autour d’une table en pierre, entre eux des huîtres sur glace et du citron, aux couleurs des années 50',
-      en: 'Friends toasting at a stone table with oysters on ice and lemon between them, in 1950s colours',
-    },
-  },
-  'historisch-boot': {
-    alt: {
-      de: 'Ein Fischerboot mit rotem Segel an der Hafenmauer, darüber Möwen, in den Farben der 50er',
-      fr: 'Un bateau de pêche à voile rouge le long du quai, des mouettes au-dessus, aux couleurs des années 50',
-      en: 'A fishing boat with a red sail at the harbour wall, gulls overhead, in 1950s colours',
-    },
-  },
-  austernplatte: {
-    alt: {
-      de: 'Eine Platte Austern auf Eis mit Zitronen und Schalotten-Vinaigrette, daneben zwei Coupes auf einem blauen Holztisch',
-      fr: 'Un plateau d’huîtres sur glace avec citrons et mignonnette, à côté deux coupes sur une table en bois bleue',
-      en: 'A platter of oysters on ice with lemons and mignonette, two coupes beside it on a blue wooden table',
-    },
-  },
 };

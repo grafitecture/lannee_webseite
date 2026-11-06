@@ -36,8 +36,8 @@ const WIDTHS = [480, 768, 1080, 1440, 1920, 2560];
  * die in einem anderen Seitenverhältnis gebraucht werden.
  */
 const SOURCES = {
+  // Nur echte Fotos (Vorgabe 06.11.2026): keine generierten Bilder (KI), keine Visualisierungen.
   'garage-hof': { file: 'garage-hof.jpg' },
-  'kiosque-visualisierung': { file: 'kiosque-visualisierung.jpg' },
   'marche-wagen': { file: 'marche-wagen.jpg' },
   'marche-auslage': { file: 'marche-auslage.jpg' },
   'austern-postkarte': { file: 'austern-postkarte.jpg' },
@@ -56,15 +56,6 @@ const SOURCES = {
   'garage-eingang': { file: 'garage-eingang.jpg' },
   'schweppes': { file: 'schweppes.jpg' },
   'baguettes': { file: 'baguettes.jpg' },
-  // Früheres Startbild: KI-Komposition (Higgsfield AI, Nano Banana 2.1) – derzeit nicht eingebunden
-  'hero-austern-hof': { file: 'hero-austern-hof.jpg' },
-  // Historische Bilder (Umbau 05.11.2026): KI-Motive aus dem Higgsfield-Verlauf, mit scripts/historisch.py
-  // in die Farben der 50er gebracht. Immer im Wechsel mit den echten Fotos. Keine Schwarzweiß-Bilder (06.11.2026).
-  'historisch-abend': { file: 'historisch-abend.jpg' }, // 50er: Champagner im Hof am Abend (Hero Startseite)
-  'historisch-tafel': { file: 'historisch-tafel.jpg' }, // 50er: Austern und Coupes am Steintisch (Kiosque)
-  'historisch-boot': { file: 'historisch-boot.jpg' }, // 50er: Fischerboot im Hafen (Jungbusch)
-  // Echtes Foto-Motiv (Higgsfield AI, ohne Bearbeitung): Austernplatte und Coupes auf blauem Tisch
-  'austernplatte': { file: 'austernplatte.jpg' },
   // Logo seit 03.11.2026: weiße Holzbuchstaben, freigestellt (PNG mit Transparenz). Wird auf die
   // Buchstaben zugeschnitten, die fast deckenden Flächen werden voll deckend (siehe prepareLogo).
   'logo-lannee': { file: 'logo-lannee-holz.png', logo: true, widths: [240, 360, 480, 768, 1080], quality: { avif: 64, webp: 86 } },

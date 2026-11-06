@@ -1,6 +1,6 @@
 /**
  * Styleguide (nur Deutsch, noindex): Markensystem, Farben, Typo, Ecken, Bilder, Breakpoints.
- * Stand: Umbau 05.11.2026 – viel Weiß, runde Ecken, historische Bilder (50er) im Wechsel mit echten Fotos.
+ * Stand: Umbau 05.11.2026 – viel Weiß, runde Ecken, nur echte Fotos.
  */
 import { html } from '../lib/html.mjs';
 import { LOCATIONS, LOCATION_ORDER } from '../content/site.mjs';
@@ -94,11 +94,11 @@ export function render(ctx) {
 
 <section class="sg" aria-labelledby="sg-images">
   <h2 class="section__title section__title--small" id="sg-images">Bilder</h2>
-  <p class="lead">Historische Bilder in den Farben der 50er, immer im Wechsel mit echten Fotos der Orte. Keine Schwarzweiß-Bilder (seit 06.11.2026). Die historischen Bilder sind KI-Motive aus dem Higgsfield-Verlauf, gebracht in den Look mit <code>python3 scripts/historisch.py 50er</code>.</p>
+  <p class="lead">Nur echte Fotos der Orte. Keine generierten Bilder, keine historischen KI-Motive, keine Schwarzweiß-Bilder (seit 06.11.2026).</p>
   <ul class="sg__images" role="list">
-    <li>${picture('historisch-tafel', locale, { sizes: '30vw' })}<code>50er</code></li>
-    <li>${picture('garage-hof', locale, { sizes: '30vw' })}<code>echt</code></li>
-    <li>${picture('historisch-boot', locale, { sizes: '30vw' })}<code>50er</code></li>
+    <li>${picture('garage-hof', locale, { sizes: '30vw' })}<code>Garage</code></li>
+    <li>${picture('bulles', locale, { sizes: '30vw' })}<code>Bulles</code></li>
+    <li>${picture('marche-wagen', locale, { sizes: '30vw' })}<code>Marché</code></li>
   </ul>
 </section>
 

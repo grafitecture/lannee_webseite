@@ -1,10 +1,10 @@
 /**
  * Austernatlas (Umbau 05.11.2026): Arten und Herkünfte als runde Karten mit kurzer Erklärung,
- * ohne Zeichnungen. Oben ein historisches Bild (Fischerboot im Hafen, 50er). Texte: src/content/oysters.mjs.
+ * ohne Zeichnungen und ohne Bild (das generierte Bild ist am 06.11.2026 entfallen). Texte: src/content/oysters.mjs.
  */
 import { html, rich } from '../lib/html.mjs';
 import { url, pick } from '../lib/i18n.mjs';
-import { button, picture } from '../lib/components.mjs';
+import { button } from '../lib/components.mjs';
 import { ATLAS, OYSTERS } from '../content/oysters.mjs';
 
 const GROUPS = ['species', 'france', 'europe', 'world'];
@@ -37,10 +37,6 @@ export function render(ctx) {
   <p class="lead">${rich(pick(ATLAS.lead, locale), locale)}</p>
   ${button(url('carte', locale), pick(ATLAS.cta, locale), { cls: 'btn btn--solid' })}
 </section>
-
-<div class="banner">
-  ${picture('historisch-boot', locale, { sizes: '100vw', cls: 'banner__img' })}
-</div>
 
 <div class="atlas">
   ${sections}

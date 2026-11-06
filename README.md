@@ -57,7 +57,7 @@ Nur einzelne Bilder neu erzeugen: `npm run images -- name1 name2` (Namen wie in 
 
 Favicons und Open-Graph-Bilder: `npm install --no-save sharp playwright && npm run brand-assets`.
 
-**Historische Bilder** (Farben der 50er, seit 05.11.2026; keine Schwarzweiß-Bilder seit 06.11.2026): Vorlage (z. B. ein KI-Bild aus dem Higgsfield-Verlauf) mit `python3 scripts/historisch.py 50er vorlage.jpg assets-src/historisch-name.jpg [--breite 2400] [--ausschnitt x,y,b,h]` in den Look bringen (braucht numpy und Pillow), dann wie jedes Bild in `SOURCES` und `media.mjs` eintragen und `npm run images -- historisch-name`. Auf den Seiten stehen sie immer im Wechsel mit den echten Fotos.
+**Nur echte Fotos** (seit 06.11.2026): keine generierten Bilder (KI), keine Visualisierungen, keine Schwarzweiß-Bilder. `scripts/historisch.py` und die Higgsfield-Übergabe unten stammen aus der Zeit der KI-Bilder und werden nicht mehr gebraucht.
 
 Higgsfield-Dateien ins Repo holen (die Arbeitsumgebung erreicht die Higgsfield-Adressen nicht): auf dem Zweig `tools/fetch-assets` Zeilen „Name URL“ eintragen und pushen – `assets-src/fetch/thumbs.txt` (Vorschaubilder 640 px), `assets-src/fetch/full.txt` (Vollauflösung als JPEG), `assets-src/fetch/videos.txt` (je vier Standbilder aus Videos) oder `assets-src/scribbles/urls.txt` (Rohdateien). GitHub-Workflows laden die Dateien und committen sie auf diesen Zweig.
 

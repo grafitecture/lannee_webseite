@@ -12,19 +12,6 @@
     ],
     "color": "#5a645d"
   },
-  "kiosque-visualisierung": {
-    "width": 2480,
-    "height": 2280,
-    "widths": [
-      480,
-      768,
-      1080,
-      1440,
-      1920,
-      2480
-    ],
-    "color": "#383821"
-  },
   "marche-wagen": {
     "width": 1086,
     "height": 1448,
@@ -195,70 +182,6 @@
       1200
     ],
     "color": "#af9278"
-  },
-  "hero-austern-hof": {
-    "width": 2528,
-    "height": 1696,
-    "widths": [
-      480,
-      768,
-      1080,
-      1440,
-      1920,
-      2528
-    ],
-    "color": "#595742"
-  },
-  "historisch-abend": {
-    "width": 2560,
-    "height": 1429,
-    "widths": [
-      480,
-      768,
-      1080,
-      1440,
-      1920,
-      2560
-    ],
-    "color": "#795f4a"
-  },
-  "historisch-tafel": {
-    "width": 2400,
-    "height": 2045,
-    "widths": [
-      480,
-      768,
-      1080,
-      1440,
-      1920,
-      2400
-    ],
-    "color": "#7c6a57"
-  },
-  "historisch-boot": {
-    "width": 1920,
-    "height": 1080,
-    "widths": [
-      480,
-      768,
-      1080,
-      1440,
-      1920
-    ],
-    "color": "#756555"
-  },
-  "austernplatte": {
-    "width": 2400,
-    "height": 1792,
-    "widths": [
-      480,
-      768,
-      1080,
-      1440,
-      1920,
-      2400
-    ],
-    "color": "#5a6368"
   },
   "logo-lannee": {
     "width": 1563,

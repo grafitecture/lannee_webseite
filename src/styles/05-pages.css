@@ -1,6 +1,6 @@
 /* ==========================================================================
    Seiten (Umbau 05.11.2026): Vollbild-Hero, viel Weiß, große runde Bildkarten,
-   historische Bilder (50er, kein Schwarzweiß) im Wechsel mit echten Fotos.
+   nur echte Fotos (keine generierten Bilder).
    ========================================================================== */
 
 /* Startseite: Vollbild-Hero ----------------------------------------------------- */
@@ -160,7 +160,7 @@
   margin-top: var(--space-s);
 }
 
-/* Die drei Orte im Detail: echtes Foto groß, ein Abzug (historisch, 50er, oder ein Detail) darüber */
+/* Die drei Orte im Detail: Foto groß, ein Detailfoto als Abzug darüber */
 
 .places {
   display: grid;

@@ -1,7 +1,7 @@
 /**
- * Startseite (Umbau 05.11.2026): Vollbild-Hero mit historischem Foto, Mega-Headline und den drei Orten
- * als Farbkacheln; darunter viel Weiß, große runde Bildkarten, historische Bilder (50er) zu echten Fotos.
- * Kein Film, keine Zeichnungen, keine Logo-Wanderung, keine Schwarzweiß-Bilder (06.11.2026).
+ * Startseite (Umbau 05.11.2026): Vollbild-Hero mit echtem Foto (Hof der Garage), Mega-Headline und den drei
+ * Orten als Farbkacheln; darunter viel Weiß und große runde Bildkarten.
+ * Kein Film, keine Zeichnungen, keine Logo-Wanderung. Nur echte Fotos, keine generierten Bilder (06.11.2026).
  */
 import { html, rich } from '../lib/html.mjs';
 import { DICT, url } from '../lib/i18n.mjs';
@@ -10,24 +10,23 @@ import { picture, weekPlan, button, icon, closureNotes } from '../lib/components
 import { menuExcerpt } from '../lib/menu-render.mjs';
 import { placeText } from '../lib/layout.mjs';
 
-/** Jeder Ort: echtes Foto (groß) + Abzug mit weißem Rand (klein, überlappend): historisch (50er) oder ein Detail. */
+/** Jeder Ort: Foto groß + ein Detailfoto als Abzug mit weißem Rand (klein, überlappend). Nur echte Fotos. */
 const PLACE_PHOTOS = {
-  garage: { real: 'garage-hof', past: 'historisch-boot' },
-  kiosque: { real: 'kiosque-visualisierung', past: 'historisch-tafel' },
-  marche: { real: 'marche-wagen', past: 'huitres-glace' },
+  garage: { real: 'garage-eingang', past: 'garage-austernbar' },
+  kiosque: { real: 'bulles', past: 'baguettes' },
+  marche: { real: 'marche-wagen', past: 'marche-auslage' },
 };
-const HERO_IMAGE = 'historisch-abend';
+const HERO_IMAGE = 'garage-hof';
 const HERO_PLACES_LABEL = { de: 'Drei Orte', fr: 'Trois adresses', en: 'Three places' };
-/** Bilderreihe: echte Fotos (die Schwarzweiß-Bilder sind am 06.11.2026 entfallen). */
+/** Bilderreihe: echte Fotos, keine Wiederholung der Bilder darüber. */
 const GALLERY = [
-  'garage-austernbar',
-  'bulles',
+  'garage-bar',
   'garage-boot',
   'schweppes',
   'hof-bistrotische',
-  'garage-eingang',
-  'baguettes',
+  'austern-postkarte',
   'garage-wand',
+  'garage-fenster',
   'garage-weinlaub',
   'garage-merci',
 ];
@@ -103,7 +102,7 @@ export function render(ctx) {
       <p class="lead">${rich(p.carte.lead, locale)}</p>
       ${button(url('carte', locale), p.carte.cta, { cls: 'btn btn--light' })}
     </div>
-    ${picture('austernplatte', locale, { sizes: '(min-width: 1024px) 40vw, 100vw', cls: 'menu-panel__photo' })}
+    ${picture('huitres-glace', locale, { sizes: '(min-width: 1024px) 40vw, 100vw', cls: 'menu-panel__photo' })}
     <div class="menu-panel__list">
       ${menuExcerpt(locale, { signatureOnly: true, limit: 6 })}
     </div>

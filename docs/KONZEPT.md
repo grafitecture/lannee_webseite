@@ -110,7 +110,7 @@ Seiten sind auf dem Desktop immer volle Breite. Begrenzt wird nur die Zeilenlän
 
 1. **Aufgeräumt und großflächig:** viel Weiß, sehr viel Luft zwischen den Abschnitten, je Abschnitt eine Aussage. Große Bildkarten und Farbflächen mit runden Ecken (Radien nach Größe gestaffelt), Buttons als Pillen.
 2. **Ein mutiger Moment:** der Vollbild-Hero mit der Mega-Headline „Drei Orte. Ein Wochenende. Komm vorbei!“ und den drei Orten als Farbkacheln – man sieht sofort, dass es drei Orte gibt. Auf den Ortsseiten der riesige Name über dem Vollbild-Foto.
-3. **Historisch gepaart mit echt:** historische Bilder in den Farben der 50er stehen neben den echten Fotos der Orte (auf der Startseite als Abzug mit weißem Rand über dem echten Foto). Keine Schwarzweiß-Bilder (seit 06.11.2026).
+3. **Nur echte Fotos:** keine generierten Bilder, keine Visualisierungen, keine Schwarzweiß-Bilder (seit 06.11.2026). Auf der Startseite je Ort ein Foto groß und ein Detailfoto als Abzug mit weißem Rand darüber.
 4. **Keine Zeichnungen, kein Film, keine Uhren.** Bewegung nur, wo sie etwas zeigt (Kopfzeile wird beim Scrollen blau, Live-Punkt pulsiert, wenn geöffnet). `prefers-reduced-motion` wird respektiert.
 5. **Datenschutz durch Technik:** keine Cookies, kein Tracking, keine Einbettungen, Kartenlinks statt Karten.
 

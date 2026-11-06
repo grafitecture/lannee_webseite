@@ -1,6 +1,6 @@
 /**
  * Ortsseiten: Garage, Kiosque, Marché – gleicher Aufbau, eigene Farbe (Umbau 05.11.2026):
- * Vollbild-Foto mit großem Namen, Fakten als runde Karten, Zitat, Intro mit historischem Bild (50er, kein Schwarzweiß),
+ * Vollbild-Foto mit großem Namen, Fakten als runde Karten, Zitat, Intro mit Foto (nur echte Fotos, 06.11.2026),
  * Karte als Farbfläche, Bilderreihe, Viertel, Anfahrt, die beiden anderen Orte. Keine Zeichnungen.
  */
 import { html, raw, rich } from '../lib/html.mjs';
@@ -13,21 +13,21 @@ import { placeText } from '../lib/layout.mjs';
 const CONFIG = {
   garage: {
     hero: 'garage-hof',
-    past: 'historisch-abend',
-    quarter: 'historisch-boot',
-    gallery: ['garage-bar', 'garage-austernbar', 'garage-boot', 'garage-wand', 'garage-fenster', 'schweppes', 'garage-eingang', 'garage-weinlaub', 'garage-merci'],
+    past: 'garage-eingang',
+    quarter: null,
+    gallery: ['garage-bar', 'garage-austernbar', 'garage-boot', 'garage-wand', 'garage-fenster', 'schweppes', 'hof-bistrotische', 'garage-weinlaub', 'garage-merci'],
   },
   kiosque: {
-    hero: 'kiosque-visualisierung',
-    past: 'historisch-tafel',
+    hero: 'bulles',
+    past: 'baguettes',
     quarter: null,
-    gallery: ['huitres-glace', 'bulles', 'austernplatte', 'austern-postkarte', 'wein-eis', 'baguettes'],
+    gallery: ['huitres-glace', 'austern-postkarte', 'wein-eis', 'austern-oeffnen'],
   },
   marche: {
     hero: 'marche-wagen',
-    past: 'historisch-boot',
+    past: 'huitres-glace',
     quarter: null,
-    gallery: ['marche-auslage', 'austern-oeffnen', 'huitres-glace', 'austern-postkarte', 'baguettes', 'wein-eis'],
+    gallery: ['marche-auslage', 'austern-oeffnen', 'austern-postkarte', 'baguettes', 'wein-eis'],
   },
 };
 
