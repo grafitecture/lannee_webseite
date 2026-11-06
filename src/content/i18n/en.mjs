@@ -32,7 +32,6 @@ export default {
     closure: { one: '**{names} is taking a break:** {when}', many: '**{names} are taking a break:** {when}' },
     facts: { when: 'When', where: 'Where', mail: 'Email', more: 'Also' },
     footer: {
-      tagline: 'Austern & Bulles in Mannheim',
       legal: 'Legal',
       impressum: 'Legal notice',
       datenschutz: 'Privacy',
@@ -55,20 +54,8 @@ export default {
       lead: 'Oysters, bubbles and a spot in the sun. In three places in Mannheim, every weekend.',
       ctaMenu: 'See the menu',
       ctaWhere: 'Where to find us',
-      wayfinder: {
-        label: 'At a glance',
-        planEyebrow: 'Opening hours',
-        planTitle: 'Fri – Sun',
-        planText: 'Garage, Marché and Kiosque',
-        menuEyebrow: 'La Carte',
-        menuText: 'Oysters, bubbles and small plates',
-        whereEyebrow: 'Three places',
-        whereText: 'Jungbusch, Lindenhof and the market',
-      },
-      weekend: {
-        heading: 'One weekend, three places.',
-        lead: 'During the week we fetch oysters, polish glasses and sleep in. From Friday evening, you’ll find us here:',
-      },
+      // Öffnungszeiten unter dem Hero (06.11.2026): nur noch als dezente Zeile, Überschrift unsichtbar
+      hours: 'Opening hours',
       places: {
         garage: {
           heading: 'Bonsoir in the courtyard.',

@@ -1,6 +1,6 @@
 /**
  * Austernatlas (Umbau 05.11.2026): Arten und Herkünfte als runde Karten mit kurzer Erklärung,
- * ohne Zeichnungen. Oben ein historisches Bild (Austernbauern bei Ebbe). Texte: src/content/oysters.mjs.
+ * ohne Zeichnungen. Oben ein historisches Bild (Fischerboot im Hafen, 50er). Texte: src/content/oysters.mjs.
  */
 import { html, rich } from '../lib/html.mjs';
 import { url, pick } from '../lib/i18n.mjs';
@@ -39,7 +39,7 @@ export function render(ctx) {
 </section>
 
 <div class="banner">
-  ${picture('historisch-austernbauer', locale, { sizes: '100vw', cls: 'banner__img' })}
+  ${picture('historisch-boot', locale, { sizes: '100vw', cls: 'banner__img' })}
 </div>
 
 <div class="atlas">

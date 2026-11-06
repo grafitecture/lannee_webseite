@@ -49,44 +49,44 @@
   height: var(--header-h);
   padding: 0 var(--gutter);
 }
-.site-header__brand {
+/* Logo · Linie · Slogan – in Kopf- und Fußzeile genau gleich (06.11.2026, etwas größer als zuvor) */
+.lockup {
+  --lockup-h: 1.95rem;
   display: flex;
   align-items: center;
-  gap: 0.8rem;
-  margin-right: auto;
+  gap: 0.9rem;
   color: inherit;
   text-decoration: none;
 }
-.site-header__logo {
-  height: 1.6rem;
-  width: calc(1.6rem * var(--logo-aspect));
+.lockup__logo {
+  flex: none;
+  height: var(--lockup-h);
+  width: calc(var(--lockup-h) * var(--logo-aspect));
 }
-.site-header__rule {
+.lockup__rule {
+  flex: none;
   width: 1px;
-  height: 1.5rem;
+  height: calc(var(--lockup-h) * 0.92);
   background: currentColor;
   opacity: 0.55;
 }
-.site-header__tagline {
+.lockup__tagline {
   font-family: var(--font-display);
-  font-size: 0.9375rem;
+  font-size: calc(var(--lockup-h) * 0.55);
   font-style: italic;
   white-space: nowrap;
 }
 @media (min-width: 1024px) {
-  .site-header__logo {
-    height: 2.1rem;
-    width: calc(2.1rem * var(--logo-aspect));
+  .lockup {
+    --lockup-h: 2.55rem;
+    gap: 1.15rem;
   }
-  .site-header__brand {
-    gap: 1rem;
+  .lockup__tagline {
+    font-size: calc(var(--lockup-h) * 0.52);
   }
-  .site-header__rule {
-    height: 1.9rem;
-  }
-  .site-header__tagline {
-    font-size: 1.125rem;
-  }
+}
+.site-header__brand {
+  margin-right: auto;
 }
 
 .nav {
@@ -158,7 +158,7 @@
   display: none;
 }
 
-/* Menü-Schalter (bis lg): nur das Hamburger-Zeichen, ohne Text und Rahmen (Vorgabe 03.11.2026).
+/* Menü-Schalter (bis xl, 1279 px): nur das Hamburger-Zeichen, ohne Text und Rahmen (Vorgabe 03.11.2026).
    „Menü“ steht unsichtbar für Screenreader im Link. Tippfläche 44 × 44 px. */
 .menu-toggle {
   display: inline-grid;
@@ -191,7 +191,9 @@
   background: currentColor;
 }
 
-@media (min-width: 1024px) {
+/* Volle Navigation erst ab xl (1280): mit dem größeren Logo (06.11.2026) passt sie zwischen
+   1024 und 1279 px nicht neben Logo, Linie und Slogan; dort bleibt der Hamburger. */
+@media (min-width: 1280px) {
   .nav,
   .lang--header {
     display: block;
@@ -255,7 +257,7 @@
 .menu-open {
   overflow: hidden;
 }
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
   .drawer,
   .drawer:target {
     display: none;
@@ -321,7 +323,7 @@
 }
 
 /* Fußzeile -------------------------------------------------------------------
-   Bleu nuit mit großen runden Ecken oben, das Holz-Logo groß über die volle Breite,
+   Bleu nuit mit großen runden Ecken oben, Logo · Linie · Slogan wie in der Kopfzeile,
    der Hinweis „fiktiv“ als schlichte Zeile ganz unten. Ohne die drei Orte. */
 
 .site-footer {
@@ -338,12 +340,8 @@
   color: var(--blanc);
 }
 .site-footer__mark {
-  display: block;
+  width: fit-content;
   margin: 0 0 var(--space-xl);
-}
-.site-footer__logo {
-  width: 100%;
-  height: auto;
 }
 .site-footer__bottom {
   display: grid;
@@ -352,15 +350,10 @@
 }
 @media (min-width: 1024px) {
   .site-footer__bottom {
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 1fr auto;
     align-items: center;
     gap: var(--space-m);
   }
-}
-.site-footer__tagline {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: 1.25rem;
 }
 .site-footer__links {
   display: flex;

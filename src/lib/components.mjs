@@ -93,10 +93,11 @@ export function picture(name, locale, { sizes = '100vw', cls = '', eager = false
 }
 
 /* ------------------------------------------------------------------ */
-/* Wochenplan (Umbau 05.11.2026): je Öffnungstag eine große, runde      */
-/* Karte, darin die Orte als Farbflächen mit Zeit und Ort.              */
-/* Die Live-Anzeige (main.js, initPlan) markiert „Jetzt geöffnet“ und   */
-/* „Als Nächstes“ und schreibt heute/morgen/Datum an die Tage.          */
+/* Öffnungszeiten (06.11.2026, ersetzt die Wochenplan-Karten):          */
+/* ganz dezent als schlichte Zeile – je Öffnungstag der Tag, darin die  */
+/* Orte mit Farbpunkt und Uhrzeit. Keine Karten, keine Überschrift.     */
+/* main.js (initPlan) schreibt „heute“/„morgen“ an die Tage und         */
+/* markiert, was gerade geöffnet hat oder diesmal Pause macht.          */
 /* ------------------------------------------------------------------ */
 
 const cap = (s) => s.charAt(0).toLocaleUpperCase() + s.slice(1);
@@ -104,16 +105,13 @@ const cap = (s) => s.charAt(0).toLocaleUpperCase() + s.slice(1);
 export function weekPlan(locale) {
   const T = DICT[locale];
   const t = T.ui;
-  const place = (L) => (L.street ? `${L.street}, ${L.district}` : T.pages.marche.whereText);
 
   const slot = (s, i) => {
     const L = LOCATIONS[s.location];
     const time = s.openEnd ? fill(t.time.from, { t: formatTime(s.start, locale) }) : formatSpan(s.start, s.end, locale);
-    return html`<li class="plan__item"><a class="plan__slot plan__slot--${L.key}" href="${url(L.key, locale)}" data-slot="${i}"><span class="plan__name">${
+    return html`<li><a class="plan__slot" href="${url(L.key, locale)}" data-slot="${i}"><span class="dot dot--${L.key}" aria-hidden="true"></span><span class="plan__name">${
       L.name
-    }</span><span class="plan__time">${typo(time, locale)}</span><span class="plan__place">${place(L)}</span><span class="plan__pause">${
-      t.live.paused
-    }</span></a></li>`;
+    }</span> <span class="plan__time">${typo(time, locale)}</span><span class="plan__state" data-state></span></a></li>`;
   };
 
   // Nur die Tage, an denen wir geöffnet haben (Vorgabe 01.11.2026: keine Zeile „Mo – Do geschlossen“)
@@ -124,21 +122,16 @@ export function weekPlan(locale) {
   }
 
   const days = rows.map(
-    (r) => html`<li class="plan__day" data-days="${r.day}"><div class="plan__head"><h3 class="plan__dayname">${cap(
-      t.days[r.day - 1]
-    )}</h3><p class="plan__date"></p></div><ul class="plan__slots" role="list">${r.slots.map(([s, i]) => slot(s, i))}</ul></li>`
+    (r) => html`<li class="plan__day" data-days="${r.day}"><h3 class="plan__dayname">${cap(t.days[r.day - 1])}<span class="plan__date"></span></h3><ul class="plan__slots" role="list">${r.slots.map(
+      ([s, i]) => slot(s, i)
+    )}</ul></li>`
   );
 
-  // Daten für die Live-Anzeige (main.js)
+  // Daten für die Live-Markierung (main.js)
   const data = SCHEDULE.map((s, i) => ({ i, loc: s.location, day: s.day, start: s.start, end: s.end, openEnd: !!s.openEnd }));
-  const strings = {
-    ...t.live,
-    intl: T.intl,
-    days: t.days,
-    locations: Object.fromEntries(Object.values(LOCATIONS).map((L) => [L.key, { name: L.name, place: place(L), url: url(L.key, locale) }])),
-  };
+  const strings = { open: t.live.open, paused: t.live.paused, today: t.live.today, tomorrow: t.live.tomorrow };
 
-  return html`<div class="plan" data-plan data-locale="${locale}" data-schedule="${JSON.stringify(data)}" data-closures="${JSON.stringify(
+  return html`<div class="plan" data-plan data-schedule="${JSON.stringify(data)}" data-closures="${JSON.stringify(
     CLOSURES
   )}" data-strings="${JSON.stringify(strings)}">
   <ol class="plan__days" role="list">${days}</ol>

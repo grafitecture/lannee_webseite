@@ -32,7 +32,7 @@ Voraussetzung: Node.js ab Version 20. Der Build hat **keine npm-Abhängigkeiten*
 
 Mini-Markup in den Texten: `_kursiv_`, `**fett**`, `{fr|Texte français}` (Sprachauszeichnung), `[Link](/pfad/)`.
 
-Der **Wochenplan** auf der Startseite liest `SCHEDULE`: je Öffnungstag eine runde Karte, darin die Orte als Farbflächen mit Zeit und Ort. Live (Zeitzone Europe/Berlin) markiert er, was gerade geöffnet ist bzw. als Nächstes kommt; der Hinweis darüber nennt den Ort. Bei „ab … Uhr“ ist das Ende nur eine Annahme (`openEnd: true`).
+Die **Öffnungszeiten** auf der Startseite (dezente Zeile unter dem Hero, seit 06.11.2026) lesen `SCHEDULE`: je Öffnungstag der Tag, daneben die Orte mit Farbpunkt und Uhrzeit. Live (Zeitzone Europe/Berlin) stehen „heute“/„morgen“ am Tag, und der Punkt des gerade geöffneten Orts pulsiert leise. Bei „ab … Uhr“ ist das Ende nur eine Annahme (`openEnd: true`).
 
 **Pause eintragen** (Urlaub, private Feier): einen Eintrag in `CLOSURES` ergänzen, z. B.
 
@@ -41,7 +41,7 @@ Der **Wochenplan** auf der Startseite liest `SCHEDULE`: je Öffnungstag eine run
   note: { de: 'Weihnachtspause', fr: 'Pause de Noël', en: 'Christmas break' } }
 ```
 
-Dann erscheint auf der Startseite und den betroffenen Ortsseiten ein Hinweis, der Wochenplan markiert die betroffenen Termine („Diesmal Pause“) und die Live-Anzeige springt zum nächsten geöffneten Ort. Vergangene Pausen und Marché-Termine blenden sich von selbst aus.
+Dann erscheint auf der Startseite und den betroffenen Ortsseiten ein Hinweis, und die Öffnungszeiten markieren die betroffenen Termine („Diesmal Pause“, Uhrzeit durchgestrichen). Vergangene Pausen und Marché-Termine blenden sich von selbst aus.
 
 ## Bilder
 
@@ -57,7 +57,7 @@ Nur einzelne Bilder neu erzeugen: `npm run images -- name1 name2` (Namen wie in 
 
 Favicons und Open-Graph-Bilder: `npm install --no-save sharp playwright && npm run brand-assets`.
 
-**Historische Bilder** (Schwarzweiß oder Farben der 50er, seit 05.11.2026): Vorlage (z. B. ein KI-Bild aus dem Higgsfield-Verlauf) mit `python3 scripts/historisch.py sw|50er vorlage.jpg assets-src/historisch-name.jpg [--breite 2400] [--ausschnitt x,y,b,h]` in den Look bringen (braucht numpy und Pillow), dann wie jedes Bild in `SOURCES` und `media.mjs` eintragen und `npm run images -- historisch-name`. Auf den Seiten stehen sie immer im Wechsel mit den echten Fotos.
+**Historische Bilder** (Farben der 50er, seit 05.11.2026; keine Schwarzweiß-Bilder seit 06.11.2026): Vorlage (z. B. ein KI-Bild aus dem Higgsfield-Verlauf) mit `python3 scripts/historisch.py 50er vorlage.jpg assets-src/historisch-name.jpg [--breite 2400] [--ausschnitt x,y,b,h]` in den Look bringen (braucht numpy und Pillow), dann wie jedes Bild in `SOURCES` und `media.mjs` eintragen und `npm run images -- historisch-name`. Auf den Seiten stehen sie immer im Wechsel mit den echten Fotos.
 
 Higgsfield-Dateien ins Repo holen (die Arbeitsumgebung erreicht die Higgsfield-Adressen nicht): auf dem Zweig `tools/fetch-assets` Zeilen „Name URL“ eintragen und pushen – `assets-src/fetch/thumbs.txt` (Vorschaubilder 640 px), `assets-src/fetch/full.txt` (Vollauflösung als JPEG), `assets-src/fetch/videos.txt` (je vier Standbilder aus Videos) oder `assets-src/scribbles/urls.txt` (Rohdateien). GitHub-Workflows laden die Dateien und committen sie auf diesen Zweig.
 

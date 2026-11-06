@@ -45,24 +45,10 @@ const toHours = (s) => {
   return h + m / 60;
 };
 
-function formatTime(hhmm, locale) {
-  const [h, m] = hhmm.split(':').map(Number);
-  if (locale === 'en') {
-    const suffix = h >= 12 && h < 24 ? 'pm' : 'am';
-    const h12 = ((h + 11) % 12) + 1;
-    return m ? `${h12}:${String(m).padStart(2, '0')} ${suffix}` : `${h12} ${suffix}`;
-  }
-  if (locale === 'fr') return m ? `${h} h ${String(m).padStart(2, '0')}` : `${h} h`;
-  return m ? `${h}:${String(m).padStart(2, '0')} Uhr` : `${h} Uhr`;
-}
-
-const fill = (tpl, vars) => tpl.replace(/\{(\w+)\}/g, (_, k) => vars[k] ?? '');
-
 /* ------------------------------------------------------------------ */
-/* Wochenplan & Live-Anzeige                                           */
+/* Öffnungszeiten: heute/morgen, gerade geöffnet, Pause (06.11.2026)   */
 /* ------------------------------------------------------------------ */
 
-const LOC_COLOR = { garage: 'var(--garage)', kiosque: 'var(--kiosque)', marche: 'var(--marche)' };
 
 function addDays(ymd, days) {
   const [y, m, d] = ymd.split('-').map(Number);
@@ -108,93 +94,41 @@ function pausedSlots(schedule, now, closures) {
   return paused;
 }
 
-function statusParts(status, strings, locale) {
-  const loc = strings.locations[status.slot.loc];
-  const start = formatTime(status.slot.start, locale);
-  if (status.state === 'open') {
-    const detail = status.slot.openEnd
-      ? fill(strings.since, { t: start })
-      : `${fill(strings.since, { t: start })}, ${fill(strings.until, { t: formatTime(status.slot.end, locale) })}`;
-    return { state: strings.open, name: loc.name, url: loc.url, detail, place: loc.place, key: status.slot.loc };
-  }
-  const when =
-    status.inDays === 0 ? strings.today : status.inDays === 1 ? strings.tomorrow : fill(strings.inDays, { n: status.inDays });
-  const dayName = strings.days[status.slot.day - 1];
-  const detail = `${dayName}, ${start}`;
-  return { state: strings.next, name: loc.name, url: loc.url, detail: `${detail} (${when})`, place: loc.place, key: status.slot.loc };
-}
-
 function initPlan() {
   const plan = document.querySelector('[data-plan]');
   if (!plan) return;
-  const live = document.querySelector('[data-live]');
   const schedule = JSON.parse(plan.dataset.schedule);
   const closures = JSON.parse(plan.dataset.closures || '[]');
   const strings = JSON.parse(plan.dataset.strings);
-  const locale = plan.dataset.locale;
-  const dateFmt = new Intl.DateTimeFormat(strings.intl, { day: 'numeric', month: 'short', timeZone: 'UTC' });
 
   const update = () => {
     const now = berlinNow();
     const status = computeStatus(schedule, now, closures);
-    const parts = statusParts(status, strings, locale);
     const paused = pausedSlots(schedule, now, closures);
 
-    // Orte im Plan: geöffnet, als Nächstes, diesmal Pause
+    // Orte: gerade geöffnet (leise markiert) oder diesmal Pause
     plan.querySelectorAll('[data-slot]').forEach((node) => {
       const i = Number(node.dataset.slot);
       const isOpen = status.state === 'open' && status.slot.i === i;
-      const isNext = status.state === 'next' && status.slot.i === i;
-      node.classList.toggle('is-paused', paused.has(i));
+      const isPaused = paused.has(i);
       node.classList.toggle('is-open', isOpen);
-      node.classList.toggle('is-next', isNext);
-      let badge = node.querySelector('.plan__badge');
-      if (isOpen || isNext) {
-        if (!badge) {
-          badge = el('span', 'plan__badge');
-          node.prepend(badge);
-        }
-        badge.textContent = isOpen ? strings.open : strings.next;
-      } else if (badge) badge.remove();
+      node.classList.toggle('is-paused', isPaused);
+      const state = node.querySelector('[data-state]');
+      if (state) state.textContent = isOpen ? strings.open : isPaused ? strings.paused : '';
     });
 
-    // Tage: heute / morgen / Datum
+    // Tage: nur „heute“ und „morgen“, sonst nichts
     plan.querySelectorAll('.plan__day').forEach((row) => {
-      const days = row.dataset.days.split(',').map(Number);
-      const isToday = days.includes(now.iso);
-      row.classList.toggle('is-today', isToday);
+      const day = Number(row.dataset.days);
+      const ahead = (day - now.iso + 7) % 7;
+      row.classList.toggle('is-today', ahead === 0);
       const date = row.querySelector('.plan__date');
-      if (date) {
-        if (days.length > 1) date.textContent = isToday ? strings.today : '';
-        else {
-          const ahead = (days[0] - now.iso + 7) % 7;
-          date.textContent =
-            ahead === 0 ? strings.today : ahead === 1 ? strings.tomorrow : dateFmt.format(new Date(`${addDays(now.ymd, ahead)}T00:00:00Z`));
-        }
-      }
+      if (date) date.textContent = ahead === 0 ? strings.today : ahead === 1 ? strings.tomorrow : '';
     });
-
-    // Live-Hinweis unter „Ein Wochenende, drei Orte“: Jetzt geöffnet / Als Nächstes
-    if (live) {
-      live.classList.add('is-live');
-      live.classList.toggle('is-open', status.state === 'open');
-      live.style.setProperty('--live', LOC_COLOR[parts.key]);
-      live.href = parts.url;
-      live.querySelector('[data-live-state]').textContent = parts.state;
-      live.querySelector('[data-live-name]').textContent = parts.name;
-      live.querySelector('[data-live-detail]').textContent = parts.detail;
-    }
   };
 
   update();
   setInterval(update, 60_000);
-}
-
-function el(tag, cls, text) {
-  const n = document.createElement(tag);
-  if (cls) n.className = cls;
-  if (text != null) n.textContent = text;
-  return n;
 }
 
 /* ------------------------------------------------------------------ */
@@ -277,7 +211,7 @@ function initMenu() {
       }
     }
   });
-  window.matchMedia('(min-width: 1024px)').addEventListener('change', (e) => e.matches && shut(false));
+  window.matchMedia('(min-width: 1280px)').addEventListener('change', (e) => e.matches && shut(false));
 }
 
 /* ------------------------------------------------------------------ */

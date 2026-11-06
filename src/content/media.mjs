@@ -149,19 +149,12 @@ export const MEDIA = {
     },
   },
 
-  /* Historische Bilder (Umbau 05.11.2026): KI-Motive im Look der 50er, Schwarzweiß oder Kodachrome-Farben */
+  /* Historische Bilder (Umbau 05.11.2026): KI-Motive in Kodachrome-Farben der 50er. Keine Schwarzweiß-Bilder (06.11.2026). */
   'historisch-abend': {
     alt: {
       de: 'Abends im Hof: Champagner wird in Coupes geschenkt, auf dem Tisch Austern, Kerzen und eine Lichterkette, in den Farben der 50er',
       fr: 'Le soir dans la cour : on verse du champagne dans les coupes, sur la table des huîtres, des bougies et une guirlande, aux couleurs des années 50',
       en: 'Evening in the courtyard: champagne poured into coupes, oysters, candles and string lights on the table, in 1950s colours',
-    },
-  },
-  'historisch-anstossen': {
-    alt: {
-      de: 'Schwarzweißfoto: Freunde stoßen unter einer Lichterkette mit Coupes an, vor ihnen eine Platte Austern',
-      fr: 'Photo en noir et blanc : des amis trinquent avec des coupes sous une guirlande, devant eux un plateau d’huîtres',
-      en: 'Black-and-white photo: friends raise their coupes under string lights, a platter of oysters in front of them',
     },
   },
   'historisch-tafel': {
@@ -171,39 +164,11 @@ export const MEDIA = {
       en: 'Friends toasting at a stone table with oysters on ice and lemon between them, in 1950s colours',
     },
   },
-  'historisch-coupes': {
-    alt: {
-      de: 'Schwarzweißfoto: drei Coupes stoßen über einem Tisch voller Austern an',
-      fr: 'Photo en noir et blanc : trois coupes trinquent au-dessus d’une table couverte d’huîtres',
-      en: 'Black-and-white photo: three coupes clink above a table full of oysters',
-    },
-  },
-  'historisch-austernbauer': {
-    alt: {
-      de: 'Schwarzweißfoto: zwei Austernbauern mit Baskenmütze gehen bei Ebbe mit Korb zwischen den Austerntischen',
-      fr: 'Photo en noir et blanc : deux ostréiculteurs en béret marchent à marée basse entre les tables à huîtres, un panier à la main',
-      en: 'Black-and-white photo: two oyster farmers in berets walk between the oyster tables at low tide, carrying a basket',
-    },
-  },
-  'historisch-junge': {
-    alt: {
-      de: 'Schwarzweißfoto: ein lachender Junge im Ringelshirt hält im Ruderboot eine Auster hoch',
-      fr: 'Photo en noir et blanc : un garçon rieur en marinière brandit une huître dans une barque',
-      en: 'Black-and-white photo: a laughing boy in a striped shirt holds up an oyster in a rowing boat',
-    },
-  },
   'historisch-boot': {
     alt: {
       de: 'Ein Fischerboot mit rotem Segel an der Hafenmauer, darüber Möwen, in den Farben der 50er',
       fr: 'Un bateau de pêche à voile rouge le long du quai, des mouettes au-dessus, aux couleurs des années 50',
       en: 'A fishing boat with a red sail at the harbour wall, gulls overhead, in 1950s colours',
-    },
-  },
-  'historisch-haende': {
-    alt: {
-      de: 'Schwarzweißfoto: Hände öffnen mit dem Messer eine Auster auf Eis, daneben eine halbe Zitrone',
-      fr: 'Photo en noir et blanc : des mains ouvrent une huître sur glace au couteau, à côté un demi-citron',
-      en: 'Black-and-white photo: hands opening an oyster on ice with a knife, half a lemon beside it',
     },
   },
   austernplatte: {

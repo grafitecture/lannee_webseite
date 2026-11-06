@@ -1,7 +1,7 @@
 /**
  * Startseite (Umbau 05.11.2026): Vollbild-Hero mit historischem Foto, Mega-Headline und den drei Orten
- * als Farbkacheln; darunter viel Weiß, große runde Bildkarten, historische Bilder im Wechsel mit echten Fotos.
- * Kein Film, keine Zeichnungen, keine Logo-Wanderung.
+ * als Farbkacheln; darunter viel Weiß, große runde Bildkarten, historische Bilder (50er) zu echten Fotos.
+ * Kein Film, keine Zeichnungen, keine Logo-Wanderung, keine Schwarzweiß-Bilder (06.11.2026).
  */
 import { html, rich } from '../lib/html.mjs';
 import { DICT, url } from '../lib/i18n.mjs';
@@ -10,27 +10,25 @@ import { picture, weekPlan, button, icon, closureNotes } from '../lib/components
 import { menuExcerpt } from '../lib/menu-render.mjs';
 import { placeText } from '../lib/layout.mjs';
 
-/** Jeder Ort: echtes Foto (groß) + historisches Bild (klein, überlappend). */
+/** Jeder Ort: echtes Foto (groß) + Abzug mit weißem Rand (klein, überlappend): historisch (50er) oder ein Detail. */
 const PLACE_PHOTOS = {
-  garage: { real: 'garage-hof', past: 'historisch-anstossen' },
+  garage: { real: 'garage-hof', past: 'historisch-boot' },
   kiosque: { real: 'kiosque-visualisierung', past: 'historisch-tafel' },
-  marche: { real: 'marche-wagen', past: 'historisch-austernbauer' },
+  marche: { real: 'marche-wagen', past: 'huitres-glace' },
 };
 const HERO_IMAGE = 'historisch-abend';
 const HERO_PLACES_LABEL = { de: 'Drei Orte', fr: 'Trois adresses', en: 'Three places' };
-/** Bilderreihe: historisch und echt im Wechsel. */
+/** Bilderreihe: echte Fotos (die Schwarzweiß-Bilder sind am 06.11.2026 entfallen). */
 const GALLERY = [
-  'historisch-junge',
   'garage-austernbar',
-  'huitres-glace',
-  'historisch-boot',
+  'bulles',
   'garage-boot',
   'schweppes',
-  'historisch-haende',
+  'hof-bistrotische',
   'garage-eingang',
   'baguettes',
-  'historisch-coupes',
   'garage-wand',
+  'garage-weinlaub',
   'garage-merci',
 ];
 
@@ -84,17 +82,8 @@ export function render(ctx) {
   <ul class="hero__places" role="list" aria-label="${HERO_PLACES_LABEL[locale]}">${heroPlaces}</ul>
 </section>
 
-<section class="section weekend" id="wochenende" aria-labelledby="weekend-title">
-  <div class="section__head">
-    <h2 class="section__title" id="weekend-title">${p.weekend.heading}</h2>
-    <p class="lead">${rich(p.weekend.lead, locale)}</p>
-    <a class="live" href="#wochenende" data-live>
-      <span class="live__dot" aria-hidden="true"></span>
-      <span class="live__state" data-live-state>${p.wayfinder.planEyebrow}</span>
-      <span class="live__name" data-live-name>${p.wayfinder.planTitle}</span>
-      <span class="live__detail" data-live-detail>${p.wayfinder.planText}</span>
-    </a>
-  </div>
+<section class="hours" id="wochenende" aria-labelledby="hours-title">
+  <h2 class="visually-hidden" id="hours-title">${p.hours}</h2>
   ${weekPlan(locale)}
   ${closureNotes(locale, LOCATION_ORDER)}
 </section>

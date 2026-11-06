@@ -1,6 +1,6 @@
 /* ==========================================================================
    Seiten (Umbau 05.11.2026): Vollbild-Hero, viel Weiß, große runde Bildkarten,
-   historische Bilder (Schwarzweiß / 50er) im Wechsel mit echten Fotos.
+   historische Bilder (50er, kein Schwarzweiß) im Wechsel mit echten Fotos.
    ========================================================================== */
 
 /* Startseite: Vollbild-Hero ----------------------------------------------------- */
@@ -151,14 +151,16 @@
   }
 }
 
-/* Wochenende ------------------------------------------------------------------ */
+/* Öffnungszeiten unter dem Hero (06.11.2026): schlichte Zeile, viel Luft danach ------ */
 
-.weekend .section__title {
-  font-size: var(--fs-h3);
-  max-width: 12ch;
+.hours {
+  padding: var(--space-l) var(--gutter) var(--section-y);
+}
+.hours .closures {
+  margin-top: var(--space-s);
 }
 
-/* Die drei Orte im Detail: echtes Foto groß, historisches Bild als Abzug darüber */
+/* Die drei Orte im Detail: echtes Foto groß, ein Abzug (historisch, 50er, oder ein Detail) darüber */
 
 .places {
   display: grid;
@@ -195,7 +197,7 @@
     aspect-ratio: 4 / 3;
   }
 }
-/* Historisches Bild wie ein Abzug mit weißem Rand, halb über dem Foto */
+/* Abzug mit weißem Rand, halb über dem Foto */
 .place__past {
   position: absolute;
   right: 0;

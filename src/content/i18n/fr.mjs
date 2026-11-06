@@ -32,7 +32,6 @@ export default {
     closure: { one: '**{names} fait relâche :** {when}', many: '**{names} font relâche :** {when}' },
     facts: { when: 'Quand', where: 'Où', mail: 'E-mail', more: 'Aussi' },
     footer: {
-      tagline: 'Austern & Bulles à Mannheim',
       legal: 'Informations légales',
       impressum: 'Mentions légales',
       datenschutz: 'Confidentialité',
@@ -55,20 +54,8 @@ export default {
       lead: 'Des huîtres, des bulles et une petite place au soleil. En trois lieux à Mannheim, chaque week-end.',
       ctaMenu: 'Voir la carte',
       ctaWhere: 'Où nous trouver',
-      wayfinder: {
-        label: 'En un coup d’œil',
-        planEyebrow: 'Horaires',
-        planTitle: 'Ven. – dim.',
-        planText: 'Garage, Marché et Kiosque',
-        menuEyebrow: 'La Carte',
-        menuText: 'Huîtres, bulles et petites assiettes',
-        whereEyebrow: 'Trois adresses',
-        whereText: 'Jungbusch, Lindenhof et le marché',
-      },
-      weekend: {
-        heading: 'Un week-end, trois adresses.',
-        lead: 'En semaine, on va chercher les huîtres, on polit les verres et on fait la grasse matinée. Dès le vendredi soir, vous nous trouvez ici :',
-      },
+      // Öffnungszeiten unter dem Hero (06.11.2026): nur noch als dezente Zeile, Überschrift unsichtbar
+      hours: 'Horaires',
       places: {
         garage: {
           heading: 'Bonsoir dans la cour.',

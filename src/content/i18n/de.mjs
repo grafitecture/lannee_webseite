@@ -32,7 +32,6 @@ export default {
     closure: { one: '**{names} macht Pause:** {when}', many: '**{names} machen Pause:** {when}' },
     facts: { when: 'Wann', where: 'Wo', mail: 'Post', more: 'Außerdem' },
     footer: {
-      tagline: 'Austern & Bulles in Mannheim',
       legal: 'Rechtliches',
       impressum: 'Impressum',
       datenschutz: 'Datenschutz',
@@ -55,20 +54,8 @@ export default {
       lead: 'Austern, Bulles und ein Plätzchen in der Sonne. An drei Orten in Mannheim, jedes Wochenende.',
       ctaMenu: 'Zur Karte',
       ctaWhere: 'Wo wir sind',
-      wayfinder: {
-        label: 'Auf einen Blick',
-        planEyebrow: 'Öffnungszeiten',
-        planTitle: 'Fr – So',
-        planText: 'Garage, Marché und Kiosque',
-        menuEyebrow: 'La Carte',
-        menuText: 'Austern, Bulles und Kleinigkeiten',
-        whereEyebrow: 'Drei Orte',
-        whereText: 'Jungbusch, Lindenhof und der Wochenmarkt',
-      },
-      weekend: {
-        heading: 'Ein Wochenende, drei Orte.',
-        lead: 'Unter der Woche holen wir Austern, polieren Gläser und schlafen aus. Ab Freitagabend findest du uns hier:',
-      },
+      // Öffnungszeiten unter dem Hero (06.11.2026): nur noch als dezente Zeile, Überschrift unsichtbar
+      hours: 'Öffnungszeiten',
       places: {
         garage: {
           heading: 'Bonsoir im Hinterhof.',

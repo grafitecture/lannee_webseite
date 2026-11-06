@@ -18,7 +18,7 @@ Stand: Oktober 2026 · Grundlage: Briefing, PDF „LANNEE_Garage_Kiosque_Marche�
 
 *L’ANNÉE* heißt „das Jahr“. Austern folgen dem Kalender (Monate mit R) und den Gezeiten, und die drei Orte teilen sich ein Wochenende. Deshalb ist **Zeit** das verbindende Motiv:
 
-- Die Woche zeigt ein klarer Wochenplan (je Öffnungstag eine runde Karte) mit Live-Hinweis „Jetzt geöffnet“ / „Als Nächstes“.
+- Wann welcher Ort offen hat, steht ganz dezent als schlichte Zeile unter dem Hero (seit 06.11.2026; vorher Wochenplan mit runden Karten).
 - Uhren (Signets mit dem Akzent als Zeiger) gibt es seit 03.11.2026 nicht mehr, auch keine Jahresuhr.
 - Es gibt **nur Blau, mit Zug ins Grün** (Petrol bis Meergrün, seit 05.11.2026; davor 03.11.2026 Kobaltblau, noch davor Grün): Töne von Meer, Watt, Gischt und Eis. Die Helligkeit der Ortsfarben folgt dem **Tageslicht**: Morgen (Marée), Sonntag (Océan), Abend (Bleu nuit).
 
@@ -26,7 +26,7 @@ Stand: Oktober 2026 · Grundlage: Briefing, PDF „LANNEE_Garage_Kiosque_Marche�
 
 ```
 L’ANNÉE (1898.ma)
-├── Start: Vollbild-Hero mit Mega-Headline und den drei Orten, Wochenplan (live), drei Orte im Detail, Bilderreihe, Karte, Instagram
+├── Start: Vollbild-Hero mit Mega-Headline und den drei Orten, Öffnungszeiten als dezente Zeile, drei Orte im Detail, Bilderreihe, Karte, Instagram
 ├── Garage   (garage.ma → /garage/)
 ├── Kiosque  (kiosque.ma → /kiosque/)
 ├── Marché   (/marche/: Termine, Einladung für Feste)
@@ -40,7 +40,7 @@ Sprachen: Deutsch (ohne Präfix), Französisch (`/fr/…`), Englisch (`/en/…`)
 
 ## 4. Subbrands
 
-Logo (seit 03.11.2026): **weiße, gestrichene Holzbuchstaben L’ANNÉE**, freigestelltes Bild. Weiß gehört auf Blau – das Logo steht in der Kopfzeile (über dem Vollbild-Foto oder auf Bleu nuit) und groß in der Fußzeile, nie auf Weiß. Seit dem Umbau am 05.11.2026 sitzt es fest in der Kopfzeile (keine Wanderung mehr), daneben Linie und Slogan in der Seitensprache.
+Logo (seit 03.11.2026): **weiße, gestrichene Holzbuchstaben L’ANNÉE**, freigestelltes Bild. Weiß gehört auf Blau – das Logo steht in der Kopfzeile (über dem Vollbild-Foto oder auf Bleu nuit) und genauso in der Fußzeile (Logo · Linie · Slogan, seit 06.11.2026), nie auf Weiß. Seit dem Umbau am 05.11.2026 sitzt es fest in der Kopfzeile (keine Wanderung mehr), daneben Linie und Slogan in der Seitensprache.
 
 Die Orte unterscheiden sich über ihre Farbe (keine Uhren, keine Zeichnungen, keine Lockups mehr auf den Seiten):
 
@@ -51,7 +51,7 @@ Die Orte unterscheiden sich über ihre Farbe (keine Uhren, keine Zeichnungen, ke
 | Garage | Bleu nuit |
 | L’ANNÉE | Holz-Logo weiß auf Blau |
 
-Auf der Startseite stehen die drei Orte als Farbkacheln im Hero, im Wochenplan als Farbflächen und im Detail mit einem Farbpunkt am Namen; die Ortsseiten färben Zitat, Karte und Buttons in der Farbe des Ortes.
+Auf der Startseite stehen die drei Orte als Farbkacheln im Hero, in den Öffnungszeiten als Farbpunkt und im Detail mit einem Farbpunkt am Namen; die Ortsseiten färben Zitat, Karte und Buttons in der Farbe des Ortes.
 
 ## 5. Farben
 
@@ -110,13 +110,13 @@ Seiten sind auf dem Desktop immer volle Breite. Begrenzt wird nur die Zeilenlän
 
 1. **Aufgeräumt und großflächig:** viel Weiß, sehr viel Luft zwischen den Abschnitten, je Abschnitt eine Aussage. Große Bildkarten und Farbflächen mit runden Ecken (Radien nach Größe gestaffelt), Buttons als Pillen.
 2. **Ein mutiger Moment:** der Vollbild-Hero mit der Mega-Headline „Drei Orte. Ein Wochenende. Komm vorbei!“ und den drei Orten als Farbkacheln – man sieht sofort, dass es drei Orte gibt. Auf den Ortsseiten der riesige Name über dem Vollbild-Foto.
-3. **Historisch gepaart mit echt:** historische Bilder in Schwarzweiß oder in den Farben der 50er stehen immer neben den echten Fotos der Orte (auf der Startseite als Abzug mit weißem Rand über dem echten Foto, in den Bilderreihen im Wechsel).
+3. **Historisch gepaart mit echt:** historische Bilder in den Farben der 50er stehen neben den echten Fotos der Orte (auf der Startseite als Abzug mit weißem Rand über dem echten Foto). Keine Schwarzweiß-Bilder (seit 06.11.2026).
 4. **Keine Zeichnungen, kein Film, keine Uhren.** Bewegung nur, wo sie etwas zeigt (Kopfzeile wird beim Scrollen blau, Live-Punkt pulsiert, wenn geöffnet). `prefers-reduced-motion` wird respektiert.
 5. **Datenschutz durch Technik:** keine Cookies, kein Tracking, keine Einbettungen, Kartenlinks statt Karten.
 
 ## 9. Eigene Inhalte
 
-- Wochenplan: je Öffnungstag eine runde Karte, darin die Orte als Farbflächen; live mit „Jetzt geöffnet“ / „Als Nächstes“, Datum und Pausen
+- Öffnungszeiten: dezente Zeile, je Öffnungstag die Orte mit Farbpunkt und Uhrzeit; live mit „heute“/„morgen“, leisem Puls am geöffneten Ort und Pausen
 - La Carte (fiktiv): Struktur „Hunger / Durst“ nach dem Vorbild De Blauwe Kiosk (Gent), Inhalte aus der L’ANNÉE-Karte, Geschmacksprofile der Austern (jodig, fleischig, nussig), Filter nach Ort
 - Austernatlas: Arten und Herkünfte als runde Karten
 

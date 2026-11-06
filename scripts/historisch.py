@@ -1,5 +1,7 @@
 """
-Historischer Look für Bilder (Vorgabe 05.11.2026): Schwarzweiß oder Farbgebung der 50er Jahre.
+Historischer Look für Bilder (Vorgabe 05.11.2026): Farbgebung der 50er Jahre.
+Schwarzweiß-Bilder werden auf der Website nicht mehr verwendet (Vorgabe 06.11.2026); der Modus „sw“
+bleibt nur für Entwürfe erhalten.
 
 Aufruf (aus dem Projektordner):
     python3 scripts/historisch.py sw   eingabe.jpg assets-src/name.jpg [--breite 2400] [--ausschnitt x,y,b,h]

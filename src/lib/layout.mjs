@@ -81,12 +81,7 @@ function header(ctx) {
   return html`<header class="site-header${overlay ? ' site-header--overlay' : ''}" data-header>
   <a class="skip-link" href="#inhalt">${t.skip}</a>
   <div class="site-header__inner">
-    <a class="site-header__brand" href="${url('home', locale)}" aria-label="L’ANNÉE – ${t.home}">${logo({
-      cls: 'site-header__logo',
-      decorative: true,
-      eager: true,
-      sizes: '9rem',
-    })}<span class="site-header__rule" aria-hidden="true"></span><span class="site-header__tagline" aria-hidden="true">${SITE.taglines[locale]}</span></a>
+    ${lockup(locale, { cls: 'site-header__brand', label: `L’ANNÉE – ${t.home}`, eager: true })}
     <nav class="nav" aria-label="${t.mainNav}"><ul class="nav__list" role="list">${links}</ul></nav>
     ${langSwitch(ctx, 'lang--header')}
     <a class="menu-toggle" href="#menu" aria-controls="menu" aria-expanded="false" data-menu-toggle><span class="visually-hidden">${t.menu}</span><span class="menu-toggle__bars" aria-hidden="true"></span></a>
@@ -104,6 +99,19 @@ function header(ctx) {
     </div>
   </nav>
 </header>`;
+}
+
+/**
+ * Logo · Linie · Slogan in der Seitensprache – in Kopf- und Fußzeile genau gleich (Vorgabe 06.11.2026).
+ * Das Holz-Logo steht immer auf Blau.
+ */
+function lockup(locale, { cls, label, eager = false }) {
+  return html`<a class="lockup ${cls}" href="${url('home', locale)}" aria-label="${label}">${logo({
+    cls: 'lockup__logo',
+    decorative: true,
+    eager,
+    sizes: '9rem',
+  })}<span class="lockup__rule" aria-hidden="true"></span><span class="lockup__tagline" aria-hidden="true">${SITE.taglines[locale]}</span></a>`;
 }
 
 function langSwitch(ctx, cls) {
@@ -124,12 +132,12 @@ function footer(ctx) {
   const { locale } = ctx;
   const t = DICT[locale];
   const year = new Date().getFullYear();
-  // Fußzeile (Umbau 05.11.2026): Bleu nuit mit großen runden Ecken oben, großes Holz-Logo, Links in Pillenform
+  // Fußzeile (Umbau 05.11.2026): Bleu nuit mit großen runden Ecken oben, Links in Pillenform.
+  // Logo seit 06.11.2026 genau wie in der Kopfzeile: Logo · Linie · Slogan (statt großem Logo über die volle Breite).
   return html`<footer class="site-footer">
   <div class="site-footer__inner">
-    <a class="site-footer__mark" href="${url('home', locale)}" aria-label="L’ANNÉE – ${t.ui.home}">${logo({ cls: 'site-footer__logo', decorative: true, sizes: '90vw' })}</a>
+    ${lockup(locale, { cls: 'site-footer__mark', label: `L’ANNÉE – ${t.ui.home}` })}
     <div class="site-footer__bottom">
-      <p class="site-footer__tagline">${t.ui.footer.tagline}</p>
       <ul class="site-footer__links" role="list">
         <li><a href="${url('impressum', locale)}">${t.ui.footer.impressum}</a></li>
         <li><a href="${url('datenschutz', locale)}">${t.ui.footer.datenschutz}</a></li>
