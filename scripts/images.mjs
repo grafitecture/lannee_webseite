@@ -54,8 +54,11 @@ const SOURCES = {
   'garage-bar': { file: 'garage-bar.webp' },
   'garage-boot': { file: 'garage-boot.webp' },
   'garage-eingang': { file: 'garage-eingang.jpg' },
+  // Garage innen (06.11.2026, von Martin): gerade ausgerichtet (−3°, −6°, −10°) und auf 3 : 4 zugeschnitten
+  'garage-glaeser': { file: 'garage-glaeser.jpg' },
+  'garage-tresen': { file: 'garage-tresen.jpg' },
+  'garage-sammlung': { file: 'garage-sammlung.jpg' },
   'schweppes': { file: 'schweppes.jpg' },
-  'baguettes': { file: 'baguettes.jpg' },
   // Logo seit 03.11.2026: weiße Holzbuchstaben, freigestellt (PNG mit Transparenz). Wird auf die
   // Buchstaben zugeschnitten, die fast deckenden Flächen werden voll deckend (siehe prepareLogo).
   'logo-lannee': { file: 'logo-lannee-holz.png', logo: true, widths: [240, 360, 480, 768, 1080], quality: { avif: 64, webp: 86 } },

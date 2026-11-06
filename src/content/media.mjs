@@ -119,18 +119,32 @@ export const MEDIA = {
       en: 'The entrance with potted heather and the illuminated 1898 L’ANNÉE sign',
     },
   },
+  'garage-glaeser': {
+    alt: {
+      de: 'Über dem Tresen der Garage hängen Weingläser von der Decke, dahinter die weißen Buchstaben L’ANNÉE und zwei rote Lampen',
+      fr: 'Au-dessus du comptoir du Garage, des verres à vin suspendus au plafond ; derrière, les lettres blanches L’ANNÉE et deux lampes rouges',
+      en: 'Wine glasses hang from the ceiling above the Garage bar, with the white L’ANNÉE letters and two red lamps behind',
+    },
+  },
+  'garage-tresen': {
+    alt: {
+      de: 'Der Tresen der Garage: ein altes Holzboot unter hängenden Gläsern, dahinter ein leuchtender Fisch aus Glas',
+      fr: 'Le comptoir du Garage : une vieille barque en bois sous les verres suspendus, derrière un poisson lumineux en verre',
+      en: 'The Garage bar: an old wooden boat beneath hanging glasses, with a glowing glass fish behind it',
+    },
+  },
+  'garage-sammlung': {
+    alt: {
+      de: 'Eine Wand voller Fundstücke am Eingang der Garage: Segelschiff-Gemälde, Schreibmaschine, alte Kaffeedose und Mannheim-Plakate',
+      fr: 'Un mur couvert de trouvailles à l’entrée du Garage : tableau de voilier, machine à écrire, vieille boîte à café et affiches de Mannheim',
+      en: 'A wall full of finds at the Garage entrance: sailing-ship painting, typewriter, old coffee tin and Mannheim posters',
+    },
+  },
   schweppes: {
     alt: {
       de: 'Ein altes gelbes Schweppes-Werbeschild',
       fr: 'Une vieille enseigne publicitaire Schweppes jaune',
       en: 'An old yellow Schweppes advertising sign',
-    },
-  },
-  baguettes: {
-    alt: {
-      de: 'Baguettes in einer Holzkiste auf einem karierten Tuch',
-      fr: 'Des baguettes dans une caisse en bois sur un torchon à carreaux',
-      en: 'Baguettes in a wooden crate on a checked cloth',
     },
   },
 

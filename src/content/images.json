@@ -161,6 +161,42 @@
     ],
     "color": "#827d68"
   },
+  "garage-glaeser": {
+    "width": 1808,
+    "height": 2411,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1808
+    ],
+    "color": "#706557"
+  },
+  "garage-tresen": {
+    "width": 1703,
+    "height": 2271,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1703
+    ],
+    "color": "#74644e"
+  },
+  "garage-sammlung": {
+    "width": 1588,
+    "height": 2117,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1588
+    ],
+    "color": "#766c63"
+  },
   "schweppes": {
     "width": 1200,
     "height": 1600,
@@ -171,17 +207,6 @@
       1200
     ],
     "color": "#95876b"
-  },
-  "baguettes": {
-    "width": 1200,
-    "height": 1600,
-    "widths": [
-      480,
-      768,
-      1080,
-      1200
-    ],
-    "color": "#af9278"
   },
   "logo-lannee": {
     "width": 1563,

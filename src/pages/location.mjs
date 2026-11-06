@@ -13,21 +13,21 @@ import { placeText } from '../lib/layout.mjs';
 const CONFIG = {
   garage: {
     hero: 'garage-hof',
-    past: 'garage-eingang',
+    past: 'garage-tresen',
     quarter: null,
-    gallery: ['garage-bar', 'garage-austernbar', 'garage-boot', 'garage-wand', 'garage-fenster', 'schweppes', 'hof-bistrotische', 'garage-weinlaub', 'garage-merci'],
+    gallery: ['garage-glaeser', 'garage-bar', 'garage-austernbar', 'garage-boot', 'garage-sammlung', 'garage-fenster', 'schweppes', 'garage-eingang', 'hof-bistrotische', 'garage-weinlaub', 'garage-merci'],
   },
   kiosque: {
     hero: 'bulles',
-    past: 'baguettes',
+    past: 'huitres-glace',
     quarter: null,
-    gallery: ['huitres-glace', 'austern-postkarte', 'wein-eis', 'austern-oeffnen'],
+    gallery: ['austern-postkarte', 'wein-eis', 'austern-oeffnen'],
   },
   marche: {
     hero: 'marche-wagen',
     past: 'huitres-glace',
     quarter: null,
-    gallery: ['marche-auslage', 'austern-oeffnen', 'austern-postkarte', 'baguettes', 'wein-eis'],
+    gallery: ['marche-auslage', 'austern-oeffnen', 'austern-postkarte', 'wein-eis'],
   },
 };
 

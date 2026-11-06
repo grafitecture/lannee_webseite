@@ -12,20 +12,21 @@ import { placeText } from '../lib/layout.mjs';
 
 /** Jeder Ort: Foto groß + ein Detailfoto als Abzug mit weißem Rand (klein, überlappend). Nur echte Fotos. */
 const PLACE_PHOTOS = {
-  garage: { real: 'garage-eingang', past: 'garage-austernbar' },
-  kiosque: { real: 'bulles', past: 'baguettes' },
+  garage: { real: 'garage-glaeser', past: 'garage-austernbar' },
+  kiosque: { real: 'bulles', past: 'austern-postkarte' },
   marche: { real: 'marche-wagen', past: 'marche-auslage' },
 };
 const HERO_IMAGE = 'garage-hof';
 const HERO_PLACES_LABEL = { de: 'Drei Orte', fr: 'Trois adresses', en: 'Three places' };
 /** Bilderreihe: echte Fotos, keine Wiederholung der Bilder darüber. */
 const GALLERY = [
+  'garage-tresen',
+  'garage-eingang',
   'garage-bar',
-  'garage-boot',
   'schweppes',
+  'garage-sammlung',
   'hof-bistrotische',
-  'austern-postkarte',
-  'garage-wand',
+  'garage-boot',
   'garage-fenster',
   'garage-weinlaub',
   'garage-merci',
