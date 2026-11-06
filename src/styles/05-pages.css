@@ -725,14 +725,15 @@
 .oyster dd {
   margin: 0;
 }
-/* Austern-Strichzeichnungen (nur hier auf der Website, seit 06.11.2026 wieder): feine Linie in Marée */
+/* Austern-Strichzeichnungen (nur hier auf der Website, seit 06.11.2026 wieder, am selben Tag fein wie ein
+   Kupferstich neu gezeichnet): Linien in Marée, Strichstärken in px fest im Sprite (0,5–1,05 px) */
 .oyster__head {
   display: grid;
-  gap: 1rem;
+  gap: 1.1rem;
 }
 .oyster__art {
   display: block;
-  height: clamp(4.75rem, 4rem + 2vw, 6.25rem);
+  height: clamp(6.5rem, 5.25rem + 3vw, 8.75rem);
   color: var(--muted);
 }
 .oyster__svg {
