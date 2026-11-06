@@ -890,6 +890,97 @@
   font-size: var(--fs-text-small);
 }
 
+/* Atlanten (06.11.2026, ersetzt die Seite „Austernatlas“) ---------------------------
+   Eine Seite, zwei Nachschlagewerke: oben zwei helle Kacheln als Sprungmarken, dann der Austernatlas
+   (mit den Strichzeichnungen) und der Champagner-Guide (nur Text und Daten, keine Zeichnungen). */
+
+.atlases__hero {
+  padding-bottom: var(--space-l);
+}
+.atlases__switch {
+  padding: 0 var(--gutter);
+}
+.atlases__switch ul {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.9rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+@media (min-width: 768px) {
+  .atlases__switch ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.atlases__tile {
+  position: relative;
+  display: grid;
+  align-content: space-between;
+  gap: 1.25rem;
+  min-height: clamp(9.5rem, 7rem + 7vw, 15rem);
+  padding: clamp(1.4rem, 1rem + 1.4vw, 2.4rem);
+  padding-right: clamp(4.5rem, 3.5rem + 2vw, 6rem);
+  border-radius: var(--r-xl);
+  background: var(--tint);
+  color: var(--ink);
+  text-decoration: none;
+  transition: background-color 0.25s;
+}
+.atlases__tile:hover {
+  background: color-mix(in oklch, var(--ecume) 75%, var(--tint));
+}
+.atlases__tile-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 1.3rem + 2.2vw, 3.4rem);
+  font-weight: 420;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.atlases__tile-text {
+  max-width: 34ch;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.atlases__tile-arrow {
+  position: absolute;
+  top: clamp(1.2rem, 0.9rem + 1.2vw, 2.1rem);
+  right: clamp(1.2rem, 0.9rem + 1.2vw, 2.1rem);
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0.7rem;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--blanc);
+  transform: rotate(90deg);
+  transition: transform 0.25s var(--ease-out);
+}
+.atlases__tile:hover .atlases__tile-arrow {
+  transform: rotate(90deg) translateX(0.2rem);
+}
+
+.atlases__part {
+  padding-top: var(--section-y);
+  scroll-margin-top: var(--header-h, 5rem);
+}
+.atlases__head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: start;
+  gap: var(--space-m);
+  padding: 0 var(--gutter);
+}
+.atlases__title {
+  font-size: var(--fs-h3);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  margin-left: -0.03em;
+}
+.atlases__cta {
+  padding: var(--section-y) var(--gutter) 0;
+}
+
 /* Austernatlas ------------------------------------------------------------------ */
 
 .atlas {
@@ -968,6 +1059,588 @@
 }
 .oyster__text {
   margin-top: 0.3rem !important;
+}
+
+/* Champagner-Guide (06.11.2026) ----------------------------------------------------
+   Helle runde Karten auf Weiß, Zahlen und Namen in Fraunces, Balken nur als Daten (Dosage,
+   Rebsorten-Anteil, Flaschengrößen) in Marée auf einer Embrun-Spur. Keine Zeichnungen. */
+
+.cg-nav {
+  width: 100%;
+  margin-top: var(--space-s);
+}
+.cg-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cg-nav__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding: 0.45rem 1rem;
+  border-radius: var(--r-pill);
+  background: var(--tint);
+  color: var(--ink);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+.cg-nav__link:hover {
+  background: var(--ecume);
+}
+
+.cg {
+  display: grid;
+  gap: calc(var(--section-y) * 0.8);
+  padding: var(--section-y) var(--gutter) 0;
+}
+.cg-chapter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-l);
+  scroll-margin-top: var(--header-h, 5rem);
+}
+.cg-chapter__head {
+  display: grid;
+  gap: 0.8rem;
+  max-width: 48rem;
+}
+.cg-chapter__title {
+  font-size: var(--fs-h4);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+}
+.cg-chapter__intro {
+  max-width: 52ch;
+  font-size: 1.125rem;
+  line-height: 1.5;
+}
+.cg-subhead {
+  margin-top: var(--space-s);
+  font-size: var(--fs-h6);
+  letter-spacing: -0.015em;
+}
+.cg-note {
+  margin-top: -1rem;
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+.cg-aside {
+  max-width: 62ch;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.cg-tip {
+  max-width: 50rem;
+  padding: 1.1rem 1.4rem;
+  border-radius: var(--r-l);
+  background: var(--ecume);
+  line-height: 1.5;
+}
+
+/* Karten-Raster (Anbaugebiete, Aromen, Stile, Lagern & Servieren) */
+.cg-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17.5rem), 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cg-cards--care {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+}
+.cg-card {
+  display: grid;
+  align-content: start;
+  gap: 0.7rem;
+  padding: clamp(1.25rem, 1rem + 1vw, 2rem);
+  border-radius: var(--r-xl);
+  background: var(--tint);
+}
+.cg-card__title {
+  font-family: var(--font-display);
+  font-size: var(--fs-h6);
+  font-weight: 420;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.cg-cards--regions .cg-card__title {
+  font-size: clamp(1.5rem, 1.25rem + 0.9vw, 2rem);
+}
+.cg-card__small {
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+.cg-card__small strong {
+  color: var(--ink);
+}
+.cg-chip {
+  justify-self: start;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--r-pill);
+  background: var(--blanc);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.cg-cards--aromas {
+  counter-reset: aroma;
+}
+.cg-cards--aromas .cg-card {
+  counter-increment: aroma;
+}
+.cg-points {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cg-points li {
+  position: relative;
+  padding-left: 1.1rem;
+  line-height: 1.45;
+}
+.cg-points li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: var(--muted);
+}
+
+/* In Zahlen */
+.cg-facts {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
+  margin: 0;
+}
+@media (min-width: 560px) {
+  .cg-facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  .cg-facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.cg-fact {
+  display: grid;
+  align-content: start;
+  gap: 0.6rem;
+  padding: clamp(1.25rem, 1rem + 1vw, 2rem);
+  border-radius: var(--r-xl);
+  background: var(--tint);
+}
+.cg-fact dt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.45rem;
+}
+.cg-fact__value {
+  font-family: var(--font-display);
+  font-size: clamp(2.75rem, 2rem + 2.6vw, 4.25rem);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  white-space: nowrap;
+}
+.cg-fact__unit {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-style: italic;
+  font-weight: 400;
+}
+.cg-fact dd {
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* Balken (Daten): Spur in Embrun, Füllung in Marée von --a bis --b (Anteile 0–1) */
+.cg-bar {
+  position: relative;
+  display: block;
+  height: 0.5rem;
+  border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--embrun) 35%, transparent);
+  overflow: hidden;
+}
+.cg-bar__fill {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(var(--a) * 100%);
+  width: max(0.5rem, calc((var(--b) - var(--a)) * 100%));
+  border-radius: var(--r-pill);
+  background: var(--muted);
+}
+.cg-bar--open .cg-bar__fill {
+  background: linear-gradient(to right, var(--muted) 55%, color-mix(in srgb, var(--muted) 0%, transparent));
+}
+
+/* Rebsorten */
+.cg-grapes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17.5rem), 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.cg-grape {
+  display: grid;
+  align-content: start;
+  gap: 0.8rem;
+  padding: clamp(1.25rem, 1rem + 1vw, 2rem);
+  border-radius: var(--r-xl);
+  background: var(--tint);
+}
+.cg-grape .cg-card__title {
+  font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
+}
+.cg-grape__share {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0 0.6rem;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+.cg-grape__num {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+/* Herstellung: nummerierte Schritte */
+.cg-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+.cg-step {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-content: start;
+  column-gap: 1rem;
+  row-gap: 0.4rem;
+  padding: clamp(1.15rem, 1rem + 0.8vw, 1.75rem);
+  border-radius: var(--r-l);
+  background: var(--tint);
+}
+.cg-step::before {
+  content: counter(step, decimal-leading-zero);
+  grid-row: 1 / span 2;
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-style: italic;
+  font-weight: 400;
+  line-height: 0.95;
+  color: var(--muted);
+}
+.cg-step__title {
+  font-size: 1.375rem;
+  font-weight: 440;
+  letter-spacing: -0.015em;
+}
+.cg-step p {
+  line-height: 1.5;
+}
+
+/* Geschmack: Dosage-Skala */
+.cg-dosage {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--embrun);
+}
+.cg-dose {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.45rem 1rem;
+  align-items: baseline;
+  padding: 1rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--embrun) 60%, transparent);
+}
+.cg-dose__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 1.2rem + 0.7vw, 1.875rem);
+  font-weight: 420;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.cg-dose__alias {
+  display: block;
+  margin-top: 0.2rem;
+  font-family: var(--font-text);
+  font-size: 0.8125rem;
+  letter-spacing: 0;
+  color: var(--muted);
+}
+.cg-dose__range {
+  font-weight: 700;
+  white-space: nowrap;
+}
+.cg-dose .cg-bar {
+  grid-column: 1 / -1;
+}
+.cg-dose__text {
+  grid-column: 1 / -1;
+  line-height: 1.45;
+}
+@media (min-width: 900px) {
+  .cg-dose {
+    grid-template-columns: minmax(12rem, 1.1fr) 7.5rem minmax(10rem, 1fr) minmax(0, 1.6fr);
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .cg-dose .cg-bar,
+  .cg-dose__text {
+    grid-column: auto;
+  }
+}
+
+/* Flaschengrößen: Tabelle mit Balken (linear zum Inhalt) */
+.cg-sizes-wrap {
+  max-width: 64rem;
+  overflow-x: auto;
+}
+.cg-sizes {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+.cg-sizes th,
+.cg-sizes td {
+  padding: 0.85rem 0.5rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--embrun) 60%, transparent);
+  text-align: left;
+  vertical-align: top;
+}
+.cg-sizes thead th {
+  padding-top: 0;
+  border-bottom-color: var(--embrun);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.cg-sizes thead [aria-hidden='true'] {
+  text-transform: none;
+  letter-spacing: 0;
+}
+.cg-sizes tbody th {
+  width: 58%;
+  padding-left: 0;
+  font-weight: 400;
+}
+.cg-sizes .cg-num {
+  text-align: right;
+  white-space: nowrap;
+}
+.cg-sizes td.cg-num {
+  font-weight: 600;
+}
+.cg-size__name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 1.15rem + 0.6vw, 1.75rem);
+  font-weight: 420;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.cg-size__origin {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 0.875rem;
+  line-height: 1.35;
+  color: var(--muted);
+}
+/* Handy: Tabelle passt ohne seitliches Scrollen (schmalere Köpfe, weniger Innenabstand) */
+@media (max-width: 559px) {
+  .cg-sizes th,
+  .cg-sizes td {
+    padding: 0.8rem 0.3rem;
+  }
+  .cg-sizes thead th {
+    font-size: 0.6875rem;
+    letter-spacing: 0.02em;
+  }
+  .cg-sizes tbody th {
+    width: auto;
+  }
+  .cg-sizes td.cg-num {
+    font-size: 0.9375rem;
+  }
+  .cg-size__name {
+    font-size: 1.2rem;
+  }
+}
+.cg-bar--size {
+  max-width: 28rem;
+  margin-top: 0.6rem;
+  height: 0.4rem;
+}
+.cg-bar--size .cg-bar__fill {
+  width: max(0.4rem, calc((var(--b) - var(--a)) * 100%));
+}
+
+/* Etikett: Kürzel */
+.cg-codes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  gap: 1rem;
+  margin: 0;
+}
+.cg-code {
+  display: grid;
+  align-content: start;
+  gap: 0.55rem;
+  padding: clamp(1.15rem, 1rem + 0.8vw, 1.75rem);
+  border-radius: var(--r-l);
+  background: var(--tint);
+}
+.cg-code dt {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.7rem;
+}
+.cg-code__abbr {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 420;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+.cg-code__name {
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--muted);
+}
+.cg-code dd {
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* Häuser & Winzer: Liste mit Jahr, Name, Ort */
+.cg-houses {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr));
+  gap: 0 clamp(1.5rem, 1rem + 2vw, 3rem);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--embrun);
+}
+.cg-house {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-content: start;
+  gap: 0.3rem 1rem;
+  padding: 1.1rem 0 1.25rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--embrun) 60%, transparent);
+}
+.cg-house__year {
+  grid-column: 2;
+  grid-row: 1;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-style: italic;
+  line-height: 1.2;
+  color: var(--muted);
+}
+.cg-house__name {
+  grid-column: 1;
+  grid-row: 1;
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 1.2rem + 0.7vw, 1.875rem);
+  font-weight: 420;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.cg-house__place,
+.cg-house__text,
+.cg-house__menu {
+  grid-column: 1 / -1;
+}
+.cg-house__place {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.cg-house__text {
+  margin-top: 0.2rem;
+  line-height: 1.45;
+}
+.cg-house__menu {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-top: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--r-pill);
+  background: var(--ecume);
+  color: var(--ink);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.cg-house__arrow {
+  width: 0.9rem;
+  height: 0.9rem;
+}
+
+/* Begriffe */
+.cg-glossary {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  gap: 0 clamp(1.5rem, 1rem + 2vw, 3rem);
+  margin: 0;
+  border-top: 1px solid var(--embrun);
+}
+.cg-term {
+  padding: 0.95rem 0 1.05rem;
+  border-bottom: 1px solid color-mix(in srgb, var(--embrun) 60%, transparent);
+}
+.cg-term dt {
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-style: italic;
+  font-weight: 420;
+  line-height: 1.15;
+}
+.cg-term dd {
+  margin: 0.3rem 0 0;
+  line-height: 1.45;
 }
 
 /* Kontakt ----------------------------------------------------------------------- */

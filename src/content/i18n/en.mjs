@@ -11,7 +11,7 @@ export default {
     close: 'Close',
     mainNav: 'Main navigation',
     langNav: 'Choose language',
-    nav: { garage: 'Garage', kiosque: 'Kiosque', marche: 'Marché', carte: 'Menu', atlas: 'Oyster atlas', contact: 'Contact' },
+    nav: { garage: 'Garage', kiosque: 'Kiosque', marche: 'Marché', carte: 'Menu', atlas: 'Atlases', contact: 'Contact' },
     home: 'Home',
     days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
     daysShort: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
@@ -187,9 +187,15 @@ export default {
 
 
     atlas: {
-      title: 'Oyster atlas – species and origins | L’ANNÉE',
+      title: 'Atlases – oysters and champagne | L’ANNÉE',
       description:
-        'The L’ANNÉE oyster atlas: the main oyster species and the best-known origins, from Marennes-Oléron and Cancale to Sylt, briefly explained.',
+        'The L’ANNÉE atlases: an oyster atlas of species and origins from Marennes to Sylt, and a champagne guide to regions, grapes, production, dosage, bottle sizes, storage, houses and growers.',
+      h1: 'Atlases',
+      lead: 'Two little reference books for the curious: one on oysters, one on champagne.',
+      tiles: {
+        oysters: { name: 'Oyster atlas', text: '{n} oysters: species and origins, from Marennes to Sylt.' },
+        champagne: { name: 'Champagne guide', text: 'Regions, production, taste, bottle sizes, houses and growers.' },
+      },
     },
 
     contact: {

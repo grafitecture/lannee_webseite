@@ -1,5 +1,5 @@
 /**
- * Austernatlas (eigene Seite: /austernatlas/, /fr/atlas-des-huitres/, /en/oyster-atlas/).
+ * Austernatlas (Teil der Seite „Atlanten“: /atlanten/, /fr/atlas/, /en/atlases/; davor eigene Seite /austernatlas/).
  * ---------------------------------------------------------------------------
  * art:   Schlüssel der Strichzeichnung in src/lib/oyster-art.mjs (seit 06.11.2026 wieder im Atlas)
  * group: species | france | europe | world

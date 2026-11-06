@@ -31,7 +31,7 @@ L’ANNÉE (1898.ma)
 ├── Kiosque  (kiosque.ma → /kiosque/)
 ├── Marché   (/marche/: Termine, Einladung für Feste)
 ├── La Carte (/karte/: Filter nach Ort)
-├── Austernatlas (/austernatlas/: 24 Arten und Herkünfte als runde Karten mit Strichzeichnung)
+├── Atlanten (/atlanten/: Austernatlas mit 24 Arten und Herkünften als runde Karten mit Strichzeichnung + Champagner-Guide)
 ├── Kontakt
 └── Impressum, Datenschutz
 ```
@@ -119,6 +119,7 @@ Seiten sind auf dem Desktop immer volle Breite. Begrenzt wird nur die Zeilenlän
 - Öffnungszeiten: dezente Zeile, je Öffnungstag die Orte mit Farbpunkt und Uhrzeit; live mit „heute“/„morgen“, leisem Puls am geöffneten Ort und Pausen
 - La Carte (fiktiv): Struktur „Hunger / Durst“ nach dem Vorbild De Blauwe Kiosk (Gent), Inhalte aus der L’ANNÉE-Karte, Geschmacksprofile der Austern (jodig, fleischig, nussig), Filter nach Ort
 - Austernatlas: Arten und Herkünfte als runde Karten, je mit einer Austern-Strichzeichnung (einzige Zeichnungen der Website, seit 06.11.2026 wieder)
+- Champagner-Guide (auf der Seite „Atlanten“, 06.11.2026): Zahlen, Anbaugebiete, Rebsorten, Herstellung, Dosage und Aromen, Stile, Flaschengrößen, Lagern & Servieren, Etikett, Häuser & Winzer, Begriffe – nur Text und Datenbalken, keine Zeichnungen
 
 ## 10. Offene Punkte
 

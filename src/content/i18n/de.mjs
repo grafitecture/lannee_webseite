@@ -11,7 +11,7 @@ export default {
     close: 'Schließen',
     mainNav: 'Hauptnavigation',
     langNav: 'Sprache wählen',
-    nav: { garage: 'Garage', kiosque: 'Kiosque', marche: 'Marché', carte: 'Karte', atlas: 'Austernatlas', contact: 'Kontakt' },
+    nav: { garage: 'Garage', kiosque: 'Kiosque', marche: 'Marché', carte: 'Karte', atlas: 'Atlanten', contact: 'Kontakt' },
     home: 'Startseite',
     days: ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'],
     daysShort: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
@@ -187,9 +187,15 @@ export default {
 
 
     atlas: {
-      title: 'Austernatlas – Arten und Herkünfte | L’ANNÉE',
+      title: 'Atlanten – Austern und Champagner | L’ANNÉE',
       description:
-        'Der Austernatlas von L’ANNÉE: die wichtigsten Austernarten und die bekanntesten Herkünfte, von Marennes-Oléron über Cancale bis Sylt, kurz erklärt.',
+        'Die Atlanten von L’ANNÉE: der Austernatlas mit Arten und Herkünften von Marennes bis Sylt und ein Champagner-Guide zu Anbaugebieten, Rebsorten, Herstellung, Dosage, Flaschengrößen, Lagerung, Häusern und Winzern.',
+      h1: 'Atlanten',
+      lead: 'Zwei kleine Nachschlagewerke für alle, die es genauer wissen wollen: eines über Austern, eines über Champagner.',
+      tiles: {
+        oysters: { name: 'Austernatlas', text: '{n} Austern: Arten und Herkünfte, von Marennes bis Sylt.' },
+        champagne: { name: 'Champagner-Guide', text: 'Anbaugebiete, Herstellung, Geschmack, Flaschengrößen, Häuser und Winzer.' },
+      },
     },
 
     contact: {

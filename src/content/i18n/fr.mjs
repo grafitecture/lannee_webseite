@@ -11,7 +11,7 @@ export default {
     close: 'Fermer',
     mainNav: 'Navigation principale',
     langNav: 'Choisir la langue',
-    nav: { garage: 'Garage', kiosque: 'Kiosque', marche: 'Marché', carte: 'La carte', atlas: 'Atlas des huîtres', contact: 'Contact' },
+    nav: { garage: 'Garage', kiosque: 'Kiosque', marche: 'Marché', carte: 'La carte', atlas: 'Atlas', contact: 'Contact' },
     home: 'Accueil',
     days: ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'],
     daysShort: ['lun.', 'mar.', 'mer.', 'jeu.', 'ven.', 'sam.', 'dim.'],
@@ -187,9 +187,15 @@ export default {
 
 
     atlas: {
-      title: 'Atlas des huîtres – espèces et origines | L’ANNÉE',
+      title: 'Atlas – huîtres et champagne | L’ANNÉE',
       description:
-        'L’atlas des huîtres de L’ANNÉE : les principales espèces et les origines les plus célèbres, de Marennes-Oléron à Cancale et jusqu’à Sylt, expliquées en bref.',
+        'Les atlas de L’ANNÉE : l’atlas des huîtres, espèces et origines de Marennes à Sylt, et un guide du champagne : vignobles, cépages, élaboration, dosage, formats, conservation, maisons et vignerons.',
+      h1: 'Atlas',
+      lead: 'Deux petits ouvrages de référence pour les curieux : l’un sur les huîtres, l’autre sur le champagne.',
+      tiles: {
+        oysters: { name: 'Atlas des huîtres', text: '{n} huîtres : espèces et origines, de Marennes à Sylt.' },
+        champagne: { name: 'Guide du champagne', text: 'Vignobles, élaboration, goût, formats, maisons et vignerons.' },
+      },
     },
 
     contact: {

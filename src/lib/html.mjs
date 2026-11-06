@@ -46,6 +46,7 @@ export function typo(text, locale) {
   let s = text;
   s = s.replace(/(\d) (Uhr|h|€|g|kg|l|cl|Stück|pièces|am|pm)\b/g, '$1 $2');
   s = s.replace(/(\d) (€)/g, '$1 $2');
+  s = s.replace(/(\d) (°C|%|bar\b)/g, '$1\u00a0$2');
   s = s.replace(/€(\d)/g, '€$1');
   s = s.replace(/\b(Nº|nº|No\.) (\d)/g, '$1 $2');
   if (locale === 'fr') {
