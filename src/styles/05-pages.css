@@ -132,6 +132,180 @@
   }
 }
 
+/* Angebot des Wochenendes (06.11.2026): rote Karte in Homard im Hero -------------------
+   Das einzige Rot der Seite (Komplementär zu den Blautönen). Handy/Tablet/kleiner Desktop: unter
+   Headline und Lead, volle Breite (max. 36 rem). Ab 1280 px: rechts neben der Headline, die dafür
+   etwas kleiner wird. Nach Ablauf blendet das Skript die Karte aus; dann gilt wieder das normale Hero. */
+
+.hero__text {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-m);
+}
+.offer {
+  display: grid;
+  gap: 0.95rem;
+  width: 100%;
+  max-width: 36rem;
+  padding: clamp(1.35rem, 1rem + 1.6vw, 2.4rem);
+  border-radius: var(--r-xl);
+  background: var(--offer);
+  color: var(--blanc);
+  box-shadow: 0 1.4rem 3rem -1.8rem color-mix(in srgb, var(--offer) 80%, transparent);
+}
+.offer[hidden] {
+  display: none;
+}
+.offer__eyebrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem 0.8rem;
+  margin: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.offer__badge {
+  padding: 0.38rem 0.85rem;
+  border-radius: var(--r-pill);
+  background: var(--blanc);
+  color: var(--offer);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.offer__title {
+  font-size: clamp(2rem, 1.5rem + 2.2vw, 3.25rem);
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.offer__text {
+  max-width: 44ch;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.offer__prices {
+  display: grid;
+  gap: 0.35rem;
+  padding-top: 1rem;
+  border-top: 1px solid color-mix(in srgb, var(--blanc) 40%, transparent);
+}
+.offer__price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.65rem;
+}
+.offer__amount {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 1.9rem + 2.6vw, 3.9rem);
+  font-weight: 420;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+.offer__per {
+  font-weight: 700;
+}
+.offer__was {
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+.offer__was s {
+  text-decoration-thickness: 1px;
+}
+.offer__alt {
+  font-size: 0.9375rem;
+  line-height: 1.4;
+}
+.offer__alt strong {
+  font-weight: 700;
+  white-space: nowrap;
+}
+.offer__where {
+  list-style: none;
+  margin: 0.2rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.offer__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 2.75rem;
+  padding: 0.55rem 0.95rem 0.55rem 1.15rem;
+  border-radius: var(--r-pill);
+  background: var(--blanc);
+  color: var(--offer);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  transition: background-color 0.2s, transform 0.2s var(--ease-out);
+}
+.offer__link:hover {
+  background: color-mix(in srgb, var(--blanc) 88%, var(--offer));
+}
+.offer__link:hover .offer__arrow {
+  transform: translateX(0.15rem);
+}
+.offer__arrow {
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.2s var(--ease-out);
+}
+.offer__note {
+  font-size: 0.8125rem;
+  line-height: 1.4;
+}
+/* Handy: Links untereinander über die volle Breite, leichter zu treffen */
+@media (max-width: 479px) {
+  .offer__where {
+    display: grid;
+  }
+  .offer__link {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+/* Desktop ab 1280 px: Angebot rechts neben der Headline (darunter steht es unter Headline und Lead) */
+@media (min-width: 1280px) {
+  .hero--offer .hero__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(22rem, 31rem);
+    align-items: center;
+    column-gap: clamp(2.5rem, 1rem + 3vw, 5rem);
+  }
+  .hero--offer .hero__title {
+    font-size: clamp(2.4rem, min(6.9vw, 13svh), 9.5rem);
+  }
+  .hero--offer .hero__inner {
+    padding-top: var(--space-l);
+  }
+  .hero--offer .offer {
+    max-width: none;
+    gap: 0.8rem;
+    padding: clamp(1.5rem, 0.75rem + 1.4vw, 2.25rem);
+  }
+  .hero--offer .offer__text {
+    font-size: 0.9375rem;
+  }
+  .hero--offer .offer__link {
+    min-height: 2.5rem;
+    padding: 0.45rem 0.85rem 0.45rem 1rem;
+    font-size: 0.875rem;
+  }
+  .hero--offer:has(.offer[hidden]) .hero__inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .hero--offer:has(.offer[hidden]) .hero__title {
+    font-size: clamp(2.4rem, min(10.2vw, 14.5svh), 11.089rem);
+  }
+}
+
 /* Öffnungszeiten unter dem Hero (06.11.2026): schlichte Zeile, viel Luft danach ------ */
 
 .hours {
@@ -858,10 +1032,8 @@
 .legal li + li {
   margin-top: 0.3em;
 }
-.legal .gc,
-.legal > :last-child {
-  max-width: none;
-}
+/* Grafitecture-Feld behält seine kleine Größe aus dem Kit (max. 25,2 rem, Vorgabe 06.11.2026);
+   hier nichts an Breite oder Abstand überschreiben (bis 06.11.2026 zog `.legal > :last-child` es auf volle Breite). */
 
 /* 404 ---------------------------------------------------------------------------- */
 

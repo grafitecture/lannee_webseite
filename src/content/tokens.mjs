@@ -21,6 +21,9 @@ export const COLORS = [
   { token: 'embrun', name: 'Embrun', hex: '#72C5AC', oklch: 'oklch(76.4% 0.090 172)', role: 'Linien, Zeichnungen (für Schrift zu hell)', text: 'nuit' },
   { token: 'ecume', name: 'Écume', hex: '#D2FBE8', oklch: 'oklch(95.5% 0.050 165)', role: 'Akzent: Markierungen, Licht in den Strichzeichnungen', text: 'nuit' },
   { token: 'blanc', name: 'Weiß', hex: '#FFFFFF', oklch: 'oklch(100% 0 0)', role: 'Flächen und Schrift auf Blau', text: 'nuit' },
+  // Einziges Rot (Vorgabe 06.11.2026): Komplementär zu den Blautönen (OKLCH 179–210° → 28°), ähnliche Helligkeit
+  // wie Marée, Weiß darauf 5,1 : 1. Nur für das Angebot des Wochenendes.
+  { token: 'homard', name: 'Homard', hex: '#C63D34', oklch: 'oklch(56% 0.175 28)', role: 'Rot, Komplementär zu den Blautönen: nur das Angebot des Wochenendes', text: 'blanc' },
 ];
 
 /** Rollen: welcher Ton wofür steht (werden zu CSS-Variablen, die auf die Palette zeigen). */
@@ -31,6 +34,7 @@ export const ROLES = [
   { token: 'marche', ref: 'maree', role: 'Marché' },
   { token: 'brand', ref: 'embrun', role: 'Linien, Zeichnungen' },
   { token: 'muted', ref: 'maree', role: 'Nebentext auf Weiß' },
+  { token: 'offer', ref: 'homard', role: 'Angebot des Wochenendes' },
 ];
 
 /** Hex-Wert einer Farbe oder Rolle (für Meta-Tags, Manifest, Share-Bilder). */

@@ -3,10 +3,11 @@
  * und die drei Orte als helle Kacheln; darunter viel Weiß und große runde Bildkarten.
  * Kein Film, keine Zeichnungen, keine Logo-Wanderung. Nur echte Fotos, keine generierten Bilder (06.11.2026).
  */
-import { html, rich } from '../lib/html.mjs';
-import { DICT, url } from '../lib/i18n.mjs';
+import { html, rich, typo } from '../lib/html.mjs';
+import { DICT, url, pick, formatEuro } from '../lib/i18n.mjs';
 import { LOCATIONS, LOCATION_ORDER, SITE } from '../content/site.mjs';
-import { picture, weekPlan, button, icon, closureNotes } from '../lib/components.mjs';
+import { picture, weekPlan, button, icon, closureNotes, berlinToday } from '../lib/components.mjs';
+import { currentOffer, offerRegular, OFFER_UI } from '../content/offer.mjs';
 import { menuExcerpt } from '../lib/menu-render.mjs';
 import { placeText } from '../lib/layout.mjs';
 
@@ -32,10 +33,49 @@ const GALLERY = [
   'garage-merci',
 ];
 
+/** „6.–8. November“ / „6–8 novembre“ / „6–8 November“ (über Monatsgrenzen: beide Monate). */
+function dateRange(from, until, locale) {
+  const intl = { de: 'de-DE', fr: 'fr-FR', en: 'en-GB' }[locale];
+  const d = (ymd) => new Date(`${ymd}T12:00:00Z`);
+  const month = (ymd) => new Intl.DateTimeFormat(intl, { month: 'long', timeZone: 'UTC' }).format(d(ymd));
+  const day = (ymd) => d(ymd).getUTCDate();
+  const dot = locale === 'de' ? '.' : '';
+  if (month(from) === month(until)) return `${day(from)}${dot}–${day(until)}${dot} ${month(until)}`;
+  return `${day(from)}${dot} ${month(from)} – ${day(until)}${dot} ${month(until)}`;
+}
+
+/**
+ * Angebot des Wochenendes (seit 06.11.2026): rote Karte (Homard) im Hero. Inhalt: src/content/offer.mjs.
+ * Normalpreise werden aus der Karte berechnet; nach `until` blendet das Skript die Karte aus.
+ */
+function weekendOffer(locale) {
+  const o = currentOffer(berlinToday());
+  if (!o) return '';
+  const U = OFFER_UI;
+  const regular = offerRegular(o);
+  const was = (v) => html`<span class="offer__was">${pick(U.was, locale)} <s>${formatEuro(v, locale)}</s></span>`;
+  return html`<aside class="offer" aria-labelledby="offer-title" data-expires="${o.until}">
+    <p class="offer__eyebrow"><span class="offer__badge">${pick(U.eyebrow, locale)}</span><span class="offer__dates">${dateRange(o.from, o.until, locale)}</span></p>
+    <h2 class="offer__title" id="offer-title">${pick(o.title, locale)}</h2>
+    <p class="offer__text">${rich(pick(o.text, locale), locale)}</p>
+    <div class="offer__prices">
+      <p class="offer__price"><span class="offer__amount">${formatEuro(o.price, locale)}</span> <span class="offer__per">${pick(U.per, locale)}</span> ${was(regular.base)}</p>
+      ${o.upgrade
+        ? html`<p class="offer__alt">${pick(o.upgradeLabel, locale)}: <strong>${formatEuro(o.upgrade.price, locale)}</strong> ${was(regular.upgrade)}</p>`
+        : ''}
+    </div>
+    <ul class="offer__where" role="list">${o.where.map(
+      (k) => html`<li><a class="offer__link" href="${url(k, locale)}"><span>${typo(pick(U.where[k], locale), locale)}</span>${icon('arrow', { cls: 'icon offer__arrow' })}</a></li>`
+    )}</ul>
+    <p class="offer__note">${typo(pick(o.note, locale), locale)}</p>
+  </aside>`;
+}
+
 export function render(ctx) {
   const { locale } = ctx;
   const t = DICT[locale];
   const p = t.pages.home;
+  const offer = weekendOffer(locale);
 
   /* Hero: die drei Orte als Kacheln in ihren Farben – man sieht sofort, dass es drei gibt */
   const heroPlaces = LOCATION_ORDER.map((key) => {
@@ -73,10 +113,13 @@ export function render(ctx) {
   });
 
   return html`
-<section class="hero" aria-labelledby="hero-title">
+<section class="hero${offer ? ' hero--offer' : ''}" aria-labelledby="hero-title">
   <div class="hero__inner">
-    <h1 class="hero__title" id="hero-title">${p.headline.map((line) => html`<span class="hero__line">${line}</span> `)}</h1>
-    <p class="hero__lead">${rich(p.lead, locale)}</p>
+    <div class="hero__text">
+      <h1 class="hero__title" id="hero-title">${p.headline.map((line) => html`<span class="hero__line">${line}</span> `)}</h1>
+      <p class="hero__lead">${rich(p.lead, locale)}</p>
+    </div>
+    ${offer}
   </div>
   <ul class="hero__places" role="list" aria-label="${HERO_PLACES_LABEL[locale]}">${heroPlaces}</ul>
 </section>
