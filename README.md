@@ -24,7 +24,7 @@ Voraussetzung: Node.js ab Version 20. Der Build hat **keine npm-Abhängigkeiten*
 | Zusätzliche Marché-Termine | `src/content/site.mjs` → `MARCHE_DATES` |
 | Speisekarte (alle Sprachen) | `src/content/menu.mjs` |
 | Texte der Seiten | `src/content/i18n/de.mjs`, `fr.mjs`, `en.mjs` |
-| Austernatlas (eigene Seite) | Texte: `src/content/oysters.mjs` (runde Karten, ohne Zeichnungen) |
+| Austernatlas (eigene Seite) | Texte: `src/content/oysters.mjs`, Strichzeichnungen: `src/lib/oyster-art.mjs` (runde Karten, je mit Zeichnung) |
 | Impressum & Datenschutz | `src/content/legal.mjs` (Daten aus `site.mjs`) |
 | Grafitecture-Feld ganz unten in Impressum & Datenschutz | `kit/grafitecture-credit/` (wiederverwendbar für alle Grafitecture-Websites, siehe README dort) |
 | Bildtexte (alt) | `src/content/media.mjs` |
@@ -86,7 +86,7 @@ Suchmaschinen: Nur `1898.ma` wird indexiert. Alle anderen Adressen (Vorschau-URL
 - Statischer Generator in `src/build.mjs` (Node, ohne Pakete), Templates in `src/pages/` und `src/lib/`
 - CSS in `src/styles/` (Tokens werden aus `tokens.mjs` erzeugt), JS in `src/scripts/main.js`
 - Schriften selbst gehostet: Fraunces (SIL OFL) und Instrument Sans (SIL OFL)
-- Nur funktionale Icons (Pfeile, Instagram) als kleines SVG-Sprite; keine Zeichnungen, kein Film
+- Nur funktionale Icons (Pfeile, Instagram) als kleines SVG-Sprite; keine Zeichnungen (außer den Austern-Strichzeichnungen im Austernatlas, eigenes Sprite), kein Film
 - Sicherheits-Header, Caching und Weiterleitungen in `vercel.json`
 - Keine Cookies, kein localStorage, keine externen Requests → kein Cookie-Banner nötig
 
