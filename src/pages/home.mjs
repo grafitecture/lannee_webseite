@@ -23,7 +23,7 @@ const PLACE_PHOTOS = {
  * Weinlaub, Sonne, das L’ANNÉE-Schild („ein Plätzchen in der Sonne“). Bulles und die
  * Austern-Postkarte werden nicht mehr verwendet (Vorgabe 08.11.2026).
  */
-const HERO_PHOTO = 'garage-hof';
+const HERO_PHOTO = 'garage-hof-hero'; // oben 30 % abgeschnitten (scripts/images.mjs)
 const HERO_PLACES_LABEL = { de: 'Drei Orte', fr: 'Trois adresses', en: 'Three places' };
 /** Bilderreihe: echte Fotos, keine Wiederholung der Bilder darüber. */
 const GALLERY = [

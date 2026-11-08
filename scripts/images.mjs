@@ -45,6 +45,8 @@ const SOURCES = {
   // Nur echte Fotos (Vorgabe 06.11.2026): keine generierten Bilder (KI), keine Visualisierungen.
   // Bulles und die Austern-Postkarte werden nicht mehr verwendet (Vorgabe 08.11.2026).
   'garage-hof': { file: 'garage-hof.jpg' },
+  // Hero der Startseite (Vorgabe 08.11.2026): derselbe Hof, oben 30 % abgeschnitten (Himmel und Dächer fallen weg)
+  'garage-hof-hero': { file: 'garage-hof.jpg', crop: [0, 0.3, 1, 0.7] },
   'marche-wagen': { file: 'marche-wagen.jpg' },
   'marche-auslage': { file: 'marche-auslage.jpg' },
   'austern-oeffnen': { file: 'austern-oeffnen.jpg' },

@@ -7,6 +7,13 @@ export const MEDIA = {
       en: 'The Garage courtyard in Jungbusch with vines, trellis and the L’ANNÉE sign',
     },
   },
+  'garage-hof-hero': {
+    alt: {
+      de: 'Der Innenhof der Garage im Jungbusch mit Weinlaub, Spalier und dem L’ANNÉE-Schriftzug',
+      fr: 'La cour du Garage dans le Jungbusch, avec la vigne, le treillage et l’enseigne L’ANNÉE',
+      en: 'The Garage courtyard in Jungbusch with vines, trellis and the L’ANNÉE sign',
+    },
+  },
   'marche-wagen': {
     alt: {
       de: 'Der weiße Marché-Anhänger mit Sonnendach und Kreidetafeln auf dem Wochenmarkt',

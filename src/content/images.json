@@ -12,6 +12,19 @@
     ],
     "color": "#646a4b"
   },
+  "garage-hof-hero": {
+    "width": 2480,
+    "height": 1498,
+    "widths": [
+      480,
+      768,
+      1080,
+      1440,
+      1920,
+      2480
+    ],
+    "color": "#2d3420"
+  },
   "marche-wagen": {
     "width": 1086,
     "height": 1448,

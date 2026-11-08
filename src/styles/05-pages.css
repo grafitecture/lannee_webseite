@@ -26,7 +26,8 @@
   background: var(--ink);
 }
 .hero__bg img {
-  object-position: 30% 40%;
+  /* Oberkante des Ausschnitts bleibt oben: vom Foto ist nur der untere Teil zu sehen (Vorgabe 08.11.2026) */
+  object-position: 30% 0%;
 }
 /* Verlauf: nur so viel 900, dass die weiße Headline links sicher steht; rechts bleibt das Foto hell */
 .hero::before {
