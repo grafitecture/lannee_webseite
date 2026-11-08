@@ -97,7 +97,7 @@ export function render(ctx) {
   <p class="lead">Nur echte Fotos der Orte. Keine generierten Bilder, keine historischen KI-Motive, keine Schwarzweiß-Bilder (seit 06.11.2026).</p>
   <ul class="sg__images" role="list">
     <li>${picture('garage-hof', locale, { sizes: '30vw' })}<code>Garage</code></li>
-    <li>${picture('bulles', locale, { sizes: '30vw' })}<code>Bulles</code></li>
+    <li>${picture('schweppes', locale, { sizes: '30vw' })}<code>Kiosque</code></li>
     <li>${picture('marche-wagen', locale, { sizes: '30vw' })}<code>Marché</code></li>
   </ul>
 </section>

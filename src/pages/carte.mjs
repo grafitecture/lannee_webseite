@@ -27,7 +27,7 @@ export function render(ctx) {
 </section>
 
 <div class="banner">
-  ${picture('bulles', locale, { sizes: '100vw', cls: 'banner__img' })}
+  ${picture('garage-glaeser', locale, { sizes: '100vw', cls: 'banner__img' })}
 </div>
 
 <div class="carte-bar">${filter}</div>

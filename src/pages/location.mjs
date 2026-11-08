@@ -15,19 +15,21 @@ const CONFIG = {
     hero: 'garage-hof',
     past: 'garage-tresen',
     quarter: null,
-    gallery: ['garage-glaeser', 'garage-bar', 'garage-austernbar', 'garage-boot', 'garage-sammlung', 'garage-fenster', 'schweppes', 'garage-eingang', 'hof-bistrotische', 'garage-weinlaub', 'garage-merci'],
+    gallery: ['garage-glaeser', 'garage-bar', 'garage-austernbar', 'garage-boot', 'garage-sammlung', 'garage-fenster', 'garage-wand', 'garage-eingang', 'hof-bistrotische', 'garage-weinlaub', 'garage-merci'],
   },
   kiosque: {
-    hero: 'bulles',
-    past: 'huitres-glace',
+    // Noch kein echtes Foto vom Kiosque: Austern auf Eis, daneben das alte Schweppes-Schild
+    // (Bulles und die Austern-Postkarte werden nicht mehr verwendet, 08.11.2026)
+    hero: 'huitres-glace',
+    past: 'schweppes',
     quarter: null,
-    gallery: ['austern-postkarte', 'wein-eis', 'austern-oeffnen'],
+    gallery: ['wein-eis', 'austern-oeffnen', 'marche-auslage'],
   },
   marche: {
     hero: 'marche-wagen',
     past: 'huitres-glace',
     quarter: null,
-    gallery: ['marche-auslage', 'austern-oeffnen', 'austern-postkarte', 'wein-eis'],
+    gallery: ['marche-auslage', 'austern-oeffnen', 'wein-eis'],
   },
 };
 

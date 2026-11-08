@@ -1,6 +1,6 @@
 /**
  * Startseite (Umbau 05.11.2026, seit 06.11.2026 hell): Hero mit Foto im Hintergrund (seit 08.11.2026,
- * `HERO_PHOTO` = bulles, Verlauf in 900), Mega-Headline weiß, Angebot des Wochenendes und die drei Orte
+ * `HERO_PHOTO` = garage-hof, Verlauf in 900), Mega-Headline weiß, Angebot des Wochenendes und die drei Orte
  * als helle Kacheln; darunter viel Weiß und große runde Bildkarten.
  * Kein Film, keine Zeichnungen, keine Logo-Wanderung. Nur echte Fotos, keine generierten Bilder (06.11.2026).
  */
@@ -15,19 +15,22 @@ import { placeText } from '../lib/layout.mjs';
 /** Jeder Ort: Foto groß + ein Detailfoto als Abzug mit weißem Rand (klein, überlappend). Nur echte Fotos. */
 const PLACE_PHOTOS = {
   garage: { real: 'garage-tresen', past: 'garage-austernbar' },
-  kiosque: { real: 'bulles', past: 'austern-postkarte' },
+  kiosque: { real: 'schweppes', past: 'wein-eis' },
   marche: { real: 'marche-wagen', past: 'marche-auslage' },
 };
-/** Hintergrund des Hero (Vorgabe 08.11.2026: „schönes Bild im Hintergrund“): Bulles – drei Gläser Champagner, ruhig und dunkel, die weiße Headline steht sicher darauf. */
-const HERO_PHOTO = 'bulles';
+/**
+ * Hintergrund des Hero (Vorgabe 08.11.2026: „schönes Bild im Hintergrund“): Hof der Garage –
+ * Weinlaub, Sonne, das L’ANNÉE-Schild („ein Plätzchen in der Sonne“). Bulles und die
+ * Austern-Postkarte werden nicht mehr verwendet (Vorgabe 08.11.2026).
+ */
+const HERO_PHOTO = 'garage-hof';
 const HERO_PLACES_LABEL = { de: 'Drei Orte', fr: 'Trois adresses', en: 'Three places' };
 /** Bilderreihe: echte Fotos, keine Wiederholung der Bilder darüber. */
 const GALLERY = [
   'garage-glaeser',
-  'garage-hof',
   'garage-eingang',
   'garage-bar',
-  'schweppes',
+  'garage-wand',
   'garage-sammlung',
   'hof-bistrotische',
   'garage-boot',

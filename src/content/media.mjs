@@ -21,13 +21,6 @@ export const MEDIA = {
       en: 'Oysters and lemons in the chilled display, a glass of rosé in front',
     },
   },
-  'austern-postkarte': {
-    alt: {
-      de: 'Ein Berg Austern, darauf eine Postkarte mit Austern und Wein',
-      fr: 'Un tas d’huîtres et une carte postale représentant huîtres et vin',
-      en: 'A pile of oysters with a postcard showing oysters and wine',
-    },
-  },
   'austern-oeffnen': {
     alt: {
       de: 'Hände öffnen eine Auster mit dem Austernmesser',
@@ -40,13 +33,6 @@ export const MEDIA = {
       de: 'Weinflaschen im Eiskübel',
       fr: 'Bouteilles de vin dans un seau à glace',
       en: 'Wine bottles in an ice bucket',
-    },
-  },
-  bulles: {
-    alt: {
-      de: 'Drei Gläser Champagner auf einem dunklen Tisch',
-      fr: 'Trois coupes de champagne sur une table sombre',
-      en: 'Three glasses of champagne on a dark table',
     },
   },
   'huitres-glace': {

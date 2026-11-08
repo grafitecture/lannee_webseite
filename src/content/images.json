@@ -31,14 +31,6 @@
     ],
     "color": "#585a48"
   },
-  "austern-postkarte": {
-    "width": 480,
-    "height": 640,
-    "widths": [
-      480
-    ],
-    "color": "#828365"
-  },
   "austern-oeffnen": {
     "width": 360,
     "height": 640,
@@ -54,19 +46,6 @@
       360
     ],
     "color": "#919786"
-  },
-  "bulles": {
-    "width": 2048,
-    "height": 3072,
-    "widths": [
-      480,
-      768,
-      1080,
-      1440,
-      1920,
-      2048
-    ],
-    "color": "#262e1e"
   },
   "huitres-glace": {
     "width": 1024,

@@ -43,13 +43,12 @@ const WIDTHS = [480, 768, 1080, 1440, 1920, 2560];
  */
 const SOURCES = {
   // Nur echte Fotos (Vorgabe 06.11.2026): keine generierten Bilder (KI), keine Visualisierungen.
+  // Bulles und die Austern-Postkarte werden nicht mehr verwendet (Vorgabe 08.11.2026).
   'garage-hof': { file: 'garage-hof.jpg' },
   'marche-wagen': { file: 'marche-wagen.jpg' },
   'marche-auslage': { file: 'marche-auslage.jpg' },
-  'austern-postkarte': { file: 'austern-postkarte.jpg' },
   'austern-oeffnen': { file: 'austern-oeffnen.jpg' },
   'wein-eis': { file: 'wein-eis.jpg' },
-  'bulles': { file: 'bulles.jpg' },
   'huitres-glace': { file: 'huitres-glace.jpg' },
   'garage-austernbar': { file: 'garage-austernbar.webp' },
   'garage-fenster': { file: 'garage-fenster.webp' },

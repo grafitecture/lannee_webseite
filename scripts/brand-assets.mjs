@@ -92,7 +92,7 @@ const OG = {
 };
 const LOC = {
   garage: { name: 'Garage', sub: 'Garage à huîtres &amp; vins', when: 'Fr &amp; Sa ab 18 Uhr, Jungbusch', photo: 'garage-hof' },
-  kiosque: { name: 'Kiosque', sub: 'Kiosque à huîtres &amp; vins', when: 'Sonntag ab 10 Uhr, Lindenhof', photo: 'bulles' },
+  kiosque: { name: 'Kiosque', sub: 'Kiosque à huîtres &amp; vins', when: 'Sonntag ab 10 Uhr, Lindenhof', photo: 'huitres-glace' },
   marche: { name: 'Marché', sub: 'Austern &amp; Bulles auf Rädern', when: 'Samstag 8–13 Uhr, Wochenmarkt Lindenhof', photo: 'marche-wagen' },
 };
 for (const [key, L] of Object.entries(LOC)) {
