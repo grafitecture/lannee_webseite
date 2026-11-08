@@ -45,8 +45,6 @@ const SOURCES = {
   // Nur echte Fotos (Vorgabe 06.11.2026): keine generierten Bilder (KI), keine Visualisierungen.
   // Bulles und die Austern-Postkarte werden nicht mehr verwendet (Vorgabe 08.11.2026).
   'garage-hof': { file: 'garage-hof.jpg' },
-  // Hero der Startseite (Vorgabe 08.11.2026): derselbe Hof, oben 30 % abgeschnitten (Himmel und Dächer fallen weg)
-  'garage-hof-hero': { file: 'garage-hof.jpg', crop: [0, 0.3, 1, 0.7] },
   'marche-wagen': { file: 'marche-wagen.jpg' },
   'marche-auslage': { file: 'marche-auslage.jpg' },
   'austern-oeffnen': { file: 'austern-oeffnen.jpg' },
@@ -131,7 +129,7 @@ async function processImage(name, cfg) {
     // leicht nachschärfen wie bei einer Bildbearbeitung für den Druck/Web-Export
     if (photo) pipeline = pipeline.sharpen({ sigma: 0.55, m1: 0.6, m2: 2 });
     const q = cfg.quality ?? { avif: 52, webp: 74 };
-    await pipeline.clone().avif({ quality: q.avif, effort: 6 }).toFile(path.join(OUT, `${name}-${w}.avif`));
+    await pipeline.clone().avif({ quality: q.avif, effort: 4 }).toFile(path.join(OUT, `${name}-${w}.avif`));
     await pipeline.clone().webp({ quality: q.webp, alphaQuality: 100, effort: 6 }).toFile(path.join(OUT, `${name}-${w}.webp`));
   }
 

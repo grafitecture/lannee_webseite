@@ -3,6 +3,7 @@
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 import { html, raw, esc, rich, typo, setExternalLinkRenderer } from './html.mjs';
 import { DICT, url, pick, fill, formatTime, formatSpan } from './i18n.mjs';
@@ -14,6 +15,31 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..')
 const read = (p) => fs.readFileSync(path.join(ROOT, p), 'utf8');
 
 export const IMAGES = JSON.parse(read('src/content/images.json'));
+
+/**
+ * Cache-Busting (08.11.2026): Bilder behalten beim Neuerzeugen ihren Dateinamen. Damit Browser nach
+ * einem neuen Farblook nicht die alten Dateien aus dem Cache zeigen, hängt an jeder Bild-URL `?v=`
+ * mit einem Hash des Dateiinhalts. Ändert sich ein Bild, ändert sich die URL.
+ */
+const VERSIONS = new Map();
+export function assetVersion(...publicPaths) {
+  const key = publicPaths.join('|');
+  if (!VERSIONS.has(key)) {
+    const hash = createHash('sha1');
+    for (const p of publicPaths) {
+      const file = path.join(ROOT, 'public', p);
+      if (fs.existsSync(file)) hash.update(fs.readFileSync(file));
+    }
+    VERSIONS.set(key, hash.digest('hex').slice(0, 10));
+  }
+  return VERSIONS.get(key);
+}
+/** Version eines Bildes aus dem Manifest: Hash der größten WebP- und AVIF-Variante. */
+export const imageVersion = (name) => {
+  const w = IMAGES[name].widths.at(-1);
+  return assetVersion(`images/${name}-${w}.webp`, `images/${name}-${w}.avif`);
+};
+const imageUrl = (name, w, fmt) => `/images/${name}-${w}.${fmt}?v=${imageVersion(name)}`;
 
 /* ------------------------------------------------------------------ */
 /* Logo & Zeiger                                                       */
@@ -36,11 +62,11 @@ export const LOGO_ASPECT = (LOGO.width / LOGO.height).toFixed(4);
  * Größe kommt über die Klasse (Höhe oder Breite). sizes = angezeigte Breite für die Bildauswahl.
  */
 export function logo({ cls = 'logo', label = 'L’ANNÉE', decorative = false, sizes = '12rem', eager = false } = {}) {
-  const srcset = (fmt) => LOGO.widths.map((w) => `/images/logo-lannee-${w}.${fmt} ${w}w`).join(', ');
+  const srcset = (fmt) => LOGO.widths.map((w) => `${imageUrl('logo-lannee', w, fmt)} ${w}w`).join(', ');
   const fallback = LOGO.widths.find((w) => w >= 480) ?? LOGO.widths.at(-1);
   return html`<picture class="brand-logo ${cls}" style="--logo-ratio: ${LOGO_RATIO}; --logo-aspect: ${LOGO_ASPECT}"${decorative ? raw(' aria-hidden="true"') : ''}><source type="image/avif" srcset="${srcset(
     'avif'
-  )}" sizes="${sizes}"><source type="image/webp" srcset="${srcset('webp')}" sizes="${sizes}"><img src="/images/logo-lannee-${fallback}.webp" width="${
+  )}" sizes="${sizes}"><source type="image/webp" srcset="${srcset('webp')}" sizes="${sizes}"><img src="${imageUrl('logo-lannee', fallback, 'webp')}" width="${
     LOGO.width
   }" height="${LOGO.height}" alt="${decorative ? '' : label}" loading="${eager ? 'eager' : 'lazy'}" decoding="async"></picture>`;
 }
@@ -98,12 +124,12 @@ export function picture(name, locale, { sizes = '100vw', cls = '', eager = false
   if (!img) throw new Error(`Bild fehlt im Manifest: ${name}`);
   const media = MEDIA[name] ?? {};
   const altText = alt ?? pick(media.alt, locale);
-  const srcset = (fmt) => img.widths.map((w) => `/images/${name}-${w}.${fmt} ${w}w`).join(', ');
+  const srcset = (fmt) => img.widths.map((w) => `${imageUrl(name, w, fmt)} ${w}w`).join(', ');
   const fallback = img.widths.find((w) => w >= 1080) ?? img.widths.at(-1);
   const loading = eager ? raw('loading="eager" fetchpriority="high"') : raw('loading="lazy"');
   const pic = html`<picture class="pic ${cls}"><source type="image/avif" srcset="${srcset(
     'avif'
-  )}" sizes="${sizes}"><source type="image/webp" srcset="${srcset('webp')}" sizes="${sizes}"><img src="/images/${name}-${fallback}.webp" width="${
+  )}" sizes="${sizes}"><source type="image/webp" srcset="${srcset('webp')}" sizes="${sizes}"><img src="${imageUrl(name, fallback, 'webp')}" width="${
     img.width
   }" height="${img.height}" alt="${altText}" ${loading} decoding="async"></picture>`;
   const t = DICT[locale].ui;

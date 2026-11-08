@@ -28,13 +28,15 @@ export const LOOK = {
   contrast: 0.32, // S-Kurve (0 = linear)
   black: 0.045, // angehobenes Schwarz (OKLab-L)
   white: 0.975, // Lichter weich bis hierhin
-  keep: [-80, 40], // Farbtonfenster um die Skala (Grad), das gesättigt bleibt
-  far: 0.2, // Restsättigung für Farbtöne weit weg von der Skala
+  // Stärker seit 08.11.2026 („wirklich alle Bilder im Bildstil der Farbskala“): Rot, Rosa, Blau fast ganz neutral
+  keep: [-70, 40], // Farbtonfenster um die Skala (Grad), das gesättigt bleibt (−70 schont Hauttöne und Holz)
+  fade: 30, // Übergang (Grad) vom Fenster zur Restsättigung
+  far: 0.06, // Restsättigung für Farbtöne weit weg von der Skala
   pull: 0.4, // wie stark Gelb/Grün im Fenster zur Skala rücken
   chroma: 0.92, // Gesamtsättigung
-  tintShadow: 0.045, // Tönung Schatten (OKLab-Chroma)
-  tintMid: 0.03, // Tönung Mitten
-  tintHigh: 0.014, // Tönung Lichter
+  tintShadow: 0.055, // Tönung Schatten (OKLab-Chroma)
+  tintMid: 0.04, // Tönung Mitten
+  tintHigh: 0.018, // Tönung Lichter
   hk: 0.6, // Helligkeitsausgleich für entsättigte Farben (Helmholtz-Kohlrausch)
   vignette: 0.1,
   grain: 0.007,
@@ -158,7 +160,7 @@ export function applyLook(data, width, height, opts = {}) {
         w = 1;
       } else {
         const dist = d < k0 ? k0 - d : d - k1; // Grad außerhalb des Fensters
-        w = o.far + (1 - o.far) * Math.max(0, 1 - dist / 35);
+        w = o.far + (1 - o.far) * Math.max(0, 1 - dist / o.fade);
       }
       // Helligkeit der Pixel folgt der Kurve – Sättigung mitziehen
       const C0 = C;

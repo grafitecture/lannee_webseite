@@ -4,7 +4,7 @@
 import { html, raw, esc, plain, typo } from './html.mjs';
 import { DICT, LOCALES, ROUTES, url, pick, fill, formatTime } from './i18n.mjs';
 import { SITE, LOCATIONS, LOCATION_ORDER, SCHEDULE } from '../content/site.mjs';
-import { logo, icon, arrowLink, upcomingClosures } from './components.mjs';
+import { logo, icon, arrowLink, upcomingClosures, assetVersion } from './components.mjs';
 import { tokenHex } from '../content/tokens.mjs';
 
 const NAV = ['garage', 'kiosque', 'marche', 'carte', 'atlas', 'contact'];
@@ -34,7 +34,8 @@ function head(ctx) {
           html`<link rel="alternate" hreflang="x-default" href="${SITE.url + url(page.key, 'de')}">`
         )
       : [];
-  const ogImage = `${SITE.url}/og/${page.og ?? 'lannee'}.jpg`;
+  const ogName = page.og ?? 'lannee';
+  const ogImage = `${SITE.url}/og/${ogName}.jpg?v=${assetVersion(`og/${ogName}.jpg`)}`;
   return html`<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -56,9 +57,9 @@ ${alternates}
 <meta property="og:locale" content="${t.ogLocale}">
 ${LOCALES.filter((l) => l !== locale).map((l) => html`<meta property="og:locale:alternate" content="${DICT[l].ogLocale}">`)}
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/favicon.svg?v=${assetVersion('favicon.svg')}" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png?v=${assetVersion('favicon-32.png')}" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=${assetVersion('apple-touch-icon.png')}">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
