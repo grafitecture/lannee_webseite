@@ -7,34 +7,44 @@
 export const FLUID = { minVw: 360, maxVw: 1920, root: 16 };
 
 /*
- * Palette: Blau mit Zug ins Grün – Petrol bis Meergrün (Vorgabe 05.11.2026, dreimal Richtung Grün geschoben,
- * zuletzt beim Umbau am Abend um 18° im OKLCH-Farbkreis; davor 03.11.2026 Kobalt-Blautöne, noch davor Grün).
- * Fünf Töne plus Weiß, nach Meer, Watt und Eis. Kein reines Grün.
- * Regel: blaue Fläche mit weißer Schrift oder weiße Fläche mit blauer Schrift.
- * Nichts Schwarzes, nichts Graues: Das dunkelste Blau (Bleu nuit) ersetzt Schwarz.
- * Die drei Orte bleiben klar getrennt: hell → dunkel und von Lagune zu Nacht-Petrol.
+ * Palette: Grün-Skala 400–900 (Vorgabe 08.11.2026, ersetzt die Blautöne vom 05.11.2026 und Homard).
+ * Sechs Stufen eines Farbtons (OKLCH ≈ 127°, Gelbgrün bis Flaschengrün) plus Weiß – sonst keine Farben.
+ * Regel: dunkle Stufe (900/800) mit weißer Schrift, helle Stufe (600–400) mit Schrift in 900,
+ * auf Weiß Schrift in 900 (Nebentext 800). Nichts Schwarzes, nichts Graues: 900 ersetzt Schwarz.
+ * Die drei Orte bleiben klar getrennt: Garage 900 (der Abend), Kiosque 800 (der Sonntag), Marché 600 (der Morgen).
  */
 export const COLORS = [
-  { token: 'nuit', name: 'Bleu nuit', hex: '#002B32', oklch: 'oklch(26.2% 0.051 210)', role: 'Dunkelstes Blau, ersetzt Schwarz: Text, Kopf- und Fußzeile. Garage, der Abend', text: 'blanc' },
-  { token: 'ocean', name: 'Océan', hex: '#005F62', oklch: 'oklch(43.8% 0.078 199)', role: 'Kiosque, der Sonntag', text: 'blanc' },
-  { token: 'maree', name: 'Marée', hex: '#1C8171', oklch: 'oklch(54.4% 0.092 179)', role: 'Marché, der Morgen. Auch Nebentext auf Weiß', text: 'blanc' },
-  { token: 'embrun', name: 'Embrun', hex: '#72C5AC', oklch: 'oklch(76.4% 0.090 172)', role: 'Linien, Zeichnungen (für Schrift zu hell)', text: 'nuit' },
-  { token: 'ecume', name: 'Écume', hex: '#D2FBE8', oklch: 'oklch(95.5% 0.050 165)', role: 'Akzent: Markierungen, Licht in den Strichzeichnungen', text: 'nuit' },
-  { token: 'blanc', name: 'Weiß', hex: '#FFFFFF', oklch: 'oklch(100% 0 0)', role: 'Flächen und Schrift auf Blau', text: 'nuit' },
-  // Einziges Rot (Vorgabe 06.11.2026): Komplementär zu den Blautönen (OKLCH 179–210° → 28°), ähnliche Helligkeit
-  // wie Marée, Weiß darauf 5,1 : 1. Nur für das Angebot des Wochenendes.
-  { token: 'homard', name: 'Homard', hex: '#C63D34', oklch: 'oklch(56% 0.175 28)', role: 'Rot, Komplementär zu den Blautönen: nur das Angebot des Wochenendes', text: 'blanc' },
+  { token: 'g400', name: '400 · Citron vert', hex: '#C2FF33', oklch: 'oklch(92.6% 0.222 126)', role: 'Akzent: aktiv/hover, Markierungen, Hinweise; als Hauch die hellen Karten und Flächen', text: 'g900' },
+  { token: 'g500', name: '500 · Chartreuse', hex: '#B2FF00', oklch: 'oklch(91.5% 0.241 128)', role: 'Lautestes Grün: nur das Angebot des Wochenendes', text: 'g900' },
+  { token: 'g600', name: '600 · Pistache', hex: '#8FCC00', oklch: 'oklch(77.4% 0.203 128)', role: 'Marché, der Morgen (Fläche, Schrift darauf 900). Linien', text: 'g900' },
+  { token: 'g700', name: '700 · Olive', hex: '#6B9900', oklch: 'oklch(62.6% 0.163 128)', role: 'Marché als Schrift (nur groß: Namen, Zitat)', text: 'g900' },
+  { token: 'g800', name: '800 · Varech', hex: '#476600', oklch: 'oklch(46.8% 0.122 128)', role: 'Kiosque, der Sonntag. Nebentext auf Weiß, Zeichnungen im Austernatlas', text: 'blanc' },
+  { token: 'g900', name: '900 · Bouteille', hex: '#243300', oklch: 'oklch(29.7% 0.075 126)', role: 'Dunkelste Stufe, ersetzt Schwarz: Text, Kopf- und Fußzeile. Garage, der Abend', text: 'blanc' },
+  { token: 'blanc', name: 'Weiß', hex: '#FFFFFF', oklch: 'oklch(100% 0 0)', role: 'Flächen und Schrift auf 900/800', text: 'g900' },
 ];
 
-/** Rollen: welcher Ton wofür steht (werden zu CSS-Variablen, die auf die Palette zeigen). */
+/**
+ * Rollen: welcher Ton wofür steht (werden zu CSS-Variablen, die auf die Palette zeigen).
+ * Je Ort drei Rollen: Fläche (`--garage`), Schrift auf der Fläche (`--garage-on`) und
+ * Schrift auf Weiß/hellen Flächen (`--garage-ink`), damit jede Kombination lesbar bleibt.
+ */
 export const ROLES = [
-  { token: 'ink', ref: 'nuit', role: 'Text, Buttons, Kopf- und Fußzeile' },
-  { token: 'garage', ref: 'nuit', role: 'Garage' },
-  { token: 'kiosque', ref: 'ocean', role: 'Kiosque' },
-  { token: 'marche', ref: 'maree', role: 'Marché' },
-  { token: 'brand', ref: 'embrun', role: 'Linien, Zeichnungen' },
-  { token: 'muted', ref: 'maree', role: 'Nebentext auf Weiß' },
-  { token: 'offer', ref: 'homard', role: 'Angebot des Wochenendes' },
+  { token: 'ink', ref: 'g900', role: 'Text, Buttons, Kopf- und Fußzeile' },
+  { token: 'garage', ref: 'g900', role: 'Garage (Fläche, Punkt)' },
+  { token: 'garage-on', ref: 'blanc', role: 'Schrift auf Garage' },
+  { token: 'garage-ink', ref: 'g900', role: 'Garage als Schrift auf Weiß' },
+  { token: 'kiosque', ref: 'g800', role: 'Kiosque (Fläche, Punkt)' },
+  { token: 'kiosque-on', ref: 'blanc', role: 'Schrift auf Kiosque' },
+  { token: 'kiosque-ink', ref: 'g800', role: 'Kiosque als Schrift auf Weiß' },
+  { token: 'marche', ref: 'g600', role: 'Marché (Fläche, Punkt)' },
+  { token: 'marche-on', ref: 'g900', role: 'Schrift auf Marché' },
+  { token: 'marche-ink', ref: 'g700', role: 'Marché als Schrift auf Weiß (nur groß)' },
+  { token: 'accent', ref: 'g400', role: 'Aktiv/hover, Markierungen, Hinweise; Basis für --tint' },
+  { token: 'rule', ref: 'g600', role: 'Linien' },
+  { token: 'brand', ref: 'g600', role: 'Linien, Balken' },
+  { token: 'muted', ref: 'g800', role: 'Nebentext auf Weiß, Zeichnungen' },
+  { token: 'offer', ref: 'g500', role: 'Angebot des Wochenendes (Fläche)' },
+  { token: 'offer-on', ref: 'g900', role: 'Schrift auf dem Angebot' },
 ];
 
 /** Hex-Wert einer Farbe oder Rolle (für Meta-Tags, Manifest, Share-Bilder). */

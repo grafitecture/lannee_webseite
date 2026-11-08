@@ -1,7 +1,7 @@
 /**
  * Angebot des Wochenendes (Startseite, im Hero, seit 06.11.2026).
  * ---------------------------------------------------------------------------
- * Jedes Wochenende ein Angebot aus der Karte, herzlich formuliert, in Homard-Rot.
+ * Jedes Wochenende ein Angebot aus der Karte, herzlich formuliert, als Karte in 500 (Chartreuse).
  * So pflegt man es: oben in OFFERS einen neuen Eintrag anlegen (from/until = Freitag/Sonntag).
  * Gezeigt wird beim Build das erste Angebot, das noch nicht abgelaufen ist; nach `until`
  * blendet das Skript es aus (data-expires), auch wenn die Seite nicht neu gebaut wurde.

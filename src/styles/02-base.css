@@ -6,10 +6,10 @@
   --font-display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
   --font-text: 'Instrument Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --phi: 1.618;
-  --line: color-mix(in srgb, var(--embrun) 55%, transparent);
-  --line-strong: var(--embrun);
-  /* Helle Fläche für Karten auf Weiß: ein Hauch Écume (Umbau 05.11.2026) */
-  --tint: color-mix(in srgb, var(--ecume) 42%, var(--blanc));
+  --line: color-mix(in srgb, var(--rule) 55%, transparent);
+  --line-strong: var(--rule);
+  /* Helle Fläche für Karten auf Weiß: ein Hauch 400 (Citron vert) auf Weiß (Grün-Skala 08.11.2026) */
+  --tint: color-mix(in srgb, var(--accent) 20%, var(--blanc));
   /* Runde Ecken, nach Größe gestaffelt: je größer die Fläche, desto runder */
   --r-xl: clamp(1.5rem, 0.9rem + 2vw, 3rem);
   --r-l: clamp(1rem, 0.8rem + 0.7vw, 1.6rem);
@@ -21,6 +21,8 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out: cubic-bezier(0.7, 0, 0.2, 1);
   --loc: var(--marche);
+  --loc-on: var(--marche-on);
+  --loc-ink: var(--marche-ink);
   color-scheme: light;
 }
 @media (min-width: 1024px) {
@@ -143,7 +145,7 @@ button {
 }
 
 ::selection {
-  background: var(--ecume);
+  background: var(--accent);
   color: var(--ink);
 }
 
@@ -207,8 +209,9 @@ main:focus {
 
 /* Themen: Flächen der Subbrands ------------------------------------------------
    Seit 06.11.2026 hell („leichter und heller“): ein Hauch der Ortsfarbe auf Weiß,
-   Schrift Bleu nuit, Akzente in der Ortsfarbe. Dunkle Flächen nur noch für das Logo
-   (Kopf- und Fußzeile, Styleguide). */
+   Schrift 900, Akzente in der Ortsfarbe. Dunkle Flächen nur noch für das Logo
+   (Kopf- und Fußzeile, Styleguide). Je Ort: --loc (Fläche), --loc-on (Schrift darauf),
+   --loc-ink (Schrift auf Weiß) – Marché ist hell (600) und trägt deshalb Schrift in 900. */
 
 .theme-garage,
 .theme-kiosque,
@@ -217,22 +220,22 @@ main:focus {
   --bg: color-mix(in oklch, var(--theme-c) 6%, var(--tint));
   --fg: var(--ink);
   --loc: var(--theme-c);
-  --soft: var(--theme-c);
+  --loc-on: var(--theme-on);
+  --loc-ink: var(--theme-ink);
   background: var(--bg);
   color: var(--fg);
 }
-.theme-garage { --theme-c: var(--garage); }
-.theme-kiosque { --theme-c: var(--kiosque); }
-.theme-marche { --theme-c: var(--marche); }
-.theme-ink { --theme-c: var(--ink); }
+.theme-garage { --theme-c: var(--garage); --theme-on: var(--garage-on); --theme-ink: var(--garage-ink); }
+.theme-kiosque { --theme-c: var(--kiosque); --theme-on: var(--kiosque-on); --theme-ink: var(--kiosque-ink); }
+.theme-marche { --theme-c: var(--marche); --theme-on: var(--marche-on); --theme-ink: var(--marche-ink); }
+.theme-ink { --theme-c: var(--ink); --theme-on: var(--blanc); --theme-ink: var(--ink); }
 
-.theme-garage-text { --loc: var(--garage); --loc-pale: var(--ecume); }
-.theme-kiosque-text { --loc: var(--kiosque); --loc-pale: var(--ecume); }
-.theme-marche-text { --loc: var(--marche); --loc-pale: var(--ecume); }
-
-.page--garage { --loc: var(--garage); --loc-pale: var(--ecume); --loc-text: var(--garage); }
-.page--kiosque { --loc: var(--kiosque); --loc-pale: var(--ecume); --loc-text: var(--kiosque); }
-.page--marche { --loc: var(--marche); --loc-pale: var(--ecume); --loc-text: var(--marche); }
+.theme-garage-text,
+.page--garage { --loc: var(--garage); --loc-on: var(--garage-on); --loc-ink: var(--garage-ink); }
+.theme-kiosque-text,
+.page--kiosque { --loc: var(--kiosque); --loc-on: var(--kiosque-on); --loc-ink: var(--kiosque-ink); }
+.theme-marche-text,
+.page--marche { --loc: var(--marche); --loc-on: var(--marche-on); --loc-ink: var(--marche-ink); }
 
 /* Seitenübergänge (Chrome, Edge, Safari 18.2+) ----------------------------- */
 

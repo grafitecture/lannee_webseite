@@ -4,9 +4,9 @@
    ========================================================================== */
 
 /* Kopfzeile ------------------------------------------------------------------
-   Bleu nuit mit weißem Holz-Logo, Linie und Slogan (Logo fest, keine Wanderung).
+   900 mit weißem Holz-Logo, Linie und Slogan (Logo fest, keine Wanderung).
    Auf Seiten mit Vollbild-Foto (Start, Orte) liegt sie durchsichtig über dem Bild
-   und wird nach dem Scrollen Bleu nuit (main.js, initHeader). */
+   und wird nach dem Scrollen 900 (main.js, initHeader). */
 
 .site-header {
   position: sticky;
@@ -117,7 +117,7 @@
   background: color-mix(in srgb, var(--blanc) 14%, transparent);
 }
 .nav__link[aria-current='page'] {
-  background: var(--ecume);
+  background: var(--accent);
   color: var(--ink);
 }
 
@@ -176,7 +176,7 @@
   text-decoration: none;
 }
 .menu-toggle:hover {
-  color: var(--ecume);
+  color: var(--accent);
 }
 .menu-toggle__bars {
   position: relative;
@@ -207,7 +207,7 @@
   }
 }
 
-/* Vollflächiges Menü (mobil), weiß mit blauer Schrift – funktioniert per :target auch ohne JavaScript */
+/* Vollflächiges Menü (mobil), weiß mit Schrift in 900 – funktioniert per :target auch ohne JavaScript */
 .drawer {
   display: none;
   position: fixed;
@@ -257,7 +257,7 @@
   text-decoration: none;
 }
 .drawer__link[aria-current='page'] {
-  color: var(--marche);
+  color: var(--marche-ink);
 }
 .menu-open {
   overflow: hidden;
@@ -328,7 +328,7 @@
 }
 
 /* Fußzeile -------------------------------------------------------------------
-   Bleu nuit mit großen runden Ecken oben, Logo · Linie · Slogan wie in der Kopfzeile,
+   900 mit großen runden Ecken oben, Logo · Linie · Slogan wie in der Kopfzeile,
    der Hinweis „fiktiv“ als schlichte Zeile ganz unten. Ohne die drei Orte. */
 
 .site-footer {

@@ -10,7 +10,7 @@
       1920,
       2480
     ],
-    "color": "#5a645d"
+    "color": "#646a4b"
   },
   "marche-wagen": {
     "width": 1086,
@@ -21,7 +21,7 @@
       1080,
       1086
     ],
-    "color": "#7f8990"
+    "color": "#888b6f"
   },
   "marche-auslage": {
     "width": 361,
@@ -29,7 +29,7 @@
     "widths": [
       361
     ],
-    "color": "#5f5a5b"
+    "color": "#585a48"
   },
   "austern-postkarte": {
     "width": 480,
@@ -37,7 +37,7 @@
     "widths": [
       480
     ],
-    "color": "#828076"
+    "color": "#828365"
   },
   "austern-oeffnen": {
     "width": 360,
@@ -45,7 +45,7 @@
     "widths": [
       360
     ],
-    "color": "#b7b1ae"
+    "color": "#b5baab"
   },
   "wein-eis": {
     "width": 360,
@@ -53,7 +53,7 @@
     "widths": [
       360
     ],
-    "color": "#919492"
+    "color": "#919786"
   },
   "bulles": {
     "width": 2048,
@@ -66,7 +66,7 @@
       1920,
       2048
     ],
-    "color": "#23273d"
+    "color": "#262e1e"
   },
   "huitres-glace": {
     "width": 1024,
@@ -76,7 +76,7 @@
       768,
       1024
     ],
-    "color": "#5d6b73"
+    "color": "#67705f"
   },
   "garage-austernbar": {
     "width": 768,
@@ -85,7 +85,7 @@
       480,
       768
     ],
-    "color": "#6d6050"
+    "color": "#606248"
   },
   "garage-fenster": {
     "width": 768,
@@ -94,7 +94,7 @@
       480,
       768
     ],
-    "color": "#7f7367"
+    "color": "#76775c"
   },
   "garage-wand": {
     "width": 768,
@@ -103,7 +103,7 @@
       480,
       768
     ],
-    "color": "#8a8176"
+    "color": "#80826a"
   },
   "hof-bistrotische": {
     "width": 768,
@@ -112,7 +112,7 @@
       480,
       768
     ],
-    "color": "#727055"
+    "color": "#686f50"
   },
   "garage-merci": {
     "width": 768,
@@ -121,7 +121,7 @@
       480,
       768
     ],
-    "color": "#81827f"
+    "color": "#7e836d"
   },
   "garage-weinlaub": {
     "width": 768,
@@ -130,7 +130,7 @@
       480,
       768
     ],
-    "color": "#807f66"
+    "color": "#78805f"
   },
   "garage-bar": {
     "width": 768,
@@ -139,7 +139,7 @@
       480,
       768
     ],
-    "color": "#757268"
+    "color": "#6c7158"
   },
   "garage-boot": {
     "width": 768,
@@ -148,7 +148,7 @@
       480,
       768
     ],
-    "color": "#6b5d46"
+    "color": "#5f6042"
   },
   "garage-eingang": {
     "width": 1200,
@@ -159,7 +159,7 @@
       1080,
       1200
     ],
-    "color": "#827d68"
+    "color": "#767d61"
   },
   "garage-glaeser": {
     "width": 1808,
@@ -171,7 +171,7 @@
       1440,
       1808
     ],
-    "color": "#706557"
+    "color": "#65694f"
   },
   "garage-tresen": {
     "width": 1703,
@@ -183,7 +183,7 @@
       1440,
       1703
     ],
-    "color": "#74644e"
+    "color": "#686746"
   },
   "garage-sammlung": {
     "width": 1588,
@@ -195,7 +195,7 @@
       1440,
       1588
     ],
-    "color": "#766c63"
+    "color": "#6b6c55"
   },
   "schweppes": {
     "width": 1200,
@@ -206,7 +206,7 @@
       1080,
       1200
     ],
-    "color": "#95876b"
+    "color": "#858764"
   },
   "logo-lannee": {
     "width": 1563,

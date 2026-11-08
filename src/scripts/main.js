@@ -233,7 +233,7 @@ function initExpiry() {
 
 /* ------------------------------------------------------------------ */
 /* Kopfzeile: über dem Vollbild-Foto durchsichtig, nach dem Scrollen    */
-/* Bleu nuit (Umbau 05.11.2026). Ohne JavaScript scrollt sie einfach mit.*/
+/* 900 (Umbau 05.11.2026). Ohne JavaScript scrollt sie einfach mit.*/
 /* ------------------------------------------------------------------ */
 
 function initHeader() {

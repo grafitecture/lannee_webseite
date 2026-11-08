@@ -1,6 +1,7 @@
 /**
- * Startseite (Umbau 05.11.2026, seit 06.11.2026 hell): Hero ohne Bild – nur Weiß, Mega-Headline in Bleu nuit
- * und die drei Orte als helle Kacheln; darunter viel Weiß und große runde Bildkarten.
+ * Startseite (Umbau 05.11.2026, seit 06.11.2026 hell): Hero mit Foto im Hintergrund (seit 08.11.2026,
+ * `HERO_PHOTO` = bulles, Verlauf in 900), Mega-Headline weiß, Angebot des Wochenendes und die drei Orte
+ * als helle Kacheln; darunter viel Weiß und große runde Bildkarten.
  * Kein Film, keine Zeichnungen, keine Logo-Wanderung. Nur echte Fotos, keine generierten Bilder (06.11.2026).
  */
 import { html, rich, typo } from '../lib/html.mjs';
@@ -17,6 +18,8 @@ const PLACE_PHOTOS = {
   kiosque: { real: 'bulles', past: 'austern-postkarte' },
   marche: { real: 'marche-wagen', past: 'marche-auslage' },
 };
+/** Hintergrund des Hero (Vorgabe 08.11.2026: „schönes Bild im Hintergrund“): Bulles – drei Gläser Champagner, ruhig und dunkel, die weiße Headline steht sicher darauf. */
+const HERO_PHOTO = 'bulles';
 const HERO_PLACES_LABEL = { de: 'Drei Orte', fr: 'Trois adresses', en: 'Three places' };
 /** Bilderreihe: echte Fotos, keine Wiederholung der Bilder darüber. */
 const GALLERY = [
@@ -45,7 +48,7 @@ function dateRange(from, until, locale) {
 }
 
 /**
- * Angebot des Wochenendes (seit 06.11.2026): rote Karte (Homard) im Hero. Inhalt: src/content/offer.mjs.
+ * Angebot des Wochenendes (seit 06.11.2026): Karte in 500 (Chartreuse, seit 08.11.2026; vorher Homard) im Hero. Inhalt: src/content/offer.mjs.
  * Normalpreise werden aus der Karte berechnet; nach `until` blendet das Skript die Karte aus.
  */
 function weekendOffer(locale) {
@@ -114,6 +117,7 @@ export function render(ctx) {
 
   return html`
 <section class="hero${offer ? ' hero--offer' : ''}" aria-labelledby="hero-title">
+  ${picture(HERO_PHOTO, locale, { sizes: '100vw', cls: 'hero__bg', eager: true, alt: '' })}
   <div class="hero__inner">
     <div class="hero__text">
       <h1 class="hero__title" id="hero-title">${p.headline.map((line) => html`<span class="hero__line">${line}</span> `)}</h1>

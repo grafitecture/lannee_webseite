@@ -50,7 +50,7 @@
   color: var(--ink);
 }
 .btn--light:hover {
-  background: var(--ecume);
+  background: var(--accent);
 }
 .btn--line {
   border-color: currentColor;
@@ -58,12 +58,12 @@
 .btn--line:hover {
   background: color-mix(in srgb, currentColor 8%, transparent);
 }
-.btn--garage { background: var(--garage); color: var(--blanc); }
-.btn--kiosque { background: var(--kiosque); color: var(--blanc); }
-.btn--marche { background: var(--marche); color: var(--blanc); }
-.btn--garage:hover { background: var(--kiosque); }
+.btn--garage { background: var(--garage); color: var(--garage-on); }
+.btn--kiosque { background: var(--kiosque); color: var(--kiosque-on); }
+.btn--marche { background: var(--marche); color: var(--marche-on); }
+.btn--garage:hover { background: var(--kiosque); color: var(--kiosque-on); }
 .btn--kiosque:hover,
-.btn--marche:hover { background: var(--ink); }
+.btn--marche:hover { background: var(--ink); color: var(--blanc); }
 .btn:hover .icon--arrow,
 .link-arrow:hover .icon--arrow {
   transform: translateX(0.2em);
@@ -163,9 +163,9 @@
   line-height: 1.1;
   letter-spacing: 0.01em;
 }
-.tag--garage { background: var(--garage); color: var(--blanc); }
-.tag--kiosque { background: var(--kiosque); color: var(--blanc); }
-.tag--marche { background: var(--marche); color: var(--blanc); }
+.tag--garage { background: var(--garage); color: var(--garage-on); }
+.tag--kiosque { background: var(--kiosque); color: var(--kiosque-on); }
+.tag--marche { background: var(--marche); color: var(--marche-on); }
 
 .chip {
   display: inline-flex;
@@ -191,9 +191,9 @@
 }
 .chip--garage[aria-pressed='true'] { background: var(--garage); }
 .chip--kiosque[aria-pressed='true'] { background: var(--kiosque); }
-.chip--marche[aria-pressed='true'] { background: var(--marche); }
+.chip--marche[aria-pressed='true'] { background: var(--marche); color: var(--marche-on); }
 .chip[aria-pressed='true'] .dot {
-  background: var(--blanc);
+  background: currentColor;
 }
 
 /* Pausen-Hinweis ------------------------------------------------------------ */
@@ -208,7 +208,7 @@
   margin: 0;
   padding: 0.7em 1.3em;
   border-radius: var(--r-pill);
-  background: var(--ecume);
+  background: var(--accent);
   color: var(--ink);
   font-size: 0.9375rem;
   line-height: 1.35;
@@ -326,7 +326,7 @@
     align-content: start;
     gap: 0.35rem;
     padding: 0 clamp(1.5rem, 0.5rem + 2.5vw, 3rem);
-    border-left: 1px solid var(--embrun);
+    border-left: 1px solid var(--rule);
   }
   .plan__day:first-child {
     padding-left: 0;
@@ -385,8 +385,8 @@
   height: 1.15em;
   margin-left: 0.15em;
   border-radius: 50%;
-  border: 1.5px solid var(--marche);
-  color: var(--marche);
+  border: 1.5px solid var(--muted);
+  color: var(--muted);
   font-family: var(--font-text);
   font-size: 0.55em;
   font-weight: 700;

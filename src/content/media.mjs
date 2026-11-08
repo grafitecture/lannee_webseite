@@ -44,9 +44,9 @@ export const MEDIA = {
   },
   bulles: {
     alt: {
-      de: 'Drei Gläser Champagner auf einem tiefblauen Tisch',
-      fr: 'Trois coupes de champagne sur une table bleu profond',
-      en: 'Three glasses of champagne on a deep blue table',
+      de: 'Drei Gläser Champagner auf einem dunklen Tisch',
+      fr: 'Trois coupes de champagne sur une table sombre',
+      en: 'Three glasses of champagne on a dark table',
     },
   },
   'huitres-glace': {

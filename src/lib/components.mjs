@@ -22,7 +22,7 @@ export const IMAGES = JSON.parse(read('src/content/images.json'));
 /**
  * Logo (seit 03.11.2026): weiße, gestrichene Holzbuchstaben L’ANNÉE, freigestelltes Rasterbild
  * (Quelle assets-src/logo-lannee-holz.png, AVIF/WebP aus scripts/images.mjs).
- * Weiß gehört auf Blau: Das Logo steht immer auf einer blauen Fläche.
+ * Weiß gehört auf Dunkel: Das Logo steht immer auf 900 (Grün-Skala, 08.11.2026).
  * Das frühere Vektor-Logo (src/icons/logo-raw.svg) liefert nur noch das Favicon („L’“).
  */
 export const LOGO = IMAGES['logo-lannee'];
@@ -163,7 +163,7 @@ export function weekPlan(locale) {
 
 /**
  * Button in Pillenform (Umbau 05.11.2026). Varianten über die Klasse:
- * btn--solid (Bleu nuit), btn--light (weiß auf Blau), btn--line, btn--garage/--kiosque/--marche.
+ * btn--solid (900), btn--light (weiß auf 900), btn--line, btn--garage/--kiosque/--marche.
  */
 export function button(href, label, { cls = 'btn btn--solid', external = false, locale = 'de' } = {}) {
   const ext = external ? raw(` target="_blank" rel="noopener"`) : '';

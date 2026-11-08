@@ -1,6 +1,6 @@
 /**
  * Styleguide (nur Deutsch, noindex): Markensystem, Farben, Typo, Ecken, Bilder, Breakpoints.
- * Stand: Umbau 05.11.2026 – viel Weiß, runde Ecken, nur echte Fotos.
+ * Stand: Umbau 05.11.2026 – viel Weiß, runde Ecken, nur echte Fotos; Grün-Skala 400–900 seit 08.11.2026.
  */
 import { html } from '../lib/html.mjs';
 import { LOCATIONS, LOCATION_ORDER } from '../content/site.mjs';
@@ -38,16 +38,16 @@ export function render(ctx) {
 
 <section class="sg" aria-labelledby="sg-brand">
   <h2 class="section__title section__title--small" id="sg-brand">Dachmarke und Orte</h2>
-  <p class="lead">Aufgeräumt, großflächig, viel Weiß (Umbau 05.11.2026). Farbe kommt aus den Bildern und aus den drei Orten: Garage Bleu nuit (der Abend), Kiosque Océan (der Sonntag), Marché Marée (der Morgen). Keine Zeichnungen, keine Uhren, kein Film.</p>
-  <p class="sg__note">Logo: weiße, gestrichene Holzbuchstaben. Weiß gehört auf Blau: Das Logo steht nie auf Weiß – in der Kopfzeile (über dem Foto oder auf Bleu nuit) und groß in der Fußzeile. Es sitzt fest in der Kopfzeile, daneben Linie und Slogan in der Seitensprache.</p>
+  <p class="lead">Aufgeräumt, großflächig, viel Weiß (Umbau 05.11.2026). Farbe kommt nur aus der Grün-Skala 400–900 (08.11.2026), auch die Fotos sind darauf abgestimmt. Die drei Orte: Garage 900 (der Abend), Kiosque 800 (der Sonntag), Marché 600 (der Morgen). Keine Zeichnungen, keine Uhren, kein Film.</p>
+  <p class="sg__note">Logo: weiße, gestrichene Holzbuchstaben. Weiß gehört auf Dunkel: Das Logo steht nie auf Weiß und nie auf den hellen Stufen, sondern auf 900 – in der Kopfzeile (über dem Foto oder auf 900) und in der Fußzeile. Es sitzt fest in der Kopfzeile, daneben Linie und Slogan in der Seitensprache.</p>
   <div class="sg__logos">
-    ${LOCATION_ORDER.map((k) => html`<div class="sg__logo theme-${LOCATIONS[k].color}">${logo({ cls: 'sg__logo-img', decorative: true, sizes: '24rem' })}<span>${LOCATIONS[k].name}</span></div>`)}
+    ${LOCATION_ORDER.map((k) => html`<div class="sg__logo">${logo({ cls: 'sg__logo-img', decorative: true, sizes: '24rem' })}<span class="tag tag--${LOCATIONS[k].color}">${LOCATIONS[k].name}</span></div>`)}
   </div>
 </section>
 
 <section class="sg" aria-labelledby="sg-colors">
   <h2 class="section__title section__title--small" id="sg-colors">Farben</h2>
-  <p class="lead">Blau mit Zug ins Grün, von Petrol bis Meergrün (am 05.11.2026 noch einmal Richtung Grün geschoben), dazu Weiß. Entweder blaue Fläche mit weißer Schrift oder weiße Fläche mit blauer Schrift. Nichts Schwarzes, nichts Graues, kein reines Grün. Embrun ist für Schrift zu hell (Linien), Écume ist der Akzent (aktiv, hover, Hinweise).</p>
+  <p class="lead">Grün-Skala 400–900 (Vorgabe 08.11.2026), ein Farbton von Citron vert bis Bouteille, dazu Weiß – sonst keine Farben. Dunkle Stufe (900, 800) mit weißer Schrift, helle Stufe (600–400) mit Schrift in 900, auf Weiß Schrift in 900 (Nebentext 800). 700 nur für große Schrift. Nichts Schwarzes, nichts Graues: 900 ersetzt Schwarz. 400 ist der Akzent (aktiv, hover, Hinweise), 500 nur das Angebot des Wochenendes.</p>
   <ul class="swatches" role="list">${COLORS.map(
     (c) => html`<li class="swatch" style="--sw:${c.hex}">
       <span class="swatch__chip"></span>
@@ -55,7 +55,7 @@ export function render(ctx) {
       <code>${c.hex}</code>
       <code>${c.oklch}</code>
       <span class="swatch__role">${c.role}</span>
-      <span class="swatch__contrast">Weiß ${contrast(c.hex, '#FFFFFF').toFixed(2)} : 1, Bleu nuit ${contrast(c.hex, tokenHex('nuit')).toFixed(2)} : 1</span>
+      <span class="swatch__contrast">Weiß ${contrast(c.hex, '#FFFFFF').toFixed(2)} : 1, 900 ${contrast(c.hex, tokenHex('g900')).toFixed(2)} : 1</span>
     </li>`
   )}</ul>
   <ul class="shades" role="list">${ROLES.map(

@@ -10,10 +10,16 @@
  *          npm run images -- name1 name2   (nur diese Bilder neu erzeugen)
  * (sharp wird nur hier gebraucht – der normale Build kommt ohne
  *  Abhängigkeiten aus.)
+ *
+ * Seit 08.11.2026 bekommen alle Fotos beim Erzeugen denselben Farblook in der
+ * Grün-Skala 400–900 (scripts/look.mjs) und werden nach dem Verkleinern leicht
+ * nachgeschärft. Die Originale in /assets-src bleiben unverändert; `look: false`
+ * in SOURCES schaltet den Look für ein Bild ab.
  */
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { applyLook } from './look.mjs';
 
 let sharp;
 try {
@@ -66,7 +72,7 @@ const SOURCES = {
 
 /**
  * Freisteller aufbereiten: Die Buchstaben im PNG sind zu 90–99 % deckend (Alpha 229–254),
- * auf Blau schimmert der Grund dann leicht durch. Alpha / 0,9 macht sie voll deckend und lässt
+ * auf 900 schimmert der Grund dann leicht durch. Alpha / 0,9 macht sie voll deckend und lässt
  * die weiche Kante fast unverändert. Danach auf die Buchstaben zuschneiden (Alpha > 32).
  */
 async function prepareLogo(input) {
@@ -107,13 +113,22 @@ async function processImage(name, cfg) {
     width = region.width;
     height = region.height;
   }
-  const buffer = await base.toBuffer();
+  let buffer = await base.toBuffer();
+  const photo = !cfg.logo && cfg.look !== false;
+  if (photo) {
+    // Farblook (Grün-Skala) auf voller Auflösung, danach verlustfrei weiter
+    const { data, info } = await sharp(buffer).removeAlpha().raw().toBuffer({ resolveWithObject: true });
+    const graded = applyLook(data, info.width, info.height);
+    buffer = await sharp(graded, { raw: { width: info.width, height: info.height, channels: 3 } }).png().toBuffer();
+  }
   const widths = (cfg.widths ?? WIDTHS).filter((w) => w < width);
   widths.push(width); // Originalbreite immer mit ausgeben
   const unique = [...new Set(widths)].sort((a, b) => a - b);
 
   for (const w of unique) {
-    const pipeline = sharp(buffer).resize({ width: w, withoutEnlargement: true });
+    let pipeline = sharp(buffer).resize({ width: w, withoutEnlargement: true });
+    // leicht nachschärfen wie bei einer Bildbearbeitung für den Druck/Web-Export
+    if (photo) pipeline = pipeline.sharpen({ sigma: 0.55, m1: 0.6, m2: 2 });
     const q = cfg.quality ?? { avif: 52, webp: 74 };
     await pipeline.clone().avif({ quality: q.avif, effort: 6 }).toFile(path.join(OUT, `${name}-${w}.avif`));
     await pipeline.clone().webp({ quality: q.webp, alphaQuality: 100, effort: 6 }).toFile(path.join(OUT, `${name}-${w}.webp`));

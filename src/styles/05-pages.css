@@ -5,14 +5,44 @@
 
 /* Startseite: Vollbild-Hero ----------------------------------------------------- */
 
-/* Seit 06.11.2026 ohne Bild: nur Weiß, Mega-Headline in Bleu nuit, darunter die drei hellen Kacheln.
-   Die Kopfzeile steht auf der Startseite fest darüber; Höhe = erster Bildschirm minus Kopfzeile. */
+/* Seit 08.11.2026 mit Foto im Hintergrund (HERO_PHOTO in home.mjs): ein dunkler Verlauf in 900 hält
+   Mega-Headline und Lead in Weiß lesbar, das Angebot (500) und die drei hellen Kacheln liegen darüber.
+   Die Kopfzeile liegt durchsichtig über dem Foto (wie auf den Ortsseiten); Höhe = erster Bildschirm. */
 .hero {
+  position: relative;
+  isolation: isolate;
   display: grid;
   grid-template-rows: 1fr auto;
-  min-height: calc(100svh - var(--header-h));
-  background: var(--blanc);
-  color: var(--ink);
+  min-height: 100svh;
+  padding-top: var(--header-h);
+  overflow: hidden;
+  background: var(--ink); /* bis das Foto da ist */
+  color: var(--blanc);
+}
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: var(--ink);
+}
+.hero__bg img {
+  object-position: 30% 40%;
+}
+/* Verlauf: nur so viel 900, dass die weiße Headline links sicher steht; rechts bleibt das Foto hell */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--ink) 66%, transparent) 0%, color-mix(in srgb, var(--ink) 30%, transparent) 45%, transparent 70%),
+    linear-gradient(180deg, color-mix(in srgb, var(--ink) 40%, transparent) 0%, transparent 20%);
+}
+/* Handy und Tablet: alles steht untereinander über dem Foto – oben hell, zur Headline hin dunkler */
+@media (max-width: 1279px) {
+  .hero::before {
+    background: linear-gradient(180deg, color-mix(in srgb, var(--ink) 34%, transparent) 0%, color-mix(in srgb, var(--ink) 55%, transparent) 30%, color-mix(in srgb, var(--ink) 70%, transparent) 100%);
+  }
 }
 .hero__inner {
   align-self: center;
@@ -59,6 +89,8 @@
 }
 .hero-place {
   --c: var(--ink);
+  --c-on: var(--blanc);
+  --c-ink: var(--ink);
   position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
@@ -74,11 +106,11 @@
 .hero-place:hover {
   background: color-mix(in oklch, var(--c) 13%, var(--tint));
 }
-.hero-place--garage { --c: var(--garage); }
-.hero-place--kiosque { --c: var(--kiosque); }
-.hero-place--marche { --c: var(--marche); }
+.hero-place--garage { --c: var(--garage); --c-on: var(--garage-on); --c-ink: var(--garage-ink); }
+.hero-place--kiosque { --c: var(--kiosque); --c-on: var(--kiosque-on); --c-ink: var(--kiosque-ink); }
+.hero-place--marche { --c: var(--marche); --c-on: var(--marche-on); --c-ink: var(--marche-ink); }
 .hero-place__name {
-  color: var(--c);
+  color: var(--c-ink);
   font-family: var(--font-display);
   font-size: clamp(1.6rem, 1.15rem + 1.6vw, 2.75rem);
   font-weight: 440;
@@ -105,7 +137,7 @@
   padding: 0.7rem;
   border-radius: 50%;
   background: var(--c);
-  color: var(--blanc);
+  color: var(--c-on);
   transition: background-color 0.25s, color 0.25s, transform 0.25s var(--ease-out);
 }
 .hero-place:hover .hero-place__arrow {
@@ -132,7 +164,7 @@
   }
 }
 
-/* Angebot des Wochenendes (06.11.2026): rote Karte in Homard im Hero -------------------
+/* Angebot des Wochenendes (06.11.2026): seit 08.11.2026 Karte in 500 (Chartreuse) mit Schrift in 900 im Hero -------------------
    Das einzige Rot der Seite (Komplementär zu den Blautönen). Handy/Tablet/kleiner Desktop: unter
    Headline und Lead, volle Breite (max. 36 rem). Ab 1280 px: rechts neben der Headline, die dafür
    etwas kleiner wird. Nach Ablauf blendet das Skript die Karte aus; dann gilt wieder das normale Hero. */
@@ -150,8 +182,8 @@
   padding: clamp(1.35rem, 1rem + 1.6vw, 2.4rem);
   border-radius: var(--r-xl);
   background: var(--offer);
-  color: var(--blanc);
-  box-shadow: 0 1.4rem 3rem -1.8rem color-mix(in srgb, var(--offer) 80%, transparent);
+  color: var(--offer-on);
+  box-shadow: 0 1.4rem 3rem -1.8rem color-mix(in srgb, var(--kiosque) 70%, transparent);
 }
 .offer[hidden] {
   display: none;
@@ -170,7 +202,7 @@
 .offer__badge {
   padding: 0.5rem 1rem 0.46rem;
   border-radius: var(--r-pill);
-  background: var(--blanc);
+  background: var(--offer-on);
   color: var(--offer);
   font-size: 0.8125rem;
   font-weight: 700;
@@ -204,7 +236,7 @@
   display: grid;
   gap: 0.75rem;
   padding-top: 1.1rem;
-  border-top: 1px solid color-mix(in srgb, var(--blanc) 40%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--offer-on) 35%, transparent);
 }
 .offer__price {
   display: flex;
@@ -274,7 +306,7 @@
   min-height: 2.75rem;
   padding: 0.55rem 0.95rem 0.55rem 1.15rem;
   border-radius: var(--r-pill);
-  background: var(--blanc);
+  background: var(--offer-on);
   color: var(--offer);
   font-size: 0.9375rem;
   font-weight: 700;
@@ -283,7 +315,8 @@
   transition: background-color 0.2s, transform 0.2s var(--ease-out);
 }
 .offer__link:hover {
-  background: color-mix(in srgb, var(--blanc) 88%, var(--offer));
+  background: var(--kiosque);
+  color: var(--kiosque-on);
 }
 .offer__link:hover .offer__arrow {
   transform: translateX(0.15rem);
@@ -493,7 +526,7 @@
   scroll-snap-type: x mandatory;
   scroll-padding-inline: var(--gutter);
   scrollbar-width: thin;
-  scrollbar-color: var(--embrun) transparent;
+  scrollbar-color: var(--rule) transparent;
 }
 .photo-row__item {
   flex: 0 0 min(78vw, 28rem);
@@ -568,9 +601,6 @@
 
 /* Ortsseiten ------------------------------------------------------------------- */
 
-.page--garage { --loc: var(--garage); }
-.page--kiosque { --loc: var(--kiosque); }
-.page--marche { --loc: var(--marche); }
 
 .loc-hero {
   position: relative;
@@ -580,7 +610,7 @@
   min-height: 92svh;
   padding: calc(var(--header-h) + var(--space-xl)) var(--gutter) var(--space-xl);
   overflow: hidden;
-  background: var(--loc);
+  background: var(--ink); /* bis das Foto da ist; Schrift weiß über dunklem Verlauf */
   color: var(--blanc);
 }
 .loc-hero__bg,
@@ -665,7 +695,7 @@
   margin: 0 auto;
   max-width: 20ch;
   text-align: center;
-  color: var(--loc);
+  color: var(--loc-ink);
   font-family: var(--font-display);
   font-size: var(--fs-h4);
   font-weight: 400;
@@ -946,7 +976,7 @@
   transition: background-color 0.25s;
 }
 .atlases__tile:hover {
-  background: color-mix(in oklch, var(--ecume) 75%, var(--tint));
+  background: color-mix(in oklch, var(--accent) 75%, var(--tint));
 }
 .atlases__tile-name {
   font-family: var(--font-display);
@@ -1045,7 +1075,7 @@
   margin: 0;
 }
 /* Austern-Strichzeichnungen (nur hier auf der Website, seit 06.11.2026 wieder, am selben Tag fein wie ein
-   Kupferstich neu gezeichnet): Linien in Marée, Strichstärken in px fest im Sprite (0,5–1,05 px) */
+   Kupferstich neu gezeichnet): Linien in 800 (--muted), Strichstärken in px fest im Sprite (0,5–1,05 px) */
 .oyster__head {
   display: grid;
   gap: 1.1rem;
@@ -1081,7 +1111,7 @@
 
 /* Champagner-Guide (06.11.2026) ----------------------------------------------------
    Helle runde Karten auf Weiß, Zahlen und Namen in Fraunces, Balken nur als Daten (Dosage,
-   Rebsorten-Anteil, Flaschengrößen) in Marée auf einer Embrun-Spur. Keine Zeichnungen. */
+   Rebsorten-Anteil, Flaschengrößen) in 800 auf einer Spur in 600. Keine Zeichnungen. */
 
 .cg-nav {
   width: 100%;
@@ -1110,7 +1140,7 @@
   transition: background-color 0.2s;
 }
 .cg-nav__link:hover {
-  background: var(--ecume);
+  background: var(--accent);
 }
 
 .cg {
@@ -1159,7 +1189,7 @@
   max-width: 50rem;
   padding: 1.1rem 1.4rem;
   border-radius: var(--r-l);
-  background: var(--ecume);
+  background: var(--accent);
   line-height: 1.5;
 }
 
@@ -1289,13 +1319,13 @@
   line-height: 1.45;
 }
 
-/* Balken (Daten): Spur in Embrun, Füllung in Marée von --a bis --b (Anteile 0–1) */
+/* Balken (Daten): Spur in 600, Füllung in 800 von --a bis --b (Anteile 0–1) */
 .cg-bar {
   position: relative;
   display: block;
   height: 0.5rem;
   border-radius: var(--r-pill);
-  background: color-mix(in srgb, var(--embrun) 35%, transparent);
+  background: color-mix(in srgb, var(--rule) 35%, transparent);
   overflow: hidden;
 }
 .cg-bar__fill {
@@ -1393,7 +1423,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid var(--embrun);
+  border-top: 1px solid var(--rule);
 }
 .cg-dose {
   display: grid;
@@ -1401,7 +1431,7 @@
   gap: 0.45rem 1rem;
   align-items: baseline;
   padding: 1rem 0;
-  border-bottom: 1px solid color-mix(in srgb, var(--embrun) 60%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--rule) 60%, transparent);
 }
 .cg-dose__name {
   font-family: var(--font-display);
@@ -1454,13 +1484,13 @@
 .cg-sizes th,
 .cg-sizes td {
   padding: 0.85rem 0.5rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--embrun) 60%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--rule) 60%, transparent);
   text-align: left;
   vertical-align: top;
 }
 .cg-sizes thead th {
   padding-top: 0;
-  border-bottom-color: var(--embrun);
+  border-bottom-color: var(--rule);
   font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: 0.06em;
@@ -1574,7 +1604,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  border-top: 1px solid var(--embrun);
+  border-top: 1px solid var(--rule);
 }
 .cg-house {
   display: grid;
@@ -1582,7 +1612,7 @@
   align-content: start;
   gap: 0.3rem 1rem;
   padding: 1.1rem 0 1.25rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--embrun) 60%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--rule) 60%, transparent);
 }
 .cg-house__year {
   grid-column: 2;
@@ -1626,7 +1656,7 @@
   margin-top: 0.4rem;
   padding: 0.35rem 0.85rem;
   border-radius: var(--r-pill);
-  background: var(--ecume);
+  background: var(--accent);
   color: var(--ink);
   font-size: 0.8125rem;
   font-weight: 700;
@@ -1643,11 +1673,11 @@
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
   gap: 0 clamp(1.5rem, 1rem + 2vw, 3rem);
   margin: 0;
-  border-top: 1px solid var(--embrun);
+  border-top: 1px solid var(--rule);
 }
 .cg-term {
   padding: 0.95rem 0 1.05rem;
-  border-bottom: 1px solid color-mix(in srgb, var(--embrun) 60%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--rule) 60%, transparent);
 }
 .cg-term dt {
   font-family: var(--font-display);
@@ -1686,7 +1716,7 @@
 }
 .contact-card__name {
   margin-bottom: auto;
-  color: var(--loc);
+  color: var(--loc-ink);
   font-size: var(--fs-h4);
   letter-spacing: -0.03em;
 }
@@ -1799,9 +1829,10 @@
   padding: var(--space-l);
   border-radius: var(--r-xl);
   font-weight: 700;
-  /* Das Holz-Logo steht immer auf Blau: hier die volle Ortsfarbe statt der hellen Fläche */
-  background: var(--theme-c);
+  /* Das Holz-Logo steht immer auf 900 (Grün-Skala 08.11.2026); der Ort als Pille in seiner Farbe */
+  background: var(--ink);
   color: var(--blanc);
+  justify-items: start;
 }
 .sg__logo-img {
   width: 100%;
@@ -1969,7 +2000,7 @@
   width: var(--w);
   height: 0.75rem;
   border-radius: var(--r-pill);
-  background: var(--embrun);
+  background: var(--rule);
 }
 .table-wrap {
   overflow-x: auto;

@@ -10,9 +10,8 @@ import { tokenHex } from '../content/tokens.mjs';
 const NAV = ['garage', 'kiosque', 'marche', 'carte', 'atlas', 'contact'];
 
 /** Seiten mit Vollbild-Foto oben: Dort liegt die Kopfzeile durchsichtig über dem Bild (Umbau 05.11.2026). */
-// Durchsichtige Kopfzeile über Vollbild-Fotos der Ortsseiten. Die Startseite hat seit 06.11.2026 einen hellen
-// Hero; dort steht die Kopfzeile fest in Bleu nuit darüber (das weiße Holz-Logo braucht Blau).
-export const OVERLAY_HEADER = new Set(['garage', 'kiosque', 'marche']);
+// Durchsichtige Kopfzeile über den Vollbild-Fotos der Ortsseiten und (seit 08.11.2026) über dem Hero-Foto der Startseite.
+export const OVERLAY_HEADER = new Set(['home', 'garage', 'kiosque', 'marche']);
 
 export function placeText(key, locale) {
   const L = LOCATIONS[key];
@@ -105,7 +104,7 @@ function header(ctx) {
 
 /**
  * Logo · Linie · Slogan in der Seitensprache – in Kopf- und Fußzeile genau gleich (Vorgabe 06.11.2026).
- * Das Holz-Logo steht immer auf Blau.
+ * Das Holz-Logo steht immer auf 900.
  */
 function lockup(locale, { cls, label, eager = false }) {
   return html`<a class="lockup ${cls}" href="${url('home', locale)}" aria-label="${label}">${logo({
@@ -134,7 +133,7 @@ function footer(ctx) {
   const { locale } = ctx;
   const t = DICT[locale];
   const year = new Date().getFullYear();
-  // Fußzeile (Umbau 05.11.2026): Bleu nuit mit großen runden Ecken oben, Links in Pillenform.
+  // Fußzeile (Umbau 05.11.2026): 900 mit großen runden Ecken oben, Links in Pillenform.
   // Logo seit 06.11.2026 genau wie in der Kopfzeile: Logo · Linie · Slogan (statt großem Logo über die volle Breite).
   return html`<footer class="site-footer">
   <div class="site-footer__inner">
