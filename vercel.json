@@ -58,9 +58,9 @@
     { "source": "/en/privacy", "destination": "/datenschutz/", "permanent": true },
     { "source": "/en/privacy/", "destination": "/datenschutz/", "permanent": true },
     { "source": "/fr", "destination": "/", "permanent": true },
-    { "source": "/fr/:path*", "destination": "/", "permanent": true },
+    { "source": "/fr/(.*)", "destination": "/", "permanent": true },
     { "source": "/en", "destination": "/", "permanent": true },
-    { "source": "/en/:path*", "destination": "/", "permanent": true },
+    { "source": "/en/(.*)", "destination": "/", "permanent": true },
 
     { "source": "/karte", "destination": "/#karte", "permanent": true },
     { "source": "/karte/", "destination": "/#karte", "permanent": true },
