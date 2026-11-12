@@ -15,6 +15,7 @@ const TYPES = {
   '.js': 'text/javascript; charset=utf-8',
   '.svg': 'image/svg+xml',
   '.woff2': 'font/woff2',
+  '.woff': 'font/woff',
   '.avif': 'image/avif',
   '.webp': 'image/webp',
   '.jpg': 'image/jpeg',

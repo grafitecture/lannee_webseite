@@ -1,0 +1,635 @@
+/* ==========================================================================
+   L’ANNÉE – eine Seite, ein Stylesheet
+   Vorlage: lannee-auster-bubbles (Foto im Hintergrund, Holz-Logo, drei Orte)
+   ========================================================================== */
+
+/* ---------- Schriften (selbst gehostet, SIL OFL) ---------- */
+
+@font-face {
+  font-family: 'Fraunces';
+  src: url('/fonts/fraunces-latin.woff2') format('woff2');
+  font-weight: 300 700;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Fraunces';
+  src: url('/fonts/fraunces-latin-ext.woff2') format('woff2');
+  font-weight: 300 700;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('/fonts/instrument-sans-latin.woff2') format('woff2');
+  font-weight: 400 700;
+  font-stretch: 75% 100%;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Instrument Sans';
+  src: url('/fonts/instrument-sans-latin-ext.woff2') format('woff2');
+  font-weight: 400 700;
+  font-stretch: 75% 100%;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* Handschrift nur für „Austern & Bubbles“ (Teilmenge von Caveat) */
+@font-face {
+  font-family: 'Lannee Hand';
+  src: url('/fonts/caveat-lannee.woff') format('woff');
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+/* ---------- Farben & Grundlagen ---------- */
+
+:root {
+  --forest: #245c43; /* Hausfarbe: Karte, Kopfzeile Rechtstexte */
+  --sage: #536b59;
+  --linden: #bdcd98; /* Wein des Moments */
+  --woodland: #244b3b; /* Fußzeile */
+  --night: #242a24; /* hinter den Fotos */
+  --paper: #faf9f2;
+  --ink: #24382c; /* Text auf Hell */
+  --garage: #bacbb5;
+  --kiosque: #d8e8ac;
+  --marche: #8db79c;
+
+  --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --sans: 'Instrument Sans', Arial, Helvetica, sans-serif;
+  --hand: 'Lannee Hand', 'Segoe Print', cursive;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+
+  color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: clip;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: clip;
+  background: var(--paper);
+  color: var(--ink);
+  font: 400 1rem/1.6 var(--sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+dl,
+dd {
+  margin: 0;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 10;
+  padding: 0.6rem 1rem;
+  border-radius: 99px;
+  background: var(--paper);
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+.skip:focus {
+  top: 1rem;
+}
+
+.wrap {
+  width: min(100% - 2 * var(--gutter), 72rem);
+  margin-inline: auto;
+}
+
+.kicker {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.logo {
+  display: block;
+}
+.logo img {
+  width: 100%;
+  height: auto;
+}
+
+/* ==========================================================================
+   Startseite: Hero mit Fotos
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  min-height: 100svh;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  justify-items: center;
+  align-items: center;
+  row-gap: 2rem;
+  padding: clamp(2.25rem, 6.5svh, 4.75rem) 1rem calc(0.75rem + env(safe-area-inset-bottom));
+  background: var(--night);
+  color: var(--paper);
+  text-align: center;
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.hero__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 2.4s ease-in-out;
+}
+.hero__slide.is-on {
+  opacity: 1;
+}
+.hero__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.03);
+}
+.hero__slide.is-on img {
+  animation: drift 14s linear both;
+}
+
+/* Schleier: oben und unten dunkler, damit Logo, Orte und Links lesbar bleiben */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgb(12 19 15 / 0.5), rgb(8 15 11 / 0.25) 28%, rgb(8 15 11 / 0.35) 62%, rgb(7 14 10 / 0.72)),
+    radial-gradient(ellipse at center, rgb(0 0 0 / 0.12) 30%, rgb(0 0 0 / 0.3));
+}
+
+.hero__brand {
+  width: clamp(230px, 28vw, 360px);
+  animation: arrive 1.4s ease-out both;
+}
+.hero__logo img {
+  filter: drop-shadow(2px 4px 3px rgb(0 0 0 / 0.42)) drop-shadow(7px 11px 10px rgb(0 0 0 / 0.32));
+}
+.hero__tagline {
+  margin-top: 0.6rem;
+  font: 400 1.5rem/1.15 var(--hand);
+  text-shadow: 1px 2px 5px rgb(0 0 0 / 0.5);
+}
+
+.places {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.1rem, 3.2svh, 2rem);
+}
+.place__name {
+  font: 700 clamp(1.45rem, 2.4vw, 1.85rem) / 1.1 var(--sans);
+  font-stretch: 82%;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-shadow: 0 2px 2px rgb(0 0 0 / 0.8), 0 4px 12px rgb(0 0 0 / 0.6);
+}
+.place--garage {
+  --accent: var(--garage);
+}
+.place--kiosque {
+  --accent: var(--kiosque);
+}
+.place--marche {
+  --accent: var(--marche);
+}
+.place__info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.35rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.04em;
+  text-shadow: 0 1px 3px rgb(0 0 0 / 0.85), 0 3px 8px rgb(0 0 0 / 0.6);
+}
+
+.hero__foot {
+  width: min(100%, 46rem);
+  display: grid;
+  grid-template-columns: 2.75rem minmax(0, 1fr) 2.75rem;
+  align-items: center;
+  gap: 0.5rem;
+}
+.hero__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem 1.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 5px rgb(0 0 0 / 0.8);
+}
+.hero__links a {
+  padding: 0.6rem 0;
+  text-decoration: none;
+  background: linear-gradient(currentColor, currentColor) 0 calc(100% - 0.45rem) / 0 1px no-repeat;
+  transition: background-size 0.3s ease;
+}
+.hero__links a:hover,
+.hero__links a:focus-visible {
+  background-size: 100% 1px;
+}
+
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0.6rem;
+  filter: drop-shadow(1px 2px 3px rgb(0 0 0 / 0.5));
+  opacity: 0.9;
+  transition: opacity 0.2s;
+}
+.icon-btn:hover {
+  opacity: 1;
+}
+.icon-btn svg {
+  width: 1.4rem;
+  height: 1.4rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.icon-btn .fill {
+  fill: currentColor;
+  stroke: none;
+}
+.icon-btn[hidden] {
+  visibility: hidden; /* Platz in der Zeile bleibt, damit die Links mittig stehen */
+  display: grid;
+}
+.icon-btn .i-play,
+.is-paused .icon-btn .i-pause {
+  display: none;
+}
+.is-paused .icon-btn .i-play {
+  display: block;
+}
+.is-paused .hero__slide img {
+  animation-play-state: paused;
+}
+
+@keyframes drift {
+  from {
+    transform: scale(1.03);
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
+@keyframes arrive {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero__brand {
+    width: min(64vw, 270px);
+  }
+  .hero__tagline {
+    font-size: 1.35rem;
+  }
+  .hero__links {
+    gap: 0.1rem 1.25rem;
+    letter-spacing: 0.14em;
+  }
+}
+
+@media (max-height: 620px) and (min-width: 601px) {
+  .hero {
+    row-gap: 1.25rem;
+  }
+  .hero__brand {
+    width: 220px;
+  }
+  .places {
+    gap: 0.8rem;
+  }
+}
+
+/* ==========================================================================
+   La Carte
+   ========================================================================== */
+
+.carte {
+  padding-block: clamp(4rem, 10vw, 7.5rem);
+  background: var(--forest);
+  color: var(--paper);
+}
+.carte .kicker {
+  opacity: 0.8;
+  text-align: center;
+}
+.carte__title {
+  margin-top: 0.75rem;
+  font: 400 clamp(2.75rem, 7vw, 5rem) / 1 var(--serif);
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+.carte__cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 3.5rem;
+  margin-top: clamp(2.5rem, 6vw, 4.5rem);
+}
+@media (min-width: 900px) {
+  .carte__cols {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(3rem, 6vw, 6rem);
+  }
+}
+.carte__group {
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgb(250 249 242 / 0.55);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.menu {
+  margin-top: 2rem;
+}
+.menu__title {
+  font: 400 1.6rem/1.2 var(--serif);
+}
+.menu__list {
+  margin-top: 0.4rem;
+}
+.menu__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgb(250 249 242 / 0.22);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+.menu__row dt {
+  min-width: 0;
+}
+.menu__row small {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.8125rem;
+  opacity: 0.85;
+}
+.menu__row dd {
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.menu__note {
+  margin-top: 0.9rem;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+/* ==========================================================================
+   Le vin du moment
+   ========================================================================== */
+
+.wine {
+  padding-block: clamp(4rem, 10vw, 7rem);
+  background: var(--linden);
+  color: var(--ink);
+  text-align: center;
+}
+.wine__title {
+  margin-top: 0.9rem;
+  font: 400 clamp(2.25rem, 6vw, 4rem) / 1.05 var(--serif);
+  text-wrap: balance;
+}
+.wine__producer {
+  margin-top: 1.25rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
+  line-height: 1.8;
+}
+.wine__producer strong {
+  font-weight: 600;
+}
+.wine__text {
+  margin-top: 1.25rem;
+  font: 400 1.25rem/1.6 var(--serif);
+}
+
+/* ==========================================================================
+   Impressum, Datenschutz, 404
+   ========================================================================== */
+
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem var(--gutter);
+  background: var(--forest);
+  color: var(--paper);
+}
+.bar__home {
+  width: clamp(7.5rem, 22vw, 10rem);
+}
+.bar__back {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding-block: 0.6rem;
+}
+.bar__back:hover {
+  text-decoration: underline;
+}
+
+.legal {
+  width: min(100% - 2 * var(--gutter), 44rem);
+  margin-inline: auto;
+  padding-block: clamp(2.5rem, 7vw, 5rem) clamp(3rem, 8vw, 5rem);
+  overflow-wrap: anywhere;
+}
+.legal h1 {
+  margin-bottom: 2rem;
+  font: 400 clamp(2.25rem, 6vw, 3.25rem) / 1.05 var(--serif);
+}
+.legal__block + .legal__block {
+  margin-top: 1.75rem;
+}
+.legal h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.legal p + p {
+  margin-top: 0.75rem;
+}
+.legal__date {
+  margin-top: 2rem;
+  font-size: 0.875rem;
+}
+.legal--404 p {
+  max-width: 34rem;
+}
+.pill {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 99px;
+  background: var(--forest);
+  color: var(--paper);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   Fußzeile
+   ========================================================================== */
+
+.foot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 2.5rem var(--gutter) calc(1.75rem + env(safe-area-inset-bottom));
+  background: var(--woodland);
+  color: var(--paper);
+  text-align: center;
+}
+.foot__links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.25rem 1.75rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+}
+.foot__links a {
+  display: inline-block;
+  padding-block: 0.5rem;
+  text-decoration: none;
+}
+.foot__links a:hover {
+  text-decoration: underline;
+}
+.foot__credit {
+  padding: 0.5rem;
+  color: var(--paper);
+  opacity: 0.85;
+}
+.foot__credit:hover {
+  opacity: 1;
+}
+.foot__credit svg {
+  width: 4.5rem;
+  height: auto;
+}
+.foot__note {
+  font-size: 0.75rem;
+  opacity: 0.75;
+}
+
+/* ---------- Bewegung reduzieren ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .hero__slide,
+  .hero__brand,
+  .hero__slide.is-on img {
+    animation: none;
+    transition: none;
+  }
+}

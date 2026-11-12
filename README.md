@@ -1,93 +1,68 @@
 # L’ANNÉE – Website
 
-Website der Dachmarke **L’ANNÉE** (Austern & Bulles, Mannheim) mit den drei Orten **Garage**, **Kiosque** und **Marché**. Dreisprachig (Deutsch, Französisch, Englisch), statisch, schnell, ohne Cookies und ohne Tracking.
+Eine einzige Seite für **L’ANNÉE – Austern & Bubbles** in Mannheim mit den drei Orten **Le Garage**, **Le Kiosque** und **Au Marché**. Nur Deutsch, statisch, ohne Cookies und ohne Tracking. Vorlage war die Seite `lannee-auster-bubbles` (12.11.2026): Fotos im Hintergrund, Holz-Logo, „Austern & Bubbles“ in Handschrift, die drei Orte – darunter die Karte und der Wein des Moments.
 
-- Konzept und Markensystem: [`docs/KONZEPT.md`](docs/KONZEPT.md)
-- Lebender Styleguide (nicht indexiert): `/styleguide/`
+## Seiten
+
+| Adresse | Inhalt |
+| --- | --- |
+| `/` | Hero (Fotos überblenden langsam, Logo, drei Orte) · La Carte · Le vin du moment · Fußzeile |
+| `/impressum/` | Impressum, ganz unten das Grafitecture-Feld |
+| `/datenschutz/` | Datenschutz (Hosting: Vercel), ganz unten das Grafitecture-Feld |
+| `404.html` | „Diese Seite gibt es nicht (mehr)“ |
+
+Alte Adressen (Ortsseiten, Karte, Atlanten, Kontakt, `/fr/…`, `/en/…`) leiten dauerhaft auf `/` bzw. Impressum/Datenschutz weiter (`vercel.json`).
 
 ## Schnellstart
 
 ```bash
-npm run build      # baut die Website nach /dist (keine Abhängigkeiten nötig)
+npm run build      # baut nach /dist (keine Abhängigkeiten nötig)
 npm run dev        # baut und startet die Vorschau auf http://localhost:4321
 ```
 
-Voraussetzung: Node.js ab Version 20. Der Build hat **keine npm-Abhängigkeiten**, er läuft auch auf Vercel ohne Installation.
+Node.js ab Version 20. Der Build hat **keine npm-Abhängigkeiten**, Vercel führt nur `node src/build.mjs` aus.
 
-## Inhalte pflegen
+## Inhalte pflegen – alles in `src/content/site.mjs`
 
 | Was | Wo |
 | --- | --- |
-| Öffnungszeiten, Adressen, E-Mails | `src/content/site.mjs` → `LOCATIONS`, `SCHEDULE` |
-| Hinweiszeile „Diese Webseite ist fiktiv“ (ganz unten) an/aus | `src/content/site.mjs` → `SITE.demoNotice` |
-| Schließtage / Ausnahmen | `src/content/site.mjs` → `CLOSURES` |
-| Zusätzliche Marché-Termine | `src/content/site.mjs` → `MARCHE_DATES` |
-| Speisekarte (alle Sprachen) | `src/content/menu.mjs` |
-| Texte der Seiten | `src/content/i18n/de.mjs`, `fr.mjs`, `en.mjs` |
-| Atlanten (`/atlanten/`: Austernatlas + Champagner-Guide) | Austern: `src/content/oysters.mjs`, Strichzeichnungen: `src/lib/oyster-art.mjs`; Champagner: `src/content/champagne.mjs` |
-| Impressum & Datenschutz | `src/content/legal.mjs` (Daten aus `site.mjs`) |
-| Grafitecture-Feld ganz unten in Impressum & Datenschutz | `kit/grafitecture-credit/` (wiederverwendbar für alle Grafitecture-Websites, siehe README dort) |
-| Bildtexte (alt) | `src/content/media.mjs` |
-| Farben, Typo-Skala, Breakpoints | `src/content/tokens.mjs` |
+| Orte, Adressen, Tage & Uhrzeiten | `LOCATIONS` |
+| Speisekarte (Plats, Boissons) | `MENU` |
+| Wein des Moments (oder `show: false`) | `WINE` |
+| Fotos im Hero und Bildausschnitt | `HERO_PHOTOS` (Namen aus `src/content/images.json`) |
+| E-Mail, Instagram, Hinweis „fiktiv“ | `SITE` (`SITE.demoNotice`) |
+| Impressum, Datenschutz | `IMPRESSUM`, `DATENSCHUTZ` |
 
-Mini-Markup in den Texten: `_kursiv_`, `**fett**`, `{fr|Texte français}` (Sprachauszeichnung), `[Link](/pfad/)`.
+Mini-Markup in den Rechtstexten: `**fett**`, `[Text](https://…)` (öffnet in neuem Fenster), `[mail@…](mailto:mail@…)`.
 
-Die **Öffnungszeiten** auf der Startseite (dezente Zeile unter dem Hero, seit 06.11.2026) lesen `SCHEDULE`: je Öffnungstag der Tag, daneben die Orte mit Farbpunkt und Uhrzeit. Live (Zeitzone Europe/Berlin) stehen „heute“/„morgen“ am Tag, und der Punkt des gerade geöffneten Orts pulsiert leise. Bei „ab … Uhr“ ist das Ende nur eine Annahme (`openEnd: true`).
-
-**Pause eintragen** (Urlaub, private Feier): einen Eintrag in `CLOSURES` ergänzen, z. B.
-
-```js
-{ from: '2026-12-24', to: '2026-12-26', locations: ['garage', 'kiosque'],
-  note: { de: 'Weihnachtspause', fr: 'Pause de Noël', en: 'Christmas break' } }
-```
-
-Dann erscheint auf der Startseite und den betroffenen Ortsseiten ein Hinweis, und die Öffnungszeiten markieren die betroffenen Termine („Diesmal Pause“, Uhrzeit durchgestrichen). Vergangene Pausen und Marché-Termine blenden sich von selbst aus.
+Gestaltung: `src/styles/site.css` (Farben oben als Variablen). Skript: `src/scripts/main.js` (nur die Überblendung im Hero und die Pause-Schaltfläche).
 
 ## Bilder
 
-Originale liegen in `assets-src/`. Neue Varianten (AVIF + WebP, 480–2560 px) erzeugen:
+Die fertigen Varianten (AVIF + WebP) liegen in `public/images/`, die Originale in `assets-src/`. Der Build kopiert nur die Bilder, die die Seite wirklich zeigt. Neues Foto:
 
 ```bash
+# Datei nach assets-src/, Eintrag in scripts/images.mjs (SOURCES), dann:
 npm install --no-save sharp
-npm run images
+npm run images -- name
+# und den Namen in HERO_PHOTOS eintragen
 ```
 
-Neues Bild: Datei in `assets-src/` legen, in `scripts/images.mjs` (`SOURCES`) und `src/content/media.mjs` (Alt-Text) eintragen.
-Nur einzelne Bilder neu erzeugen: `npm run images -- name1 name2` (Namen wie in `SOURCES`).
+Nur echte Fotos, keine generierten Bilder. Für den Hero eignen sich Fotos ab etwa 1200 px Breite.
 
-Favicons und Open-Graph-Bilder: `npm install --no-save sharp playwright && npm run brand-assets`.
+Open-Graph-Bild (`public/og/lannee.jpg`) und Favicons sind eingecheckt.
 
-**Nur echte Fotos** (seit 06.11.2026): keine generierten Bilder (KI), keine Visualisierungen, keine Schwarzweiß-Bilder. `scripts/historisch.py` und die Higgsfield-Übergabe unten stammen aus der Zeit der KI-Bilder und werden nicht mehr gebraucht.
+## Grafitecture-Feld
 
-Higgsfield-Dateien ins Repo holen (die Arbeitsumgebung erreicht die Higgsfield-Adressen nicht): auf dem Zweig `tools/fetch-assets` Zeilen „Name URL“ eintragen und pushen – `assets-src/fetch/thumbs.txt` (Vorschaubilder 640 px), `assets-src/fetch/full.txt` (Vollauflösung als JPEG), `assets-src/fetch/videos.txt` (je vier Standbilder aus Videos) oder `assets-src/scribbles/urls.txt` (Rohdateien). GitHub-Workflows laden die Dateien und committen sie auf diesen Zweig.
+Steht immer ganz unten in Impressum und Datenschutz und verlinkt auf https://www.grafitecture.de/ (neues Fenster). Quelle: `kit/grafitecture-credit/` (README dort). In der Fußzeile steht zusätzlich die kleine Wortmarke mit Link.
 
 ## Deployment: GitHub → Vercel
 
-1. Repository auf GitHub anlegen und diesen Ordner pushen.
-2. In Vercel: **Add New → Project → Import** des Repositorys. Framework „Other“; Build-Befehl und Ausgabeordner kommen aus `vercel.json`.
-3. Domains im Vercel-Projekt hinzufügen: `1898.ma` (Hauptdomain), optional `garage.ma` und `kiosque.ma`. Diese leiten per `vercel.json` auf die jeweilige Seite weiter.
-4. Jeder Push auf `main` geht live, jeder andere Branch bekommt eine Vorschau-URL.
-
-Suchmaschinen: Nur `1898.ma` wird indexiert. Alle anderen Adressen (Vorschau-URLs, `*.vercel.app`) senden `X-Robots-Tag: noindex`, damit keine Doppelinhalte entstehen.
+Jeder Push auf `main` baut automatisch (Vercel-Projekt `lannee_webseite`). Nur `1898.ma` wird indexiert, alle anderen Hosts senden `X-Robots-Tag: noindex`. Sicherheits-Header (CSP nur `'self'`, HSTS, kein Einbetten in fremde Seiten) stehen in `vercel.json`.
 
 ## Vor dem Livegang prüfen
 
 - [ ] Hinweiszeile „fiktiv“ abschalten: `SITE.demoNotice = false`
-- [ ] Impressum: Telefonnummer, ggf. USt-IdNr. und Registereintrag (eGbR) in `site.mjs` ergänzen
-- [ ] Impressum und Datenschutz rechtlich prüfen lassen (Vorlage, keine Rechtsberatung)
-- [ ] Karte: Gerichte und **Preise** sind Platzhalter
-- [ ] Öffnungs-Enden („ab 18 Uhr“, „ab 10 Uhr“) für die Live-Anzeige bestätigen
-- [ ] Adresse Kiosque (PDF: Lindenhofplatz 1) bestätigen
-- [ ] Ort des Wochenmarkts Lindenhof für den Kartenlink bestätigen
-- [ ] Bedeutung von „1898“ – könnte eine eigene Geschichte werden
-
-## Technik
-
-- Statischer Generator in `src/build.mjs` (Node, ohne Pakete), Templates in `src/pages/` und `src/lib/`
-- CSS in `src/styles/` (Tokens werden aus `tokens.mjs` erzeugt), JS in `src/scripts/main.js`
-- Schriften selbst gehostet: Fraunces (SIL OFL) und Instrument Sans (SIL OFL)
-- Nur funktionale Icons (Pfeile, Instagram) als kleines SVG-Sprite; keine Zeichnungen (außer den Austern-Strichzeichnungen im Austernatlas auf der Seite „Atlanten“, eigenes Sprite), kein Film
-- Sicherheits-Header, Caching und Weiterleitungen in `vercel.json`
-- Keine Cookies, kein localStorage, keine externen Requests → kein Cookie-Banner nötig
-
-Konzept, Gestaltung und Umsetzung: [Grafitecture](https://www.grafitecture.de/).
+- [ ] Impressum und Datenschutz rechtlich prüfen lassen (keine Rechtsberatung); ggf. Telefon, USt-IdNr., Registereintrag ergänzen
+- [ ] Mit Vercel einen Vertrag zur Auftragsverarbeitung (DPA) sicherstellen
+- [ ] Domain 1898.ma verbinden (erst nach Freigabe)
