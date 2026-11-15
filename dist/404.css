@@ -1,6 +1,7 @@
+/* Schriftgrößen nach der Skala Major Third 1,250 (p 1rem, small 0,8rem), siehe anpassungen.css. */
 html,body{margin:0;min-height:100%;background:#245c43;color:#faf9f2;font-family:Arial,Helvetica,sans-serif}
 .nf{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;padding:24px;text-align:center}
 .nf-logo img{display:block;width:min(64vw,300px);height:auto;filter:drop-shadow(2px 4px 3px rgba(0,0,0,.42)) drop-shadow(7px 11px 10px rgba(0,0,0,.32))}
-.nf p{margin:0;font-size:14px;letter-spacing:.05em}
-.nf-link{color:inherit;font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:8px 0;border-bottom:1px solid #ffffff55;text-decoration:none}
+.nf p{margin:0;font-size:1rem;letter-spacing:.05em}
+.nf-link{color:inherit;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;padding:8px 0;border-bottom:1px solid #ffffff55;text-decoration:none}
 .nf-link:hover{opacity:.75}
