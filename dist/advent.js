@@ -25,7 +25,14 @@
       film.currentTime = 0;
       updateInstagram();
     }
-    film.play().catch(updatePlayback);
+    film.play().catch(error => {
+      // Lässt ein Browser keinen Ton zu, läuft der Film wenigstens stumm; der Lautsprecher schaltet den Ton zu.
+      if (error && error.name === 'NotAllowedError' && !film.muted) {
+        film.muted = true;
+        updateSound();
+        film.play().catch(updatePlayback);
+      } else updatePlayback();
+    });
   }
   for (const event of ['play', 'pause', 'ended']) film.addEventListener(event, updatePlayback);
   for (const event of ['timeupdate', 'seeked', 'ended']) film.addEventListener(event, updateInstagram);
@@ -50,18 +57,22 @@
   teaser.addEventListener('click', () => {
     if (opening || dialog.open) return;
     opening = true;
+    // Film mit Ton direkt in der Klick-Geste starten: Nur so erlauben Browser – vor allem Safari
+    // auf dem iPhone – die Wiedergabe mit Ton. Bei jedem Öffnen von vorn und mit Ton.
+    film.muted = false;
+    film.volume = 1;
+    film.currentTime = 0;
+    instagram.hidden = true;
+    updateSound();
+    playFilm();
     const animate = !reducedMotion.matches && !document.body.classList.contains('paused');
     if (animate) teaser.classList.add('is-opening');
     const duration = parseFloat(getComputedStyle(teaser).getPropertyValue('--burst-duration')) || .82;
     const delay = animate ? duration * 1000 : 0;
     window.setTimeout(() => {
       dialog.showModal();
-      film.muted = true;
-      film.currentTime = 0;
-      instagram.hidden = true;
       updateSound();
       updatePlayback();
-      if (!reducedMotion.matches && !document.body.classList.contains('paused')) playFilm();
       teaser.setAttribute('aria-expanded', 'true');
       opening = false;
     }, delay);
