@@ -1,0 +1,262 @@
+@font-face{font-family:"Lannee Hand";src:url("assets/fonts/caveat-venues.woff") format("woff");font-style:normal;font-weight:400 700;font-display:swap}
+:root{color-scheme:dark;--forest:#245c43;--white:#faf9f2;--sans:Arial,Helvetica,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;background:#242a24;color:var(--white);font-family:var(--sans)}
+body{overflow:hidden}
+button,a{-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit}
+a{color:inherit;text-decoration:none}
+button{border:0;background:none;cursor:pointer}
+:focus-visible{outline:1px solid var(--white);outline-offset:7px}
+:root[data-input-method="pointer"] :focus{outline:none}
+:root[data-input-method="pointer"] .locations a:focus-visible:not(:hover) .location-name::after{transform:scaleX(0)}
+.hero{position:relative;width:100%;height:100svh;min-height:400px;isolation:isolate;overflow:hidden}
+.cinema,.shot,.veil,.grain{position:absolute;inset:0;pointer-events:none}
+.cinema{z-index:-4;background:#444b43}
+.shot{opacity:0;overflow:hidden;transition:opacity 2.8s ease-in-out;will-change:auto}
+.shot.active{opacity:1}
+.shot img{width:100%;height:100%;object-fit:cover;object-position:var(--focus,50% 50%);filter:saturate(1) blur(0) contrast(1) brightness(.95);transform:var(--from,scale(1.04));will-change:auto}
+.shot.travelling img{animation:camera-drift 12s linear both,focus-out 12s ease-in both}
+.veil{z-index:-3;background:linear-gradient(180deg,rgba(12,19,15,.12),rgba(8,15,11,.03) 40%,rgba(10,17,13,.17) 70%,rgba(7,14,10,.52));box-shadow:inset 0 0 15vw rgba(0,0,0,.17)}
+.grain{z-index:-2;inset:-40%;opacity:.09;background-image:url("assets/grain.svg");animation:grain .3s steps(3) infinite}
+.brand{position:absolute;left:50%;top:clamp(36px,6.5svh,76px);transform:translateX(-50%);width:clamp(230px,28vw,360px);text-align:center;animation:arrive 1.4s ease-out both}
+.logo-frame{position:relative;aspect-ratio:3.18;margin:0;overflow:visible}
+.wood-logo{position:absolute;top:50%;left:0;width:100%;height:auto;transform:translateY(-50%);filter:drop-shadow(2px 4px 3px rgba(0,0,0,.42)) drop-shadow(7px 11px 10px rgba(0,0,0,.32))}
+.tagline{position:relative;margin:10px 0 0;padding:0;font-family:"Lannee Hand",cursive;font-size:22px;font-weight:400;line-height:1.15;letter-spacing:0;text-transform:none;transform:none;text-shadow:1px 2px 5px rgba(0,0,0,.5)}
+.locations{position:absolute;top:54%;left:50%;transform:translate(-50%,-50%);width:calc(100% - 32px);display:flex;flex-direction:column;justify-content:center;gap:19px;align-items:center;text-align:center}
+.location-name,.dialog-nav a{position:relative;font-size:13px;letter-spacing:.19em;text-transform:uppercase;line-height:1.6;white-space:nowrap;text-shadow:0 2px 5px #0008;padding:12px 0;transition:opacity .25s}
+.location-name::after,.dialog-nav a::after{content:"";height:1px;position:absolute;left:0;right:.19em;bottom:5px;background:currentColor;transform:scaleX(0);transform-origin:left;transition:transform .3s ease}
+.locations a:hover .location-name::after,.locations a:focus-visible .location-name::after,.dialog-nav a:hover::after,.dialog-nav a[aria-current]::after{transform:scaleX(1)}
+.locations a{display:block;padding:5px 8px;text-shadow:0 2px 6px #000b}
+.location-name{display:inline-block;padding:0 0 7px}
+.location-name::after{bottom:2px}
+.location-summary{display:flex;flex-direction:column;gap:2px;font-size:11px;line-height:1.65;letter-spacing:.045em;font-weight:400}
+.footer{position:absolute;left:32px;right:32px;bottom:calc(24px + env(safe-area-inset-bottom));display:grid;grid-template-columns:44px minmax(0,1fr) 44px;gap:12px;align-items:center}
+.footer-marks{display:flex;align-items:center;justify-content:center;gap:clamp(12px,3vw,30px);min-width:0}
+.brand-mark{display:block;flex:none;height:auto;overflow:hidden;filter:drop-shadow(1px 2px 3px #0008)}
+.jacquesson-mark{width:clamp(72px,24vw,128px)}
+.kys-marine-mark{width:clamp(72px,24vw,116px)}
+.icon-button{display:grid;place-items:center;width:44px;height:44px;padding:10px;filter:drop-shadow(1px 2px 3px #0007);transition:opacity .25s}
+.icon-button svg,.close-button svg{width:24px;height:24px;stroke:currentColor;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.instagram{cursor:pointer}
+.instagram .dot{fill:currentColor;stroke:none}
+.motion-toggle{opacity:.6}.motion-toggle:hover{opacity:1}
+.motion-toggle svg{width:20px;height:20px}.motion-toggle .play-icon{display:none}
+.paused .shot img,.paused .grain{animation-play-state:paused}
+.paused .motion-toggle .pause-icon{display:none}.paused .motion-toggle .play-icon{display:block}
+.location-dialog{position:fixed;margin:auto;padding:0;width:min(650px,calc(100% - 48px));max-height:calc(100svh - 48px);border:1px solid #ffffff24;background:var(--forest);color:var(--white);box-shadow:0 25px 100px #0007;overflow:auto}
+.location-dialog[open]{animation:dialog-in .4s ease both}
+.location-dialog::backdrop{background:rgba(8,17,13,.56);backdrop-filter:blur(10px)}
+.close-button{position:absolute;right:21px;top:21px;width:44px;height:44px;display:grid;place-items:center;z-index:1}
+.location-content{padding:73px 48px 49px;text-align:center}
+.eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.7;margin:0 0 30px}
+.location-brand{width:180px;margin:0 auto 30px}
+.location-dialog[open] .location-brand{animation:arrive 1.4s ease-out both}
+@media(prefers-reduced-motion:reduce){.location-dialog[open] .location-brand{animation:none}}
+.location-content h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(46px,8vw,70px);line-height:1.1;font-weight:400;margin:0 0 12px}
+.fine-rule{height:1px;width:28px;background:#ffffff66;margin:33px auto}
+.location-address,.location-hours{font-size:13px;line-height:1.9;letter-spacing:.05em;margin:0}
+.location-hours{opacity:.75;margin-top:4px}
+.contact-link{display:inline-block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-top:35px;padding:8px 0;border-bottom:1px solid #ffffff55}
+.contact-link span{margin-left:10px}
+.dialog-nav{border-top:1px solid #ffffff25;display:flex;justify-content:center;gap:35px;padding:20px 20px 25px}
+.dialog-nav a{font-size:10px;text-shadow:none;opacity:.7}.dialog-nav a[aria-current]{opacity:1}
+@keyframes camera-drift{from{transform:var(--from,scale(1.04))}to{transform:var(--to,scale(1.14))}}
+@keyframes grain{0%{transform:translate(0,0)}33%{transform:translate(-2%,1%)}66%{transform:translate(1%,-1%)}100%{transform:translate(-1%,2%)}}
+@keyframes arrive{from{opacity:0;translate:0 8px}to{opacity:1;translate:0 0}}
+@keyframes dialog-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:600px){
+ .brand{width:min(64vw,270px);top:calc(40px + env(safe-area-inset-top))}.tagline{font-size:20px;margin-top:9px}.wood-logo{filter:drop-shadow(1px 3px 2px rgba(0,0,0,.42)) drop-shadow(5px 8px 7px rgba(0,0,0,.32))}
+ .locations{top:54%;gap:18px}.location-name{font-size:12px;letter-spacing:.18em}.location-summary{font-size:10px;line-height:1.65}.footer{left:16px;right:16px;bottom:calc(21px + env(safe-area-inset-bottom))}
+ .shot-oysters{--focus:53% 55%!important}.shot-kiosque{--focus:50% 58%!important}
+ .location-dialog{width:calc(100% - 24px);max-height:calc(100svh - 24px)}.location-content{padding:70px 22px 40px}.dialog-nav{gap:25px}.close-button{top:12px;right:12px}
+}
+@media(max-height:650px){.brand{top:24px;width:210px}.tagline{margin-top:7px;font-size:18px}.locations{top:56%;gap:12px}.location-summary{font-size:10px}}
+@media(max-height:500px){.hero{min-height:360px}.brand{top:18px;width:180px}.tagline{margin-top:6px;font-size:16px}.locations{top:58%;gap:6px}.locations a{padding:4px 8px}.location-name{font-size:11px;padding-bottom:4px;line-height:1.4}.location-summary{font-size:9px;line-height:1.4;gap:0}.footer{bottom:8px}.jacquesson-mark{max-width:100px}.kys-marine-mark{max-width:96px}}
+@media(prefers-reduced-motion:reduce){.shot img,.grain,.brand,.location-dialog[open]{animation:none!important}.shot{transition:none}}
+
+/* Small architectural line icons keep each location title centred. */
+.locations .location-name{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.venue-icon{width:28px;height:24px;flex:none;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+@media(max-height:500px){.venue-icon{width:22px;height:19px}.locations .location-name{gap:2px}.locations{gap:3px}}
+
+.dialog-venue-icon{display:flex;justify-content:center;align-items:center;margin:0 auto 15px}
+.dialog-venue-icon .venue-icon{width:44px;height:37px}
+
+/* Illuminate the interior before entering the location card. */
+.venue-windows{fill:#59e58c;stroke:none;opacity:0;transition:opacity .3s ease-out}
+.locations .venue-icon{overflow:visible;transition:filter .35s ease-out}
+.locations a.is-lit .venue-windows{opacity:.9}
+.locations a.is-lit .venue-icon{filter:drop-shadow(0 0 3px rgba(83,242,139,.9)) drop-shadow(0 0 8px rgba(38,191,95,.65))}
+@media(prefers-reduced-motion:reduce){.venue-windows,.locations .venue-icon{transition:none}}
+
+@keyframes focus-out{0%,55%{filter:saturate(1) blur(0) contrast(1) brightness(.95)}75%{filter:saturate(1) blur(5px) contrast(1) brightness(.95)}100%{filter:saturate(1) blur(10px) contrast(1) brightness(.95)}}
+
+/* Stronger location labels over detailed photography. */
+.locations .location-name{font-size:16px;font-weight:700;letter-spacing:.15em;text-shadow:0 1px 2px #000b,0 3px 8px #0009}
+.locations .location-summary{font-size:12px;font-weight:500;text-shadow:0 1px 3px #000c,0 3px 7px #0009}
+.locations .venue-icon{width:32px;height:27px;stroke-width:1.8;filter:drop-shadow(0 1px 2px #0009)}
+.locations a.is-lit .venue-windows{animation:neon-start .9s linear both}
+.locations a.is-lit .venue-icon{animation:neon-glow .9s linear both}
+@keyframes neon-start{0%,8%{opacity:.05}9%,20%{opacity:.9}21%,34%{opacity:.12}35%,100%{opacity:.95}}
+@keyframes neon-glow{0%,8%,21%,34%{filter:drop-shadow(0 0 1px rgba(83,242,139,.2))}9%,20%,35%,100%{filter:drop-shadow(0 0 3px rgba(83,242,139,.9)) drop-shadow(0 0 8px rgba(38,191,95,.65))}}
+@media(max-width:600px){.locations .location-name{font-size:15px}.locations .location-summary{font-size:11px}}
+@media(max-height:650px){.locations{gap:9px}}
+@media(max-height:500px){.locations{gap:3px}.locations .location-name{font-size:13px}.locations .location-summary{font-size:10px}.locations .venue-icon{width:24px;height:21px}}
+@media(prefers-reduced-motion:reduce){.locations a.is-lit .venue-windows,.locations a.is-lit .venue-icon{animation:none!important}}
+
+/* Steady opening-hours light; click animation still takes precedence. */
+.locations a.is-open .venue-windows,.dialog-venue-icon.is-open .venue-windows{opacity:.9}
+.locations a.is-open .venue-icon,.dialog-venue-icon.is-open .venue-icon{filter:drop-shadow(0 0 3px rgba(83,242,139,.8)) drop-shadow(0 0 7px rgba(38,191,95,.5))}
+
+/* Compact, monochrome drinks wordmarks; three columns on small screens. */
+.footer-marks{gap:clamp(16px,2.5vw,30px)}
+.drink-mark{width:82px;max-height:38px}
+.schweppes-mark{width:65px}
+@media(max-width:760px){
+ .footer{left:12px;right:12px;gap:8px;grid-template-columns:32px minmax(0,1fr) 32px}
+ .footer-marks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 14px;justify-items:center;max-width:350px;justify-self:center;width:100%}
+ .footer-marks .brand-mark{width:100%;max-width:85px;max-height:28px}
+ .footer-marks .schweppes-mark{max-width:48px}
+ .footer .icon-button{width:32px;height:40px;padding:6px}
+}
+@media(max-height:500px) and (min-width:600px){
+ .footer-marks{display:flex;gap:18px;max-width:none;width:auto}
+ .footer-marks .brand-mark{width:64px;max-height:24px}
+ .footer-marks .schweppes-mark{width:34px}
+}
+
+/* Legal links, discreet partner marks, and the design credit. */
+.footer{bottom:calc(12px + env(safe-area-inset-bottom));grid-template-columns:36px minmax(0,1fr) 36px;gap:2px 12px}
+.legal-links{grid-column:2;grid-row:2;display:flex;justify-content:center;gap:22px;font-size:11px;letter-spacing:.06em;text-shadow:0 2px 5px #000b}
+.legal-links a{display:flex;align-items:center;min-height:28px;padding:5px 0}
+.footer .instagram{grid-column:1;grid-row:1 / 3}
+.footer .motion-toggle{grid-column:3;grid-row:1 / 3}
+.footer .footer-marks{grid-column:2;grid-row:1;display:flex;flex-wrap:wrap;gap:12px 18px;width:100%;max-width:none;justify-content:center}
+.footer .footer-marks .brand-mark{width:55px;max-width:55px;max-height:20px}
+.footer .footer-marks .schweppes-mark{width:30px}
+.site-credit{grid-column:2;grid-row:3;justify-self:center;color:#fff;padding:1px 10px 0;filter:drop-shadow(0 1px 3px #0009)}
+.site-credit svg{display:block;width:62px;height:auto;overflow:visible}
+.site-credit svg path{stroke:currentColor;stroke-width:1.4;stroke-linejoin:round;paint-order:stroke fill}
+.legal-links a:hover,.site-credit:hover{opacity:.75}
+.legal-content{padding:70px 42px 40px;line-height:1.7;font-size:14px;overflow-wrap:anywhere}
+.legal-content>h2{font-family:Georgia,serif;font-weight:400;font-size:36px;margin:0 0 30px}
+.legal__block{margin:0 0 26px}.legal__h{font-size:16px;line-height:1.4;margin:0 0 10px}
+.legal-content p{margin:0 0 12px}.legal-content ul{padding-left:22px}
+.legal-content a{text-decoration:underline;text-underline-offset:.15em}
+@media(max-width:600px){
+ .footer .footer-marks{gap:10px 12px;max-width:220px;justify-self:center}
+ .footer .footer-marks .brand-mark{width:50px;max-width:50px;max-height:17px}
+ .footer .footer-marks .schweppes-mark{width:27px}
+ .legal-content{padding:66px 23px 28px;font-size:13px}
+ .legal-content>h2{font-size:30px}
+}
+@media(max-height:740px){
+ body{overflow-y:auto}.hero{height:max(100svh,740px)}
+}
+
+/* Supplied partner logos: preserve white artwork and compact footer sizing. */
+.footer .footer-marks .weinrefugium-mark{width:38px;max-height:28px}
+.footer .footer-marks .der-franzos-mark{width:32px;max-height:35px}
+.footer .footer-marks .perrier-mark{width:40px;max-height:28px}
+.footer .footer-marks .citadelle-mark{max-height:24px}
+@media(max-width:600px){.footer .footer-marks .weinrefugium-mark{width:33px;max-height:25px}.footer .footer-marks .der-franzos-mark{width:28px;max-height:31px}}
+@media(max-width:600px){.footer .footer-marks .perrier-mark{width:34px;max-height:24px}.footer .footer-marks .citadelle-mark{max-height:22px}}
+
+/* Keep the three content sections in flow, even when partner marks wrap. */
+body{overflow-y:auto}
+.hero{display:grid;grid-template-rows:auto 1fr auto;align-items:center;row-gap:32px;height:auto;min-height:100svh;padding:clamp(36px,6.5svh,76px) 0 calc(12px + env(safe-area-inset-bottom))}
+.hero>.brand{position:relative;top:auto;left:auto;transform:none;justify-self:center}
+.hero>.locations{position:relative;top:auto;left:auto;transform:none;justify-self:center;width:calc(100% - 32px)}
+.hero>.footer{position:relative;top:auto;left:auto;right:auto;bottom:auto;justify-self:center;width:calc(100% - 64px)}
+@media(max-width:760px){.hero>.footer{width:calc(100% - 24px)}}
+@media(max-width:600px){.hero{padding-top:calc(40px + env(safe-area-inset-top));row-gap:28px}}
+@media(max-height:650px){.hero{padding-top:24px}}
+
+/* Handwritten French venue names on the home page. */
+.locations .location-name{font-family:"Arial Black","Helvetica Neue",Arial,sans-serif;font-size:23px;font-weight:900;letter-spacing:-.035em;text-transform:uppercase;line-height:1.2;text-shadow:0 2px 2px #000d,0 4px 10px #000b}
+@media(max-width:600px){.locations .location-name{font-size:22px}}
+@media(max-height:500px){.locations .location-name{font-size:20px}}
+
+/* Limit mobile compositing work and allow normal scrolling in both orientations. */
+html{height:auto;min-height:100%;overflow-x:clip}
+body{height:auto;min-height:100%;overflow-x:clip;overflow-y:auto}
+.hero{overflow:clip;min-height:100vh;min-height:100svh}
+.shot[hidden]{display:none}
+.cinema{z-index:0}
+.veil{z-index:1}
+.grain{z-index:2}
+.hero>.brand,.hero>.locations,.hero>.footer{z-index:3}
+
+@media(pointer:coarse),(max-width:900px){
+ .grain{display:none}
+ .shot img{filter:none;transform:none}
+ .shot.travelling img{animation:none}
+ .location-dialog::backdrop{backdrop-filter:none}
+}
+
+/* One quiet scrolling row between the two footer controls. */
+.footer .instagram,.footer .motion-toggle{grid-row:1}
+.footer .footer-marks{display:block;overflow:hidden;min-width:0;width:100%;max-width:760px;height:44px;justify-self:center;mask-image:linear-gradient(90deg,transparent,#000 12px,#000 calc(100% - 12px),transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12px,#000 calc(100% - 12px),transparent)}
+.marks-track{display:flex;align-items:center;width:max-content;height:44px;animation:marks-scroll 55s linear infinite}
+.marks-group{display:flex;flex:none;align-items:center;gap:24px;padding-right:24px;height:44px}
+@keyframes marks-scroll{to{transform:translateX(-50%)}}
+.paused .marks-track{animation-play-state:paused}
+@media(hover:hover){.footer-marks:hover .marks-track{animation-play-state:paused}}
+@media(prefers-reduced-motion:reduce){
+ .footer .footer-marks{overflow-x:auto;mask-image:none;-webkit-mask-image:none}
+ .marks-track{animation:none}
+ .marks-copy{display:none}
+}
+
+/* Readable venue menu, shared by all three location cards. */
+#location-dialog .location-content{padding-top:42px}
+#location-dialog .location-brand{width:130px;margin-bottom:14px}
+#location-dialog .fine-rule{margin:15px auto}
+#location-dialog .location-content h2{font-size:38px}
+.venue-menu{text-align:left;margin-top:24px}
+.menu-tabs{display:flex;gap:8px;border-bottom:1px solid #ffffff55;padding-bottom:10px}
+.menu-tabs button{flex:1;padding:12px;border:1px solid #ffffff66;border-radius:3px;color:inherit;background:transparent;font:inherit;cursor:pointer}
+.menu-tabs button[aria-selected="true"]{background:#fff;color:var(--forest)}
+.menu-tabs button:focus-visible{outline:2px solid white;outline-offset:3px}
+.menu-edition{font-size:11px;opacity:.65;margin:12px 0 20px}
+.menu-section{margin:0 0 26px}
+.menu-section h3{font-family:Georgia,serif;font-weight:400;font-size:25px;margin:0 0 8px}
+.menu-section dl{margin:0}.menu-row{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid #ffffff25;font-size:15px;line-height:1.45}
+.menu-row dt{min-width:0}.menu-row dd{margin:0;flex-shrink:0;font-variant-numeric:tabular-nums;white-space:nowrap}
+.menu-row small{display:block;font-size:12px;opacity:.75;margin-top:4px;line-height:1.5}
+.menu-note{font-size:13px;line-height:1.6;opacity:.8}
+@media(max-width:480px){#location-dialog .location-content{padding-left:20px;padding-right:20px}.menu-row{font-size:14px;gap:10px}.menu-row dd{font-size:13px}}
+
+/* Three related greens, with sage as the house tone. */
+:root{--sage:#536b59;--linden:#bdcd98;--woodland:#244b3b}
+[data-location="garage"]{--venue-bg:var(--sage);--venue-ink:#faf9f2;--venue-line:#faf9f240;--venue-accent:#bacbb5}
+[data-location="kiosque"]{--venue-bg:var(--linden);--venue-ink:#24382c;--venue-line:#24382c40;--venue-accent:#d8e8ac}
+[data-location="marche"]{--venue-bg:var(--woodland);--venue-ink:#faf9f2;--venue-line:#faf9f240;--venue-accent:#8db79c}
+.locations [data-location] .venue-icon{color:var(--white)}
+.locations [data-location] .location-name>span{color:#fff}
+.locations [data-location] .location-name::after{background:var(--venue-accent)}
+#location-dialog{background:var(--venue-bg,var(--sage));color:var(--venue-ink,#faf9f2);border-color:var(--venue-line);transition:background-color .25s,color .25s}
+#location-dialog .fine-rule{background:var(--venue-ink)}
+#location-dialog .menu-tabs,#location-dialog .menu-tabs button,#location-dialog .menu-row,#location-dialog .dialog-nav,#location-dialog .contact-link{border-color:var(--venue-line)}
+#location-dialog .menu-tabs button[aria-selected="true"]{background:var(--venue-ink);color:var(--venue-bg)}
+#location-dialog :focus-visible{outline-color:var(--venue-ink)}
+#location-dialog .menu-row small{opacity:.9}
+#location-dialog .dialog-nav a{opacity:.85}
+#location-dialog .dialog-nav a[aria-current]{opacity:1;font-weight:700}
+#location-dialog .venue-windows{fill:var(--venue-ink)}
+#location-dialog .dialog-venue-icon.is-open .venue-icon{filter:none}
+@media(prefers-reduced-motion:reduce){#location-dialog{transition:none}}
+
+
+/* Two original marks, stacked as a single home-page signature. */
+.home-partner{display:grid;justify-items:center;gap:1px;margin-top:1px}
+.home-partner span{color:#fff;font:400 17px/1 Arial,sans-serif;text-shadow:0 1px 4px #0009}
+.home-partner img{display:block;width:54%;height:auto;filter:drop-shadow(0 1px 2px #0009) drop-shadow(0 3px 7px #0006)}
+
+@media(max-width:650px){.home-partner span{font-size:15px}}
+
+.locations > div{padding:0 8px;text-shadow:0 2px 6px #000b}
+
+.locations .location-name{display:flex;gap:1px;line-height:1;padding-bottom:3px;letter-spacing:-.048em}
+.locations .location-summary{gap:0;line-height:1.23;letter-spacing:.012em}
