@@ -48,16 +48,16 @@
   .locations .location-summary{font-size:11px}
 }
 
-/* 15.11.2026 (Martin): Markenlaufleiste größer, immer genau fünf Logos sichtbar.
-   Jedes Logo bekommt ein Fach von 1/5 der Leistenbreite (Container-Einheit cqw) und wird darin
+/* 15.11.2026 (Martin): Markenlaufleiste, immer genau sieben Logos sichtbar (--marks-visible).
+   Jedes Logo bekommt ein Fach von 1/7 der Leistenbreite (Container-Einheit cqw) und wird darin
    zentriert eingepasst (SVG viewBox, preserveAspectRatio meet). Die Sondergrößen einzelner Logos
    aus style.css gelten hier nicht mehr. */
-.footer .footer-marks{container-type:inline-size;--marks-h:46px;--mark-h:38px;height:var(--marks-h)}
+.footer .footer-marks{container-type:inline-size;--marks-visible:7;--marks-h:44px;--mark-h:31px;height:var(--marks-h)}
 .footer .footer-marks .marks-track,.footer .footer-marks .marks-group{height:var(--marks-h)}
 .footer .footer-marks .marks-group{gap:0;padding-right:0}
 .footer .footer-marks .marks-group .brand-mark{
-  --mark-gap:clamp(5px,2cqw,16px);
-  --slot:calc(100cqw / 5);
+  --mark-gap:clamp(4px,1.6cqw,13px);
+  --slot:calc(100cqw / var(--marks-visible));
   --w:min(calc(var(--slot) - 2 * var(--mark-gap)), calc(var(--mark-h) * var(--ratio, 3)));
   flex:none;
   width:var(--w);
@@ -83,11 +83,11 @@
 .footer .footer-marks .citadelle-mark{--ratio:2.3798}
 /* Handy: Leiste über die volle Breite, Instagram und Pause rücken in die Zeile von Impressum/Datenschutz. */
 @media(max-width:600px){
-  .footer .footer-marks{grid-column:1 / -1;grid-row:1;width:100%;max-width:none;--marks-h:40px;--mark-h:30px}
+  .footer .footer-marks{grid-column:1 / -1;grid-row:1;width:100%;max-width:none;--marks-h:36px;--mark-h:25px}
   .footer .instagram{grid-column:1;grid-row:2}
   .footer .motion-toggle{grid-column:3;grid-row:2}
-  .footer .footer-marks .marks-group .brand-mark{--mark-gap:clamp(4px,1.6cqw,8px)}
+  .footer .footer-marks .marks-group .brand-mark{--mark-gap:clamp(3px,1.2cqw,6px)}
 }
 @media(max-height:500px){
-  .footer .footer-marks{--marks-h:34px;--mark-h:26px}
+  .footer .footer-marks{--marks-h:32px;--mark-h:22px}
 }
