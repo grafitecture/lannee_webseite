@@ -6,9 +6,9 @@ document.addEventListener('keydown',e=>{
  if(e.key==='Tab'||e.key.startsWith('Arrow'))document.documentElement.dataset.inputMethod='keyboard';
 },true);
 const locations={
- garage:{title:'Garage',address:'Beilstraße 6 · Mannheim',hours:'Freitag & Samstag ab 16 Uhr (Wir öffnen Austern ab dem 08.01.2027)'},
- kiosque:{title:'Kiosque',address:'Lindenhofplatz 1 · Mannheim',hours:'Sonn- & Feiertags ab 12 Uhr (ab Frühjahr 2027)'},
- marche:{title:'Marché',address:'Meeräckerplatz · Mannheim',hours:'Samstags ab 10 Uhr'}
+ garage:{title:'Garage',address:'Beilstraße 6 · Jungbusch · Mannheim',hours:'Freitag & Samstag, ab 16 Uhr (Wir öffnen Austern ab dem 08.01.2027)'},
+ kiosque:{title:'Kiosque',address:'Lindenhofplatz 1 · Lindenhof · Mannheim',hours:'Sonn- & Feiertags, ab 12 Uhr (ab Frühjahr 2027)'},
+ marche:{title:'Marché',address:'Meeräckerplatz · Lindenhof · Mannheim',hours:'Samstags, ab 10 Uhr'}
 };
 const dialog=document.querySelector('#location-dialog');
 const legalDialog=document.querySelector('#legal-dialog');

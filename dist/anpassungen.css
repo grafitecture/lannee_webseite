@@ -47,11 +47,17 @@
   text-shadow:0 1px 2px #000b,0 2px 8px #0008;
 }
 
-/* Niedrige Fenster am Desktop/Laptop (z. B. MacBook 1440 × 780): Hauptwort eine Stufe tiefer (h4). */
+/* Laptop-Fenster bis 920 px Höhe (Martin, 17.11.2026: Ortsteil als eigene Zeile):
+   Blöcke etwas dichter, damit die Fußzeile bei 1440 × 900 im Bild bleibt. */
+@media(min-width:601px) and (max-height:920px){
+  .locations{gap:18px}
+  .locations .location-summary{line-height:1.12}
+}
+/* Niedrige Fenster am Desktop/Laptop (z. B. MacBook 1440 × 780): Hauptwort zwei Stufen tiefer (h5). */
 @media(min-width:601px) and (max-height:820px){
-  .locations{gap:20px}
-  .locations .location-name{font-size:var(--fs-h4)}
-  .locations .location-summary{margin-top:6px}
+  .locations{gap:14px}
+  .locations .location-name{font-size:var(--fs-h5)}
+  .locations .location-summary{margin-top:6px;line-height:1.1}
 }
 @media(max-width:600px){
   .locations{gap:20px}
