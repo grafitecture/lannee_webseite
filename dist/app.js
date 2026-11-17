@@ -6,8 +6,8 @@ document.addEventListener('keydown',e=>{
  if(e.key==='Tab'||e.key.startsWith('Arrow'))document.documentElement.dataset.inputMethod='keyboard';
 },true);
 const locations={
- garage:{title:'Garage',address:'Beilstraße 6 · Jungbusch · Mannheim',hours:'Freitag & Samstag, ab 16 Uhr (Wir öffnen Austern ab dem 08.01.2027)'},
- kiosque:{title:'Kiosque',address:'Lindenhofplatz 1 · Lindenhof · Mannheim',hours:'Sonn- & Feiertags, ab 12 Uhr (ab Frühjahr 2027)'},
+ garage:{title:'Garage',address:'Beilstraße 6 · Jungbusch · Mannheim',hours:'Freitag & Samstag, ab 16 Uhr',note:'(Wir öffnen Austern ab dem 08.01.2027)'},
+ kiosque:{title:'Kiosque',address:'Lindenhofplatz 1 · Lindenhof · Mannheim',hours:'Sonn- & Feiertags, ab 12 Uhr',note:'(ab Frühjahr 2027)'},
  marche:{title:'Marché',address:'Meeräckerplatz · Lindenhof · Mannheim',hours:'Samstags, ab 10 Uhr'}
 };
 const dialog=document.querySelector('#location-dialog');
@@ -21,6 +21,7 @@ function openLocation(key){
  dialog.scrollTop=0;
  dialog.dataset.location=key;updateOpeningLights();
  for(const field of ['title','address','hours'])document.querySelector('#location-'+field).textContent=data[field];
+ if(data.note){const note=document.createElement('span');note.className='location-note';note.textContent=data.note;document.querySelector('#location-hours').append(' ',note);}
  document.querySelectorAll('.dialog-nav a').forEach(a=>{if(a.dataset.location===key)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
  if(!dialog.open){origin=document.activeElement;dialog.showModal();}
 }

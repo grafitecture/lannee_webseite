@@ -46,6 +46,10 @@
   letter-spacing:.005em;
   text-shadow:0 1px 2px #000b,0 2px 8px #0008;
 }
+/* Zusätze in Klammern (Martin, 17.11.2026): eine Stufe der Skala kleiner als die Öffnungszeiten
+   und normaler statt halbfetter Schnitt – auf der Startseite und in den Standortdialogen. */
+.locations .location-note{font-size:var(--fs-small);font-weight:400;letter-spacing:.01em}
+.location-hours .location-note{font-size:var(--fs-small)}
 
 /* Laptop-Fenster bis 920 px Höhe (Martin, 17.11.2026: Ortsteil als eigene Zeile):
    Blöcke etwas dichter, damit die Fußzeile bei 1440 × 900 im Bild bleibt. */
@@ -66,11 +70,13 @@
 /* Sehr schmale Handys: Öffnungszeiten auf small, damit „(Wir öffnen Austern …)“ in eine Zeile passt. */
 @media(max-width:359px){
   .locations .location-summary{font-size:var(--fs-small)}
+  .locations .location-note{font-size:var(--fs-xs)}
 }
 @media(max-height:650px){
   .locations{gap:13px}
   .locations .location-name{font-size:var(--fs-h4)}
   .locations .location-summary{margin-top:5px;font-size:var(--fs-small);line-height:1.14}
+  .locations .location-note{font-size:var(--fs-xs)}
 }
 /* Querformat am Handy: Hauptwort 1,25rem (Stufe h6), Zeiten 0,64rem (xs). */
 @media(max-height:500px){
