@@ -19,28 +19,74 @@
   --fs-xs:.64rem;   /* 10,2 px */
 }
 
-/* Standorte (Martin, 15.11.2026, ersetzt die grünen Felder vom Nachmittag):
-   keine Hintergrundflächen – die Fotos bleiben frei. Lesbarkeit über weiße Schrift und
-   typografisches Blocking: Gebäude-Icon und Hauptwort bilden eine kompakte Einheit
-   (Icon sitzt direkt auf dem Wort und wächst in em mit), Hauptwort kräftig mit enger
-   Laufweite und enger Zeilenhöhe, Öffnungszeiten dicht darunter. Nur ein feiner Schatten
-   als Sicherheit auf hellen Bildstellen.
-   Größen: Hauptwort h3 (31 → 39 px), Öffnungszeiten p (16 px); niedrige Fenster eine Stufe tiefer. */
-.locations{gap:26px}
+/* Startseite immer genau eine Bildschirmhöhe (Martin, 25.11.2026) – ersetzt die festen
+   Höhenstufen (≤ 920 / 820 / 650 / 500 px) vom 15. und 17.11.:
+   Die Seite ist auf jedem Gerät exakt so hoch wie der sichtbare Bereich (100dvh, ohne Scrollen).
+   Logo, Standorte und Fußzeile füllen diesen Raum: Alle Größen hängen an einer fließenden
+   Grundgröße --b (das „1rem“ der Startseite), die aus der Fensterhöhe berechnet wird
+   (begrenzt durch die Breite). Die Standort-Typografie bleibt die Major-Third-Skala auf dieser
+   Grundgröße: Hauptwort h3 = 2,441 --b, Öffnungszeiten p = 1 --b, Klammerzusätze small = 0,8 --b.
+   Restraum wird gleichmäßig zwischen Logo, Standorten und Fußzeile verteilt.
+   Breite, niedrige Fenster (Handy quer, kleine Laptops) zeigen die drei Standorte nebeneinander. */
+html,body{height:100%;min-height:0;overflow:hidden;overscroll-behavior:none}
+.hero{
+  --vh:1vh;
+  --pad-t:calc(env(safe-area-inset-top, 0px) + 3 * var(--vh));
+  --pad-b:calc(env(safe-area-inset-bottom, 0px) + 1.2 * var(--vh));
+  --fix:34px;     /* feste Anteile: Zeile Impressum/Datenschutz, Mindesthöhe der Leiste */
+  --name:2.441;   /* Hauptwort = Stufe h3 der Skala */
+  --lw:22.5;      /* Logobreite in --b … */
+  --cap:68vw;     /* … höchstens so breit (Platz für die Advent-Kugeln) */
+  --k:46.5;       /* Inhaltshöhe in --b, wenn das Logo frei wächst */
+  --k2:34.3;      /* Inhaltshöhe in --b ohne Logo, wenn das Logo an --cap stößt */
+  --A:calc(100 * var(--vh) - var(--pad-t) - var(--pad-b) - var(--fix));
+  --b-h:max(calc(var(--A) / var(--k)), calc((var(--A) - .542 * var(--cap)) / var(--k2)));
+  --b-w:calc((100vw - 40px) / 15);
+  --b:clamp(.5rem, min(var(--b-h), var(--b-w)), 1.75rem);
+  --brand-w:min(calc(var(--lw) * var(--b)), var(--cap));
+  display:flex;flex-direction:column;align-items:center;justify-content:space-between;
+  height:100vh;min-height:0;row-gap:0;
+  padding:var(--pad-t) 0 var(--pad-b);
+}
+@supports (height:1dvh){
+  .hero{--vh:1dvh;height:100dvh}
+}
+.hero>.brand{flex:none;width:var(--brand-w);margin:0}
+.hero .home-partner span{font-size:var(--b)}
+/* Advent-Kugeln wachsen mit dem Logo (Faktor = Logobreite / 545 px; bei 360 px Logo wie bisher ≈ 0,66). */
+@supports (scale:tan(atan2(1px, 1px))){
+  .hero .advent-teaser{
+    top:calc(.14 * var(--brand-w));
+    right:calc(-.18 * var(--brand-w));
+    transform:scale(tan(atan2(var(--brand-w), 545px)));
+  }
+}
+.hero>.locations{
+  flex:1 1 0;min-height:0;
+  width:calc(100% - 32px);
+  display:flex;flex-direction:column;align-items:center;justify-content:space-evenly;
+  gap:calc(.8 * var(--b));
+  margin:calc(.8 * var(--b)) 0;
+}
+.hero>.footer{flex:none}
+
+/* Standorte als weiße Typo-Blöcke (Martin, 15.11.2026): keine Hintergrundflächen – die Fotos
+   bleiben frei. Gebäude-Icon sitzt direkt auf dem Hauptwort und wächst in em mit, Hauptwort
+   kräftig mit enger Laufweite und Zeilenhöhe, Öffnungszeiten dicht darunter, nur ein feiner Schatten. */
 .locations > div{padding:0;background:none}
-.locations .location-name{
+.hero .locations .location-name{
   gap:0;
   padding-bottom:0;
-  font-size:var(--fs-h3);
+  font-size:calc(var(--name) * var(--b)); /* h3, in niedrigen Fenstern h4 */
   line-height:.86;
   letter-spacing:-.06em;
   text-shadow:0 1px 2px #000b,0 3px 12px #0007;
 }
-.locations .venue-icon{width:1.18em;height:1em;margin-bottom:-.1em;stroke-width:2}
-.locations .location-summary{
-  margin-top:7px;
+.hero .locations .venue-icon{width:1.18em;height:1em;margin-bottom:-.1em;stroke-width:2}
+.hero .locations .location-summary{
+  margin-top:calc(.44 * var(--b));
   gap:0;
-  font-size:var(--fs-p);
+  font-size:var(--b); /* p */
   line-height:1.17;
   font-weight:600;
   letter-spacing:.005em;
@@ -48,41 +94,25 @@
 }
 /* Zusätze in Klammern (Martin, 17.11.2026): eine Stufe der Skala kleiner als die Öffnungszeiten
    und normaler statt halbfetter Schnitt – auf der Startseite und in den Standortdialogen. */
-.locations .location-note{font-size:var(--fs-small);font-weight:400;letter-spacing:.01em}
+.hero .locations .location-note{font-size:calc(.8 * var(--b));font-weight:400;letter-spacing:.01em}
 .location-hours .location-note{font-size:var(--fs-small)}
 
-/* Laptop-Fenster bis 920 px Höhe (Martin, 17.11.2026: Ortsteil als eigene Zeile):
-   Blöcke etwas dichter, damit die Fußzeile bei 1440 × 900 im Bild bleibt. */
-@media(min-width:601px) and (max-height:920px){
-  .locations{gap:18px}
-  .locations .location-summary{line-height:1.12}
+/* Niedrige Fenster (Handy mit Browserleisten, kleine Laptops): Hauptwort eine Stufe tiefer (h4). */
+@media (max-height:700px){
+  .hero{--name:1.953;--k:43.5;--k2:31.3}
 }
-/* Niedrige Fenster am Desktop/Laptop (z. B. MacBook 1440 × 780): Hauptwort zwei Stufen tiefer (h5). */
-@media(min-width:601px) and (max-height:820px){
-  .locations{gap:14px}
-  .locations .location-name{font-size:var(--fs-h5)}
-  .locations .location-summary{margin-top:6px;line-height:1.1}
+/* Handy hochkant: Fußzeile zweizeilig (Leiste, darunter Instagram · Impressum · Datenschutz · Pause). */
+@media (max-width:600px){
+  .hero{--fix:44px}
 }
-@media(max-width:600px){
-  .locations{gap:20px}
-  .locations .location-summary{margin-top:6px;line-height:1.16}
-}
-/* Sehr schmale Handys: Öffnungszeiten auf small, damit „(Wir öffnen Austern …)“ in eine Zeile passt. */
-@media(max-width:359px){
-  .locations .location-summary{font-size:var(--fs-small)}
-  .locations .location-note{font-size:var(--fs-xs)}
-}
-@media(max-height:650px){
-  .locations{gap:13px}
-  .locations .location-name{font-size:var(--fs-h4)}
-  .locations .location-summary{margin-top:5px;font-size:var(--fs-small);line-height:1.14}
-  .locations .location-note{font-size:var(--fs-xs)}
-}
-/* Querformat am Handy: Hauptwort 1,25rem (Stufe h6), Zeiten 0,64rem (xs). */
-@media(max-height:500px){
-  .locations{gap:6px}
-  .locations .location-name{font-size:1.25rem}
-  .locations .location-summary{margin-top:3px;font-size:var(--fs-xs);line-height:1.12}
+/* Breite, niedrige Fenster (Handy quer): Standorte nebeneinander, Logo kleiner. */
+@media (max-height:560px) and (min-aspect-ratio:5/4){
+  .hero{
+    --name:2.441;--lw:14;--cap:40vw;--k:22.5;--k2:14.9;
+    --b-w:calc((100vw - 64px) / 44);
+  }
+  /* Raster statt Flex: Hauptwörter stehen auf einer Linie, die Reihe sitzt mittig im freien Raum. */
+  .hero>.locations{display:grid;grid-auto-flow:column;align-content:center;align-items:start;justify-content:space-evenly;column-gap:calc(2.5 * var(--b))}
 }
 
 /* Typografie-Skala in Fußzeile und Dialogen (Werte der Vorlage auf die nächste Stufe gesetzt). */
@@ -107,6 +137,13 @@
    zentriert eingepasst (SVG viewBox, preserveAspectRatio meet). Die Sondergrößen einzelner Logos
    aus style.css gelten hier nicht mehr. */
 .footer .footer-marks{container-type:inline-size;--marks-visible:7;--marks-h:44px;--mark-h:31px;height:var(--marks-h)}
+/* 25.11.2026: Leiste, Schaltflächen und Links wachsen mit der Grundgröße --b (Desktop 1440 × 900 ≈ wie bisher). */
+.hero .footer .footer-marks{--marks-h:clamp(32px, calc(2.75 * var(--b)), 64px);--mark-h:calc(.7 * var(--marks-h));max-width:calc(47.5 * var(--b))}
+.hero>.footer{--ib:clamp(32px, calc(2.25 * var(--b)), 52px);grid-template-columns:var(--ib) minmax(0,1fr) var(--ib)}
+.hero .footer .icon-button{width:var(--ib);height:var(--ib);padding:0}
+.hero .footer .icon-button svg{width:calc(.62 * var(--ib));height:calc(.62 * var(--ib))}
+.hero .footer .motion-toggle svg{width:calc(.5 * var(--ib));height:calc(.5 * var(--ib))}
+.hero .legal-links{font-size:max(var(--fs-xs), calc(.8 * var(--b)))}
 .footer .footer-marks .marks-track,.footer .footer-marks .marks-group{height:var(--marks-h)}
 .footer .footer-marks .marks-group{gap:0;padding-right:0}
 .footer .footer-marks .marks-group .brand-mark{
@@ -137,11 +174,16 @@
 .footer .footer-marks .citadelle-mark{--ratio:2.3798}
 /* Handy: Leiste über die volle Breite, Instagram und Pause rücken in die Zeile von Impressum/Datenschutz. */
 @media(max-width:600px){
-  .footer .footer-marks{grid-column:1 / -1;grid-row:1;width:100%;max-width:none;--marks-h:36px;--mark-h:25px}
+  .hero .footer .footer-marks{grid-column:1 / -1;grid-row:1;width:100%;max-width:none}
   .footer .instagram{grid-column:1;grid-row:2}
   .footer .motion-toggle{grid-column:3;grid-row:2}
   .footer .footer-marks .marks-group .brand-mark{--mark-gap:clamp(3px,1.2cqw,6px)}
+  .hero>.footer{--ib:clamp(32px, calc(2.25 * var(--b)), 40px)}
 }
-@media(max-height:500px){
-  .footer .footer-marks{--marks-h:32px;--mark-h:22px}
+
+/* Advent-Film (25.11.2026): füllt die Fensterhöhe (Rand 12 px), Breite folgt dem Seitenverhältnis
+   des Films 512 : 910 – vorher höchstens 430 px breit. */
+#advent-dialog{width:min(calc(100vw - 24px), calc(56.2637vh - 13.5033px));max-height:calc(100vh - 24px)}
+@supports (height:1dvh){
+  #advent-dialog{width:min(calc(100vw - 24px), calc(56.2637dvh - 13.5033px));max-height:calc(100dvh - 24px)}
 }
