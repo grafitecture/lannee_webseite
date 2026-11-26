@@ -27,6 +27,7 @@ const TYPES = {
   '.mp4': 'video/mp4',
   '.xml': 'application/xml',
   '.txt': 'text/plain; charset=utf-8',
+  '.pdf': 'application/pdf',
 };
 
 /** Header aus vercel.json für einen Pfad (Regeln mit has/missing gelten nur für bestimmte Hosts und bleiben lokal weg). */

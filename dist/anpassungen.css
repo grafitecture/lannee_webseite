@@ -37,8 +37,8 @@ html,body{height:100%;min-height:0;overflow:hidden;overscroll-behavior:none}
   --name:2.441;   /* Hauptwort = Stufe h3 der Skala */
   --lw:22.5;      /* Logobreite in --b … */
   --cap:68vw;     /* … höchstens so breit (Platz für die Advent-Kugeln) */
-  --k:46.5;       /* Inhaltshöhe in --b, wenn das Logo frei wächst */
-  --k2:34.3;      /* Inhaltshöhe in --b ohne Logo, wenn das Logo an --cap stößt */
+  --k:48.85;      /* Inhaltshöhe in --b, wenn das Logo frei wächst (+2,35 Advent-Pop-up, 26.11.) */
+  --k2:36.65;     /* Inhaltshöhe in --b ohne Logo, wenn das Logo an --cap stößt (+2,35) */
   --A:calc(100 * var(--vh) - var(--pad-t) - var(--pad-b) - var(--fix));
   --b-h:max(calc(var(--A) / var(--k)), calc((var(--A) - .542 * var(--cap)) / var(--k2)));
   --b-w:calc((100vw - 40px) / 15);
@@ -96,10 +96,26 @@ html,body{height:100%;min-height:0;overflow:hidden;overscroll-behavior:none}
    und normaler statt halbfetter Schnitt – auf der Startseite und in den Standortdialogen. */
 .hero .locations .location-note{font-size:calc(.8 * var(--b));font-weight:400;letter-spacing:.01em}
 .location-hours .location-note{font-size:var(--fs-small)}
+/* Advent-Pop-up unter der Garage (Martin, 26.11.2026): kleine Ankündigung, Stufe small = 0,8 --b,
+   erste Zeile halbfett, zweite normal mit Link auf die Karte (PDF, assets/). Erhöht den Garage-Block
+   um 2,31 --b – deshalb --k/--k2 in allen drei Fassungen um 2,35 größer (bei Wegfall wieder abziehen). */
+.hero .locations .location-popup{
+  display:flex;flex-direction:column;
+  margin-top:calc(.44 * var(--b));
+  font-size:calc(.8 * var(--b));
+  line-height:1.17;
+  font-weight:400;
+  letter-spacing:.01em;
+  white-space:nowrap;
+  text-shadow:0 1px 2px #000b,0 2px 8px #0008;
+}
+.hero .locations .location-popup>span:first-child{font-weight:600}
+.hero .locations .location-popup a{display:inline;padding:0;color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em}
+.hero .locations .location-popup a:hover,.hero .locations .location-popup a:focus-visible{text-decoration-thickness:2px}
 
 /* Niedrige Fenster (Handy mit Browserleisten, kleine Laptops): Hauptwort eine Stufe tiefer (h4). */
 @media (max-height:700px){
-  .hero{--name:1.953;--k:43.5;--k2:31.3}
+  .hero{--name:1.953;--k:45.85;--k2:33.65}
 }
 /* Handy hochkant: Fußzeile zweizeilig (Leiste, darunter Instagram · Impressum · Datenschutz · Pause). */
 @media (max-width:600px){
@@ -108,7 +124,7 @@ html,body{height:100%;min-height:0;overflow:hidden;overscroll-behavior:none}
 /* Breite, niedrige Fenster (Handy quer): Standorte nebeneinander, Logo kleiner. */
 @media (max-height:560px) and (min-aspect-ratio:5/4){
   .hero{
-    --name:2.441;--lw:14;--cap:40vw;--k:22.5;--k2:14.9;
+    --name:2.441;--lw:14;--cap:40vw;--k:24.85;--k2:17.25;
     --b-w:calc((100vw - 64px) / 44);
   }
   /* Raster statt Flex: Hauptwörter stehen auf einer Linie, die Reihe sitzt mittig im freien Raum. */

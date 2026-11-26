@@ -26,6 +26,7 @@ Push auf `main` → Vercel stellt automatisch auf www.lannee.de bereit.
 | Öffnungsanzeige | `dist/opening-hours.js` (Kiosque: `KIOSQUE_OPENS`) |
 | Hintergrundbilder | `dist/index.html` (`.shot`), Ausschnitt in `dist/shots.css` |
 | Advent-Film | `dist/assets/advent-clean-2026.mp4`, Poster `…-poster.jpg` |
+| Advent-Pop-up unter Garage + Karte (PDF) | `dist/index.html` (`.location-popup`), PDF `dist/assets/lannee-popup-advent-2026-karte.pdf` (bei neuer Karte `?v=` im Link hochzählen); fällt die Ankündigung weg, `--k`/`--k2` in `anpassungen.css` wieder um 2,35 senken |
 | Impressum, Datenschutz | `dist/index.html`, `<template id="text-impressum">` / `text-datenschutz` |
 
 Der vorherige Stand (12.11.2026, mit Build-Pipeline) liegt im Branch `archiv/stand-2026-11-12`.
