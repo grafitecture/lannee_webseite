@@ -49,7 +49,7 @@ a{color:inherit}
 .kopf{background:radial-gradient(130% 90% at 0% 0%, #21402d 0, var(--nacht) 62%);color:var(--kalk)}
 .kopf-raster{display:grid;max-width:96rem;margin-inline:auto}
 .kopf-text{padding:clamp(1.5rem, 5vw, 3.5rem) var(--rand) clamp(2.5rem, 6vw, 4.5rem);min-width:0}
-.kopf-logo{width:clamp(9rem, 30vw, 14rem)}
+.kopf-logo{width:100%}  /* Handy: Logo über die volle Inhaltsbreite (Martin, 26.11.2026) */
 
 /* Girlande mit vier Kugeln = vier Adventswochenenden */
 .girlande{position:relative;display:flex;justify-content:space-between;align-items:flex-start;max-width:38rem;margin:clamp(1.75rem, 5vw, 2.75rem) 0 0;padding:0;list-style:none}
@@ -98,6 +98,7 @@ a{color:inherit}
 .kopf-bild img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:45% 38%}
 
 @media (min-width:40rem){
+  .kopf-logo{width:clamp(9rem, 30vw, 14rem)}
   .kopf-titel{font-size:var(--fs-h1)}
 }
 @media (min-width:60rem){
