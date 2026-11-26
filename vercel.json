@@ -33,6 +33,14 @@
       ]
     },
     {
+      "source": "/draft",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
+      "source": "/draft/(.*)",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
       "source": "/(.*)",
       "missing": [{ "type": "host", "value": "www.lannee.de" }],
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]

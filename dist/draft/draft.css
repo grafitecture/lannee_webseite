@@ -1,0 +1,201 @@
+/* L’ANNÉE – Entwurf /draft (Martin, 26.11.2026)
+   One-Pager: L’ANNÉE ist der Ort (Innenhof Beilstraße 6), Austern & Bubbles ist zu Gast.
+   Farbcode: Grün = L’ANNÉE (der Ort), Champagner/Gold = Austern & Bubbles (der Gast),
+   Rot/Gold-Kugeln nur fürs Advent-Pop-up.
+   Schriftgrößen nur über die Skala Major Third 1,250 (dieselben Variablen wie anpassungen.css).
+   Ausnahme wie auf der Startseite: Beschriftung der Advent-Kugeln wächst mit der Kugel (Teil der Grafik). */
+
+:root{
+  --fs-h1:clamp(3.052rem, 2.834rem + 1.09vw, 3.815rem);
+  --fs-h2:clamp(2.441rem, 2.2664rem + .8729vw, 3.052rem);
+  --fs-h3:clamp(1.953rem, 1.8136rem + .6971vw, 2.441rem);
+  --fs-h4:clamp(1.563rem, 1.4516rem + .5571vw, 1.953rem);
+  --fs-h5:clamp(1.25rem, 1.1606rem + .4471vw, 1.563rem);
+  --fs-h6:clamp(1rem, .9286rem + .3571vw, 1.25rem);
+  --fs-p:1rem;
+  --fs-small:.8rem;
+  --fs-xs:.64rem;
+
+  --nacht:#13241a;
+  --gruen:#245c43;
+  --kalk:#fbfaf6;
+  --champagner:#f1e5bd;
+  --gold:#d6ab42;
+  --gold-hell:#f2d98f;
+  --gold-dunkel:#7d5a12;
+  --tinte:#1d2a21;
+
+  --schwer:"Arial Black","Helvetica Neue",Arial,sans-serif;
+  --serif:Georgia,"Times New Roman",serif;
+  --sans:"Helvetica Neue",Arial,sans-serif;
+
+  --rand:clamp(1.25rem, 5vw, 3rem);
+  --radius:.375rem;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--nacht);color:var(--tinte);font-family:var(--serif);font-size:var(--fs-p);line-height:1.55;overflow-wrap:break-word}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold-hell);outline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.rahmen{max-width:76rem;margin-inline:auto;padding-inline:var(--rand)}
+
+/* Hinweis oben: nur Entwurf */
+.entwurf{margin:0;padding:.45rem var(--rand);background:var(--nacht);color:rgb(251 250 246 / .62);border-bottom:1px solid rgb(251 250 246 / .1);font-family:var(--sans);font-size:var(--fs-xs);line-height:1.4}
+
+/* ---------- Kopf: Advent-Pop-up ---------- */
+.kopf{background:radial-gradient(130% 90% at 0% 0%, #21402d 0, var(--nacht) 62%);color:var(--kalk)}
+.kopf-raster{display:grid;max-width:96rem;margin-inline:auto}
+.kopf-text{padding:clamp(1.5rem, 5vw, 3.5rem) var(--rand) clamp(2.5rem, 6vw, 4.5rem);min-width:0}
+.kopf-logo{width:clamp(9rem, 30vw, 14rem)}
+
+/* Girlande mit vier Kugeln = vier Adventswochenenden */
+.girlande{position:relative;display:flex;justify-content:space-between;align-items:flex-start;max-width:38rem;margin:clamp(1.75rem, 5vw, 2.75rem) 0 0;padding:0;list-style:none}
+.girlande::before{content:"";position:absolute;left:-.75rem;right:-.75rem;top:0;height:2px;border-radius:2px;background:linear-gradient(90deg, transparent, #a98d43 8%, #f9e8a9 38%, #a98d43 68%, #f9e8a9 88%, transparent)}
+.kugel{--d:clamp(4.25rem, 18vw, 7rem);--drop:1.25rem;position:relative;display:flex;flex-direction:column;align-items:center;width:var(--d);padding-top:var(--drop);transform-origin:50% 0;animation:schwingen var(--t, 6s) ease-in-out var(--v, 0s) infinite alternate}
+.kugel::before{content:"";position:absolute;top:0;left:50%;width:1.5px;height:calc(var(--drop) - .35rem);translate:-50% 0;background:linear-gradient(#f9e8a9, #a98d43)}
+.kugel-ball{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;width:var(--d);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle at 34% 30%, var(--licht) 0, var(--ton) 46%, var(--dunkel) 100%);
+  box-shadow:inset calc(var(--d) * -.06) calc(var(--d) * -.09) calc(var(--d) * .16) rgb(0 0 0 / .32), 0 calc(var(--d) * .14) calc(var(--d) * .24) rgb(0 0 0 / .42);
+  color:#fff;font-family:var(--schwer);font-weight:900;line-height:1;text-align:center;text-shadow:0 1px 2px rgb(0 0 0 / .35);transition:filter .3s, box-shadow .3s}
+.kugel-ball::before{content:"";position:absolute;top:calc(var(--d) * -.075);left:50%;translate:-50% 0;width:calc(var(--d) * .2);height:calc(var(--d) * .11);border-radius:calc(var(--d) * .025);background:linear-gradient(90deg, #6b5120, #f9e8a9 28%, #a98d43 52%, #ffedb5 72%, #6b5120);box-shadow:inset 0 1px 1px #fff9, 0 2px 2px #0006}
+.kugel-ball::after{content:"";position:absolute;left:17%;top:13%;width:30%;height:19%;border-radius:50%;rotate:-32deg;background:radial-gradient(rgb(255 255 255 / .72), transparent 70%)}
+.kugel-tage{font-size:calc(var(--d) * .2);letter-spacing:-.035em}
+.kugel-monat{margin-top:.25em;font-family:var(--sans);font-weight:700;font-size:calc(var(--d) * .165)}
+.kugel-1{--licht:#ff7d7f;--ton:#c3132e;--dunkel:#480716;--drop:1rem;--t:6.2s;--v:-1.8s}
+.kugel-2{--licht:#9ed7ab;--ton:#2f744f;--dunkel:#082517;--drop:2.6rem;--t:7.1s;--v:-4.2s}
+.kugel-3{--licht:#fff4b6;--ton:#d7aa3c;--dunkel:#74500e;--drop:1.6rem;--t:5.8s;--v:-2.9s}
+.kugel-3 .kugel-ball{color:var(--tinte);text-shadow:0 1px 1px rgb(255 255 255 / .35)}
+.kugel-4{--licht:#ff8e8b;--ton:#a90f2b;--dunkel:#3b0511;--drop:3.3rem;--t:6.8s;--v:-.7s}
+/* Kugelgröße am Platz der Girlande ausrichten (auch in der zweispaltigen Ansicht) */
+@supports (width:1cqw){
+  .girlande{container-type:inline-size}
+  .kugel{--d:clamp(4.25rem, 22cqw, 8rem)}
+}
+@keyframes schwingen{from{rotate:-2.5deg}to{rotate:2.5deg}}
+
+/* Zustände (draft.js): vorbei = blass, nächstes Wochenende = Goldring */
+.kugel.ist-vorbei{animation:none}
+.kugel.ist-vorbei .kugel-ball{filter:saturate(.2) brightness(.62)}
+.kugel.ist-naechstes .kugel-ball{box-shadow:inset calc(var(--d) * -.06) calc(var(--d) * -.09) calc(var(--d) * .16) rgb(0 0 0 / .32), 0 0 0 3px var(--nacht), 0 0 0 5px var(--gold-hell), 0 0 calc(var(--d) * .35) rgb(242 217 143 / .45)}
+
+.girlande-text{margin:1.1rem 0 0;font-family:var(--sans);font-size:var(--fs-small);line-height:1.4;color:rgb(251 250 246 / .72)}
+.girlande-text.ist-aktuell{color:var(--gold-hell);font-weight:700}
+
+.kopf-titel .ganz{white-space:nowrap}
+.kopf-titel{margin:clamp(1.75rem, 5vw, 2.75rem) 0 0;font-family:var(--schwer);font-weight:900;font-size:var(--fs-h2);line-height:.98;letter-spacing:-.045em;text-wrap:balance}
+.kopf-vorspann{max-width:31em;margin:1rem 0 0;font-size:var(--fs-h6);line-height:1.5;color:rgb(251 250 246 / .92)}
+.kopf-fakten{display:grid;gap:.7rem;margin:1.75rem 0 0}
+.kopf-fakten div{display:grid;grid-template-columns:3.25rem minmax(0,1fr);align-items:baseline}
+.kopf-fakten dt{font-family:var(--sans);font-size:var(--fs-small);color:rgb(251 250 246 / .62)}
+.kopf-fakten dd{margin:0;font-family:var(--schwer);font-weight:900;font-size:var(--fs-h6);line-height:1.25;letter-spacing:-.02em}
+.knopf{display:inline-block;margin-top:2rem;padding:.85rem 1.4rem;border-radius:999px;background:var(--kalk);color:var(--nacht);font-family:var(--sans);font-size:var(--fs-p);font-weight:700;line-height:1.2;text-decoration:none;transition:background-color .2s}
+.knopf:hover{background:var(--gold-hell)}
+
+.kopf-bild{margin:0;min-height:0}
+.kopf-bild img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:45% 38%}
+
+@media (min-width:40rem){
+  .kopf-titel{font-size:var(--fs-h1)}
+}
+@media (min-width:60rem){
+  .kopf-raster{grid-template-columns:minmax(0, 7fr) minmax(0, 5fr);min-height:min(calc(100svh - 1.6rem), 64rem)}
+  .kopf-text{align-self:center;padding-block:3rem 4rem}
+  .kopf-bild img{height:100%;aspect-ratio:auto}
+}
+
+/* ---------- Die zwei Teile: Ort (grün) und Gast (champagner) ---------- */
+.teil{padding-block:clamp(3.5rem, 9vw, 7rem)}
+.teil-ort{background:var(--gruen);color:var(--kalk)}
+.teil-gast{background:var(--champagner);color:var(--tinte)}
+.teil-gast :focus-visible{outline-color:var(--tinte)}
+
+/* Satz aus Logo + Aussage: „L’ANNÉE ist der Ort.“ / „Austern & Bubbles ist zu Gast.“ */
+.satz{display:flex;flex-wrap:wrap;align-items:flex-end;gap:.4em .45em;margin:0;font-family:var(--schwer);font-weight:900;font-size:var(--fs-h2);line-height:.95;letter-spacing:-.045em}
+.satz-logo-ort{width:clamp(12.5rem, 40vw, 25rem)}
+.satz-logo-gast{width:clamp(10.5rem, 31vw, 19rem);margin-bottom:-.12em}
+.satz-rest{padding-bottom:.04em}
+.vorspann{max-width:36em;margin:clamp(1.25rem, 3vw, 2rem) 0 0;font-size:var(--fs-h6);line-height:1.5}
+
+/* Der Hof in vier Bildern */
+.hof{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:clamp(1rem, 2.5vw, 1.5rem) clamp(.75rem, 2vw, 1.25rem);margin:clamp(2.25rem, 5vw, 3.5rem) 0 0;padding:0;list-style:none}
+.hof figure{margin:0}
+.hof img{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:var(--radius)}
+.hof figcaption{margin-top:.7rem;line-height:1.4}
+.hof figcaption strong{display:block;font-family:var(--schwer);font-weight:900;font-size:var(--fs-h6);line-height:1.15;letter-spacing:-.025em}
+.bild-garage{object-position:22% 72%}
+.bild-remise{object-position:50% 78%}
+.bild-dach{object-position:28% 38%}
+.bild-tische{object-position:50% 50%}
+@media (min-width:56rem){
+  .hof{grid-template-columns:repeat(4, minmax(0, 1fr))}
+}
+
+/* Drei Orte von Austern & Bubbles */
+.orte{display:grid;gap:clamp(1.75rem, 4vw, 2.5rem);margin:clamp(2.25rem, 5vw, 3.5rem) 0 0;padding:0;list-style:none}
+.ort{display:grid;grid-template-columns:5.5rem minmax(0, 1fr);gap:1rem;align-items:start;padding-top:1.25rem;border-top:2px solid var(--tinte)}
+.ort-bild{width:100%;aspect-ratio:1;object-fit:cover;border-radius:var(--radius)}
+.bild-hof{object-position:45% 60%}
+.bild-kiosk{object-position:40% 62%}
+.bild-markt{object-position:60% 55%}
+.ort h3{margin:0;font-family:var(--schwer);font-weight:900;font-size:var(--fs-h5);line-height:1.05;letter-spacing:-.03em}
+.ort-adresse{margin:.3rem 0 0;font-family:var(--sans);font-size:var(--fs-small)}
+.ort-rolle{display:inline-block;margin:.7rem 0 0;padding:.22rem .7rem;border:1.5px solid var(--tinte);border-radius:999px;font-family:var(--sans);font-size:var(--fs-small);font-weight:700;line-height:1.3}
+.ort-rolle-eigen{background:var(--tinte);color:var(--champagner)}
+.ort-text p:last-child{margin:.8rem 0 0;line-height:1.5}
+@media (min-width:56rem){
+  .orte{grid-template-columns:repeat(3, minmax(0, 1fr))}
+  .ort{grid-template-columns:minmax(0, 1fr)}
+  .ort-bild{aspect-ratio:3/2}
+}
+
+/* Wochenplan */
+.plan{max-width:46rem;margin-top:clamp(3.5rem, 8vw, 5.5rem)}
+.plan-titel{margin:0;font-family:var(--schwer);font-weight:900;font-size:var(--fs-h4);line-height:1.05;letter-spacing:-.035em}
+.plan-wahl{display:inline-flex;flex-wrap:wrap;gap:.25rem;margin:1.25rem 0 1rem;padding:.25rem;border:0;border-radius:999px;background:rgb(29 42 33 / .08)}
+.plan-wahl input{position:absolute;width:1px;height:1px;opacity:0}
+.plan-wahl label{padding:.55rem 1rem;border-radius:999px;font-family:var(--sans);font-size:var(--fs-small);font-weight:700;line-height:1.2;cursor:pointer}
+.plan-wahl input:checked + label{background:var(--tinte);color:var(--champagner)}
+.plan-wahl input:focus-visible + label{outline:2px solid var(--tinte);outline-offset:2px}
+
+.woche{width:calc(100% + .6rem);margin:0 -.3rem;border-collapse:separate;border-spacing:.3rem;table-layout:fixed;font-family:var(--sans);font-size:var(--fs-small);line-height:1.2}
+.woche thead td{width:2.1rem}
+.woche thead th{padding:0 .45rem .25rem;font-weight:700;text-align:left;vertical-align:bottom}
+.woche tbody th{padding-left:.15rem;font-weight:700;text-align:left}
+.woche td{height:2.35rem;padding:.35rem .5rem;border-radius:.3rem;vertical-align:middle}
+.woche .leer{background:rgb(29 42 33 / .06)}
+.woche .austern{background:var(--gold)}
+.woche .austern strong{display:block}
+.woche .wurst{background:var(--kalk);border:1.5px solid rgb(29 42 33 / .22);text-align:center}
+.woche .bald{border:1.5px dashed rgb(29 42 33 / .3);color:rgb(29 42 33 / .62);text-align:center}
+.woche .folgt{background:rgb(214 171 66 / .28);border:1.5px dashed var(--gold-dunkel);text-align:center;font-weight:700}
+
+.legende{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;margin:1rem 0 0;padding:0;list-style:none;font-family:var(--sans);font-size:var(--fs-small)}
+.legende li::before{content:"";display:inline-block;width:.95em;height:.95em;margin-right:.45em;border-radius:.2em;vertical-align:-.12em}
+.legende-austern::before{background:var(--gold)}
+.legende-wurst::before{background:var(--kalk);box-shadow:inset 0 0 0 1.5px rgb(29 42 33 / .22)}
+
+/* Umschalter Advent / 2027 ohne Skript (:has). Ohne :has stehen beide Pläne untereinander. */
+@supports selector(:has(*)){
+  .plan:has(#zeit-advent:checked) .woche-2027,
+  .plan:has(#zeit-2027:checked) .woche-advent,
+  .plan:has(#zeit-advent:checked) .legende-wurst{display:none}
+}
+@supports not selector(:has(*)){
+  .plan-wahl{display:none}
+  .woche caption{position:static;width:auto;height:auto;margin:1.25rem 0 .25rem;clip:auto;white-space:normal;font-weight:700;text-align:left}
+}
+
+/* ---------- Fuß ---------- */
+.fuss{padding-block:2.5rem calc(2.5rem + env(safe-area-inset-bottom, 0px));background:var(--nacht);color:var(--kalk)}
+.fuss-raster{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem 2rem}
+.fuss ul{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;margin:0;padding:0;list-style:none;font-family:var(--sans);font-size:var(--fs-small)}
+.fuss a{text-underline-offset:.2em}
+.fuss-recht{color:rgb(251 250 246 / .7)}
+
+@media (prefers-reduced-motion:reduce){
+  .kugel{animation:none}
+  .knopf,.kugel-ball{transition:none}
+}
