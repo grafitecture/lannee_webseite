@@ -81,7 +81,7 @@ a{color:inherit}
 .kugel.ist-vorbei .kugel-ball{filter:saturate(.2) brightness(.62)}
 .kugel.ist-naechstes .kugel-ball{box-shadow:inset calc(var(--d) * -.06) calc(var(--d) * -.09) calc(var(--d) * .16) rgb(0 0 0 / .32), 0 0 0 3px var(--nacht), 0 0 0 5px var(--gold-hell), 0 0 calc(var(--d) * .35) rgb(242 217 143 / .45)}
 
-.girlande-text{margin:1.1rem 0 0;font-family:var(--sans);font-size:var(--fs-small);line-height:1.4;color:rgb(251 250 246 / .72)}
+.girlande-text{margin:1.1rem 0 0;font-family:var(--sans);font-size:var(--fs-h6);line-height:1.35;color:rgb(251 250 246 / .72)}
 .girlande-text.ist-aktuell{color:var(--gold-hell);font-weight:700}
 
 .kopf-titel .ganz{white-space:nowrap}
