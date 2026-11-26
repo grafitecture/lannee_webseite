@@ -37,8 +37,8 @@ html,body{height:100%;min-height:0;overflow:hidden;overscroll-behavior:none}
   --name:2.441;   /* Hauptwort = Stufe h3 der Skala */
   --lw:22.5;      /* Logobreite in --b … */
   --cap:68vw;     /* … höchstens so breit (Platz für die Advent-Kugeln) */
-  --k:48.85;      /* Inhaltshöhe in --b, wenn das Logo frei wächst (+2,35 Advent-Pop-up, 26.11.) */
-  --k2:36.65;     /* Inhaltshöhe in --b ohne Logo, wenn das Logo an --cap stößt (+2,35) */
+  --k:49.55;      /* Inhaltshöhe in --b, wenn das Logo frei wächst (+3,05 Advent-Pop-up, 26.11.) */
+  --k2:37.35;     /* Inhaltshöhe in --b ohne Logo, wenn das Logo an --cap stößt (+3,05) */
   --A:calc(100 * var(--vh) - var(--pad-t) - var(--pad-b) - var(--fix));
   --b-h:max(calc(var(--A) / var(--k)), calc((var(--A) - .542 * var(--cap)) / var(--k2)));
   --b-w:calc((100vw - 40px) / 15);
@@ -98,10 +98,18 @@ html,body{height:100%;min-height:0;overflow:hidden;overscroll-behavior:none}
 .location-hours .location-note{font-size:var(--fs-small)}
 /* Advent-Pop-up unter der Garage (Martin, 26.11.2026): kleine Ankündigung, Stufe small = 0,8 --b,
    erste Zeile halbfett, zweite normal mit Link auf die Karte (PDF, assets/). Erhöht den Garage-Block
-   um 2,31 --b – deshalb --k/--k2 in allen drei Fassungen um 2,35 größer (bei Wegfall wieder abziehen). */
+   um 2,97 --b (mit Fläche) – deshalb --k/--k2 in allen drei Fassungen um 3,05 größer (bei Wegfall wieder abziehen). */
 .hero .locations .location-popup{
   display:flex;flex-direction:column;
-  margin-top:calc(.44 * var(--b));
+  /* ganz leicht unterlegte Fläche (Martin, 26.11.2026): dunkler Schleier mit etwas Unschärfe,
+     nur so breit wie der Text – hebt die Ankündigung auf hellen Fotos ab, ohne Block-Optik. */
+  width:fit-content;
+  margin:calc(.5 * var(--b)) auto 0;
+  padding:calc(.3 * var(--b)) calc(.75 * var(--b));
+  border-radius:calc(.45 * var(--b));
+  background:rgb(0 0 0 / .22);
+  -webkit-backdrop-filter:blur(6px);
+  backdrop-filter:blur(6px);
   font-size:calc(.8 * var(--b));
   line-height:1.17;
   font-weight:400;
@@ -115,7 +123,7 @@ html,body{height:100%;min-height:0;overflow:hidden;overscroll-behavior:none}
 
 /* Niedrige Fenster (Handy mit Browserleisten, kleine Laptops): Hauptwort eine Stufe tiefer (h4). */
 @media (max-height:700px){
-  .hero{--name:1.953;--k:45.85;--k2:33.65}
+  .hero{--name:1.953;--k:46.55;--k2:34.35}
 }
 /* Handy hochkant: Fußzeile zweizeilig (Leiste, darunter Instagram · Impressum · Datenschutz · Pause). */
 @media (max-width:600px){
@@ -124,7 +132,7 @@ html,body{height:100%;min-height:0;overflow:hidden;overscroll-behavior:none}
 /* Breite, niedrige Fenster (Handy quer): Standorte nebeneinander, Logo kleiner. */
 @media (max-height:560px) and (min-aspect-ratio:5/4){
   .hero{
-    --name:2.441;--lw:14;--cap:40vw;--k:24.85;--k2:17.25;
+    --name:2.441;--lw:14;--cap:40vw;--k:25.55;--k2:17.95;
     --b-w:calc((100vw - 64px) / 44);
   }
   /* Raster statt Flex: Hauptwörter stehen auf einer Linie, die Reihe sitzt mittig im freien Raum. */
