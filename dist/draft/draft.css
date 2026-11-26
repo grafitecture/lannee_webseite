@@ -136,7 +136,7 @@ a{color:inherit}
 
 /* Drei Orte von Austern & Bubbles */
 .orte{display:grid;gap:clamp(1.75rem, 4vw, 2.5rem);margin:clamp(2.25rem, 5vw, 3.5rem) 0 0;padding:0;list-style:none}
-.ort{display:grid;grid-template-columns:5.5rem minmax(0, 1fr);gap:1rem;align-items:start;padding-top:1.25rem;border-top:2px solid var(--tinte)}
+.ort{display:grid;grid-template-columns:5.5rem minmax(0, 1fr);gap:1rem;align-items:start;align-content:start;padding-top:1.25rem;border-top:2px solid var(--tinte)}
 .ort-bild{width:100%;aspect-ratio:1;object-fit:cover;border-radius:var(--radius)}
 .bild-hof{object-position:45% 60%}
 .bild-kiosk{object-position:40% 62%}
