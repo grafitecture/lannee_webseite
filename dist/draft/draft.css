@@ -154,12 +154,17 @@ a{color:inherit}
 
 /* ---------- Fuß ---------- */
 .fuss{padding-block:2.5rem calc(2.5rem + env(safe-area-inset-bottom, 0px));background:var(--nacht);color:var(--kalk)}
-.fuss-raster{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem 2rem}
+.fuss-raster{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1.25rem 2rem}
 .fuss ul{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;margin:0;padding:0;list-style:none;font-family:var(--sans);font-size:var(--fs-small)}
 .fuss a{text-underline-offset:.2em}
+/* Instagram-Profilkreise von Austern & Bubbles und L’ANNÉE als Links (Martin, 26.11.2026) */
+.fuss-links{row-gap:1rem}
+.insta{display:inline-flex;align-items:center;gap:.75rem}
+.insta-kreis{flex:none;width:3.5rem;height:3.5rem;border-radius:50%;box-shadow:0 0 0 2px rgb(251 250 246 / .22);transition:box-shadow .2s}
+.insta:hover .insta-kreis,.insta:focus-visible .insta-kreis{box-shadow:0 0 0 2px var(--gold-hell)}
 .fuss-recht{color:rgb(251 250 246 / .7)}
 
 @media (prefers-reduced-motion:reduce){
   .kugel{animation:none}
-  .knopf,.kugel-ball{transition:none}
+  .knopf,.kugel-ball,.insta-kreis{transition:none}
 }
