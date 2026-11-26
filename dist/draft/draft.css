@@ -134,13 +134,6 @@ a{color:inherit}
   .hof{grid-template-columns:repeat(4, minmax(0, 1fr))}
 }
 
-/* Einladung von David & Eric in wörtlicher Rede (Martin, 26.11.2026): Scharnier zwischen Ort (grün) und Gast (gold). */
-.macher{padding-block:clamp(3rem, 7vw, 5rem);background:var(--kalk);color:var(--tinte)}
-.macher-zitat{max-width:44rem;margin:0}
-.macher-zitat blockquote{margin:0}
-.macher-zitat p{margin:0;font-size:var(--fs-h4);line-height:1.3;text-indent:-.42em;text-wrap:balance}
-.macher-zitat figcaption{margin-top:1.25rem;font-family:var(--sans);font-size:var(--fs-small);font-weight:700}
-
 /* Drei Orte von Austern & Bubbles */
 .orte{display:grid;gap:clamp(1.75rem, 4vw, 2.5rem);margin:clamp(2.25rem, 5vw, 3.5rem) 0 0;padding:0;list-style:none}
 .ort{display:grid;grid-template-columns:5.5rem minmax(0, 1fr);gap:1rem;align-items:start;padding-top:1.25rem;border-top:2px solid var(--tinte)}
@@ -157,43 +150,6 @@ a{color:inherit}
   .orte{grid-template-columns:repeat(3, minmax(0, 1fr))}
   .ort{grid-template-columns:minmax(0, 1fr)}
   .ort-bild{aspect-ratio:3/2}
-}
-
-/* Wochenplan */
-.plan{max-width:46rem;margin-top:clamp(3.5rem, 8vw, 5.5rem)}
-.plan-titel{margin:0;font-family:var(--schwer);font-weight:900;font-size:var(--fs-h4);line-height:1.05;letter-spacing:-.035em}
-.plan-wahl{display:inline-flex;flex-wrap:wrap;gap:.25rem;margin:1.25rem 0 1rem;padding:.25rem;border:0;border-radius:999px;background:rgb(29 42 33 / .08)}
-.plan-wahl input{position:absolute;width:1px;height:1px;opacity:0}
-.plan-wahl label{padding:.55rem 1rem;border-radius:999px;font-family:var(--sans);font-size:var(--fs-small);font-weight:700;line-height:1.2;cursor:pointer}
-.plan-wahl input:checked + label{background:var(--tinte);color:var(--champagner)}
-.plan-wahl input:focus-visible + label{outline:2px solid var(--tinte);outline-offset:2px}
-
-.woche{width:calc(100% + .6rem);margin:0 -.3rem;border-collapse:separate;border-spacing:.3rem;table-layout:fixed;font-family:var(--sans);font-size:var(--fs-small);line-height:1.2}
-.woche thead td{width:2.1rem}
-.woche thead th{padding:0 .45rem .25rem;font-weight:700;text-align:left;vertical-align:bottom}
-.woche tbody th{padding-left:.15rem;font-weight:700;text-align:left}
-.woche td{height:2.35rem;padding:.35rem .5rem;border-radius:.3rem;vertical-align:middle}
-.woche .leer{background:rgb(29 42 33 / .06)}
-.woche .austern{background:var(--gold)}
-.woche .austern strong{display:block}
-.woche .wurst{background:var(--kalk);border:1.5px solid rgb(29 42 33 / .22);text-align:center}
-.woche .bald{border:1.5px dashed rgb(29 42 33 / .3);color:rgb(29 42 33 / .62);text-align:center}
-.woche .folgt{background:rgb(214 171 66 / .28);border:1.5px dashed var(--gold-dunkel);text-align:center;font-weight:700}
-
-.legende{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;margin:1rem 0 0;padding:0;list-style:none;font-family:var(--sans);font-size:var(--fs-small)}
-.legende li::before{content:"";display:inline-block;width:.95em;height:.95em;margin-right:.45em;border-radius:.2em;vertical-align:-.12em}
-.legende-austern::before{background:var(--gold)}
-.legende-wurst::before{background:var(--kalk);box-shadow:inset 0 0 0 1.5px rgb(29 42 33 / .22)}
-
-/* Umschalter Advent / 2027 ohne Skript (:has). Ohne :has stehen beide Pläne untereinander. */
-@supports selector(:has(*)){
-  .plan:has(#zeit-advent:checked) .woche-2027,
-  .plan:has(#zeit-2027:checked) .woche-advent,
-  .plan:has(#zeit-advent:checked) .legende-wurst{display:none}
-}
-@supports not selector(:has(*)){
-  .plan-wahl{display:none}
-  .woche caption{position:static;width:auto;height:auto;margin:1.25rem 0 .25rem;clip:auto;white-space:normal;font-weight:700;text-align:left}
 }
 
 /* ---------- Fuß ---------- */
