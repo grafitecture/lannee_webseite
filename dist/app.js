@@ -6,7 +6,7 @@ document.addEventListener('keydown',e=>{
  if(e.key==='Tab'||e.key.startsWith('Arrow'))document.documentElement.dataset.inputMethod='keyboard';
 },true);
 const locations={
- garage:{title:'Garage',address:'Beilstraße 6 · Jungbusch · Mannheim',hours:'Freitag & Samstag, ab 16 Uhr',note:'(Wir öffnen Austern ab dem 08.01.2027)'},
+ garage:{title:'Garage',address:'Beilstraße 6 · Jungbusch · Mannheim',hours:'Samstag & Sonntag, ab 16 Uhr'},
  kiosque:{title:'Kiosque',address:'Lindenhofplatz 1 · Lindenhof · Mannheim',hours:'Täglich, ab 8 Uhr',note:'(Frühjahr 2027)'},
  marche:{title:'Marché',address:'Meeräckerplatz · Lindenhof · Mannheim',hours:'Samstags, ab 10 Uhr'}
 };
@@ -194,4 +194,20 @@ function selectMenuTab(tab){
 menuTabs.forEach((tab,index)=>{
  tab.addEventListener('click',()=>selectMenuTab(tab));
  tab.addEventListener('keydown',event=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;event.preventDefault();const next=event.key==='Home'?menuTabs[0]:event.key==='End'?menuTabs[1]:menuTabs[1-index];selectMenuTab(next);next.focus();});
+});
+
+// Garage-Symbol (Erics Mail 26.11.2026): Klick → grünes Licht flackert an (neon-start, 0,9 s) →
+// Speisekarte /karte/ öffnet in neuem Fenster. Strg-/Cmd-/Mittelklick und reduzierte Bewegung: sofort.
+document.querySelectorAll('.locations .venue-link').forEach(link=>{
+ link.addEventListener('click',e=>{
+  if(e.button!==0||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey||reduced.matches)return;
+  e.preventDefault();
+  if(link.classList.contains('is-lit'))return;
+  link.classList.add('is-lit');
+  setTimeout(()=>{
+   const win=window.open(link.href,'_blank');
+   if(win)win.opener=null;else location.href=link.href;
+   setTimeout(()=>link.classList.remove('is-lit'),400);
+  },900);
+ });
 });
