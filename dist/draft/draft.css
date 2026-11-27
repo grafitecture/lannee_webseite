@@ -87,7 +87,24 @@ a{color:inherit}
 
 /* Foto des Hofs in Tannengrün, randlos */
 .fenster{grid-area:oben;position:relative;min-height:0;margin:0 calc(var(--rand) * -1);overflow:hidden;background:var(--tanne)}
-.fenster img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 70%}
+/* 15 Bilder im Wechsel (draft.js): weiche Überblendung 1,8 s, dazu ein langsames Herauszoomen */
+.fenster-bild{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%;opacity:0;scale:1.06;transition:opacity 1.8s ease, scale 9s linear}
+.fenster-bild.ist-sichtbar{opacity:1;scale:1}
+.fb-1{object-position:50% 60%}
+.fb-2{object-position:50% 50%}
+.fb-3{object-position:50% 62%}
+.fb-4{object-position:50% 58%}
+.fb-5{object-position:50% 45%}
+.fb-6{object-position:50% 50%}
+.fb-7{object-position:50% 45%}
+.fb-8{object-position:50% 45%}
+.fb-9{object-position:50% 55%}
+.fb-10{object-position:50% 62%}
+.fb-11{object-position:50% 60%}
+.fb-12{object-position:50% 45%}
+.fb-13{object-position:50% 55%}
+.fb-14{object-position:50% 45%}
+.fb-15{object-position:50% 45%}
 .fenster::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom, rgb(4 18 11 / .62) 0, rgb(4 18 11 / .15) 45%, transparent 70%)}
 
 .entwurf{grid-area:oben;align-self:start;position:relative;z-index:1;margin:var(--a-py) 0 0;color:rgb(246 235 220 / .6);font-size:var(--fs-small);line-height:1.3;letter-spacing:.01em}
@@ -147,7 +164,6 @@ a{color:inherit}
     --a-py:min(2.75rem, 4.5svh);
     --d:min(8.5vw, 13svh, 8rem)}
   .fenster{grid-area:fenster;margin:calc(var(--a-py) * -1) calc(var(--rand) * -1) calc(var(--a-py) * -1) 0}
-  .fenster img{object-position:46% 60%}
   .fenster::after{background:linear-gradient(to bottom, rgb(4 18 11 / .45) 0, transparent 35%)}
   .entwurf{grid-area:hinweis;margin:0;color:rgb(36 92 67 / .55)}
   .advent-logo{grid-area:logo;width:min(19rem, 26vw, 36svh);margin-top:var(--a-gap)}
@@ -172,6 +188,7 @@ a{color:inherit}
 @media (prefers-reduced-motion:reduce){
   .kugel{animation:none}
   .knopf,.kugel-ball{transition:none}
+  .fenster-bild{scale:1;transition:opacity 1.8s ease}
 }
 
 /* =====================================================================

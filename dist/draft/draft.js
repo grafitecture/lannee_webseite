@@ -41,3 +41,36 @@
   text.textContent = satz;
   text.classList.add('ist-aktuell');
 })();
+
+/* Hero: 15 Bilder aus der Beilstraße im Wechsel (Martin, 27.11.2026). Bild 1 ist sofort da,
+   jedes weitere wird erst kurz vor seinem Auftritt geladen. Pause, solange der Tab verdeckt ist.
+   Bei reduzierter Bewegung wird trotzdem gewechselt, nur ohne Zoom (CSS). */
+(() => {
+  const box = document.querySelector('.fenster[data-bilder]');
+  if (!box) return;
+  const bilder = [...box.querySelectorAll('.fenster-bild')];
+  if (bilder.length < 2) return;
+  const STANDZEIT = 5500;
+  const laden = (bild) => new Promise((fertig) => {
+    if (bild.dataset.src) {
+      bild.src = bild.dataset.src;
+      bild.removeAttribute('data-src');
+    }
+    if (bild.complete && bild.naturalWidth) return fertig();
+    bild.addEventListener('load', fertig, { once: true });
+    bild.addEventListener('error', fertig, { once: true });
+  });
+  let aktuell = 0;
+  laden(bilder[1]);
+  const weiter = async () => {
+    if (document.hidden) return setTimeout(weiter, 1000);
+    const naechstes = (aktuell + 1) % bilder.length;
+    await laden(bilder[naechstes]);
+    bilder[naechstes].classList.add('ist-sichtbar');
+    bilder[aktuell].classList.remove('ist-sichtbar');
+    aktuell = naechstes;
+    laden(bilder[(aktuell + 1) % bilder.length]);
+    setTimeout(weiter, STANDZEIT);
+  };
+  setTimeout(weiter, STANDZEIT);
+})();
