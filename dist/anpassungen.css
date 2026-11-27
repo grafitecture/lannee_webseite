@@ -37,8 +37,8 @@ html,body{height:100%;min-height:0;overflow:hidden;overscroll-behavior:none}
   --name:2.441;   /* Hauptwort = Stufe h3 der Skala */
   --lw:22.5;      /* Logobreite in --b … */
   --cap:68vw;     /* … höchstens so breit (Platz für die Advent-Kugeln) */
-  --k:48.61;      /* Inhaltshöhe in --b, wenn das Logo frei wächst (+3,05 Advent-Pop-up, −0,94 ohne Garage-Klammerzusatz, 26.11.) */
-  --k2:36.41;     /* Inhaltshöhe in --b ohne Logo, wenn das Logo an --cap stößt (+3,05 −0,94) */
+  --k:45.56;      /* Inhaltshöhe in --b, wenn das Logo frei wächst (ohne Garage-Klammerzusatz und ohne Advent-Pop-up-Zeilen, 27.11.) */
+  --k2:33.36;     /* Inhaltshöhe in --b ohne Logo, wenn das Logo an --cap stößt */
   --A:calc(100 * var(--vh) - var(--pad-t) - var(--pad-b) - var(--fix));
   --b-h:max(calc(var(--A) / var(--k)), calc((var(--A) - .542 * var(--cap)) / var(--k2)));
   --b-w:calc((100vw - 40px) / 15);
@@ -96,30 +96,6 @@ html,body{height:100%;min-height:0;overflow:hidden;overscroll-behavior:none}
    und normaler statt halbfetter Schnitt – auf der Startseite und in den Standortdialogen. */
 .hero .locations .location-note{font-size:calc(.8 * var(--b));font-weight:400;letter-spacing:.01em}
 .location-hours .location-note{font-size:var(--fs-small)}
-/* Advent-Pop-up unter der Garage (Martin, 26.11.2026): kleine Ankündigung, Stufe small = 0,8 --b,
-   erste Zeile halbfett, zweite normal mit Link auf die Karte (PDF, assets/). Erhöht den Garage-Block
-   um 2,97 --b (mit Fläche) – deshalb --k/--k2 in allen drei Fassungen um 3,05 größer (bei Wegfall wieder abziehen). */
-.hero .locations .location-popup{
-  display:flex;flex-direction:column;
-  /* ganz leicht unterlegte Fläche (Martin, 26.11.2026): dunkler Schleier mit etwas Unschärfe,
-     nur so breit wie der Text – hebt die Ankündigung auf hellen Fotos ab, ohne Block-Optik. */
-  width:fit-content;
-  margin:calc(.5 * var(--b)) auto 0;
-  padding:calc(.3 * var(--b)) calc(.75 * var(--b));
-  border-radius:calc(.45 * var(--b));
-  background:rgb(0 0 0 / .22);
-  -webkit-backdrop-filter:blur(6px);
-  backdrop-filter:blur(6px);
-  font-size:calc(.8 * var(--b));
-  line-height:1.17;
-  font-weight:400;
-  letter-spacing:.01em;
-  white-space:nowrap;
-  text-shadow:0 1px 2px #000b,0 2px 8px #0008;
-}
-.hero .locations .location-popup>span:first-child{font-weight:600}
-.hero .locations .location-popup a{display:inline;padding:0;color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.18em}
-.hero .locations .location-popup a:hover,.hero .locations .location-popup a:focus-visible{text-decoration-thickness:2px}
 /* Garage-Symbol als Link zur Speisekarte (Erics Mail 26.11.2026): Klick → grünes Licht flackert
    (neon-start/neon-glow aus style.css), dann öffnet /karte/ in neuem Fenster (app.js). */
 .hero .locations .venue-link{display:block;padding:0;line-height:0;cursor:pointer;text-shadow:none;border-radius:.15em}
@@ -128,7 +104,7 @@ html,body{height:100%;min-height:0;overflow:hidden;overscroll-behavior:none}
 
 /* Niedrige Fenster (Handy mit Browserleisten, kleine Laptops): Hauptwort eine Stufe tiefer (h4). */
 @media (max-height:700px){
-  .hero{--name:1.953;--k:45.61;--k2:33.41}
+  .hero{--name:1.953;--k:42.56;--k2:30.36}
 }
 /* Handy hochkant: Fußzeile zweizeilig (Leiste, darunter Instagram · Impressum · Datenschutz · Pause). */
 @media (max-width:600px){
@@ -137,7 +113,7 @@ html,body{height:100%;min-height:0;overflow:hidden;overscroll-behavior:none}
 /* Breite, niedrige Fenster (Handy quer): Standorte nebeneinander, Logo kleiner. */
 @media (max-height:560px) and (min-aspect-ratio:5/4){
   .hero{
-    --name:2.441;--lw:14;--cap:40vw;--k:24.61;--k2:17.01;
+    --name:2.441;--lw:14;--cap:40vw;--k:21.56;--k2:13.96;
     --b-w:calc((100vw - 64px) / 44);
   }
   /* Raster statt Flex: Hauptwörter stehen auf einer Linie, die Reihe sitzt mittig im freien Raum. */
