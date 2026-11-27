@@ -4,22 +4,34 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="robots" content="noindex, nofollow">
-  <meta name="theme-color" content="#13241a">
+  <meta name="theme-color" content="#08190f">
   <meta name="description" content="L’ANNÉE ist der Innenhof der Beilstraße 6 im Jungbusch. Im Advent ist Austern & Bubbles hier zu Gast.">
   <title>L’ANNÉE – Der Hof in der Beilstraße 6 (Entwurf)</title>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preload" as="font" type="font/woff" href="/draft/fonts/ballet.woff" crossorigin>
+  <link rel="preload" as="font" type="font/woff" href="/draft/fonts/inter-display-800.woff" crossorigin>
   <link rel="preload" as="image" href="/draft/lannee-holz.webp">
-  <link rel="stylesheet" href="/draft/draft.css?v=8">
-  <script src="/draft/draft.js?v=1" defer></script>
+  <link rel="stylesheet" href="/draft/draft.css?v=10">
+  <script src="/draft/draft.js?v=2" defer></script>
 </head>
 <body>
   <p class="entwurf">Entwurf – diese Seite ist nicht verlinkt.</p>
 
-  <header class="kopf">
-    <div class="kopf-raster">
-      <div class="kopf-text">
-        <img class="kopf-logo" src="/draft/lannee-holz.webp" alt="L’ANNÉE" width="1100" height="335">
+  <!-- Advent-Pop-up: der weihnachtliche Teil -->
+  <header class="advent">
+    <div class="lichterkette" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="advent-raster">
+      <div class="advent-text">
+        <img class="advent-logo" src="/draft/lannee-holz.webp" alt="L’ANNÉE" width="1100" height="335">
+
+        <h1 class="advent-titel">
+          <span class="advent-schrift">Advent</span>
+          <span class="advent-zeile">Pop-up im Hof</span>
+        </h1>
 
         <ol class="girlande" aria-label="Die vier Adventswochenenden">
           <li class="kugel kugel-1" data-samstag="2026-11-28">
@@ -41,10 +53,9 @@
         </ol>
         <p class="girlande-text" id="naechstes" aria-live="polite">Vier Wochenenden, jeweils Samstag und Sonntag</p>
 
-        <h1 class="kopf-titel">Advent-<span class="ganz">Pop-up</span> im Hof</h1>
-        <p class="kopf-vorspann">Austern &amp; Bubbles ist an allen vier Adventswochenenden zu Gast in L’ANNÉE – mit frischen Austern und etwas Prickelndem.</p>
+        <p class="advent-vorspann">Austern &amp; Bubbles ist an allen vier Adventswochenenden zu Gast in L’ANNÉE – mit frischen Austern und etwas Prickelndem.</p>
 
-        <dl class="kopf-fakten">
+        <dl class="advent-fakten">
           <div>
             <dt>Wann</dt>
             <dd>Samstag &amp; Sonntag, 16–22 Uhr</dd>
@@ -58,13 +69,14 @@
         <a class="knopf" href="/assets/lannee-popup-advent-2026-karte.pdf?v=1" target="_blank" rel="noopener">Karte ansehen (PDF)</a>
       </div>
 
-      <figure class="kopf-bild">
-        <img src="/assets/backgrounds/garage-hof-abend.webp" alt="Der Hof von L’ANNÉE am Abend: überdachte Stehtische, Lichterketten und ein Kranz" width="1200" height="1600" fetchpriority="high">
+      <figure class="fenster">
+        <img src="/draft/img/advent-hof.webp" alt="Der Hof von L’ANNÉE am Abend: überdachte Stehtische, Lichterketten und ein Kranz" width="1152" height="1536" fetchpriority="high">
       </figure>
     </div>
   </header>
 
   <main>
+    <!-- L’ANNÉE ist der Ort -->
     <section class="teil teil-ort" aria-labelledby="ort-titel">
       <div class="rahmen">
         <h2 class="satz" id="ort-titel">
@@ -76,25 +88,25 @@
         <ul class="hof">
           <li>
             <figure>
-              <img class="bild-garage" src="/assets/backgrounds/garage-hof-platanen.webp" alt="Die Garage im Hof mit dem L’ANNÉE-Schriftzug" width="1200" height="1600" loading="lazy">
+              <img src="/draft/img/hof-garage.webp" alt="Die Garage im Hof mit dem L’ANNÉE-Schriftzug" width="900" height="1200" loading="lazy">
               <figcaption><strong>Die Garage</strong> mit zwei großen Toren zum Hof</figcaption>
             </figure>
           </li>
           <li>
             <figure>
-              <img class="bild-remise" src="/assets/backgrounds/elektra-rote-lampen.webp" alt="Kaffeemaschine unter roten Lampen in der Remise" width="1200" height="1600" loading="lazy">
+              <img src="/draft/img/hof-remise.webp" alt="Kaffeemaschine unter roten Lampen in der Remise" width="900" height="1201" loading="lazy">
               <figcaption><strong>Die Remise</strong> mit Getränkeausschank und Kaffeemaschine</figcaption>
             </figure>
           </li>
           <li>
             <figure>
-              <img class="bild-dach" src="/assets/backgrounds/garage-hof-nacht.webp" alt="Der Hof bei Nacht mit berankter Pergola" width="1200" height="1600" loading="lazy">
+              <img src="/draft/img/hof-dach.webp" alt="Berankte Pergola im Innenhof mit dem L’ANNÉE-Schriftzug" width="900" height="1200" loading="lazy">
               <figcaption><strong>Der Innenhof</strong> ist teilweise überdacht</figcaption>
             </figure>
           </li>
           <li>
             <figure>
-              <img class="bild-tische" src="/draft/hof-stehtische.webp" alt="Stehtisch mit Hockern im Hof am Abend" width="640" height="800" loading="lazy">
+              <img src="/draft/img/hof-stehtische.webp" alt="Stehtisch mit Hockern im Hof am Abend" width="640" height="800" loading="lazy">
               <figcaption><strong>Stehtische</strong> stehen frei im Hof – einfach dazustellen</figcaption>
             </figure>
           </li>
@@ -102,6 +114,7 @@
       </div>
     </section>
 
+    <!-- Austern & Bubbles ist zu Gast -->
     <section class="teil teil-gast" aria-labelledby="gast-titel">
       <div class="rahmen">
         <h2 class="satz" id="gast-titel">
@@ -112,33 +125,34 @@
 
         <ul class="orte">
           <li class="ort">
-            <img class="ort-bild bild-hof" src="/assets/backgrounds/garage-hof-sonne.webp" alt="" width="1200" height="1600" loading="lazy">
-            <div class="ort-text">
-              <h3>L’ANNÉE</h3>
-              <p class="ort-adresse">Beilstraße 6, Jungbusch</p>
+            <div class="ort-bild">
+              <img src="/draft/img/ort-lannee.webp" alt="" width="900" height="1200" loading="lazy">
               <p class="ort-rolle">zu Gast im Hof</p>
-              <p><strong>Im Advent:</strong> Samstag &amp; Sonntag, 16–22 Uhr, vom 28.11. bis 20.12.<br><strong>Ab 2027:</strong> regelmäßig, Termine folgen.</p>
             </div>
+            <h3>L’ANNÉE</h3>
+            <p class="ort-adresse">Beilstraße 6, Jungbusch</p>
+            <p><strong>Im Advent:</strong> Samstag &amp; Sonntag, 16–22 Uhr, vom 28.11. bis 20.12.<br><strong>Ab 2027:</strong> regelmäßig, Termine folgen.</p>
           </li>
           <li class="ort">
-            <img class="ort-bild bild-kiosk" src="/assets/backgrounds/kiosque-warmes-abendlicht.webp" alt="" width="1200" height="1600" loading="lazy">
-            <div class="ort-text">
-              <h3>LINDENHOF KIOSK</h3>
-              <p class="ort-adresse">Lindenhofplatz 1, Lindenhof</p>
+            <div class="ort-bild">
+              <img src="/draft/img/ort-kiosk.webp" alt="" width="900" height="1229" loading="lazy">
               <p class="ort-rolle">zu Gast, sonntags</p>
-              <p><strong>Ab Frühjahr 2027:</strong> jeden Sonntag Austern-Pop-up. Unter der Woche gibt es am Kiosk Wurst.</p>
             </div>
+            <h3>LINDENHOF KIOSK</h3>
+            <p class="ort-adresse">Lindenhofplatz 1, Lindenhof</p>
+            <p><strong>Ab Frühjahr 2027:</strong> jeden Sonntag Austern-Pop-up. Unter der Woche gibt es am Kiosk Wurst.</p>
           </li>
           <li class="ort">
-            <img class="ort-bild bild-markt" src="/assets/backgrounds/marche-marktwagen.webp" alt="" width="1200" height="1600" loading="lazy">
-            <div class="ort-text">
-              <h3>MARKT LINDENHOF</h3>
-              <p class="ort-adresse">Meeräckerplatz, Lindenhof</p>
+            <div class="ort-bild">
+              <img src="/draft/img/ort-markt.webp" alt="" width="900" height="1200" loading="lazy">
               <p class="ort-rolle ort-rolle-eigen">eigener Wagen</p>
-              <p><strong>Jeden Samstag</strong> ab 10 Uhr steht der Wagen von Austern &amp; Bubbles auf dem Markt.</p>
             </div>
+            <h3>MARKT LINDENHOF</h3>
+            <p class="ort-adresse">Meeräckerplatz, Lindenhof</p>
+            <p><strong>Jeden Samstag</strong> ab 10 Uhr steht der Wagen von Austern &amp; Bubbles auf dem Markt.</p>
           </li>
         </ul>
+
       </div>
     </section>
   </main>
