@@ -1,16 +1,16 @@
-/* L’ANNÉE – Entwurf /draft, Neugestaltung (Martin, 27.11.2026)
+/* L’ANNÉE – Pop-up-Seite /popup (bis 27.11.2026 /draft), Neugestaltung (Martin, 27.11.2026)
    Inhalt unverändert. Schrift Inter (Text) und Inter Display (Überschriften), dazu Ballet als
    weihnachtliche Schreibschrift (nur „Advent“ und die Unterschrift „David & Eric“).
-   Typo-Skala nur für diese Unterseite: Augmented Fourth 1,414 ab 1440 px Fensterbreite
+   Typo-Skala nur für diese Unterseite /popup: Augmented Fourth 1,414 ab 1440 px Fensterbreite
    (h1 7,993 · h2 5,653 · h3 3,998 · h4 2,827 · h5 1,999 · h6 1,414 · p 1 · small 0,707 · xs 0,5rem),
    bei 360 px Major Third 1,25 (h1 3,815 … h6 1,25), dazwischen fließend über clamp().
    Farbwelt „Tanne & Champagner“: alle Fotos mit derselben Farbabstimmung (Schatten tannengrün,
    Lichter champagnerfarben), Grün = L’ANNÉE (der Ort), Champagner/Gold = Austern & Bubbles (der Gast). */
 
-@font-face{font-family:"Inter";src:url("/draft/fonts/inter-400.woff") format("woff");font-weight:400;font-style:normal;font-display:swap}
-@font-face{font-family:"Inter";src:url("/draft/fonts/inter-600.woff") format("woff");font-weight:600;font-style:normal;font-display:swap}
-@font-face{font-family:"Inter Display";src:url("/draft/fonts/inter-display-800.woff") format("woff");font-weight:800;font-style:normal;font-display:swap}
-@font-face{font-family:"Ballet";src:url("/draft/fonts/ballet.woff") format("woff");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Inter";src:url("/popup/fonts/inter-400.woff") format("woff");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Inter";src:url("/popup/fonts/inter-600.woff") format("woff");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"Inter Display";src:url("/popup/fonts/inter-display-800.woff") format("woff");font-weight:800;font-style:normal;font-display:swap}
+@font-face{font-family:"Ballet";src:url("/popup/fonts/ballet.woff") format("woff");font-weight:400;font-style:normal;font-display:swap}
 
 :root{
   --fs-h1:clamp(3.815rem, 2.4223rem + 6.1896vw, 7.993rem);
@@ -87,7 +87,7 @@ a{color:inherit}
 
 /* Foto des Hofs in Tannengrün, randlos */
 .fenster{grid-area:oben;position:relative;min-height:0;margin:0 calc(var(--rand) * -1);overflow:hidden;background:var(--tanne)}
-/* 15 Bilder im Wechsel (draft.js): weiche Überblendung 1,8 s, dazu ein langsames Herauszoomen */
+/* 15 Bilder im Wechsel (popup.js): weiche Überblendung 1,8 s, dazu ein langsames Herauszoomen */
 .fenster-bild{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%;opacity:0;scale:1.06;transition:opacity 1.8s ease, scale 9s linear}
 .fenster-bild.ist-sichtbar{opacity:1;scale:1}
 .fb-1{object-position:50% 60%}

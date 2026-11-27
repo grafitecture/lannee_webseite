@@ -1,4 +1,4 @@
-/* L’ANNÉE – Entwurf /draft: markiert vergangene Adventswochenenden und das nächste
+/* L’ANNÉE – Pop-up-Seite /popup: markiert vergangene Adventswochenenden und das nächste
    (Goldring) und schreibt darunter, wann das Pop-up als Nächstes offen hat. */
 (() => {
   const kugeln = [...document.querySelectorAll('.kugel[data-samstag]')];
