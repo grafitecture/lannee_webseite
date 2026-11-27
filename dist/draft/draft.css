@@ -140,9 +140,9 @@ a{color:inherit}
 .knopf{display:inline-block;margin-top:2.25rem;padding:.95rem 1.6rem;border-radius:999px;background:var(--goldverlauf);color:var(--nacht);font-size:var(--fs-p);font-weight:600;line-height:1.2;text-decoration:none;box-shadow:0 .5rem 1.5rem rgb(0 0 0 / .35), inset 0 1px 0 rgb(255 255 255 / .45);transition:filter .2s}
 .knopf:hover{filter:brightness(1.08)}
 
-/* Fenster in den Hof: Rundbogen mit Goldrahmen, warmes Leuchten */
-.fenster{position:relative;justify-self:center;width:min(100%, 34rem);margin:0;padding:.45rem;border-radius:50% 50% var(--radius) var(--radius) / 34% 34% var(--radius) var(--radius);background:var(--goldverlauf);box-shadow:0 0 0 1px rgb(0 0 0 / .4), 0 0 5rem rgb(243 213 142 / .28), 0 2rem 4rem rgb(0 0 0 / .45)}
-.fenster img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:42% 40%;border:.25rem solid var(--nacht);border-radius:50% 50% .3rem .3rem / 34% 34% .3rem .3rem}
+/* Hof-Foto mit Goldrahmen, warmes Leuchten – gerade Kanten, kein Bogen (Martin, 27.11.2026) */
+.fenster{position:relative;justify-self:center;width:min(100%, 34rem);margin:0;padding:.45rem;border-radius:var(--radius);background:var(--goldverlauf);box-shadow:0 0 0 1px rgb(0 0 0 / .4), 0 0 5rem rgb(243 213 142 / .28), 0 2rem 4rem rgb(0 0 0 / .45)}
+.fenster img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:42% 40%;border:.25rem solid var(--nacht);border-radius:.3rem}
 
 @media (min-width:40rem){
   .advent-logo{width:clamp(13rem, 24vw, 19rem)}
