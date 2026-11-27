@@ -222,6 +222,19 @@ a{color:inherit}
 .ort-bild img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:var(--radius)}
 .ort-rolle{position:absolute;left:.75rem;bottom:.75rem;margin:0;padding:.35rem .8rem;border-radius:999px;background:var(--schnee);color:var(--tinte);font-size:var(--fs-p);font-weight:600;line-height:1.2;box-shadow:0 .25rem .75rem rgb(0 0 0 / .25)}
 .ort-rolle-eigen{background:var(--tinte);color:var(--champagner)}
+/* Kiosk (Martin, 27.11.2026): Foto der Baustelle von außen, darüber ein Störer „NEUERÖFFNUNG 2027“ –
+   goldenes Siegel oben rechts, leicht gedreht, ragt etwas über die Bildkante. */
+.ort-bild .bild-baustelle{object-position:50% 62%}
+.ort-stoerer{
+  position:absolute;top:-.6rem;right:-.4rem;z-index:1;margin:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  width:7.5rem;aspect-ratio:1;border-radius:50%;
+  background:var(--goldverlauf);color:var(--tinte);
+  box-shadow:0 .4rem 1.1rem rgb(0 0 0 / .35),inset 0 0 0 .2rem rgb(255 255 255 / .35),inset 0 0 0 .3rem rgb(125 90 23 / .35);
+  transform:rotate(-10deg);text-align:center;line-height:1
+}
+.stoerer-wort{font-size:var(--fs-small);font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+.stoerer-jahr{margin-top:.2rem;font-family:var(--display);font-weight:800;font-size:var(--fs-h5);letter-spacing:-.02em}
 .ort h3{margin:1.25rem 0 0;font-family:var(--display);font-weight:800;font-size:var(--fs-h5);line-height:1.05;letter-spacing:-.025em}
 .ort-adresse{margin:.35rem 0 0;color:rgb(18 32 24 / .72)}
 .ort p:last-child{margin:.85rem 0 0;line-height:1.55}
