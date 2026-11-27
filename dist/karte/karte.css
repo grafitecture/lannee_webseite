@@ -62,6 +62,29 @@ a{color:inherit}
   .kopf-zeit{margin:0}
 }
 
+/* Zurück zur Startseite (Martin, 27.11.2026): Die Karte öffnet in einem neuen Fenster/Tab –
+   auf Handy und Tablet (schmal oder Touch) oben ein deutlicher Link zurück, unten ein zweiter im Seitenfuß. */
+.zurueck-zeile{display:none;flex-basis:100%;margin:-.5rem 0 .25rem}
+.zurueck{
+  display:inline-flex;
+  align-items:center;gap:.45em;min-height:2.75rem;padding:.55rem 1rem .55rem .85rem;
+  border-radius:999px;background:rgb(10 20 15 / .55);border:1px solid rgb(255 255 255 / .45);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  color:#fff;font-size:var(--fs-small);font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;line-height:1
+}
+.zurueck span{font-size:var(--fs-p);letter-spacing:0}
+.zurueck:hover,.zurueck:focus-visible{background:rgb(10 20 15 / .75);border-color:#fff}
+.zurueck:focus-visible{outline:2px solid #fff;outline-offset:2px}
+@media (max-width:64rem),(pointer:coarse){
+  .zurueck-zeile{display:block}
+}
+.zurueck-unten{
+  display:inline-flex;align-items:center;gap:.45em;min-height:2.75rem;padding:.55rem 1.25rem;margin:.25rem 0 .5rem;
+  border-radius:999px;background:var(--gruen);color:#fff;font-weight:700;letter-spacing:.12em;text-transform:uppercase;text-decoration:none
+}
+.fuss .zurueck-unten{text-decoration:none}
+.zurueck-unten:hover,.zurueck-unten:focus-visible{background:var(--dunkel)}
+
 /* Leiste unter dem Kopf: Ort, Sprungmarken, PDF */
 .leiste{
   max-width:76rem;margin:0 auto;padding:.9rem 1.25rem;
