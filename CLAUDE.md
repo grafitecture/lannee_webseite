@@ -11,6 +11,8 @@ Website L’ANNÉE × Austern & Bubbles (Mannheim) mit Garage, Kiosque, Marché.
 
 - **Impressum ohne David Werner** (Martin, 28.11.2026, 17:40): „Vertreten durch“ und „Verantwortlich nach § 18 Abs. 2 MStV“ nennen nur noch Eric Schweppe – in `dist/popup/impressum/index.html` und `dist/eric.html`.
 
+- **Aktuelles Datumsfeld pulsiert zu den Öffnungszeiten** (Martin, 28.11.2026, 17:58): `popup.js` setzt `ist-offen` auf `.termin.ist-naechstes`, wenn heute Sa/So dieses Wochenendes und 16–22 Uhr ist (prüft jede Minute neu); `popup.css` Animation `termin-puls` (1,8 s, Skalierung 1 → 1,05 und grüner Ring nach außen), bei reduzierter Bewegung nur ein ruhiger Ring. `popup.css?v=20`, `popup.js?v=5`.
+
 ## Stand (Umstellung 15.11.2026 – ersetzt alle älteren Vorgaben)
 
 Eric hat am 14./15.11.2026 ein Übergabepaket geschickt (`LANNEE_Grafitecture_Uebergabe_2026-11-14`, liegt auf Martins Mac im Ordner CLAUDE_LANNEE). Gestalterische Referenz: `lannee-auster-bubbles.mapleabode.chatgpt.site` (Sites-Version 79). **Der Code in `dist/` ist diese Referenz** – nichts neu erfinden, nur gezielt anpassen.

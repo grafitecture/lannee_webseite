@@ -321,3 +321,13 @@ a{color:inherit}
   .laufband-gruppe[aria-hidden="true"]{display:none}
   .laufband-pause{display:none}
 }
+
+/* Aktuelles Datumsfeld pulsiert während der Öffnungszeit (Martin, 28.11.2026; Klasse ist-offen aus popup.js) */
+.termin.ist-naechstes.ist-offen{animation:termin-puls 1.8s ease-in-out infinite;transform-origin:center}
+@keyframes termin-puls{
+  0%,100%{transform:scale(1);box-shadow:0 .3rem .9rem rgb(15 40 28 / .25),0 0 0 0 rgb(36 92 67 / .55)}
+  50%{transform:scale(1.05);box-shadow:0 .3rem .9rem rgb(15 40 28 / .25),0 0 0 .5rem rgb(36 92 67 / 0)}
+}
+@media (prefers-reduced-motion:reduce){
+  .termin.ist-naechstes.ist-offen{animation:none;box-shadow:0 .3rem .9rem rgb(15 40 28 / .25),0 0 0 .2rem rgb(36 92 67 / .35)}
+}

@@ -104,3 +104,21 @@
     knopf.title = text;
   });
 })();
+
+/* Aktuelles Datumsfeld pulsiert, solange geöffnet ist – Sa/So 16–22 Uhr am aktuellen Adventswochenende
+   (Martin, 28.11.2026). Prüft jede Minute neu, damit es um 16 Uhr anfängt und um 22 Uhr aufhört. */
+(() => {
+  const termin = document.querySelector('.termin.ist-naechstes[data-samstag]');
+  if (!termin) return;
+  const [j, m, t] = termin.dataset.samstag.split('-').map(Number);
+  const pruefen = () => {
+    const jetzt = new Date();
+    const tag = new Date(jetzt.getFullYear(), jetzt.getMonth(), jetzt.getDate()).getTime();
+    const sa = new Date(j, m - 1, t).getTime();
+    const so = new Date(j, m - 1, t + 1).getTime();
+    const h = jetzt.getHours();
+    termin.classList.toggle('ist-offen', (tag === sa || tag === so) && h >= 16 && h < 22);
+  };
+  pruefen();
+  setInterval(pruefen, 60000);
+})();
