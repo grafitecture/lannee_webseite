@@ -11,15 +11,23 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preload" as="font" type="font/woff" href="/popup/fonts/inter-display-800.woff" crossorigin>
   <link rel="preload" as="image" href="/popup/lannee-holz.webp">
-  <link rel="stylesheet" href="/popup/popup.css?v=5">
+  <link rel="preload" as="image" href="/popup/img/hero/n1-garage-bar-boot-tag.webp">
+  <link rel="stylesheet" href="/popup/popup.css?v=7">
   <script src="/popup/popup.js?v=3" defer></script>
 </head>
 <body>
   <!-- Advent-Pop-up (Hero): auf jedem Gerät genau eine Bildschirmhöhe -->
   <header class="advent">
-    <!-- 15 Bilder aus der Beilstraße (Hof, Garage, Essen, Details), Überblendung per popup.js; ohne Skript bleibt Bild 1 -->
+    <!-- 22 Bilder aus der Beilstraße (7 neue Fotos von Martin vom 28.11.2026 zuerst) (Hof, Garage, Essen, Details), Überblendung per popup.js; ohne Skript bleibt Bild 1 -->
     <div class="fenster" data-bilder>
-      <img class="fenster-bild fb-1 ist-sichtbar" src="/popup/img/hero/01-garage-hof-abend.webp" alt="Der Hof von L’ANNÉE am Abend: überdachte Stehtische, Lichterketten und ein Kranz" width="1000" height="1333" fetchpriority="high">
+      <img class="fenster-bild fb-n1 ist-sichtbar" src="/popup/img/hero/n1-garage-bar-boot-tag.webp" alt="Die Bar in der Garage von L’ANNÉE mit Barhockern, Teppichen und dem bemalten Boot" width="1000" height="1333" fetchpriority="high">
+      <img class="fenster-bild fb-n2" data-src="/popup/img/hero/n2-garage-boot-karten.webp" alt="" width="1000" height="1333" decoding="async">
+      <img class="fenster-bild fb-n3" data-src="/popup/img/hero/n3-hof-tisch-kranz.webp" alt="" width="1000" height="1333" decoding="async">
+      <img class="fenster-bild fb-n4" data-src="/popup/img/hero/n4-hof-neon-abend.webp" alt="" width="1000" height="1333" decoding="async">
+      <img class="fenster-bild fb-n5" data-src="/popup/img/hero/n5-adventskranz-1898.webp" alt="" width="1000" height="1333" decoding="async">
+      <img class="fenster-bild fb-n6" data-src="/popup/img/hero/n6-hof-lichterketten.webp" alt="" width="1000" height="1333" decoding="async">
+      <img class="fenster-bild fb-n7" data-src="/popup/img/hero/n7-hof-girlanden-blau.webp" alt="" width="1000" height="1333" decoding="async">
+      <img class="fenster-bild fb-1" data-src="/popup/img/hero/01-garage-hof-abend.webp" alt="" width="1000" height="1333" decoding="async">
       <img class="fenster-bild fb-2" data-src="/popup/img/hero/02-austernplatte-zitrone.webp" alt="" width="1000" height="1333" decoding="async">
       <img class="fenster-bild fb-3" data-src="/popup/img/hero/03-elektra-rote-lampen.webp" alt="" width="1000" height="1333" decoding="async">
       <img class="fenster-bild fb-4" data-src="/popup/img/hero/04-austern-champagner-eis.webp" alt="" width="1000" height="1333" decoding="async">
@@ -75,34 +83,9 @@
           <img class="satz-logo satz-logo-ort" src="/popup/lannee-holz.webp" alt="L’ANNÉE" width="1100" height="335" loading="lazy">
           <span class="satz-rest">ist der Ort.</span>
         </h2>
-        <p class="vorspann">L’ANNÉE ist der Innenhof der Beilstraße 6 im Jungbusch – mit Garage, Remise und Stehtischen. Austern &amp; Bubbles ist hier zu Gast: im Advent als Pop-up, ab 2027 regelmäßig.</p>
-
-        <ul class="hof">
-          <li>
-            <figure>
-              <img src="/popup/img/hof-garage.webp" alt="Die Garage im Hof mit dem L’ANNÉE-Schriftzug" width="900" height="1200" loading="lazy">
-              <figcaption><strong>Die Garage</strong> mit zwei großen Toren zum Hof</figcaption>
-            </figure>
-          </li>
-          <li>
-            <figure>
-              <img src="/popup/img/hof-remise.webp" alt="Kaffeemaschine unter roten Lampen in der Remise" width="900" height="1201" loading="lazy">
-              <figcaption><strong>Die Remise</strong> mit Getränkeausschank und Kaffeemaschine</figcaption>
-            </figure>
-          </li>
-          <li>
-            <figure>
-              <img src="/popup/img/hof-dach.webp" alt="Berankte Pergola im Innenhof mit dem L’ANNÉE-Schriftzug" width="900" height="1200" loading="lazy">
-              <figcaption><strong>Der Innenhof</strong> ist teilweise überdacht</figcaption>
-            </figure>
-          </li>
-          <li>
-            <figure>
-              <img src="/popup/img/hof-stehtische.webp" alt="Stehtisch mit Hockern im Hof am Abend" width="640" height="800" loading="lazy">
-              <figcaption><strong>Stehtische</strong> stehen frei im Hof – einfach dazustellen</figcaption>
-            </figure>
-          </li>
-        </ul>
+        <figure class="ort-bild-gross">
+          <img src="/popup/img/ort-weihnachten.webp" srcset="/popup/img/ort-weihnachten-800.webp 800w, /popup/img/ort-weihnachten.webp 1536w" sizes="(min-width:80rem) 72rem, 100vw" alt="Der Hof von L’ANNÉE in der Beilstraße 6 im Advent: Tannengirlanden mit Kugeln, Lichterketten an den Holzpfosten, dahinter die überdachte Remise" width="1536" height="2048" loading="lazy">
+        </figure>
       </div>
     </section>
 

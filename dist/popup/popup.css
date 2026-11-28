@@ -87,6 +87,13 @@ a{color:inherit}
 /* 15 Bilder im Wechsel (popup.js): weiche Überblendung 1,8 s, dazu ein langsames Herauszoomen */
 .fenster-bild{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 55%;opacity:0;scale:1.06;transition:opacity 1.8s ease, scale 9s linear}
 .fenster-bild.ist-sichtbar{opacity:1;scale:1}
+.fb-n1{object-position:50% 70%}
+.fb-n2{object-position:50% 45%}
+.fb-n3{object-position:50% 40%}
+.fb-n4{object-position:50% 72%}
+.fb-n5{object-position:50% 55%}
+.fb-n6{object-position:50% 55%}
+.fb-n7{object-position:50% 55%}
 .fb-1{object-position:50% 60%}
 .fb-2{object-position:50% 50%}
 .fb-3{object-position:50% 62%}
@@ -199,6 +206,10 @@ a{color:inherit}
 .vorspann{max-width:34em;margin:clamp(1.5rem, 3vw, 2.25rem) 0 0;font-size:var(--fs-h6);line-height:1.55}
 
 /* Der Hof: vier Bilder, jede zweite Spalte versetzt */
+/* L’ANNÉE ist der Ort: seit 28.11.2026 nur Überschrift + ein großes Weihnachtsbild (Martin: „Texte raus“) */
+.ort-bild-gross{margin:clamp(2rem, 5vw, 3.5rem) 0 0}
+.ort-bild-gross img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 55%;border-radius:var(--radius)}
+@media (min-width:48rem){.ort-bild-gross img{aspect-ratio:16/9;object-position:50% 58%}}
 .hof{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:2rem clamp(.85rem, 2vw, 1.5rem);margin:clamp(3rem, 6vw, 4.5rem) 0 0;padding:0;list-style:none}
 .hof li:nth-child(even){margin-top:clamp(2.5rem, 6vw, 5rem)}
 .hof figure{margin:0}
