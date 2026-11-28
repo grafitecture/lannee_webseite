@@ -1,6 +1,7 @@
 /* L’ANNÉE – Pop-up-Seite /popup: markiert in der Terminzeile vergangene Adventswochenenden
-   (durchgestrichen) und das nächste (unterstrichen) und schreibt darunter, wann das Pop-up
-   als Nächstes offen hat. Seit 28.11.2026 Terminzeile statt Kugeln (Martin). */
+   (durchgestrichen, blass) und das nächste (grünes Feld, darin „heute & morgen“ / „heute“ /
+   „morgen“ / „ab morgen“ statt des Monats) und schreibt darunter, wann das Pop-up als Nächstes
+   offen hat. Seit 28.11.2026 Terminzeile statt Kugeln (Martin). */
 (() => {
   const termine = [...document.querySelectorAll('.termin[data-samstag]')];
   const text = document.getElementById('naechstes');
@@ -25,6 +26,20 @@
     if (gefunden) continue;
     gefunden = true;
     termin.classList.add('ist-naechstes');
+
+    // Hinweis im grünen Feld (Martin, 28.11.2026: „heute und morgen sichtbar“)
+    const stunde = jetzt.getHours();
+    let hinweis = '';
+    if (gleicherTag(heute, samstag)) hinweis = stunde < 22 ? 'heute & morgen' : 'morgen';
+    else if (gleicherTag(heute, sonntag)) hinweis = 'heute';
+    else if (heute.getDay() === 5 && (samstag - heute) / 864e5 === 1) hinweis = 'ab morgen';
+    if (hinweis) {
+      const feld = document.createElement('span');
+      feld.className = 'termin-hinweis';
+      feld.textContent = hinweis;
+      termin.append(feld);
+      termin.classList.add('hat-hinweis');
+    }
 
     const tage = `${samstag.getDate()}. und ${sonntag.getDate()}. ${MONATE[sonntag.getMonth()]}`;
     if (gleicherTag(heute, samstag) || gleicherTag(heute, sonntag)) {
