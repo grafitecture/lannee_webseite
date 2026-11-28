@@ -46,9 +46,6 @@
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
     }
   ],
-  "rewrites": [
-    { "source": "/popup/karte/", "destination": "/karte/index.html" }
-  ],
   "redirects": [
     { "source": "/draft", "destination": "/popup", "permanent": true },
     { "source": "/draft/", "destination": "/popup", "permanent": true },
