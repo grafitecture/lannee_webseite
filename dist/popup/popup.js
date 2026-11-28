@@ -1,9 +1,10 @@
-/* L’ANNÉE – Pop-up-Seite /popup: markiert vergangene Adventswochenenden und das nächste
-   (Goldring) und schreibt darunter, wann das Pop-up als Nächstes offen hat. */
+/* L’ANNÉE – Pop-up-Seite /popup: markiert in der Terminzeile vergangene Adventswochenenden
+   (durchgestrichen) und das nächste (unterstrichen) und schreibt darunter, wann das Pop-up
+   als Nächstes offen hat. Seit 28.11.2026 Terminzeile statt Kugeln (Martin). */
 (() => {
-  const kugeln = [...document.querySelectorAll('.kugel[data-samstag]')];
+  const termine = [...document.querySelectorAll('.termin[data-samstag]')];
   const text = document.getElementById('naechstes');
-  if (!kugeln.length || !text) return;
+  if (!termine.length || !text) return;
 
   const MONATE = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'];
   const jetzt = new Date();
@@ -12,18 +13,18 @@
   let satz = 'Das Advent-Pop-up ist vorbei. Ab 2027 ist Austern & Bubbles regelmäßig im Hof.';
   let gefunden = false;
 
-  for (const kugel of kugeln) {
-    const [j, m, t] = kugel.dataset.samstag.split('-').map(Number);
+  for (const termin of termine) {
+    const [j, m, t] = termin.dataset.samstag.split('-').map(Number);
     const samstag = new Date(j, m - 1, t);
     const sonntag = new Date(j, m - 1, t + 1);
     const ende = new Date(j, m - 1, t + 1, 22);
     if (jetzt >= ende) {
-      kugel.classList.add('ist-vorbei');
+      termin.classList.add('ist-vorbei');
       continue;
     }
     if (gefunden) continue;
     gefunden = true;
-    kugel.classList.add('ist-naechstes');
+    termin.classList.add('ist-naechstes');
 
     const tage = `${samstag.getDate()}. und ${sonntag.getDate()}. ${MONATE[sonntag.getMonth()]}`;
     if (gleicherTag(heute, samstag) || gleicherTag(heute, sonntag)) {

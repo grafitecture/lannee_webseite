@@ -9,11 +9,10 @@
   <title>L’ANNÉE – Der Hof in der Beilstraße 6 (Entwurf)</title>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="preload" as="font" type="font/woff" href="/popup/fonts/ballet.woff" crossorigin>
   <link rel="preload" as="font" type="font/woff" href="/popup/fonts/inter-display-800.woff" crossorigin>
   <link rel="preload" as="image" href="/popup/lannee-holz.webp">
-  <link rel="stylesheet" href="/popup/popup.css?v=2">
-  <script src="/popup/popup.js?v=1" defer></script>
+  <link rel="stylesheet" href="/popup/popup.css?v=3">
+  <script src="/popup/popup.js?v=2" defer></script>
 </head>
 <body>
   <!-- Advent-Pop-up (Hero): auf jedem Gerät genau eine Bildschirmhöhe -->
@@ -40,31 +39,18 @@
 
     <img class="advent-logo" src="/popup/lannee-holz.webp" alt="L’ANNÉE" width="1100" height="335">
 
-    <ol class="girlande" aria-label="Die vier Adventswochenenden">
-      <li class="kugel kugel-1" data-samstag="2026-11-28">
-        <span class="kugel-ball" aria-hidden="true"><span class="kugel-tage">28./29.</span><span class="kugel-monat">Nov.</span></span>
-        <span class="sr-only">1. Advent: Samstag, 28., und Sonntag, 29. November</span>
-      </li>
-      <li class="kugel kugel-2" data-samstag="2026-12-05">
-        <span class="kugel-ball" aria-hidden="true"><span class="kugel-tage">5./6.</span><span class="kugel-monat">Dez.</span></span>
-        <span class="sr-only">2. Advent: Samstag, 5., und Sonntag, 6. Dezember</span>
-      </li>
-      <li class="kugel kugel-3" data-samstag="2026-12-12">
-        <span class="kugel-ball" aria-hidden="true"><span class="kugel-tage">12./13.</span><span class="kugel-monat">Dez.</span></span>
-        <span class="sr-only">3. Advent: Samstag, 12., und Sonntag, 13. Dezember</span>
-      </li>
-      <li class="kugel kugel-4" data-samstag="2026-12-19">
-        <span class="kugel-ball" aria-hidden="true"><span class="kugel-tage">19./20.</span><span class="kugel-monat">Dez.</span></span>
-        <span class="sr-only">4. Advent: Samstag, 19., und Sonntag, 20. Dezember</span>
-      </li>
-    </ol>
+    <!-- Einziges Weihnachtselement (Martin, 28.11.2026): der Weihnachtsmann aus dem Instagram-Profilbild -->
+    <img class="nikolaus" src="/popup/img/nikolaus.webp" alt="" width="321" height="360">
 
     <div class="advent-text">
-      <h1 class="advent-titel">
-        <span class="advent-schrift">Advent</span>
-        <span class="advent-zeile">Pop-up im Hof</span>
-      </h1>
+      <h1 class="advent-titel">Advent-<span class="am-stueck">Pop-up</span></h1>
       <p class="advent-vorspann">Austern &amp; Bubbles ist an allen vier Adventswochenenden zu Gast in L’ANNÉE – mit frischen Austern und etwas Prickelndem.</p>
+      <ol class="termine" aria-label="Die vier Adventswochenenden">
+        <li class="termin" data-samstag="2026-11-28"><span class="sr-only">1. Advent: Samstag und Sonntag, </span><span class="termin-tage">28./29.</span> <span class="termin-monat">Nov.</span></li>
+        <li class="termin" data-samstag="2026-12-05"><span class="sr-only">2. Advent: Samstag und Sonntag, </span><span class="termin-tage">5./6.</span> <span class="termin-monat">Dez.</span></li>
+        <li class="termin" data-samstag="2026-12-12"><span class="sr-only">3. Advent: Samstag und Sonntag, </span><span class="termin-tage">12./13.</span> <span class="termin-monat">Dez.</span></li>
+        <li class="termin" data-samstag="2026-12-19"><span class="sr-only">4. Advent: Samstag und Sonntag, </span><span class="termin-tage">19./20.</span> <span class="termin-monat">Dez.</span></li>
+      </ol>
       <dl class="advent-fakten">
         <div>
           <dt>Wann</dt>
@@ -76,7 +62,7 @@
         </div>
       </dl>
       <div class="advent-aktion">
-        <p class="girlande-text" id="naechstes" aria-live="polite">Vier Wochenenden, jeweils Samstag und Sonntag</p>
+        <p class="naechstes" id="naechstes" aria-live="polite">Vier Wochenenden, jeweils Samstag und Sonntag</p>
         <a class="knopf" href="/karte/" target="_blank" rel="noopener">Karte ansehen</a>
       </div>
     </div>

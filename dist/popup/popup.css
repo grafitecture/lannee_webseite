@@ -1,27 +1,26 @@
 /* L’ANNÉE – Pop-up-Seite /popup (bis 27.11.2026 /draft), Neugestaltung (Martin, 27.11.2026)
-   Inhalt unverändert. Schrift Inter (Text) und Inter Display (Überschriften), dazu Ballet als
-   weihnachtliche Schreibschrift (nur „Advent“ und die Unterschrift „David & Eric“).
-   Typo-Skala nur für diese Unterseite /popup: Augmented Fourth 1,414 ab 1440 px Fensterbreite
-   (h1 7,993 · h2 5,653 · h3 3,998 · h4 2,827 · h5 1,999 · h6 1,414 · p 1 · small 0,707 · xs 0,5rem),
-   bei 360 px Major Third 1,25 (h1 3,815 … h6 1,25), dazwischen fließend über clamp().
+   Schrift Inter (Text) und Inter Display (Überschriften). Keine Weihnachtsschrift mehr (Martin, 28.11.2026).
+   Typo-Skala nur für diese Unterseite /popup: Perfect Fourth 1,333 (Martin, 28.11.2026) ab 1440 px
+   Fensterbreite (h1 5,61 · h2 4,209 · h3 3,157 · h4 2,369 · h5 1,777 · h6 1,333 · p 1 · small 0,75 ·
+   xs 0,563rem), bei 360 px jede Überschrift eine Stufe tiefer (h1 4,209 … h6 1), dazwischen fließend
+   über clamp() – wie die Startseite, nur mit Verhältnis 1,333.
    Farbwelt „Tanne & Champagner“: alle Fotos mit derselben Farbabstimmung (Schatten tannengrün,
    Lichter champagnerfarben), Grün = L’ANNÉE (der Ort), Champagner/Gold = Austern & Bubbles (der Gast). */
 
 @font-face{font-family:"Inter";src:url("/popup/fonts/inter-400.woff") format("woff");font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:"Inter";src:url("/popup/fonts/inter-600.woff") format("woff");font-weight:600;font-style:normal;font-display:swap}
 @font-face{font-family:"Inter Display";src:url("/popup/fonts/inter-display-800.woff") format("woff");font-weight:800;font-style:normal;font-display:swap}
-@font-face{font-family:"Ballet";src:url("/popup/fonts/ballet.woff") format("woff");font-weight:400;font-style:normal;font-display:swap}
 
 :root{
-  --fs-h1:clamp(3.815rem, 2.4223rem + 6.1896vw, 7.993rem);
-  --fs-h2:clamp(3.052rem, 2.1850rem + 3.8533vw, 5.653rem);
-  --fs-h3:clamp(2.441rem, 1.9220rem + 2.3067vw, 3.998rem);
-  --fs-h4:clamp(1.953rem, 1.6617rem + 1.2948vw, 2.827rem);
-  --fs-h5:clamp(1.563rem, 1.4177rem + .6459vw, 1.999rem);
-  --fs-h6:clamp(1.25rem, 1.1953rem + .2430vw, 1.414rem);
+  --fs-h1:clamp(4.209rem, 3.7420rem + 2.0756vw, 5.61rem);
+  --fs-h2:clamp(3.157rem, 2.8063rem + 1.5585vw, 4.209rem);
+  --fs-h3:clamp(2.369rem, 2.1063rem + 1.1674vw, 3.157rem);
+  --fs-h4:clamp(1.777rem, 1.5797rem + .8770vw, 2.369rem);
+  --fs-h5:clamp(1.333rem, 1.1850rem + .6578vw, 1.777rem);
+  --fs-h6:clamp(1rem, .8890rem + .4933vw, 1.333rem);
   --fs-p:1rem;
-  --fs-small:.707rem;
-  --fs-xs:.5rem;
+  --fs-small:.75rem;
+  --fs-xs:.563rem;
 
   --nacht:#08190f;
   --tanne:#0f2a1d;
@@ -37,7 +36,6 @@
 
   --text:"Inter",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
   --display:"Inter Display","Inter",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
-  --schrift:"Ballet","Snell Roundhand","Apple Chancery",cursive;
 
   --rand:clamp(1.25rem, 5vw, 3.5rem);
   --radius:.5rem;
@@ -53,29 +51,27 @@ a{color:inherit}
 .rahmen{max-width:90rem;margin-inline:auto;padding-inline:var(--rand)}
 
 /* =====================================================================
-   Advent-Pop-up (Hero), neu gestaltet 27.11.2026 (Martin: modern statt kitschig, Kugeln bleiben,
-   dunkelrot im Hintergrund, Farbharmonie mit unserem Grün).
+   Advent-Pop-up (Hero). Neu gestaltet 27.11.2026, umgestellt 28.11.2026 (Martin): keine
+   Weihnachtsschrift, keine Kugeln – „Advent-Pop-up“ als Überschrift, die vier Termine als reine
+   Schrift, der Weihnachtsmann aus dem Instagram-Profilbild als einziges Weihnachtselement.
    Immer genau eine Bildschirmhöhe (100svh) auf jedem Gerät. Größen folgen der Skala, sind im Hero
-   aber zusätzlich durch die Fensterhöhe begrenzt (min(…, …svh)); das Hof-Foto (Tannengrün) ist das
-   elastische Feld und nimmt den restlichen Platz.
-   Idee: zwei Flächen – Weinrot und das grüne Hof-Foto. Die vier Kugeln hängen an langen Fäden
-   von der Oberkante und schweben genau über der Grenze zwischen Grün und Rot.
-   Hochformat: oben Foto mit Hinweis und Logo, Kugeln auf der Kante, unten im Rot der Text.
-   Querformat (ab 34rem Breite): links Rot (Logo oben, Text unten), rechts Foto randlos.
-   Umstellung 27.11.2026, 9 Uhr (Martin): Feld weiß statt weinrot, bunte Kugeln, grüne Schrift.
+   aber zusätzlich durch die Fensterhöhe begrenzt (min(…, …svh)); das Hof-Foto ist das elastische Feld.
+   Hochformat: oben Foto mit Hinweis und Logo, der Weihnachtsmann sitzt rechts auf der Bildkante,
+   darunter auf Weiß der Text. Querformat (ab 34rem Breite): links Weiß (Logo oben, Text unten),
+   rechts Foto randlos, der Weihnachtsmann auf der senkrechten Grenze.
    ===================================================================== */
 .advent{
   --gruen:#245c43;
   --gruen-tief:#173f2d;
   --gruen-text:rgb(36 92 67 / .82);
   --creme:#f6ebdc;
-  --a-h1:min(var(--fs-h1), 10svh);
-  --a-h4:min(var(--fs-h4), 4.3svh);
+  --a-h1:min(var(--fs-h1), 9.5svh, 17vw);
+  --a-h5:min(var(--fs-h5), 3.3svh, 5.6vw);
   --a-lead:max(.8125rem, min(var(--fs-h6), 2.4svh));
   --a-p:max(.75rem, min(var(--fs-p), 2.1svh));
   --a-gap:min(1.5rem, 2.1svh);
   --a-py:min(1.75rem, 2.6svh);
-  --d:min(20vw, 10svh, 7rem);
+  --n:min(26vw, 14svh, 8.5rem);
   position:relative;isolation:isolate;overflow:hidden;
   height:100vh;height:100svh;
   display:grid;grid-template-columns:minmax(0, 1fr);
@@ -110,41 +106,34 @@ a{color:inherit}
 .entwurf{grid-area:oben;align-self:start;position:relative;z-index:1;margin:var(--a-py) 0 0;color:rgb(246 235 220 / .6);font-size:var(--fs-small);line-height:1.3;letter-spacing:.01em}
 .advent-logo{grid-area:oben;align-self:start;position:relative;z-index:1;width:min(100%, 44svh);margin-top:calc(var(--a-py) + 1.5rem);filter:drop-shadow(0 1px 1px rgb(15 40 28 / .18)) drop-shadow(0 .3rem .8rem rgb(15 40 28 / .14))}
 
-/* Kugeln: an langen Fäden von oben, über der Kante zwischen Foto und Rot */
-.girlande{grid-area:oben;align-self:end;position:relative;z-index:2;display:flex;justify-content:space-between;align-items:flex-start;width:min(100%, 30rem);margin:0 0 calc(var(--d) * -.85);padding:0;list-style:none}
-.kugel{--drop:0px;position:relative;display:flex;flex-direction:column;align-items:center;width:var(--d);padding-top:var(--drop);transform-origin:50% calc(var(--drop) - 100svh);animation:schwingen var(--t, 6s) ease-in-out var(--v, 0s) infinite alternate}
-.kugel::before{content:"";position:absolute;left:50%;bottom:calc(100% - var(--drop));width:1px;height:100svh;translate:-50% 0;background:linear-gradient(to bottom, rgb(36 92 67 / 0), rgb(36 92 67 / .55) 60%)}
-.kugel-ball{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;width:var(--d);aspect-ratio:1;border-radius:50%;
-  background:radial-gradient(circle at 33% 28%, var(--licht) 0, var(--ton) 48%, var(--dunkel) 100%);
-  box-shadow:inset calc(var(--d) * -.05) calc(var(--d) * -.08) calc(var(--d) * .14) rgb(0 0 0 / .28), 0 calc(var(--d) * .16) calc(var(--d) * .3) rgb(15 40 28 / .28);
-  color:#fff;font-family:var(--display);font-weight:800;line-height:1;text-align:center;transition:filter .3s}
-.kugel-ball::before{content:"";position:absolute;top:calc(var(--d) * -.06);left:50%;translate:-50% 0;width:calc(var(--d) * .16);height:calc(var(--d) * .09);border-radius:calc(var(--d) * .02);background:linear-gradient(90deg, #7a6236, #f1dfae 35%, #a8894a 60%, #e9d39c 85%, #7a6236)}
-.kugel-ball::after{content:"";position:absolute;left:18%;top:12%;width:28%;height:18%;border-radius:50%;rotate:-32deg;background:radial-gradient(rgb(255 255 255 / .6), transparent 70%)}
-.kugel-tage{font-size:calc(var(--d) * .2);letter-spacing:-.03em}
-.kugel-monat{margin-top:.3em;font-family:var(--text);font-weight:600;font-size:calc(var(--d) * .15)}
-/* Bunte Kugeln wie auf der Startseite: Rot, Grün, Gold, Violett */
-.kugel-1{--licht:#ff8a8c;--ton:#c3162f;--dunkel:#4a0716;--drop:0px;--t:6.2s;--v:-1.8s}
-.kugel-2{--licht:#9fd8b0;--ton:#2b6e4b;--dunkel:#06200f;--drop:calc(var(--d) * .5);--t:7.1s;--v:-4.2s}
-.kugel-3{--licht:#fff4b6;--ton:#d6a93a;--dunkel:#6c4a0c;--drop:calc(var(--d) * .2);--t:5.8s;--v:-2.9s}
-.kugel-4{--licht:#e3b4f0;--ton:#8a329c;--dunkel:#2e0c38;--drop:calc(var(--d) * .7);--t:6.8s;--v:-.7s}
-.kugel-3 .kugel-ball{color:#3a2806}
-@keyframes schwingen{from{rotate:-.45deg}to{rotate:.45deg}}
-.kugel.ist-vorbei{animation:none}
-.kugel.ist-vorbei .kugel-ball{filter:saturate(.15) brightness(.55)}
-.kugel.ist-naechstes .kugel-ball{box-shadow:inset calc(var(--d) * -.05) calc(var(--d) * -.08) calc(var(--d) * .14) rgb(0 0 0 / .28), 0 0 0 2.5px #fff, 0 0 0 4.5px var(--gruen), 0 calc(var(--d) * .16) calc(var(--d) * .3) rgb(15 40 28 / .28)}
+/* Weihnachtsmann aus dem Instagram-Profilbild: sitzt rechts auf der Kante zwischen Foto und Weiß */
+.nikolaus{grid-area:oben;align-self:end;justify-self:end;position:relative;z-index:2;width:var(--n);margin:0 calc(var(--n) * -.04) calc(var(--n) * -.42) 0;rotate:6deg;filter:drop-shadow(0 .35rem .6rem rgb(15 40 28 / .28))}
 
-/* Text im roten Feld */
-.advent-text{grid-area:text;min-width:0;padding-top:calc(var(--d) * .85 + var(--a-gap) * .75)}
-.advent-titel{margin:0;font-weight:400;line-height:1}
-.advent-schrift{display:block;margin-left:-.04em;font-family:var(--schrift);font-size:var(--a-h1);font-variation-settings:"opsz" 16;line-height:1.02;color:var(--gruen)}
-.advent-zeile{display:block;margin-top:.05em;font-family:var(--display);font-weight:800;font-size:var(--a-h4);line-height:1.05;letter-spacing:-.025em}
+/* Kleine Handys hochkant (Foto wird niedrig): Logo schmaler, Weihnachtsmann kleiner – sonst berühren sie sich */
+@media (max-aspect-ratio:1/1) and (max-height:700px){
+  .advent{--n:min(26vw, 12svh, 8.5rem)}
+  .advent-logo{width:min(100%, 44svh, 70vw)}
+}
+
+/* Text auf Weiß */
+.advent-text{grid-area:text;min-width:0;padding-top:calc(var(--n) * .42 + var(--a-gap) * .35)}
+.advent-titel{margin:0;font-family:var(--display);font-weight:800;font-size:var(--a-h1);line-height:.95;letter-spacing:-.045em;color:var(--gruen)}
+.am-stueck{white-space:nowrap}  /* Umbruch nur nach „Advent-“, nie in „Pop-up“ */
 .advent-vorspann{max-width:30em;margin:var(--a-gap) 0 0;font-size:var(--a-lead);line-height:1.42;color:var(--gruen-text)}
 .advent-fakten{display:grid;gap:.2em;margin:calc(var(--a-gap) * .8) 0 0;font-size:var(--a-lead)}
 .advent-fakten div{display:grid;grid-template-columns:3.2em minmax(0, 1fr);align-items:baseline}
 .advent-fakten dt{font-size:var(--a-p);color:rgb(36 92 67 / .62)}
 .advent-fakten dd{margin:0;font-weight:600;line-height:1.3}
+/* Die vier Termine als Schrift: vergangene durchgestrichen und blass, das nächste unterstrichen (popup.js) */
+.termine{display:flex;flex-wrap:wrap;gap:.35em clamp(.6rem, 3vw, 1.75rem);margin:var(--a-gap) 0 0;padding:0;list-style:none;font-size:var(--a-h5)}
+.termin{display:flex;flex-direction:column;line-height:1}
+.termin-tage{font-family:var(--display);font-weight:800;letter-spacing:-.025em;text-decoration-thickness:.12em;text-underline-offset:.16em}
+.termin-monat{margin-top:.3em;font-size:var(--a-p);font-weight:600;color:var(--gruen-text)}
+.termin.ist-vorbei{opacity:.38}
+.termin.ist-vorbei .termin-tage{text-decoration-line:line-through;text-decoration-thickness:.08em}
+.termin.ist-naechstes .termin-tage{text-decoration-line:underline}
 .advent-aktion{display:flex;flex-direction:column;align-items:flex-start;gap:calc(var(--a-gap) * .7);margin-top:var(--a-gap)}
-.girlande-text{max-width:24em;margin:0;font-size:var(--a-lead);font-weight:600;line-height:1.3;color:var(--gruen);text-wrap:balance}
+.naechstes{max-width:24em;margin:0;font-size:var(--a-lead);font-weight:600;line-height:1.3;color:var(--gruen);text-wrap:balance}
 .knopf{flex:none;display:inline-block;padding:.8em 1.35em;border-radius:999px;background:var(--gruen);color:#fff;font-size:var(--a-p);font-weight:600;line-height:1.2;text-decoration:none;box-shadow:0 .4rem 1.2rem rgb(15 40 28 / .22);transition:background-color .2s}
 .knopf:hover{background:var(--gruen-tief)}
 .advent :focus-visible{outline-color:var(--gruen)}
@@ -158,36 +147,28 @@ a{color:inherit}
     grid-template-areas:"hinweis fenster" "logo fenster" ". fenster" "text fenster";
     column-gap:var(--rand);
     padding:var(--a-py) var(--rand);
-    --a-h1:min(var(--fs-h1), 13.5svh);
-    --a-h4:min(var(--fs-h4), 4.8svh);
+    --a-h1:min(var(--fs-h1), 12svh);
+    --a-h5:min(var(--fs-h5), 4.4svh);
     --a-gap:min(1.75rem, 2.6svh);
     --a-py:min(2.75rem, 4.5svh);
-    --d:min(8.5vw, 13svh, 8rem)}
+    --n:min(11vw, 22svh, 10rem)}
   .fenster{grid-area:fenster;margin:calc(var(--a-py) * -1) calc(var(--rand) * -1) calc(var(--a-py) * -1) 0}
   .fenster::after{background:linear-gradient(to bottom, rgb(4 18 11 / .45) 0, transparent 35%)}
   .entwurf{grid-area:hinweis;margin:0;color:rgb(36 92 67 / .55)}
   .advent-logo{grid-area:logo;width:min(19rem, 26vw, 36svh);margin-top:var(--a-gap)}
-  .girlande{position:absolute;top:0;left:calc(2 * var(--rand) + (100% - 3 * var(--rand)) * .56);translate:-50% 0;width:min(36rem, 40vw);margin:0}
-  .kugel-1{--drop:7svh}
-  .kugel-2{--drop:16svh}
-  .kugel-3{--drop:10svh}
-  .kugel-4{--drop:20svh}
+  .nikolaus{grid-area:auto;position:absolute;top:calc(var(--a-py) + 9svh);left:calc(2 * var(--rand) + (100% - 3 * var(--rand)) * .56);translate:-50% 0;margin:0}
   .advent-text{padding-top:0}
 }
 /* Sehr niedrige Querformate (Handy quer): Kugeln höher und kleiner, Text etwas knapper */
 @media (min-width:34rem) and (min-aspect-ratio:1/1) and (max-height:28rem){
-  .advent{--a-h1:min(var(--fs-h1), 11svh);--a-lead:.75rem;--a-p:.75rem;--a-gap:2svh;--d:min(7.5vw, 12svh)}
+  .advent{--a-h1:min(var(--fs-h1), 11svh);--a-h5:min(var(--fs-h5), 5svh);--a-lead:.75rem;--a-p:.75rem;--a-gap:2svh;--n:min(8vw, 24svh)}
   .advent-logo{width:min(19rem, 26vw, 30svh);margin-top:1svh}
-  .kugel-1{--drop:2svh}
-  .kugel-2{--drop:7svh}
-  .kugel-3{--drop:4svh}
-  .kugel-4{--drop:9svh}
-  .girlande{left:calc(2 * var(--rand) + (100% - 3 * var(--rand)) * .56 + 4vw)}
+  .nikolaus{top:calc(var(--a-py) + 4svh)}
+}
 }
 
 @media (prefers-reduced-motion:reduce){
-  .kugel{animation:none}
-  .knopf,.kugel-ball{transition:none}
+  .knopf{transition:none}
   .fenster-bild{scale:1;transition:opacity 1.8s ease}
 }
 
