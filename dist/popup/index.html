@@ -12,7 +12,7 @@
   <link rel="preload" as="font" type="font/woff" href="/popup/fonts/inter-display-800.woff" crossorigin>
   <link rel="preload" as="image" href="/popup/lannee-holz.webp">
   <link rel="preload" as="image" href="/popup/img/hero/n1-garage-bar-boot-tag.webp">
-  <link rel="stylesheet" href="/popup/popup.css?v=10">
+  <link rel="stylesheet" href="/popup/popup.css?v=11">
   <script src="/popup/popup.js?v=3" defer></script>
 </head>
 <body>
@@ -76,22 +76,18 @@
   </header>
 
   <main>
-    <!-- L’ANNÉE ist der Gastgeber (bis 28.11.2026: „ist der Ort“) -->
-    <section class="teil teil-ort" aria-labelledby="ort-titel">
-      <div class="rahmen">
-        <h2 class="satz" id="ort-titel">
-          <img class="satz-logo satz-logo-ort" src="/popup/lannee-holz.webp" alt="L’ANNÉE" width="1100" height="335" loading="lazy">
-          <span class="satz-rest">ist der Gastgeber.</span>
-        </h2>
-        <figure class="ort-bild-gross">
-          <img src="/popup/img/ort-garage-bar.webp" srcset="/popup/img/ort-garage-bar-800.webp 800w, /popup/img/ort-garage-bar.webp 1536w" sizes="(min-width:80rem) 72rem, 100vw" alt="Die Bar in der Garage von L’ANNÉE: Gläser unter der Decke, rote Lampenschirme, Michelin-Männchen, Buntglasfenster und das bemalte Boot mit den Karten von Austern &amp; Bubbles" width="1536" height="1013" loading="lazy">
-        </figure>
-      </div>
-    </section>
-
-    <!-- Austern & Bubbles ist zu Gast -->
+    <!-- Ein Bereich (Martin, 28.11.2026): oben L’ANNÉE ist der Ort und der Gastgeber, darunter Austern & Bubbles ist zu Gast -->
     <section class="teil teil-gast" aria-labelledby="gast-titel">
       <div class="rahmen">
+        <div class="gastgeber">
+          <h2 class="satz" id="ort-titel">
+            <img class="satz-logo satz-logo-ort" src="/popup/lannee-holz.webp" alt="L’ANNÉE" width="1100" height="335" loading="lazy">
+            <span class="satz-rest">ist der Ort und der Gastgeber.</span>
+          </h2>
+          <figure class="ort-bild-gross">
+            <img src="/popup/img/ort-garage-bar.webp" srcset="/popup/img/ort-garage-bar-800.webp 800w, /popup/img/ort-garage-bar.webp 1536w" sizes="(min-width:80rem) 72rem, 100vw" alt="Die Bar in der Garage von L’ANNÉE: Gläser unter der Decke, rote Lampenschirme, Michelin-Männchen, Buntglasfenster und das bemalte Boot mit den Karten von Austern &amp; Bubbles" width="1536" height="1013" loading="lazy">
+          </figure>
+        </div>
         <h2 class="satz" id="gast-titel">
           <img class="satz-logo satz-logo-gast" src="/popup/austern-bubbles-dunkel.svg" alt="Austern &amp; Bubbles" width="653" height="275" loading="lazy">
           <span class="satz-rest">ist zu Gast.</span>
