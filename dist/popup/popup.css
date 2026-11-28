@@ -66,7 +66,7 @@ a{color:inherit}
   --gruen-text:rgb(36 92 67 / .82);
   --creme:#f6ebdc;
   --a-h1:min(var(--fs-h1), 9.5svh, 17vw);
-  --a-h4:min(var(--fs-h4), 4.2svh, 5.6vw);
+  --a-h4:min(var(--fs-h3), 5svh, 5.3vw);
   --a-h5:min(var(--fs-h5), 3.3svh, 5.6vw);
   --a-lead:max(.8125rem, min(var(--fs-h6), 2.4svh));
   --a-p:max(.75rem, min(var(--fs-p), 2.1svh));
@@ -104,7 +104,6 @@ a{color:inherit}
 .fb-15{object-position:50% 45%}
 .fenster::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom, rgb(4 18 11 / .62) 0, rgb(4 18 11 / .15) 45%, transparent 70%)}
 
-.entwurf{grid-area:oben;align-self:start;position:relative;z-index:1;margin:var(--a-py) 0 0;color:rgb(246 235 220 / .6);font-size:var(--fs-small);line-height:1.3;letter-spacing:.01em}
 .advent-logo{grid-area:oben;align-self:start;position:relative;z-index:1;width:min(100%, 44svh);margin-top:calc(var(--a-py) + 1.5rem);filter:drop-shadow(0 1px 1px rgb(15 40 28 / .18)) drop-shadow(0 .3rem .8rem rgb(15 40 28 / .14))}
 
 /* Weihnachtsmann aus dem Instagram-Profilbild: sitzt rechts auf der Kante zwischen Foto und Weiß */
@@ -129,14 +128,17 @@ a{color:inherit}
    nächste Wochenende als grünes Feld mit weißer Schrift, darin „heute & morgen“ / „heute“ / „morgen“ statt
    des Monats (popup.js); vergangene durchgestrichen und blass. Größe zusätzlich an der Breite begrenzt,
    damit die vier Termine auch auf kleinen Handys in eine Zeile passen. */
-.termine{display:flex;flex-wrap:wrap;align-items:flex-end;gap:.3em clamp(.5rem, 2.5vw, 1.25rem);margin:var(--a-gap) 0 0;padding:0;list-style:none;font-size:var(--a-h4)}
-.termin{display:flex;flex-direction:column;line-height:1;color:var(--gruen)}
-.termin-tage{font-family:var(--display);font-weight:800;letter-spacing:-.035em;text-decoration-thickness:.08em}
+.termine{display:grid;grid-template-columns:repeat(4, minmax(0, 1fr));width:max-content;max-width:100%;gap:clamp(.35rem, 1.6vw, 1rem);margin:var(--a-gap) 0 0;padding:0;list-style:none;font-size:var(--a-h4)}
+/* Alle vier Termine gleich groß (Martin, 28.11.2026): gleiches Feld für jeden, kommende mit feiner Linie und leicht blass,
+   das aktuelle/nächste grün gefüllt, vergangene durchgestrichen und stärker blass. */
+.termin{display:flex;flex-direction:column;align-items:center;box-sizing:border-box;padding:.24em .3em .3em;border:1px solid rgb(36 92 67 / .5);border-radius:.28em;line-height:1;color:var(--gruen);opacity:.7}
+.termin-tage{font-family:var(--display);font-weight:800;letter-spacing:-.035em;text-decoration-thickness:.08em;white-space:nowrap}
 .termin-monat,.termin-hinweis{margin-top:.32em;font-size:min(var(--a-p), 3.4vw);font-weight:600;letter-spacing:.01em;white-space:nowrap}
+.termin-hinweis{white-space:normal;text-align:center;line-height:1.1}
 .termin-monat{color:var(--gruen-text)}
 .termin.ist-vorbei{opacity:.35}
 .termin.ist-vorbei .termin-tage{text-decoration-line:line-through}
-.termin.ist-naechstes{padding:.24em .4em .3em;border-radius:.28em;background:var(--gruen);color:#fff;box-shadow:0 .3rem .9rem rgb(15 40 28 / .25)}
+.termin.ist-naechstes{opacity:1;border-color:var(--gruen);background:var(--gruen);color:#fff;box-shadow:0 .3rem .9rem rgb(15 40 28 / .25)}
 .termin.ist-naechstes .termin-monat{color:rgb(255 255 255 / .8)}
 .termin.hat-hinweis .termin-monat{display:none}
 .termin-hinweis{color:#fff}
@@ -156,14 +158,13 @@ a{color:inherit}
     column-gap:var(--rand);
     padding:var(--a-py) var(--rand);
     --a-h1:min(var(--fs-h1), 12svh);
-    --a-h4:min(var(--fs-h4), 4.6svh, 2.9vw);
+    --a-h4:min(var(--fs-h3), 5.6svh, 2.9vw);
     --a-h5:min(var(--fs-h5), 4.4svh);
     --a-gap:min(1.75rem, 2.6svh);
     --a-py:min(2.75rem, 4.5svh);
     --n:min(11vw, 22svh, 10rem)}
   .fenster{grid-area:fenster;margin:calc(var(--a-py) * -1) calc(var(--rand) * -1) calc(var(--a-py) * -1) 0}
   .fenster::after{background:linear-gradient(to bottom, rgb(4 18 11 / .45) 0, transparent 35%)}
-  .entwurf{grid-area:hinweis;justify-self:start;margin:0;color:rgb(36 92 67 / .55)}
   .advent-logo{grid-area:logo;width:min(19rem, 26vw, 36svh);margin-top:var(--a-gap)}
   .nikolaus{grid-area:auto;position:absolute;top:calc(var(--a-py) + 3svh);left:calc(2 * var(--rand) + (100% - 3 * var(--rand)) * .56);translate:-50% 0;margin:0}
   .termine{column-gap:clamp(.5rem, 1.4vw, 1.25rem)}
