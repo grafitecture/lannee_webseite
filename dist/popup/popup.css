@@ -201,9 +201,9 @@ a{color:inherit}
 
 .satz{display:flex;flex-wrap:wrap;align-items:flex-end;gap:.25em .4em;margin:0;font-family:var(--display);font-weight:800;font-size:var(--fs-h2);line-height:.95;letter-spacing:-.04em}
 .satz-logo-ort{width:clamp(14rem, 9rem + 22vw, 30rem)}
-/* L’ANNÉE-Block im hellen Bereich: weißes Holzlogo mit leichtem Schatten wie im Hero, Abstand zum Gast-Teil */
+/* L’ANNÉE-Block im hellen Bereich, Abstand zum Gast-Teil */
 .gastgeber{margin-bottom:clamp(2.5rem, 6vw, 4.5rem)}
-.gastgeber .satz-logo-ort{filter:drop-shadow(0 1px 1px rgb(15 40 28 / .35)) drop-shadow(0 .3rem .8rem rgb(15 40 28 / .25))}
+/* Holzlogo hier in der Schriftfarbe --tinte (lannee-holz-tinte.webp, Martin 28.11.2026), ohne Schatten */
 .satz-logo-gast{width:clamp(11rem, 7rem + 15vw, 21rem);margin-bottom:-.1em}
 .satz-rest{padding-bottom:.02em}
 .vorspann{max-width:34em;margin:clamp(1.5rem, 3vw, 2.25rem) 0 0;font-size:var(--fs-h6);line-height:1.55}
