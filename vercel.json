@@ -46,10 +46,14 @@
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
     }
   ],
+  "rewrites": [
+    { "source": "/popup/karte/", "destination": "/karte/index.html" }
+  ],
   "redirects": [
     { "source": "/draft", "destination": "/popup", "permanent": true },
     { "source": "/draft/", "destination": "/popup", "permanent": true },
     { "source": "/draft/:path*", "destination": "/popup/:path*", "permanent": true },
+    { "source": "/popup/karte", "destination": "/popup/karte/", "permanent": true },
     { "source": "/(.*)", "has": [{ "type": "host", "value": "1898.ma" }], "destination": "https://www.lannee.de/", "permanent": false },
     { "source": "/(.*)", "has": [{ "type": "host", "value": "www.1898.ma" }], "destination": "https://www.lannee.de/", "permanent": false },
     { "source": "/(.*)", "has": [{ "type": "host", "value": "garage.ma" }], "destination": "https://www.lannee.de/", "permanent": false },

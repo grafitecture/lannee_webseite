@@ -1,0 +1,32 @@
+/* L’ANNÉE – eigenes Impressum und eigener Datenschutz der Pop-up-Seite (/popup/impressum/,
+   /popup/datenschutz/; Martin, 28.11.2026). Baut auf popup.css auf (Schriften, Skala Perfect Fourth,
+   Farben, Fuß). Ganz unten das gelbe Grafitecture-Feld (grafitecture-credit.css, Kit v1.2).
+   Keine Links auf die Hauptseite lannee.de – zurück geht es immer zu /popup. */
+
+.recht-seite{background:#fff;color:var(--tinte)}
+
+/* Kopf: grünes Band mit dem Holzlogo und dem Weg zurück zum Pop-up */
+.recht-kopf{background:var(--tanne-hell);color:var(--schnee)}
+.recht-kopf-in{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem 2rem;padding-block:calc(1.25rem + env(safe-area-inset-top, 0px)) 1.25rem}
+.recht-logo{display:block;width:clamp(8.5rem, 6rem + 10vw, 12rem)}
+.recht-logo img{width:100%;filter:drop-shadow(0 .2rem .5rem rgb(0 0 0 / .25))}
+.recht-zurueck{display:inline-flex;align-items:center;gap:.45em;min-height:2.75rem;padding:.55rem 1.1rem;border-radius:999px;border:1px solid rgb(250 247 239 / .45);font-size:var(--fs-small);font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;line-height:1}
+.recht-zurueck:hover,.recht-zurueck:focus-visible{background:rgb(250 247 239 / .12);border-color:var(--schnee)}
+.recht-zurueck span{font-size:var(--fs-p);letter-spacing:0}
+
+/* Inhalt */
+.recht{padding-block:clamp(2.5rem, 6vw, 4.5rem) clamp(3rem, 7vw, 5rem)}
+.recht-in{max-width:48rem;margin-inline:0}
+.recht :focus-visible{outline-color:#245c43}
+.recht-titel{margin:0 0 clamp(1.5rem, 3vw, 2.25rem);font-family:var(--display);font-weight:800;font-size:var(--fs-h3);line-height:1;letter-spacing:-.035em;color:#245c43}
+.recht-text{font-size:var(--fs-p);line-height:1.6}
+.recht-text .legal__block{margin:0 0 1.75rem}
+.recht-h{margin:0 0 .5rem;font-family:var(--display);font-weight:800;font-size:var(--fs-h6);line-height:1.25;letter-spacing:-.015em;color:#245c43}
+.recht-text p{margin:0 0 .75rem}
+.recht-text a{color:#245c43;text-decoration-thickness:1px;text-underline-offset:.2em}
+.recht-stand{font-size:var(--fs-small);color:rgb(18 32 24 / .65)}
+.recht-weiter{margin:2.25rem 0 0;padding-top:1.25rem;border-top:1px solid rgb(36 92 67 / .2);font-size:var(--fs-small);font-weight:600;color:#245c43}
+.recht-weiter a{text-underline-offset:.2em;text-decoration-thickness:1px}
+
+/* Fuß wie auf /popup, aktuelle Seite ohne Unterstrich */
+.recht-seite .fuss a[aria-current="page"]{text-decoration:none;opacity:.75}
