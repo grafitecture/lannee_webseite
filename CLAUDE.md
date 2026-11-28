@@ -2,6 +2,13 @@
 
 Website L’ANNÉE × Austern & Bubbles (Mannheim) mit Garage, Kiosque, Marché. Live unter **https://www.lannee.de/** (Vercel-Projekt `lannee_webseite`, Team grafitecture; jeder Push auf `main` geht direkt live). Sprache im Team: Deutsch.
 
+## Umstellung 28.11.2026, 17:30 (Martin: „lannee.de steuert die Pop-up-Seite an, die aktuelle Startseite auf lannee.de/eric legen“) – gilt vor allem darunter
+
+- **https://www.lannee.de/ zeigt die Pop-up-Seite** (`dist/index.html`, vorher `dist/popup/index.html`), **indexierbar** (Martin: „Ja, freigeben“): Canonical `https://www.lannee.de/`, Open Graph mit `/og-image.jpg`, Titel „L’ANNÉE – Advent Pop-up mit Austern & Bubbles · Beilstraße 6, Mannheim“, in `sitemap.xml` wie bisher `/` und `/karte/`. CSS/JS/Bilder bleiben in `dist/popup/` (absolute Pfade `/popup/…`). `/popup`, `/popup/`, `/popup/index.html`, `/draft`, `/draft/` leiten per 308 auf `/`. Unterseiten bleiben unter `/popup/karte/`, `/popup/impressum/`, `/popup/datenschutz/` (noindex per `X-Robots-Tag` für `/popup/(.*)`); ihre Rücklinks zeigen auf `/`.
+- **Bisherige Startseite unter https://www.lannee.de/eric** (`dist/eric.html`, vorher `dist/index.html`) – **versteckt** (Martin): nirgends verlinkt, `noindex` per Meta-Tag und `X-Robots-Tag`, kein Canonical. Rewrite `/eric` → `/eric.html`, `/eric/` leitet per 308 auf `/eric` (ohne Schrägstrich, damit die relativen Pfade `assets/…`, `style.css` usw. auf `/` zeigen – **nie unter `/eric/` ausliefern**). Hash-Dialoge (`/eric#impressum`, `#garage` …) funktionieren wie bisher. Alles, was unten unter „Startseite“ steht, gilt jetzt für `/eric` bzw. `dist/eric.html`.
+- Alte Weiterleitungen `/impressum`, `/datenschutz`, `/legal_notice`, `/fr/…`, `/en/…` zeigen jetzt auf `/popup/impressum/` bzw. `/popup/datenschutz/` (vorher `/#impressum`/`/#datenschutz`, die es auf der neuen Startseite nicht gibt). `/garage`, `/kiosque`, `/marche` usw. weiter auf `/`.
+- `/karte/` (Hauptkarte, indexierbar) unverändert; ihre relativen Links `../` führen jetzt zur Pop-up-Startseite, `../impressum/` über die Weiterleitung zum Pop-up-Impressum.
+
 ## Stand (Umstellung 15.11.2026 – ersetzt alle älteren Vorgaben)
 
 Eric hat am 14./15.11.2026 ein Übergabepaket geschickt (`LANNEE_Grafitecture_Uebergabe_2026-11-14`, liegt auf Martins Mac im Ordner CLAUDE_LANNEE). Gestalterische Referenz: `lannee-auster-bubbles.mapleabode.chatgpt.site` (Sites-Version 79). **Der Code in `dist/` ist diese Referenz** – nichts neu erfinden, nur gezielt anpassen.

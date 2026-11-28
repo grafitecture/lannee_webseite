@@ -33,7 +33,11 @@
       ]
     },
     {
-      "source": "/popup",
+      "source": "/eric",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
+    },
+    {
+      "source": "/eric.html",
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
     },
     {
@@ -46,9 +50,16 @@
       "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }]
     }
   ],
+  "rewrites": [
+    { "source": "/eric", "destination": "/eric.html" }
+  ],
   "redirects": [
-    { "source": "/draft", "destination": "/popup", "permanent": true },
-    { "source": "/draft/", "destination": "/popup", "permanent": true },
+    { "source": "/eric/", "destination": "/eric", "permanent": true },
+    { "source": "/popup", "destination": "/", "permanent": true },
+    { "source": "/popup/", "destination": "/", "permanent": true },
+    { "source": "/popup/index.html", "destination": "/", "permanent": true },
+    { "source": "/draft", "destination": "/", "permanent": true },
+    { "source": "/draft/", "destination": "/", "permanent": true },
     { "source": "/draft/:path*", "destination": "/popup/:path*", "permanent": true },
     { "source": "/popup/karte", "destination": "/popup/karte/", "permanent": true },
     { "source": "/(.*)", "has": [{ "type": "host", "value": "1898.ma" }], "destination": "https://www.lannee.de/", "permanent": false },
@@ -58,20 +69,20 @@
     { "source": "/(.*)", "has": [{ "type": "host", "value": "kiosque.ma" }], "destination": "https://www.lannee.de/", "permanent": false },
     { "source": "/(.*)", "has": [{ "type": "host", "value": "www.kiosque.ma" }], "destination": "https://www.lannee.de/", "permanent": false },
 
-    { "source": "/impressum", "destination": "/#impressum", "permanent": true },
-    { "source": "/impressum/", "destination": "/#impressum", "permanent": true },
-    { "source": "/datenschutz", "destination": "/#datenschutz", "permanent": true },
-    { "source": "/datenschutz/", "destination": "/#datenschutz", "permanent": true },
-    { "source": "/:page(legal_notice|mentions-legales)", "destination": "/#impressum", "permanent": true },
-    { "source": "/:page(legal_notice|mentions-legales)/", "destination": "/#impressum", "permanent": true },
-    { "source": "/fr/mentions-legales", "destination": "/#impressum", "permanent": true },
-    { "source": "/fr/mentions-legales/", "destination": "/#impressum", "permanent": true },
-    { "source": "/en/legal-notice", "destination": "/#impressum", "permanent": true },
-    { "source": "/en/legal-notice/", "destination": "/#impressum", "permanent": true },
-    { "source": "/fr/confidentialite", "destination": "/#datenschutz", "permanent": true },
-    { "source": "/fr/confidentialite/", "destination": "/#datenschutz", "permanent": true },
-    { "source": "/en/privacy", "destination": "/#datenschutz", "permanent": true },
-    { "source": "/en/privacy/", "destination": "/#datenschutz", "permanent": true },
+    { "source": "/impressum", "destination": "/popup/impressum/", "permanent": true },
+    { "source": "/impressum/", "destination": "/popup/impressum/", "permanent": true },
+    { "source": "/datenschutz", "destination": "/popup/datenschutz/", "permanent": true },
+    { "source": "/datenschutz/", "destination": "/popup/datenschutz/", "permanent": true },
+    { "source": "/:page(legal_notice|mentions-legales)", "destination": "/popup/impressum/", "permanent": true },
+    { "source": "/:page(legal_notice|mentions-legales)/", "destination": "/popup/impressum/", "permanent": true },
+    { "source": "/fr/mentions-legales", "destination": "/popup/impressum/", "permanent": true },
+    { "source": "/fr/mentions-legales/", "destination": "/popup/impressum/", "permanent": true },
+    { "source": "/en/legal-notice", "destination": "/popup/impressum/", "permanent": true },
+    { "source": "/en/legal-notice/", "destination": "/popup/impressum/", "permanent": true },
+    { "source": "/fr/confidentialite", "destination": "/popup/datenschutz/", "permanent": true },
+    { "source": "/fr/confidentialite/", "destination": "/popup/datenschutz/", "permanent": true },
+    { "source": "/en/privacy", "destination": "/popup/datenschutz/", "permanent": true },
+    { "source": "/en/privacy/", "destination": "/popup/datenschutz/", "permanent": true },
     { "source": "/:page(garage|kiosque|marche)", "destination": "/", "permanent": true },
     { "source": "/:page(garage|kiosque|marche)/", "destination": "/", "permanent": true },
     { "source": "/:page(atlanten|austernatlas|kontakt|styleguide|das-jahr)", "destination": "/", "permanent": true },
