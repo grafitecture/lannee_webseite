@@ -76,8 +76,8 @@ a{color:inherit}
   position:relative;isolation:isolate;overflow:hidden;
   height:100vh;height:100svh;
   display:grid;grid-template-columns:minmax(0, 1fr);
-  grid-template-rows:minmax(0, 1fr) auto;
-  grid-template-areas:"oben" "text";
+  grid-template-rows:minmax(0, 1fr) auto auto;
+  grid-template-areas:"oben" "logo" "text";
   padding:0 var(--rand) var(--a-py);
   color:var(--gruen);
   background:#fff}
@@ -109,21 +109,23 @@ a{color:inherit}
 .fb-13{object-position:50% 55%}
 .fb-14{object-position:50% 45%}
 .fb-15{object-position:50% 45%}
-.fenster::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom, rgb(4 18 11 / .62) 0, rgb(4 18 11 / .15) 45%, transparent 70%)}
+.fenster::after{content:"";position:absolute;inset:0;pointer-events:none;background:none}
 
-.advent-logo{grid-area:oben;align-self:start;position:relative;z-index:1;width:min(100%, 44svh);margin-top:calc(var(--a-py) + 1.5rem);filter:drop-shadow(0 1px 1px rgb(15 40 28 / .18)) drop-shadow(0 .3rem .8rem rgb(15 40 28 / .14))}
+/* Hochformat (Martin, 28.11.2026, 16:15): Logo nicht mehr im Foto, sondern darunter auf Weiß – das Foto bekommt den ganzen Platz */
+.advent-logo{grid-area:logo;align-self:start;position:relative;z-index:1;width:min(42vw, 16rem, 20svh);margin-top:var(--a-gap)}
+/* picture als Rasterkind unsichtbar machen, damit das img selbst im Raster sitzt */
+.advent picture{display:contents}
 
-/* Weihnachtsmann aus dem Instagram-Profilbild: sitzt rechts auf der Kante zwischen Foto und Weiß */
-.nikolaus{grid-area:oben;align-self:end;justify-self:end;position:relative;z-index:2;width:var(--n);margin:0 calc(var(--n) * -.04) calc(var(--n) * -.42) 0;rotate:6deg;filter:drop-shadow(0 .35rem .6rem rgb(15 40 28 / .28))}
+/* Weihnachtsmann aus dem Instagram-Profilbild: im Hochformat rechts neben der Überschrift „Advent-Pop-up“ (Martin, 28.11.2026, 16:16) */
+.nikolaus{grid-area:text;align-self:start;justify-self:end;position:relative;z-index:2;width:min(calc(var(--a-h1) * 1.9), 27vw);margin:calc(var(--a-gap) * .6) 0 0;rotate:6deg;filter:drop-shadow(0 .35rem .6rem rgb(15 40 28 / .28))}
 
 /* Kleine Handys hochkant (Foto wird niedrig): Logo schmaler, Weihnachtsmann kleiner – sonst berühren sie sich */
 @media (max-aspect-ratio:1/1) and (max-height:700px){
   .advent{--n:min(24vw, 11svh, 8.5rem)}
-  .advent-logo{width:min(100%, 44svh, 66vw)}
 }
 
 /* Text auf Weiß */
-.advent-text{grid-area:text;min-width:0;padding-top:calc(var(--n) * .42 + var(--a-gap) * .35)}
+.advent-text{grid-area:text;min-width:0;padding-top:calc(var(--a-gap) * .6)}
 .advent-titel{margin:0;font-family:var(--display);font-weight:800;font-size:var(--a-h1);line-height:.95;letter-spacing:-.045em;color:var(--gruen)}
 .am-stueck{white-space:nowrap}  /* Umbruch nur nach „Advent-“, nie in „Pop-up“ */
 .advent-vorspann{max-width:30em;margin:var(--a-gap) 0 0;font-size:var(--a-lead);line-height:1.42;color:var(--gruen-text)}
@@ -172,8 +174,8 @@ a{color:inherit}
     --n:min(11vw, 22svh, 10rem)}
   .fenster{grid-area:fenster;margin:calc(var(--a-py) * -1) calc(var(--rand) * -1) calc(var(--a-py) * -1) 0}
   .fenster::after{background:linear-gradient(to bottom, rgb(4 18 11 / .45) 0, transparent 35%)}
-  .advent-logo{grid-area:logo;width:min(40rem, 40vw, 50svh);margin-top:var(--a-gap)}
-  .nikolaus{grid-area:auto;position:absolute;top:calc(var(--a-py) + 3svh);left:calc(2 * var(--rand) + (100% - 3 * var(--rand)) * .56);translate:-50% 0;margin:0}
+  .advent-logo{grid-area:logo;width:min(40rem, 40vw, 50svh);margin-top:var(--a-gap);filter:drop-shadow(0 1px 1px rgb(15 40 28 / .18)) drop-shadow(0 .3rem .8rem rgb(15 40 28 / .14))}
+  .nikolaus{grid-area:auto;position:absolute;width:var(--n);top:calc(var(--a-py) + 3svh);left:calc(2 * var(--rand) + (100% - 3 * var(--rand)) * .56);translate:-50% 0;margin:0}
   .termine{column-gap:clamp(.5rem, 1.4vw, 1.25rem)}
   .termin-monat,.termin-hinweis{font-size:min(var(--a-p), 1.9vw)}
   .advent-text{padding-top:0}
