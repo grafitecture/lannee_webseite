@@ -172,7 +172,7 @@ a{color:inherit}
     --n:min(11vw, 22svh, 10rem)}
   .fenster{grid-area:fenster;margin:calc(var(--a-py) * -1) calc(var(--rand) * -1) calc(var(--a-py) * -1) 0}
   .fenster::after{background:linear-gradient(to bottom, rgb(4 18 11 / .45) 0, transparent 35%)}
-  .advent-logo{grid-area:logo;width:min(19rem, 26vw, 36svh);margin-top:var(--a-gap)}
+  .advent-logo{grid-area:logo;width:min(40rem, 40vw, 50svh);margin-top:var(--a-gap)}
   .nikolaus{grid-area:auto;position:absolute;top:calc(var(--a-py) + 3svh);left:calc(2 * var(--rand) + (100% - 3 * var(--rand)) * .56);translate:-50% 0;margin:0}
   .termine{column-gap:clamp(.5rem, 1.4vw, 1.25rem)}
   .termin-monat,.termin-hinweis{font-size:min(var(--a-p), 1.9vw)}
