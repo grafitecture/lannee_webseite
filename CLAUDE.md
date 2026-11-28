@@ -9,6 +9,8 @@ Website L’ANNÉE × Austern & Bubbles (Mannheim) mit Garage, Kiosque, Marché.
 - Alte Weiterleitungen `/impressum`, `/datenschutz`, `/legal_notice`, `/fr/…`, `/en/…` zeigen jetzt auf `/popup/impressum/` bzw. `/popup/datenschutz/` (vorher `/#impressum`/`/#datenschutz`, die es auf der neuen Startseite nicht gibt). `/garage`, `/kiosque`, `/marche` usw. weiter auf `/`.
 - `/karte/` (Hauptkarte, indexierbar) unverändert; ihre relativen Links `../` führen jetzt zur Pop-up-Startseite, `../impressum/` über die Weiterleitung zum Pop-up-Impressum.
 
+- **Impressum ohne David Werner** (Martin, 28.11.2026, 17:40): „Vertreten durch“ und „Verantwortlich nach § 18 Abs. 2 MStV“ nennen nur noch Eric Schweppe – in `dist/popup/impressum/index.html` und `dist/eric.html`.
+
 ## Stand (Umstellung 15.11.2026 – ersetzt alle älteren Vorgaben)
 
 Eric hat am 14./15.11.2026 ein Übergabepaket geschickt (`LANNEE_Grafitecture_Uebergabe_2026-11-14`, liegt auf Martins Mac im Ordner CLAUDE_LANNEE). Gestalterische Referenz: `lannee-auster-bubbles.mapleabode.chatgpt.site` (Sites-Version 79). **Der Code in `dist/` ist diese Referenz** – nichts neu erfinden, nur gezielt anpassen.
