@@ -208,8 +208,7 @@ a{color:inherit}
 /* Der Hof: vier Bilder, jede zweite Spalte versetzt */
 /* L’ANNÉE ist der Ort: seit 28.11.2026 nur Überschrift + ein großes Weihnachtsbild (Martin: „Texte raus“) */
 .ort-bild-gross{margin:clamp(2rem, 5vw, 3.5rem) 0 0}
-.ort-bild-gross img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 55%;border-radius:var(--radius)}
-@media (min-width:48rem){.ort-bild-gross img{aspect-ratio:16/9;object-position:50% 58%}}
+.ort-bild-gross img{display:block;width:100%;height:auto;border-radius:var(--radius)}
 .hof{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:2rem clamp(.85rem, 2vw, 1.5rem);margin:clamp(3rem, 6vw, 4.5rem) 0 0;padding:0;list-style:none}
 .hof li:nth-child(even){margin-top:clamp(2.5rem, 6vw, 5rem)}
 .hof figure{margin:0}
