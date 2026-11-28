@@ -90,3 +90,17 @@
   };
   setTimeout(weiter, STANDZEIT);
 })();
+
+/* Laufband im Fuß: Knopf zum Anhalten/Weiterlaufen (Martin, 28.11.2026) */
+(() => {
+  const zeile = document.querySelector('.laufband-zeile');
+  const knopf = zeile && zeile.querySelector('.laufband-pause');
+  if (!knopf) return;
+  knopf.addEventListener('click', () => {
+    const an = zeile.classList.toggle('angehalten');
+    knopf.setAttribute('aria-pressed', String(an));
+    const text = an ? 'Laufband weiterlaufen lassen' : 'Laufband anhalten';
+    knopf.setAttribute('aria-label', text);
+    knopf.title = text;
+  });
+})();

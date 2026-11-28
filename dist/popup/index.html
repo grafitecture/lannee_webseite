@@ -12,8 +12,8 @@
   <link rel="preload" as="font" type="font/woff" href="/popup/fonts/inter-display-800.woff" crossorigin>
   <link rel="preload" as="image" href="/popup/lannee-holz.webp">
   <link rel="preload" as="image" href="/popup/img/hero/n1-garage-bar-boot-tag.webp">
-  <link rel="stylesheet" href="/popup/popup.css?v=13">
-  <script src="/popup/popup.js?v=3" defer></script>
+  <link rel="stylesheet" href="/popup/popup.css?v=14">
+  <script src="/popup/popup.js?v=4" defer></script>
 </head>
 <body>
   <!-- Advent-Pop-up (Hero): auf jedem Gerät genau eine Bildschirmhöhe -->
@@ -127,6 +127,124 @@
   </main>
 
   <footer class="fuss">
+    <!-- Laufband mit den Markenlogos wie auf der Startseite (Martin, 28.11.2026) – eigene Kopie, reines CSS;
+         Filter einmal unten definiert, Logos aus /assets/. Pause per Knopf (popup.js), beim Darüberfahren und bei reduzierter Bewegung. -->
+    <div class="laufband-zeile rahmen">
+      <div class="laufband" aria-label="Unsere Marken">
+        <div class="laufband-spur">
+          <div class="laufband-gruppe">
+            <svg class="brand-mark drink-mark bruch-mark" viewBox="174 8 136 53" role="img" aria-label="Getränke Bruch, Ludwigshafen">
+            <image href="/assets/bruch-original.png" width="950" height="146" filter="url(#bruch-white)"/>
+            </svg>
+            <svg class="brand-mark jacquesson-mark" viewBox="120 15 605 220" role="img" aria-label="Champagne Jacquesson">
+            <image href="/assets/jacquesson-original.jpeg" width="874" height="259" filter="url(#jacquesson-white)"/>
+            </svg>
+            <svg class="brand-mark kys-marine-mark" viewBox="113 22 532 162" role="img" aria-label="kys. marine">
+            <image href="/assets/kys-marine-original.jpeg" width="805" height="235" filter="url(#kys-marine-white)"/>
+            </svg>
+            <svg class="brand-mark drink-mark orangina-mark" viewBox="1 110 190 49" role="img" aria-label="Orangina">
+            <image href="/assets/orangina-original.svg" width="192.756" height="192.756" filter="url(#orangina-white)"/>
+            </svg>
+            <svg class="brand-mark drink-mark coca-cola-mark" viewBox="0 0 512 161" role="img" aria-label="Coca-Cola">
+            <image href="/assets/coca-cola-original.svg" width="512" height="161" filter="url(#coca-cola-white)"/>
+            </svg>
+            <svg class="brand-mark drink-mark schweppes-wordmark-mark" viewBox="14 100 500 145" role="img" aria-label="Schweppes">
+            <image href="/assets/schweppes-wordmark-original.jpeg" width="533" height="330" filter="url(#schweppes-wordmark-white)"/>
+            </svg>
+            <svg class="brand-mark drink-mark pelforth-mark" viewBox="10 80 173 40" role="img" aria-label="Pelforth Bier">
+            <image href="/assets/pelforth-original.svg" width="192.756" height="192.756" filter="url(#pelforth-white)"/>
+            </svg>
+            <svg class="brand-mark drink-mark weinrefugium-mark" viewBox="40 22 122 95" role="img" aria-label="Weinrefugium">
+            <image href="/assets/weinrefugium-original.jpeg" width="238" height="180" filter="url(#weinrefugium-white)"/>
+            </svg>
+            <svg class="brand-mark drink-mark der-franzos-mark" viewBox="48 37 340 372" role="img" aria-label="Der Franzos’">
+            <image href="/assets/der-franzos-original.jpeg" width="402" height="431" filter="url(#der-franzos-white)"/>
+            </svg>
+            <svg class="brand-mark drink-mark perrier-mark" viewBox="0 0 90 62" role="img" aria-label="Perrier">
+            <image href="/assets/perrier-original.png" width="90" height="62" filter="url(#perrier-white)"/>
+            </svg>
+            <svg class="brand-mark drink-mark lillet-mark" viewBox="45 0 168 35" role="img" aria-label="Lillet">
+            <image href="/assets/lillet-original.png" width="250" height="35" filter="url(#lillet-white)"/>
+            </svg>
+            <svg class="brand-mark drink-mark oyster-gin-mark" viewBox="0 0 126 75" role="img" aria-label="Oyster Fine de Claire Adriatic Gin">
+            <g fill="white" text-anchor="middle" font-family="Georgia, serif">
+            <text x="63" y="26" font-size="29" letter-spacing="1">OYSTER</text>
+            <text x="63" y="43" font-size="17" font-style="italic">Fine de Claire</text>
+            <text x="64" y="58" font-size="12" letter-spacing="2">ADRIATIC</text>
+            <text x="64" y="73" font-size="16" letter-spacing="2">GIN</text>
+            </g>
+            </svg>
+            <svg class="brand-mark drink-mark citadelle-mark" viewBox="0 0 314.11 131.99" role="img" aria-label="Citadelle Gin">
+            <image href="/assets/citadelle-original.svg" width="314.11" height="131.99" filter="url(#citadelle-white)"/>
+            </svg>
+          </div>
+          <div class="laufband-gruppe" aria-hidden="true" inert>
+            <svg class="brand-mark drink-mark bruch-mark" viewBox="174 8 136 53" aria-hidden="true" data-label="Getränke Bruch, Ludwigshafen">
+            <image href="/assets/bruch-original.png" width="950" height="146" filter="url(#bruch-white)"/>
+            </svg>
+            <svg class="brand-mark jacquesson-mark" viewBox="120 15 605 220" aria-hidden="true" data-label="Champagne Jacquesson">
+            <image href="/assets/jacquesson-original.jpeg" width="874" height="259" filter="url(#jacquesson-white)"/>
+            </svg>
+            <svg class="brand-mark kys-marine-mark" viewBox="113 22 532 162" aria-hidden="true" data-label="kys. marine">
+            <image href="/assets/kys-marine-original.jpeg" width="805" height="235" filter="url(#kys-marine-white)"/>
+            </svg>
+            <svg class="brand-mark drink-mark orangina-mark" viewBox="1 110 190 49" aria-hidden="true" data-label="Orangina">
+            <image href="/assets/orangina-original.svg" width="192.756" height="192.756" filter="url(#orangina-white)"/>
+            </svg>
+            <svg class="brand-mark drink-mark coca-cola-mark" viewBox="0 0 512 161" aria-hidden="true" data-label="Coca-Cola">
+            <image href="/assets/coca-cola-original.svg" width="512" height="161" filter="url(#coca-cola-white)"/>
+            </svg>
+            <svg class="brand-mark drink-mark schweppes-wordmark-mark" viewBox="14 100 500 145" aria-hidden="true" data-label="Schweppes">
+            <image href="/assets/schweppes-wordmark-original.jpeg" width="533" height="330" filter="url(#schweppes-wordmark-white)"/>
+            </svg>
+            <svg class="brand-mark drink-mark pelforth-mark" viewBox="10 80 173 40" aria-hidden="true" data-label="Pelforth Bier">
+            <image href="/assets/pelforth-original.svg" width="192.756" height="192.756" filter="url(#pelforth-white)"/>
+            </svg>
+            <svg class="brand-mark drink-mark weinrefugium-mark" viewBox="40 22 122 95" aria-hidden="true" data-label="Weinrefugium">
+            <image href="/assets/weinrefugium-original.jpeg" width="238" height="180" filter="url(#weinrefugium-white)"/>
+            </svg>
+            <svg class="brand-mark drink-mark der-franzos-mark" viewBox="48 37 340 372" aria-hidden="true" data-label="Der Franzos’">
+            <image href="/assets/der-franzos-original.jpeg" width="402" height="431" filter="url(#der-franzos-white)"/>
+            </svg>
+            <svg class="brand-mark drink-mark perrier-mark" viewBox="0 0 90 62" aria-hidden="true" data-label="Perrier">
+            <image href="/assets/perrier-original.png" width="90" height="62" filter="url(#perrier-white)"/>
+            </svg>
+            <svg class="brand-mark drink-mark lillet-mark" viewBox="45 0 168 35" aria-hidden="true" data-label="Lillet">
+            <image href="/assets/lillet-original.png" width="250" height="35" filter="url(#lillet-white)"/>
+            </svg>
+            <svg class="brand-mark drink-mark oyster-gin-mark" viewBox="0 0 126 75" aria-hidden="true" data-label="Oyster Fine de Claire Adriatic Gin">
+            <g fill="white" text-anchor="middle" font-family="Georgia, serif">
+            <text x="63" y="26" font-size="29" letter-spacing="1">OYSTER</text>
+            <text x="63" y="43" font-size="17" font-style="italic">Fine de Claire</text>
+            <text x="64" y="58" font-size="12" letter-spacing="2">ADRIATIC</text>
+            <text x="64" y="73" font-size="16" letter-spacing="2">GIN</text>
+            </g>
+            </svg>
+            <svg class="brand-mark drink-mark citadelle-mark" viewBox="0 0 314.11 131.99" aria-hidden="true" data-label="Citadelle Gin">
+            <image href="/assets/citadelle-original.svg" width="314.11" height="131.99" filter="url(#citadelle-white)"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <button class="laufband-pause" type="button" aria-pressed="false" aria-label="Laufband anhalten" title="Laufband anhalten">
+        <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6v12M16 6v12"/></svg>
+        <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7Z"/></svg>
+      </button>
+    </div>
+    <svg class="sr-only" width="0" height="0" aria-hidden="true" focusable="false"><defs>
+      <filter id="bruch-white" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  10 0 0 0 -9"/></filter>
+      <filter id="jacquesson-white" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 -1.2 0 0 1.12"/></filter>
+      <filter id="kys-marine-white" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 -1.2 0 0 1.12"/></filter>
+      <filter id="orangina-white" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  -1 0 0 0 1"/></filter>
+      <filter id="coca-cola-white" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0"/></filter>
+      <filter id="schweppes-wordmark-white" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 -1.2 0 1.12"/></filter>
+      <filter id="pelforth-white" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  3 3 3 0 -8"/></filter>
+      <filter id="weinrefugium-white" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 -1.2 0 1.12"/></filter>
+      <filter id="der-franzos-white" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 -1.2 0 1.12"/></filter>
+      <filter id="perrier-white" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0"/></filter>
+      <filter id="lillet-white" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0"/></filter>
+      <filter id="citadelle-white" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 1 0"/></filter>
+    </defs></svg>
     <div class="rahmen fuss-raster">
       <ul class="fuss-links">
         <li><a class="insta" href="https://www.instagram.com/austernbubbles/" target="_blank" rel="noopener"><img class="insta-kreis" src="/popup/insta-austernbubbles.webp" alt="" width="240" height="240" loading="lazy"><span>Austern &amp; Bubbles auf Instagram</span></a></li>
